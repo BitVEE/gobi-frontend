@@ -1,0 +1,56 @@
+{
+    "common": {
+        "language": "zh",
+        "english": "English",
+        "chinese": "中文",
+        "notFind": "页面不存在"
+    },
+    "header": {
+        "home": "首页",
+        "race": "赛事报名",
+        "raceList": {
+            "race": "赛事报名",
+            "notice": "报名须知",
+            "changePolicy": "退改政策",
+            "qualification": "参赛资格",
+            "insurance": "保险说明",
+            "fee": "费用说明",
+            "rule": "赛事规则",
+            "schedule": "赛事日程"
+        },
+        "raceInfo": "赛事信息",
+        "raceInfoList": {
+            "latestNews": "最新资讯",
+            "gobistory": "戈友故事",
+            "raceIntroduction": "赛事介绍",
+            "raceAgenda": "赛事章程",
+            "raceManual": "赛事手册"
+        },
+        "raceResult": "成绩查询",
+        "raceResultList": {
+            "personalResult": "个人成绩",
+            "teamResult": "团队成绩"
+        },
+        "raceImage": "戈赛影像",
+        "raceImageList": {
+            "selectedAlbum": "精选相册",
+            "selectedVideo": "精选视频"
+        },
+        "partner": "合作伙伴",
+        "partnerList": {
+            "partner": "合作伙伴",
+            "joinSchool": "参与院校"
+        },
+        "qa": "用户问答",
+        "qaList": {
+            "raceQa": "赛事问答",
+            "healthQa": "健康问答"
+        },
+        "about": "关于我们",
+        "aboutList": {
+            "brandStory": "品牌故事",
+            "internationalGobieCenter": "国际戈友中心",
+            "contactUs": "联系我们"
+        }
+    }
+}

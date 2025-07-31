@@ -1,11 +1,11 @@
 const express = require('express')
 const next = require('next')
-const {createProxyMiddleware } = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
-const baseUrl = 'http://146.190.106.100:5002'
+const baseUrl = 'https://gobi-i4ra7.ondigitalocean.app/api'
 const devProxy = {
     '/api': {
-        target: 'http://146.190.106.100:5002',
+        target: baseUrl,
         pathRewrite: {
             '^/api': ''
         },
@@ -25,7 +25,7 @@ app.prepare()
     .then(() => {
         const server = express()
         if (devProxy) {
-            Object.keys(devProxy).forEach(function(context) {
+            Object.keys(devProxy).forEach(function (context) {
                 server.use(createProxyMiddleware(context, devProxy[context]))
             })
         }

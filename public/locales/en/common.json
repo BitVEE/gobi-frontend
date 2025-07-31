@@ -1,0 +1,59 @@
+{
+    "common": {
+        "language": "en",
+        "english": "English",
+        "chinese": "中文",
+        "notFind": "Page not found"
+    },
+    "footer": {
+        "footerText": "Copyright © 2024 BitVee. All rights reserved."
+    },
+    "header": {
+        "home": "Home",
+        "race": "Race registration",
+        "raceList": {
+            "race": "Race registration",
+            "notice": "Notice",
+            "changePolicy": "Change policy",
+            "qualification": "Qualification",
+            "insurance": "Insurance",
+            "fee": "Fee",
+            "rule": "Rule",
+            "schedule": "Schedule"
+        },
+        "raceInfo": "Race information",
+        "raceInfoList": {
+            "latestNews": "Latest news",
+            "gobistory": "Gobistory",
+            "raceIntroduction": "Race introduction",
+            "raceAgenda": "Race agenda",
+            "raceManual": "Race manual"
+        },
+        "raceResult": "Result query",
+        "raceResultList": {
+            "personalResult": "Personal result",
+            "teamResult": "Team result"
+        },
+        "raceImage": "Race images",
+        "raceImageList": {
+            "selectedAlbum": "Selected album",
+            "selectedVideo": "Selected video"
+        },
+        "partner": "Partners",
+        "partnerList": {
+            "partner": "Partners",
+            "joinSchool": "Join school"
+        },
+        "qa": "User Q&A",
+        "qaList": {
+            "raceQa": "Race Q&A",
+            "healthQa": "Health Q&A"
+        },
+        "about": "About",
+        "aboutList": {
+            "brandStory": "Brand story",
+            "internationalGobieCenter": "International Gobie Center",
+            "contactUs": "Contact us"
+        }
+    }
+}
