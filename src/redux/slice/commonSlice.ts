@@ -13,10 +13,13 @@ export const commonSlice = createSlice({
     reducers: {
         setToken: (state: commonState, action: PayloadAction<string>) => {
             state.token = action.payload
+        },
+        clearToken: (state: commonState) => {
+            state.token = ''
         }
     },
 })
 
-export const { setToken } = commonSlice.actions
+export const { setToken, clearToken } = commonSlice.actions
 
 export default commonSlice.reducer
