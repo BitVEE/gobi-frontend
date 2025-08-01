@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from './Header'
-import styles from './Layout.module.scss'
+import Header from '../Header'
+import styles from './index.module.scss'
 
 interface LayoutProps {
     children: React.ReactNode

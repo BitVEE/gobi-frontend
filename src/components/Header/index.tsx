@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next'
-import styles from './Header.module.scss'
+import styles from './index.module.scss'
 import routerList from '@/utils/routerList';
 
 const Header = () => {
@@ -20,7 +20,7 @@ const Header = () => {
                 <img className={styles.logo} src="/images/logo.png" alt="GOBI" />
                 <nav className={styles.nav}>
                     {routerList.map((item) => (
-                        <div key={item.path} className={styles.navItem} >
+                        <div key={item.name} className={styles.navItem} >
                             {!item.children ? (
                                 <a href={"/" + router.locale + item.path} className={router.pathname === item.path ? styles.active : ''}>{t(`header.${item.name}`)}</a>
                             ) : (

@@ -1,7 +1,10 @@
 .header {
     background: rgba(46, 46, 46, 0.2);
-    color: white;
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
 
 .container {
@@ -37,7 +40,6 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background: white;
             min-width: 80px;
             width: auto;
             border-radius: 0 0 8px 8px;
@@ -45,8 +47,7 @@
             z-index: 1;
             padding: 16px;
             gap: 16px;
-
-            color: var(--White, #fff);
+            color: #fff;
             font-family: Raleway;
             font-size: 12px;
             font-style: normal;
@@ -54,6 +55,7 @@
             line-height: normal;
             text-decoration: none;
             .dropdownItem {
+                white-space: nowrap;
                 &:hover,
                 &Active {
                     color: #ff6a14;
@@ -69,10 +71,9 @@
 
     .logo {
         width: 150px;
-        height: 98px;
+        height: 58px;
         flex-shrink: 0;
         aspect-ratio: 75/29;
-        padding: 20px 0;
     }
 
     .nav {
@@ -111,7 +112,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 16px;
+        gap: 24px;
         height: 98px;
 
         .languageIcon {
