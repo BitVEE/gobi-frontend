@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../Header'
+import Footer from '../footer'
 import styles from './index.module.scss'
 
 interface LayoutProps {
@@ -11,6 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className={styles.layout}>
             <Header />
             <main className={styles.main}>{children}</main>
+            <Footer />
         </div>
     )
 }

@@ -22,3 +22,23 @@ export const AuthAPI = {
      */
     logout: () => http.post<API.APIResult<null>>(`${baseURL}/user/logout`)
 }
+
+
+/**
+ * 新闻相关API
+ */
+export const NewsAPI = {
+    /**
+     * 获取新闻列表
+     * @param params 分页参数
+     * @returns 新闻列表
+     */
+    getNewsList: (params: API.NewsListParams) => http.get<API.NewsListResult>(`${baseURL}/article/list`, { params }),
+    /**
+     * 获取新闻详情
+     * @param id 新闻ID
+     * @returns 新闻详情
+     */
+    getNewsDetail: (id: string) => http.get<API.NewsDetail>(`${baseURL}/article/detail/${id}`),
+   
+}

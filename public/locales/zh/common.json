@@ -52,5 +52,16 @@
             "internationalGobieCenter": "国际戈友中心",
             "contactUs": "联系我们"
         }
+    },
+    "home": {
+        "title": "第三届玄奘之路国际青少年戈壁挑战赛",
+        "subtitle": "ULTRA GOBI",
+        "news": "新闻动态",
+        "qa": "用户问答",
+        "qaQuestion": "戈友问答",
+        "qaAnswer": "戈友回答",
+        "partner": "合作伙伴",
+        "followUs": "关注我们",
+        "copyright": "版权所有 © 2025 Gobi Race. 保留所有权利。"
     }
 }

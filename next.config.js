@@ -11,6 +11,16 @@ const nextConfig = {
       // { source: '/', destination: '/', permanent: false },
     ]
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'imagedelivery.net',
+        port: '',
+        pathname: '/**',
+      }
+    ]
+  }
 }
 
 module.exports = nextConfig

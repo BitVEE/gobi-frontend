@@ -55,5 +55,16 @@
             "internationalGobieCenter": "International Gobie Center",
             "contactUs": "Contact us"
         }
+    },
+    "home": {
+        "title": "The 3rd Xuanzang International Youth Gobi Challenge",
+        "subtitle": "ULTRA GOBI",
+        "news": "News",
+        "qa": "User Q&A",
+        "qaQuestion": "Gobi Friends Q&A",
+        "qaAnswer": "Gobi Friends Answers",
+        "partner": "Partners",
+        "followUs": "Follow Us",
+        "copyright": "Copyright © 2025 Gobi Race. All Rights Reserved."
     }
 }

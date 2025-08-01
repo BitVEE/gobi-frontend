@@ -1,0 +1,117 @@
+.footer {
+    width: 100%;
+    height: 430px;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #121212;
+    padding-bottom: 20px;
+
+    .footerContent {
+        width: 90%;
+        height: 282px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .footerLogo {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .logo {
+                width: 54.6px;
+                height: 21px;
+                cursor: pointer;
+            }
+
+            .followUs {
+                display: flex;
+                align-items: center;
+                font-weight: 800;
+                font-style: ExtraBold;
+                font-size: 16px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                color: #121212;
+
+                .icons {
+                    width: 24px;
+                    height: 24px;
+                    margin-left: 24px;
+                    cursor: pointer;
+                }
+            }
+
+        }
+
+        .footerDivider {
+            width: 100%;
+            border: 1px solid #FF6A14;
+            margin-top: 34px;
+        }
+
+        .footerLinks {
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 34px;
+
+            .footerLinkItem {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                a {
+                    text-decoration: none;
+                    color: #121212;
+                }
+
+                a:hover{
+                    color: #FF6A14;
+                }
+
+                .link_title {
+                    font-weight: 700;
+                    font-style: Bold;
+                    font-size: 12px;
+                    line-height: 100%;
+                    letter-spacing: 0%;
+                    text-align: center;
+                    vertical-align: middle;
+
+                }
+
+                .dropdownContent {
+                    margin-top: 8px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    .dropdownItem {
+                        margin-top: 12px;
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 100%;
+                        letter-spacing: 0%;
+                        text-align: center;
+                        vertical-align: middle;
+
+                    }
+                }
+            }
+        }
+
+        .copyright {
+            font-weight: 800;
+            font-style: ExtraBold;
+            font-size: 12px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: center;
+            margin-top: 22px;
+        }
+    }
+}
