@@ -5,9 +5,6 @@
         "chinese": "中文",
         "notFind": "Page not found"
     },
-    "footer": {
-        "footerText": "Copyright © 2024 BitVee. All rights reserved."
-    },
     "header": {
         "home": "Home",
         "race": "Race registration",
@@ -54,7 +51,10 @@
             "brandStory": "Brand story",
             "internationalGobieCenter": "International Gobie Center",
             "contactUs": "Contact us"
-        }
+        },
+        "login": "Login",
+        "logout": "Logout",
+        "personalCenter": "Personal center"
     },
     "home": {
         "title": "The 3rd Xuanzang International Youth Gobi Challenge",
@@ -66,5 +66,19 @@
         "partner": "Partners",
         "followUs": "Follow Us",
         "copyright": "Copyright © 2025 Gobi Race. All Rights Reserved."
+    },
+    "login": {
+        "emailLogin": "Email login",
+        "wechatLogin": "Wechat login",
+        "emailPlaceholder": "Please enter email",
+        "emailFormatError": "Email format error",
+        "codePlaceholder": "Please enter code",
+        "codeError": "Code error",
+        "getCode": "Get code",
+        "agreement": "I have read and agree to the service terms and privacy terms",
+        "agreementError": "Please agree to the service terms and privacy terms",
+        "useWechatLogin": "Use wechat scan login",
+        "useWechatLoginAgreement": "Wechat login means agree to the service terms and privacy terms",
+        "login": "Login"
     }
 }

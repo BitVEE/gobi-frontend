@@ -51,7 +51,10 @@
             "brandStory": "品牌故事",
             "internationalGobieCenter": "国际戈友中心",
             "contactUs": "联系我们"
-        }
+        },
+        "login": "登录",
+        "logout": "退出登录",
+        "personalCenter": "个人中心"
     },
     "home": {
         "title": "第三届玄奘之路国际青少年戈壁挑战赛",
@@ -63,5 +66,19 @@
         "partner": "合作伙伴",
         "followUs": "关注我们",
         "copyright": "版权所有 © 2025 Gobi Race. 保留所有权利。"
+    },
+    "login": {
+        "emailLogin": "邮箱登录",
+        "wechatLogin": "微信登录",
+        "emailPlaceholder": "请输入邮箱",
+        "emailFormatError": "邮箱格式错误",
+        "codePlaceholder": "请输入验证码",
+        "codeError": "验证码错误",
+        "getCode": "获取验证码",
+        "agreement": "我已阅读并同意服务条款、隐私条款",
+        "agreementError": "请同意服务条款、隐私条款",
+        "useWechatLogin": "使用微信扫码登录青戈赛",
+        "useWechatLoginAgreement": "微信登录即表示同意服务条款、隐私条款",
+        "login": "登录"
     }
 }

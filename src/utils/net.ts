@@ -5,7 +5,7 @@ import { clearToken, setToken } from '../redux/slice/commonSlice';
 // request intercept for API
 axios.interceptors.request.use(
   config => {
-    const token = store.getState().CommonSlice.token
+    const token = store.getState().commonSlice.token
     if (!config.headers) {
       config.headers = new AxiosHeaders()
     }

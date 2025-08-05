@@ -8,7 +8,7 @@ const initialState: commonState = {
 }
 
 export const commonSlice = createSlice({
-    name: 'CommonSlice',
+    name: 'commonSlice',
     initialState,
     reducers: {
         setToken: (state: commonState, action: PayloadAction<string>) => {
