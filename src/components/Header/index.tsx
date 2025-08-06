@@ -45,10 +45,6 @@ const Header = () => {
         store.dispatch(clearToken());
     };
 
-    useEffect(() => {
-        console.log(token);
-    }, [token]);
-
     return (
         <header className={styles.header}>
             <div className={styles.container}>
@@ -98,7 +94,7 @@ const Header = () => {
                                 </div>
                                 <div className={`${styles.dropdownContent}  ${dropdownOpenName === "profile" ? styles.dropdownContentOpen : ''}`}>
                                     <div className={styles.dropdownItem} onClick={() => handleLogout()}>{t('header.logout')}</div>
-                                    <div className={styles.dropdownItem} onClick={() => router.push("/" + router.locale + "/user")}>{t('header.personalCenter')}</div>
+                                    <div className={`${styles.dropdownItem} ${router.pathname == '/user' ? styles.dropdownItemActive : ''} `} onClick={() => router.push("/" + router.locale + "/user")}>{t('header.personalCenter')}</div>
                                 </div>
                             </div>
                             : <a href={"/" + router.locale + "/login"} className={styles.loginButton}>{t('header.login')}</a>
