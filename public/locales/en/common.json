@@ -80,5 +80,27 @@
         "useWechatLogin": "Use wechat scan login",
         "useWechatLoginAgreement": "Wechat login means agree to the service terms and privacy terms",
         "login": "Login"
+    },
+    "user": {
+        "title": "Personal center",
+        "myEnroll": "My enrollment",
+        "commonEnroll": "Common enrollment",
+        "all": "All",
+        "waitPay": "Wait pay",
+        "paySuccess": "Pay success",
+        "refund": "Refund",
+        "payFail": "Pay fail",
+        "name": "Name",
+        "group": "Group",
+        "raceName": "Race name",
+        "status": "Status",
+        "phone": "Phone",
+        "gender": "Gender",
+        "idType": "ID type",
+        "idNumber": "ID number",
+        "newEnroll": "New enrollment",
+        "modifyInfo": "Modify information",
+        "delete": "Delete",
+        "save": "Save"
     }
 }
