@@ -28,7 +28,7 @@ const Card = ({ width = 400, height = 455, imgHeight = 208, title = "", text = "
                     className={styles.card_image}
                 />
             </div>
-            <div className={styles.card_content} style={{ height: `${height - imgHeight}px` }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+            <div className={styles.card_content} style={{ height: `${height - imgHeight}px`, backgroundColor: isHovered ? "#FF6A14" : "#F8F8F8", color: isHovered ? "#FFFFFF" : "#121212" }} onTouchStartCapture={() => setIsHovered(true)} onTouchEndCapture={() => setIsHovered(false)} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
                 <div className={styles.card_box}>
                     <div className={styles.card_title}>
                         {title}

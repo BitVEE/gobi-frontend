@@ -19,7 +19,7 @@
             font-weight: 700;
             font-style: Bold;
             font-size: 45px;
-            line-height: 100%;
+            line-height: 130%;
             letter-spacing: 0%;
             text-align: center;
             vertical-align: middle;
@@ -42,6 +42,7 @@
             margin-top: 35px;
         }
     }
+
 
     .news_container {
         width: 100%;
@@ -150,11 +151,110 @@
                 opacity: 1;
                 border-radius: 8px;
                 background-color: #F8F8F8;
-                border-radius: 8px;
                 cursor: pointer;
                 margin-bottom: 42px;
 
             }
         }
+    }
+
+
+    @media (max-width: 768px) {
+
+        .poster {
+            height: 60vh;
+            background-size: cover;
+            background-position: center;
+
+            .poster_title {
+                width: 80%;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 100px;
+                line-height: 130%;
+                letter-spacing: 0%;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .poster_subtitle {
+                top: 65%;
+                font-weight: 400;
+                font-size: 90px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                text-align: center;
+            }
+        }
+
+        .news_container {
+            .news_title {
+                margin-top: 102px;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 84px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+            }
+
+            .news_list {
+                margin-top: 40px;
+
+            }
+
+            .qa_list {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+
+                .qa_item {
+                    width: 90%;
+                    height: 480px;
+                    margin-bottom: 40px;
+                    border-radius: 16px;
+
+
+                    .qa_item_title {
+                        width: 68px;
+                        height: 68px;
+                    }
+
+                    .qa_item_content {
+
+                        .qa_item_q {
+                            font-weight: 700;
+                            font-style: Bold;
+                            font-size: 84px;
+                            line-height: 100%;
+                            letter-spacing: 0%;
+                            vertical-align: middle;
+
+                        }
+
+                        .qa_item_a {
+                            font-weight: 400;
+                            font-style: Regular;
+                            font-size: 72px;
+                            line-height: 100%;
+                            letter-spacing: 0%;
+                            vertical-align: middle;
+                            margin-top: 64px;
+                        }
+                    }
+                }
+            }
+
+            .partner_list {
+
+                .partner_item {
+                    width: 400px;
+                    height: 400px;
+                    margin-top: 52px;
+                    border-radius: 16px;
+                }
+            }
+        }
+
     }
 }

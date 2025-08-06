@@ -41,6 +41,24 @@ export default function Home() {
     console.log(newsData.data);
   }
 
+  const formatDate = (str: any) => {
+    let date:any = new Date(str);
+    let year:any = date.getFullYear();
+    let month:any = date.getMonth() + 1;
+    month = month < 10 ? ('0' + month) : month;
+    let day = date.getDate();
+    day = day < 10 ? ('0' + day) : day;
+    let h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    let m = date.getMinutes();
+    m = m < 10 ? ('0' + m) : m;
+    let s = date.getSeconds();
+    s = s < 10 ? ('0' + s) : s;
+    // return year + '-' + month + '-' + day + ' ' + h + ':' + m + ':' + s;
+    return year + '-' + month + '-' + day ;
+  }
+
+
   useEffect(() => {
 
     getNewsData()
@@ -68,13 +86,15 @@ export default function Home() {
               idx === 0 ?
                 <Card width={820} imgHeight={301} isShowBorder={false} key={item.id}
                   title={i18n.language === 'zh' ? item.titleZh : item.titleEn}
-                  text={i18n.language === 'zh' ? item.contentZh : item.contentEn}
+                  // text={i18n.language === 'zh' ? item.contentZh : item.contentEn}
+                  text={formatDate(Number(item.createdAt) * 1000)}
                   imgSrc={item.coverUrl} />
                 : <Card
                   imgHeight={301}
                   key={item.id}
                   title={i18n.language === 'zh' ? item.titleZh : item.titleEn}
-                  text={i18n.language === 'zh' ? item.contentZh : item.contentEn}
+                  // text={i18n.language === 'zh' ? item.contentZh : item.contentEn}
+                  text={formatDate(Number(item.createdAt) * 1000)}
                   imgSrc={item.coverUrl}
                 />
             ))

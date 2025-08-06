@@ -18,18 +18,21 @@ const Footer = (props: Props) => {
                     <Image className={styles.logo} width={54.6} height={21} src="/images/logo.png" alt="GOBI" />
                     <div className={styles.followUs}>
                         {t("home.followUs" as any)}
-                        <Image className={styles.icons} width={24} height={24} src="/images/icons/twitch.svg" alt="twitch" />
-                        <Image className={styles.icons} width={24} height={24} src="/images/icons/snapchat.svg" alt="twitch" />
-                        <Image className={styles.icons} width={24} height={24} src="/images/icons/facebook.svg" alt="twitch" />
-                        <Image className={styles.icons} width={24} height={24} src="/images/icons/youtube.svg" alt="twitch" />
+                        <div className={styles.iconsContainer}>
+                            <Image className={styles.icons} width={24} height={24} src="/images/icons/twitch.svg" alt="twitch" />
+                            <Image className={styles.icons} width={24} height={24} src="/images/icons/snapchat.svg" alt="twitch" />
+                            <Image className={styles.icons} width={24} height={24} src="/images/icons/facebook.svg" alt="twitch" />
+                            <Image className={styles.icons} width={24} height={24} src="/images/icons/youtube.svg" alt="twitch" />
+                        </div>
                     </div>
+
                 </div>
                 <div className={styles.footerDivider}>
                 </div>
                 <div className={styles.footerLinks}>
                     {
                         routerList.map((item) => (
-                            <div key={item.path} className={styles.footerLinkItem}>
+                            <div key={item.name} className={styles.footerLinkItem}>
                                 {!item.children ? (
                                     <a href={"/" + router.locale + item.path} className={styles.link_title}>{t(`header.${item.name}` as any)}</a>
                                 ) : (
@@ -37,13 +40,17 @@ const Footer = (props: Props) => {
                                         <div className={styles.link_title}>
                                             {t(`header.${item.name}` as any)}
                                         </div>
-                                        <div className={styles.dropdownContent}>
-                                            {item.children?.map((child) => (
-                                                <a className={styles.dropdownItem} key={child.path} href={"/" + router.locale + child.path}>
-                                                    {t(`header.${child.name}` as any)}
-                                                </a>
-                                            ))}
-                                        </div>
+                                        {
+                                            window.innerWidth > 768 && (
+                                                <div className={styles.dropdownContent}>
+                                                    {item.children?.map((child) => (
+                                                        <a className={styles.dropdownItem} key={child.path} href={"/" + router.locale + child.path}>
+                                                            {t(`header.${child.name}` as any)}
+                                                        </a>
+                                                    ))}
+                                                </div>
+                                            )
+                                        }
                                     </div>
                                 )}
                             </div>

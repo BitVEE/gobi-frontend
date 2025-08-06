@@ -9,11 +9,6 @@
 
     }
 
-    .card_content:hover {
-        background-color: #FF6A14;
-        color: #FFFFFF;
-
-    }
 
     .card_content {
         width: 100%;
@@ -46,6 +41,13 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+
+
 
                 .card_arrow {
                     width: 24px;
@@ -56,4 +58,39 @@
         }
 
     }
+
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        border-radius: 16px;
+        margin-top: 40px;
+
+        .card_image {
+            width: 100%;
+            border-radius: 16px 16px 0 0;
+            object-fit: cover;
+
+        }
+
+        .card_content {
+            border-radius: 0 0 16px 16px;
+
+            .card_box {
+                width: 90%;
+
+                .card_title {
+                    font-size: 70px;
+
+                }
+
+                .card_text {
+                    font-size: 65px;
+                    padding-top: 24px;
+
+                }
+            }
+        }
+    }
+
 }
