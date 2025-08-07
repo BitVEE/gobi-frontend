@@ -22,6 +22,24 @@ declare namespace API {
     type VerificationCodeResult = APIResult<{
         verificationCode: string
     }>
+    // 报名历史参数
+    interface SignupHistoryParams {
+        page: number
+        size: number
+    }
+    type SignupHistoryResult = APIResult<{
+        total: number
+        signUpList: SignupHistoryItem[]
+    }>
+    // 报名历史项
+    interface SignupHistoryItem {
+        id: number
+        matchId: number
+        matchGroupId: number
+        state: number
+        name: string
+        enName: string
+    }
 
     interface NewsListParams {
         type: number

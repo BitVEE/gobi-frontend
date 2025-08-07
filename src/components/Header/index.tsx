@@ -7,6 +7,7 @@ import { store } from '@/redux/store';
 import Image from 'next/image';
 import { clearToken } from '@/redux/slice/commonSlice';
 import { useSelector } from 'react-redux';
+import { AuthAPI } from '@/api';
 
 const Header = () => {
     const router = useRouter()
@@ -41,7 +42,8 @@ const Header = () => {
         }
     }, []);
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        await AuthAPI.logout()
         store.dispatch(clearToken());
     };
 

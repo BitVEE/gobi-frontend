@@ -84,7 +84,6 @@
     "user": {
         "title": "个人中心",
         "myEnroll": "我的报名",
-        "commonEnroll": "常用报名人",
         "all": "全部",
         "waitPay": "待支付",
         "paySuccess": "支付成功",
@@ -93,14 +92,6 @@
         "name": "姓名",
         "group": "组别",
         "raceName": "赛事名称",
-        "status": "状态",
-        "phone": "手机号",
-        "gender": "性别",
-        "idType": "证件类别",
-        "idNumber": "证件号码",
-        "newEnroll": "新增报名人",
-        "modifyInfo": "修改信息",
-        "delete": "删除",
-        "save": "保存"
+        "status": "状态"
     }
 }

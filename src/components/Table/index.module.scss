@@ -1,0 +1,49 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    .tableHeader {
+        padding: 8px;
+        height: 60px;
+        text-align: left;
+        background-color: #f8f8f8;
+        color: #000;
+        font-family: Raleway;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .tableRow:nth-child(odd) {
+        background-color: white;
+    }
+
+    .tableRow:nth-child(even) {
+        background-color: #f8f8f8;
+    }
+
+    .tableCell {
+        height: 60px;
+        padding: 8px;
+        color: #000;
+        font-family: Raleway;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    @media screen and (max-width: 768px) {
+        .tableHeader {
+            padding: 8px * 3.84;
+            height: 40px * 3.84;
+            font-size: 14px * 3.84;
+        }
+        .tableCell {
+            padding: 8px * 3.84;
+            height: 40px * 3.84;
+            font-size: 12px * 3.84;
+        }
+    }
+}

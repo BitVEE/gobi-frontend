@@ -20,7 +20,13 @@ export const AuthAPI = {
      * 用户注销
      * @returns 注销结果
      */
-    logout: () => http.post<API.APIResult<null>>(`${baseURL}/user/logout`)
+    logout: () => http.post<API.APIResult<null>>(`${baseURL}/user/account/logout`),
+    /**
+     * 查看报名历史
+     * @param params 分页参数
+     * @returns 报名历史
+     */
+    getSignupHistory: (params: API.SignupHistoryParams) => http.get<API.SignupHistoryResult>(`${baseURL}/match/signup/list`, { params }),
 }
 
 
@@ -40,5 +46,5 @@ export const NewsAPI = {
      * @returns 新闻详情
      */
     getNewsDetail: (id: string) => http.get<API.NewsDetail>(`${baseURL}/article/detail/${id}`),
-   
+
 }

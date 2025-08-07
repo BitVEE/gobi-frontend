@@ -84,12 +84,13 @@
     .tag:last-child {
         border-radius: 0px 8px 8px 0px;
     }
-    .selected_tag {
-        background: #ff6a14;
-        color: #fff;
-    }
     .tag:hover {
         background: #ffd1b7;
+        color: #fff;
+    }
+    .selected_tag,
+    .selected_tag:hover {
+        background: #ff6a14;
         color: #fff;
     }
     @media screen and (max-width: 768px) {
