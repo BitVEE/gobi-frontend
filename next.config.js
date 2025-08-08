@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
+  devIndicators: false,
   i18n: {
     locales: ['en', 'zh'],
     defaultLocale: 'zh',

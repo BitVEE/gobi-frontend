@@ -16,23 +16,26 @@ const User = () => {
     const [filteredSignupHistory, setFilteredSignupHistory] = useState<API.SignupHistoryItem[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const { locale } = useRouter();
+    const [page, setPage] = useState<number>(1);
+    const [total, setTotal] = useState<number>(0);
 
     useEffect(() => {
         setLoading(true);
         AuthAPI.getSignupHistory({
-            page: 1,
+            page: page,
             size: 10,
         }).then((res) => {
             if (res.data.code === 0) {
+                setTotal(res.data.data.total);
                 setSignupHistory(res.data.data.signUpList);
-                setFilteredSignupHistory(res.data.data.signUpList);
+                setFilteredSignupHistory(res.data.data.signUpList.filter((item) => (Number(selectedTag) == 0 || item.state === Number(selectedTag))));
             } else {
                 setSignupHistory([]);
             }
         }).finally(() => {
             setLoading(false);
         })
-    }, [])
+    }, [page])
 
     useEffect(() => {
         if (selectedTag === 0) {
@@ -40,7 +43,6 @@ const User = () => {
         } else {
             setFilteredSignupHistory(signupHistory.filter((item) => item.state === Number(selectedTag)));
         }
-
     }, [selectedTag])
 
     const signupColumns = [
@@ -79,10 +81,10 @@ const User = () => {
                         />
                         <div className={styles.my_enroll_table}>
                             <TableComponent rowKey='id' pagination={{
-                                total: filteredSignupHistory.length,
-                                current: 1,
+                                total: total,
+                                current: page,
                                 pageSize: 10,
-                            }} loading={loading} columns={signupColumns} dataSource={filteredSignupHistory} />
+                            }} loading={loading} columns={signupColumns} dataSource={filteredSignupHistory} setPage={setPage} />
                         </div>
                         <div className={styles.divider} />
                     </div>
