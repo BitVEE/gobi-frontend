@@ -95,5 +95,11 @@
         "group": "Group",
         "raceName": "Race name",
         "status": "Status"
+    },
+    "partner": {
+        "title":"Partners",
+        "schools":"Schools",
+        "shop":"Shop",
+        "community":"Community"
     }
 }
