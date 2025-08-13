@@ -3,7 +3,7 @@ const routerList = [
     {
         name: "race",
         children: [
-            { name: "raceList.race", path: '/race/race' },
+            { name: "raceList.race", path: '/race/registration' },
             { name: "raceList.notice", path: '/race/notice' },
             { name: "raceList.changePolicy", path: '/race/changePolicy' },
             { name: "raceList.qualification", path: '/race/qualification' },

@@ -10,6 +10,20 @@
     "header": {
         "home": "Home",
         "race": "Race registration",
+        "registration": {
+            "place": "Venue",
+            "contact": "Contact Organizer",
+            "startDate": "Registration Start",
+            "endDate": "Registration End",
+            "matchDate": "Event Date",
+            "now": "Register Now",
+            "status": {
+                "in": "Open",
+                "registrationEnd": "Registration Ended",
+                "matchEnd": "Event Ended",
+                "matchClosed": "Event Closed"
+            }
+        },
         "raceList": {
             "race": "Race registration",
             "notice": "Notice",

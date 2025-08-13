@@ -48,3 +48,8 @@ export const NewsAPI = {
     getNewsDetail: (id: string) => http.get<API.NewsDetail>(`${baseURL}/article/detail/${id}`),
 
 }
+
+export const MatchAPI = {
+
+    getMatchList: (params: API.MatchListParams) => http.get<API.APIResult<null>>(`${baseURL}/match/list`, { params }),
+}

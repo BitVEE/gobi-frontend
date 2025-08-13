@@ -75,4 +75,10 @@ declare namespace API {
     interface NewsDetail {
         article: NewsListItem[]
     }
+
+
+    interface MatchListParams {
+        page: number
+        size: number
+    }
 }

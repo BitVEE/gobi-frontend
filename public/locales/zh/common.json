@@ -10,6 +10,20 @@
     "header": {
         "home": "首页",
         "race": "赛事报名",
+        "registration": {
+            "place": "赛事地点",
+            "contact": "联系组委会",
+            "startDate": "报名开始",
+            "endDate": "报名结束",
+            "matchDate": "报名开始",
+            "now": "立即报名",
+            "status": {
+                "in": "报名中",
+                "registrationEnd": "报名结束",
+                "matchEnd": "比赛结束",
+                "matchClosed": "赛事关闭"
+            }
+        },
         "raceList": {
             "race": "赛事报名",
             "notice": "报名须知",
