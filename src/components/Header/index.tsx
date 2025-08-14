@@ -48,7 +48,7 @@ const Header = () => {
     };
 
     return (
-        <header className={styles.header}>
+        <header className={styles.header} id='site-header'>
             <div className={styles.container}>
                 <Image width={150} height={58} className={styles.logo} src="/images/logo.png" alt="GOBI" />
                 <div className={styles.mobileMenuButton} onClick={toggleMobileMenu}>

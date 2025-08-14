@@ -17,6 +17,7 @@
             "endDate": "报名结束",
             "matchDate": "报名开始",
             "now": "立即报名",
+            "nodataText": "暂无数据",
             "status": {
                 "in": "报名中",
                 "registrationEnd": "报名结束",

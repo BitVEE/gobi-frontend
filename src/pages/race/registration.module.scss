@@ -149,6 +149,45 @@
                 }
             }
         }
+
+        .match_description {
+            width: 100%;
+            background-color: #F8F8F8;
+            padding: 42px 0;
+            margin-top: 74px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .match_description_box {
+                display: flex;
+                flex-direction: column;
+                font-style: Bold;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                width: 85%;
+                margin-bottom: 42px;
+
+                .match_description_title {
+                    font-weight: 700;
+                    font-size: 21px;
+
+                    .match_description_title_divider {
+                        width: 60px;
+                        border-bottom: 3px solid#FF6A14;
+                        margin-top: 12px;
+                    }
+                }
+
+                .match_description_text {
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 150%;
+                    margin-top: 24px;
+                }
+            }
+        }
+
     }
 
 }

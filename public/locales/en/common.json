@@ -17,6 +17,7 @@
             "endDate": "Registration End",
             "matchDate": "Event Date",
             "now": "Register Now",
+            "nodataText": "Sorry, at the moment there is no information.",
             "status": {
                 "in": "Open",
                 "registrationEnd": "Registration Ended",

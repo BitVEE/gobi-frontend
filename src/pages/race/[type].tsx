@@ -51,8 +51,11 @@ type MatchInfoType = {
 
 const Registration = (props: Props) => {
     const router = useRouter()
+    const { type } = router.query;
     const { t, i18n } = useTranslation("common", { keyPrefix: "header" });
-    const [selectedSubTitle, setSelectedSubTitle] = useState<string | number>('race');
+    const [selectedSubTitle, setSelectedSubTitle] = useState<string | number>(
+        typeof type === 'string' ? type : ''
+    );
     const [currentMatchInfo, setCurrentMatchInfo] = useState<MatchesListType>()
     const [matchStatus, setMatchStatus] = useState<string>()
 
@@ -64,7 +67,6 @@ const Registration = (props: Props) => {
                 setCurrentMatchInfo(data.matches[0])
             }
 
-            console.log(currentMatchInfo)
         }
     }
 
@@ -85,20 +87,46 @@ const Registration = (props: Props) => {
     }, [])
 
     useEffect(() => {
+        if (type) {
+            if (typeof type === 'string') {
+                setSelectedSubTitle(type)
+            } else if (Array.isArray(type) && type.length > 0) {
+                setSelectedSubTitle(type[0])
+            }
 
-        getMatchStatus()
+            const element = document.getElementById(type as string);
+            const headerElement = document.getElementById('site-header');
+            const headerOffset = headerElement?.getBoundingClientRect().height ?? 0;
 
+            if (element) {
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 10;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        }
+
+    }, [type])
+
+    useEffect(() => {
+        if (currentMatchInfo) {
+            console.log(currentMatchInfo)
+            getMatchStatus()
+        }
 
     }, [currentMatchInfo])
 
     return (
         <div className={styles.registration}>
             <PageHeader backgroundImage='/images/title_bg/registration.png' title={t('race')} />
-            <div className={styles.tag_box}>
+            <div className={styles.tag_box} id='registration'>
 
                 <TagSelector
                     tags={[
-                        { title: t("race"), value: "race" },
+                        { title: t("race"), value: "registration" },
                         { title: t('raceList.notice'), value: "notice" },
                         { title: t('raceList.changePolicy'), value: "changePolicy" },
                         { title: t('raceList.qualification'), value: "qualification" },
@@ -109,14 +137,19 @@ const Registration = (props: Props) => {
                     ]}
                     styleType='text'
                     selectedValue={selectedSubTitle}
-                    onChange={(value) => { setSelectedSubTitle(value); }}
+                    onChange={(value) => { router.push(`/${router.locale }/race/${value}`); }}
                 />
             </div>
 
             <div className={styles.match_box}>
                 <div className={styles.info_box}>
                     <div className={styles.detail}>
-                        <Image className={styles.cover} src={currentMatchInfo?.coverUrl ?? ''} width={615} height={355} alt='cover'></Image>
+                        <div className={styles.cover}>
+                            {
+                                currentMatchInfo?.coverUrl &&
+                                <Image className={styles.cover} src={currentMatchInfo.coverUrl} width={615} height={355} alt='cover'></Image>
+                            }
+                        </div>
                         <div className={styles.registration_info}>
                             <div className={styles.title}>
                                 <div className={styles.title_name}>
@@ -184,6 +217,86 @@ const Registration = (props: Props) => {
                         </div>
                     </div>
                 </div>
+
+                <div className={styles.match_description}>
+                    <div className={styles.match_description_box} id='notice'>
+                        <div className={styles.match_description_title}>
+                            {t('raceList.notice')}
+                            <div className={styles.match_description_title_divider}>
+                            </div>
+                        </div>
+                        <div className={styles.match_description_text}>
+                            {currentMatchInfo?.[i18n.language === 'zh' ? 'signUpNoticeZh' : 'signUpNoticeEn'] || t('registration.nodataText')}
+                        </div>
+                    </div>
+
+                    <div className={styles.match_description_box} id='changePolicy'>
+                        <div className={styles.match_description_title}>
+                            {t('raceList.changePolicy')}
+                            <div className={styles.match_description_title_divider}>
+                            </div>
+                        </div>
+                        <div className={styles.match_description_text}>
+                            {currentMatchInfo?.[i18n.language === 'zh' ? 'quitPolicyZh' : 'quitPolicyEn'] || t('registration.nodataText')}
+                        </div>
+                    </div>
+
+
+                    <div className={styles.match_description_box} id='qualification'>
+                        <div className={styles.match_description_title}>
+                            {t('raceList.qualification')}
+                            <div className={styles.match_description_title_divider}>
+                            </div>
+                        </div>
+                        <div className={styles.match_description_text}>
+                            {currentMatchInfo?.[i18n.language === 'zh' ? 'joinQualificationZh' : 'joinQualificationEn'] || t('registration.nodataText')}
+                        </div>
+                    </div>
+
+                    <div className={styles.match_description_box} id='insurance'>
+                        <div className={styles.match_description_title}>
+                            {t('raceList.insurance')}
+                            <div className={styles.match_description_title_divider}>
+                            </div>
+                        </div>
+                        <div className={styles.match_description_text}>
+                            {currentMatchInfo?.[i18n.language === 'zh' ? 'insuranceInfoZh' : 'insuranceInfoEn'] || t('registration.nodataText')}
+                        </div>
+                    </div>
+
+                    <div className={styles.match_description_box} id='fee'>
+                        <div className={styles.match_description_title}>
+                            {t('raceList.fee')}
+                            <div className={styles.match_description_title_divider}>
+                            </div>
+                        </div>
+                        <div className={styles.match_description_text}>
+                            {currentMatchInfo?.[i18n.language === 'zh' ? 'expenseInfoZh' : 'expenseInfoEn'] || t('registration.nodataText')}
+                        </div>
+                    </div>
+
+                    <div className={styles.match_description_box} id='rule'>
+                        <div className={styles.match_description_title}>
+                            {t('raceList.rule')}
+                            <div className={styles.match_description_title_divider}>
+                            </div>
+                        </div>
+                        <div className={styles.match_description_text}>
+                            {currentMatchInfo?.[i18n.language === 'zh' ? 'matchRulesZh' : 'matchRulesEn'] || t('registration.nodataText')}
+                        </div>
+                    </div>
+
+                    <div className={styles.match_description_box} id='schedule'>
+                        <div className={styles.match_description_title}>
+                            {t('raceList.schedule')}
+                            <div className={styles.match_description_title_divider}>
+                            </div>
+                        </div>
+                        <div className={styles.match_description_text}>
+                            {currentMatchInfo?.[i18n.language === 'zh' ? 'matchRulesZh' : 'matchRulesEn'] || t('registration.nodataText')}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
@@ -192,3 +305,10 @@ const Registration = (props: Props) => {
 export default Registration
 
 export const getStaticProps = getLocaleProps(["common"]);
+
+export async function getStaticPaths() {
+    return {
+        paths: [],
+        fallback: 'blocking',
+    }
+}
