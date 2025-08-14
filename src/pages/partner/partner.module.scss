@@ -25,23 +25,10 @@
     .partners{
         margin-left:100px;
         position: relative;
-    }
-
-    .anchor1{
-        top: 20px;
-        left: 435px;
-        font-size: 16px;
-        position: absolute;
-        height: 42px;
-        width: 86px;
-    }
-    .anchor2{
-        top: 20px;
-        left: 290px;
-        font-size: 16px;
-        position: absolute;
-        height: 40px;
-        width: 85px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 74px;
     }
 
     .card{
@@ -87,24 +74,12 @@
         .partners{
             margin-left:70px;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 120px;
         }
 
-        .anchor1{
-            top: 430px;
-            left: 0px;
-            font-size: 16px;
-            position: absolute;
-            height: 190px;
-            width: 370px;
-        }
-        .anchor2{
-            top: 190px;
-            left: 950px;
-            font-size: 16px;
-            position: absolute;
-            height: 150px;
-            width: 370px;
-        }
         
         .card{
             height: 386px;
