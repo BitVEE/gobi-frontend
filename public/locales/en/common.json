@@ -18,6 +18,12 @@
             "matchDate": "Event Date",
             "now": "Register Now",
             "nodataText": "Sorry, at the moment there is no information.",
+            "group": "Category",
+            "cost": "Base Fee",
+            "info": "Registration Details",
+            "disclaimer": "Disclaimer",
+            "disagree": "Decline",
+            "agree": "Agree",
             "status": {
                 "in": "Open",
                 "registrationEnd": "Registration Ended",

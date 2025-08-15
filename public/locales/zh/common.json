@@ -18,6 +18,12 @@
             "matchDate": "报名开始",
             "now": "立即报名",
             "nodataText": "暂无数据",
+            "group": "报名组别",
+            "cost": "基本费用",
+            "info": "报名信息",
+            "disclaimer": "免责声明",
+            "disagree": "拒绝",
+            "agree": "同意",
             "status": {
                 "in": "报名中",
                 "registrationEnd": "报名结束",

@@ -2,52 +2,15 @@ import { useRouter } from 'next/router'
 import getLocaleProps from "@/utils/getLocaleProps";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 import styles from './registration.module.scss'
 import PageHeader from '@/components/PageHeader';
 import TagSelector from '@/components/TagSelector';
+import MatchDetailCard from '@/components/MatchDetailCard';
+import Modal from '@/components/Modal';
 import { MatchAPI } from '@/api';
 
 type Props = {};
-
-interface MatchesListType {
-    contact?: string
-    coverUrl?: string
-    createdAt?: number
-    detailEn?: string
-    detailZh?: string
-    endSignUpDate?: string
-    expenseInfoEn?: string
-    expenseInfoZh?: string
-    geexekMatchId?: number
-    groups?: any
-    id?: number
-    insuranceInfoEn?: string
-    insuranceInfoZh?: string
-    joinQualificationEn?: string
-    joinQualificationZh?: string
-    matchDate?: string
-    matchManualEn?: string
-    matchManualZh?: string
-    matchRulesEn?: string
-    matchRulesZh?: string
-    nameEn?: string
-    nameZh?: string
-    place?: string
-    quitPolicyEn?: string
-    quitPolicyZh?: string
-    signUpNoticeEn?: string
-    signUpNoticeZh?: string
-    startSignUpDate?: string
-    state?: number
-    updatedAt?: number
-}
-
-type MatchInfoType = {
-    matches: Array<MatchesListType>,
-    total: number
-}
 
 const Registration = (props: Props) => {
     const router = useRouter()
@@ -56,30 +19,42 @@ const Registration = (props: Props) => {
     const [selectedSubTitle, setSelectedSubTitle] = useState<string | number>(
         typeof type === 'string' ? type : ''
     );
-    const [currentMatchInfo, setCurrentMatchInfo] = useState<MatchesListType>()
-    const [matchStatus, setMatchStatus] = useState<string>()
+    const [currentMatchInfo, setCurrentMatchInfo] = useState<API.MatchesListType>()
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentGroup, setCurrentGroup] = useState();
+
 
     const getMatchInfo = async () => {
         const res = await MatchAPI.getMatchList({ page: 1, size: 10 })
         if (res.data.code === 0) {
-            const data = res.data.data as MatchInfoType | null;
+            const data = res.data.data as API.MatchInfoType | null;
             if (data) {
+                let groups = [{
+                    id: 1,
+                    name: '中学组3天72KM',
+                    cost: '888'
+                }, {
+                    id: 2,
+                    name: '小学组3天68KM',
+                    cost: '688'
+                },]
+                data.matches[0].groups = groups;
                 setCurrentMatchInfo(data.matches[0])
             }
 
         }
     }
 
-    const getMatchStatus = () => {
-        if (currentMatchInfo?.state === 1) {
-            setMatchStatus(t('registration.status.in'))
-        } else if (currentMatchInfo?.state === 2) {
-            setMatchStatus(t('registration.status.registrationEnd'))
-        } else if (currentMatchInfo?.state === 3) {
-            setMatchStatus(t('registration.status.matchEnd'))
-        } else if (currentMatchInfo?.state === 4) {
-            setMatchStatus(t('registration.status.matchClosed'))
-        }
+
+    const submitRegistration = () => {
+        setIsModalOpen(false)
+        router.push({
+            pathname: '/race/info',
+            query: {
+                matchDetail: JSON.stringify(currentMatchInfo),
+                groupInfo: JSON.stringify(currentGroup),
+            }
+        });
     }
 
     useEffect(() => {
@@ -109,21 +84,12 @@ const Registration = (props: Props) => {
             }
         }
 
-    }, [type])
-
-    useEffect(() => {
-        if (currentMatchInfo) {
-            console.log(currentMatchInfo)
-            getMatchStatus()
-        }
-
-    }, [currentMatchInfo])
+    }, [router])
 
     return (
         <div className={styles.registration}>
             <PageHeader backgroundImage='/images/title_bg/registration.png' title={t('race')} />
             <div className={styles.tag_box} id='registration'>
-
                 <TagSelector
                     tags={[
                         { title: t("race"), value: "registration" },
@@ -137,85 +103,35 @@ const Registration = (props: Props) => {
                     ]}
                     styleType='text'
                     selectedValue={selectedSubTitle}
-                    onChange={(value) => { router.push(`/${router.locale }/race/${value}`); }}
+                    onChange={(value) => { router.push(`/${router.locale}/race/${value}`); }}
                 />
             </div>
 
             <div className={styles.match_box}>
                 <div className={styles.info_box}>
-                    <div className={styles.detail}>
-                        <div className={styles.cover}>
-                            {
-                                currentMatchInfo?.coverUrl &&
-                                <Image className={styles.cover} src={currentMatchInfo.coverUrl} width={615} height={355} alt='cover'></Image>
-                            }
-                        </div>
-                        <div className={styles.registration_info}>
-                            <div className={styles.title}>
-                                <div className={styles.title_name}>
-                                    {currentMatchInfo?.[i18n.language === 'zh' ? 'nameZh' : 'nameEn']}
+                    {currentMatchInfo && <MatchDetailCard matchDetail={currentMatchInfo} />}
+                    {
+                        currentMatchInfo?.groups && currentMatchInfo.groups.length > 0 &&
+                        currentMatchInfo.groups.map((group: any) => {
+                            return (
+                                <div className={styles.group_box} key={group.id}>
+                                    <div className={styles.cell}>
+                                        <div className={styles.cell_title}>
+                                            {group.name}
+                                        </div>
+                                        <div className={styles.cell_price}>
+                                            {`¥${group.cost}/人`}
+                                        </div>
+                                        <div className={styles.cell_btn} onClick={() => { setIsModalOpen(true); setCurrentGroup(group) }}>
+                                            {t('registration.now')}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className={styles.title_status}>
-                                    {matchStatus}
-                                </div>
-                            </div>
-                            <div className={styles.text}>
-                                <div className={styles.text_title}>
-                                    {t('registration.place')}:
-                                </div>
-                                {currentMatchInfo?.[i18n.language === 'zh' ? 'place' : 'place']}
+                            )
+                        }
+                        )
+                    }
 
-                            </div>
-                            <div className={styles.text}>
-
-                                <div className={styles.text_title}>
-                                    {t('registration.contact')}:
-                                </div>
-                                {currentMatchInfo?.[i18n.language === 'zh' ? 'contact' : 'contact']}
-                            </div>
-                            <div className={styles.date}>
-                                <div className={styles.date_box}>
-                                    <div className={styles.date_title}>
-                                        {t('registration.startDate')}
-                                    </div>
-                                    <div className={styles.date_num}>
-                                        {currentMatchInfo?.startSignUpDate}
-                                    </div>
-                                </div>
-                                <Image className={styles.date_arrow} src='/images/icons/arrow-square-right.svg' width={24} height={24} alt='arrow-square-right'></Image>
-                                <div className={styles.date_box}>
-                                    <div className={styles.date_title}>
-                                        {t('registration.endDate')}
-                                    </div>
-                                    <div className={styles.date_num}>
-                                        {currentMatchInfo?.endSignUpDate}
-                                    </div>
-                                </div>
-                                <Image className={styles.date_arrow} src='/images/icons/arrow-square-right.svg' width={24} height={24} alt='arrow-square-right'></Image>
-                                <div className={styles.date_box}>
-                                    <div className={styles.date_title}>
-                                        {t('registration.matchDate')}
-                                    </div>
-                                    <div className={styles.date_num}>
-                                        {currentMatchInfo?.matchDate}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.group_box}>
-                        <div className={styles.cell}>
-                            <div className={styles.cell_title}>
-                                中学组
-                            </div>
-                            <div className={styles.cell_price}>
-                                888/人
-                            </div>
-                            <div className={styles.cell_btn}>
-                                {t('registration.now')}
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.match_description}>
@@ -297,7 +213,42 @@ const Registration = (props: Props) => {
                         </div>
                     </div>
                 </div>
+
+                <div className={styles.contact_box}>
+                    <div className={styles.contact_title}>
+                        {t('aboutList.contactUs')}
+                    </div>
+                    <div className={styles.contact_qrcode_group}>
+                        <div className={styles.contact_qrcode}>
+
+                        </div>
+
+                        <div className={styles.contact_qrcode}>
+
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title="免责声明"
+            >
+                <div className={styles.modal_content}>
+                    <div className={styles.modal_text}>
+                        {t('registration.disclaimer')}
+                    </div>
+                    <div className={styles.modal_btn_group}>
+                        <div className={styles.modal_cancel_btn} onClick={() => setIsModalOpen(false)}>
+                            {t('registration.disagree')}
+                        </div>
+                        <div className={styles.modal_btn} onClick={() => submitRegistration()}>
+                            {t('registration.agree')}
+                        </div>
+                    </div>
+                </div>
+            </Modal>
         </div>
     )
 }

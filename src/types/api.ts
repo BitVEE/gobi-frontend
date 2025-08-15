@@ -282,4 +282,43 @@ declare namespace API {
         page: number
         size: number
     }
+
+    interface MatchesListType {
+        contact?: string
+        coverUrl?: string
+        createdAt?: number
+        detailEn?: string
+        detailZh?: string
+        endSignUpDate?: string
+        expenseInfoEn?: string
+        expenseInfoZh?: string
+        geexekMatchId?: number
+        groups?: any
+        id?: number
+        insuranceInfoEn?: string
+        insuranceInfoZh?: string
+        joinQualificationEn?: string
+        joinQualificationZh?: string
+        matchDate?: string
+        matchManualEn?: string
+        matchManualZh?: string
+        matchRulesEn?: string
+        matchRulesZh?: string
+        nameEn?: string
+        nameZh?: string
+        place?: string
+        quitPolicyEn?: string
+        quitPolicyZh?: string
+        signUpNoticeEn?: string
+        signUpNoticeZh?: string
+        startSignUpDate?: string
+        state?: number
+        updatedAt?: number
+    }
+
+    type MatchInfoType = {
+        matches: Array<MatchesListType>,
+        total: number
+    }
+
 }

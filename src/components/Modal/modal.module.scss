@@ -1,0 +1,115 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFFFFFCC;
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+
+}
+
+.modalContent {
+    background-color: white;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideIn 0.3s ease-out 0.1s forwards;
+    width: 764px;
+    height: 537px;
+    gap: 42px;
+    opacity: 1;
+    border-radius: 8px;
+    padding: 42px;
+    box-shadow: 15px 15px 15px 0px #B1AAAA40;
+
+}
+
+.modalHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+        margin: 0;
+        color: #121212;
+        font-weight: 700;
+        font-style: Bold;
+        font-size: 21px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        vertical-align: middle;
+
+    }
+
+    .modalHeaderDivider {
+        width: 60px;
+        border-top: 3px solid #FF6A14;
+        margin-top: 12px;
+    }
+}
+
+
+.modalBody {}
+
+// 动画定义
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}
+
+// 关闭动画状态
+.closing {
+    .modalOverlay {
+        animation: fadeOut 0.2s ease-out forwards;
+    }
+
+    .modalContent {
+        animation: slideOut 0.2s ease-out forwards;
+    }
+}
