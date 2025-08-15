@@ -69,7 +69,14 @@ const PaginationIndicator: React.FC<PaginationProps> = ({ total, current, pageSi
                                 {page}
                             </button>
                         ) : (
-                            <button className={styles.ellipsis}>{page}</button>
+                            <button
+                                className={styles.ellipsis}
+                                onClick={() => {
+                                    handlePageChange(Number(((Number(renderPageNumbers()[index - 1]) + Number(renderPageNumbers()[index + 1])) / 2).toFixed(0)))
+                                }}
+                            >
+                                {page}
+                            </button>
                         )}
                     </React.Fragment>
                 ))

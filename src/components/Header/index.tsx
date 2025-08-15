@@ -17,7 +17,12 @@ const Header = () => {
     const token = useSelector((state: any) => state.commonSlice.token);
 
     const handleLanguageChange = (key: any) => {
-        router.push(router.route, router.asPath, {
+        router.push({
+            pathname: router.pathname,
+            query: {
+                ...router.query,
+            }
+        }, router.asPath, {
             locale: key,
         });
     };
@@ -61,14 +66,14 @@ const Header = () => {
                                 {!item.children ? (
                                     <a href={"/" + router.locale + item.path} className={router.pathname === item.path ? styles.active : ''}>{t(`header.${item.name}` as any)}</a>
                                 ) : (
-                                    <div className={styles.dropdown}>
+                                    <div className={`${styles.dropdown} ${item.name === router.pathname.split('/')[1] ? styles.active : ''}`}>
                                         <div className={styles.dropdownTrigger} onClick={() => dropdownOpenName === item.name ? setDropdownOpenName("") : setDropdownOpenName(item.name)}>
                                             {t(`header.${item.name}` as any)}
-                                            <Image width={20} height={20} className={styles.dropdownTriggerArrow} src={isMobileMenuOpen ? "/images/icons/arrow-down-black.svg" : "/images/icons/arrow-down.svg"} alt="arrow" />
+                                            <div className={styles.dropdownTriggerArrow} />
                                         </div>
                                         <div className={`${styles.dropdownContent} ${dropdownOpenName === item.name ? styles.dropdownContentOpen : ''}`}>
                                             {item.children?.map((child) => (
-                                                <a className={styles.dropdownItem} key={child.path} href={"/" + router.locale + child.path}>
+                                                <a className={router.asPath === child.path ? styles.dropdownItemActive : styles.dropdownItem} key={child.path} href={"/" + router.locale + child.path}>
                                                     {t(`header.${child.name}` as any)}
                                                 </a>
                                             ))}

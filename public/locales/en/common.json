@@ -110,5 +110,62 @@
         "group": "Group",
         "raceName": "Race name",
         "status": "Status"
+    },
+    "raceResult": {
+        "title": "Result query",
+        "personalResult": "Personal result",
+        "teamResult": "Team result",
+        "inputName": "Please input name/brand number",
+        "inputTeamName": "Please input team name",
+        "search": "Search",
+        "group": "Group",
+        "rank": "Rank",
+        "index": "Index",
+        "name": "Name",
+        "teamName": "Team name",
+        "number": "Match number",
+        "raceTime": "Gunshot time",
+        "time": "Time",
+        "length": "Length",
+        "realTime": "Real time",
+        "state": "State",
+        "gender": "Gender",
+        "project": "Project",
+        "lowestSpeed": "Lowest speed",
+        "highestSpeed": "Highest speed",
+        "averageSpeed": "Average speed",
+        "checkInPoint": "Check-in point",
+        "checkInTime": "Check-in time",
+        "predictTime": "Predict time",
+        "speed": "Speed",
+        "segmentDetail": "Segment detail",
+        "totalLength": "Total length",
+        "totalTime": "Total time",
+        "teamMember": "Team member",
+        "rankList": {
+            "PersonalTotalRank": "Personal total rank",
+            "MenTotalRank": "Men's total rank",
+            "WomenTotalRank": "Women's total rank",
+            "TeamTotalRank": "Team total rank",
+            "MenFirstDayRank": "Men's first day rank",
+            "WomenFirstDayRank": "Women's first day rank",
+            "MenSecondDayRank": "Men's second day rank",
+            "WomenSecondDayRank": "Women's second day rank",
+            "MenThirdDayRank": "Men's third day rank",
+            "WomenThirdDayRank": "Women's third day rank",
+            "TeamFirstDayRank": "Team first day rank",
+            "TeamSecondDayRank": "Team second day rank",
+            "TeamThirdDayRank": "Team third day rank"
+        },
+        "genderList": {
+            "all": "All",
+            "male": "Male",
+            "female": "Female"
+        },
+        "completionState": {
+            "all": "All",
+            "completed": "Completed",
+            "notCompleted": "Not completed"
+        }
     }
 }

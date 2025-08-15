@@ -26,8 +26,8 @@ const routerList = [
     {
         name: "raceResult",
         children: [
-            { name: "raceResultList.personalResult", path: '/raceResult/personalResult' },
-            { name: "raceResultList.teamResult", path: '/raceResult/teamResult' },
+            { name: "raceResultList.personalResult", path: '/raceResult/result/personal' },
+            { name: "raceResultList.teamResult", path: '/raceResult/result/team' },
         ]
     },
     {

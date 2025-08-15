@@ -11,11 +11,16 @@ interface TagSelectorProps {
     styleType: 'text' | 'outlined';
     onChange: (value: string | number) => void;
     selectedValue: string | number;
+    title?: string
+    loading?: boolean;
 }
 
-const TagSelector: React.FC<TagSelectorProps> = ({ tags, styleType, onChange, selectedValue }) => {
+const TagSelector: React.FC<TagSelectorProps> = ({ tags, styleType, onChange, selectedValue, title, loading = false }) => {
 
     const handleTagSelect = (value: string | number) => {
+        if (loading) {
+            return;
+        }
         onChange(value);
     };
 
@@ -31,18 +36,26 @@ const TagSelector: React.FC<TagSelectorProps> = ({ tags, styleType, onChange, se
     };
 
     return (
-        <div className={getStyleClass()}>
-            {
-                tags.map((tag) => (
-                    <button
-                        key={tag.value}
-                        onClick={() => handleTagSelect(tag.value)}
-                        className={`${styles.tag} ${selectedValue === tag.value ? styles.selected_tag : ''}`}
-                    >
-                        {tag.title}
-                    </button>
-                ))
-            }
+        <div className={styles.tagSelectorContainer}>
+            {title && (
+                <div className={styles.tagSelectorTitle}>
+                    {title}
+                </div>
+            )}
+            <div className={getStyleClass()}>
+                {
+                    tags.map((tag) => (
+                        <button
+                            key={tag.value}
+                            onClick={() => handleTagSelect(tag.value)}
+                            className={`${styles.tag} ${selectedValue === tag.value ? styles.selected_tag : ''}`}
+                            disabled={loading}
+                        >
+                            {tag.title}
+                        </button>
+                    ))
+                }
+            </div>
         </div>
     );
 };

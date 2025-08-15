@@ -53,3 +53,35 @@ export const MatchAPI = {
 
     getMatchList: (params: API.MatchListParams) => http.get<API.APIResult<null>>(`${baseURL}/match/list`, { params }),
 }
+
+/**
+ * 成绩相关API
+ */
+export const ResultAPI = {
+    /**
+     * 获取成绩榜单列表
+     * @param params 获取成绩榜单列表参数
+     * @returns 成绩榜单列表
+     */
+    getResultRankList: (params: API.ResultRankListParams) => http.get<API.ResultRankListResult>(`${baseURL}/match/rank/list`, { params }),
+
+    /**
+     * 查看榜单成绩
+     * @param params 查看榜单成绩参数
+     * @returns 查看榜单成绩结果
+     */
+    getResultRankDetail: (params: API.ResultRankDetailParams) => http.get<API.ResultRankDetailResult>(`${baseURL}/match/rank/result`, { params }),
+    /**
+     * 查看成绩详情
+     * @param params 查看成绩详情参数
+     * @returns 查看成绩详情结果
+     */
+    getResultDetail: (params: API.ResultDetailParams) => http.get<API.APIResult<API.ResultDetailResult>>(`${baseURL}/match/rank/detail`, { params }),
+
+    /**
+     * 查看完赛证明
+     * @param params 查看完赛证明参数
+     * @returns 输出：直接返回图片流，非JSON格式
+     */
+    getCertificate: (params: API.CertificateParams) => http.get<API.CertificateStreamResult>(`${baseURL}/match/certificate`, { params }),
+}
