@@ -83,5 +83,5 @@ export const ResultAPI = {
      * @param params 查看完赛证明参数
      * @returns 输出：直接返回图片流，非JSON格式
      */
-    getCertificate: (params: API.CertificateParams) => http.get<API.CertificateStreamResult>(`${baseURL}/match/certificate`, { params }),
+    getCertificate: (params: API.CertificateParams) => http.get<Blob>(`${baseURL}/match/certificate`, { params }),
 }

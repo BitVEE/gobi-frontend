@@ -237,10 +237,6 @@ declare namespace API {
         matchId: number
         markNumber: string
     }
-    // 查看完赛证明结果
-    interface CertificateStreamResult {
-        data: ArrayBuffer
-    }
 
     interface NewsListParams {
         type: number

@@ -32,7 +32,7 @@ const TableComponent: React.FC<TableProps> = ({ columns, dataSource, pagination,
     const { t } = useTranslation("common");
     return (
         <div className={styles.tableContainer}>
-            {title && <div className={styles.title}>{title}</div>}
+            {title && !loading && <div className={styles.title}>{title}</div>}
             {loading && <div className={styles.loading}>
                 <Image
                     src='/images/icons/loading.svg'

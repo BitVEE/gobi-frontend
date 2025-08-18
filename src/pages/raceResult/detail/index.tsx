@@ -21,6 +21,8 @@ const RaceResultDetail = () => {
     const [averageSpeed, setAverageSpeed] = useState<number>(0);
     const [slowestSpeed, setSlowestSpeed] = useState<number>(0);
     const [fastestSpeed, setFastestSpeed] = useState<number>(0);
+    const [markNumber, setMarkNumber] = useState<string>()
+    const [certificateImageUrl, setCertificateImageUrl] = useState('');
 
 
     const personalResultColumns: TableColumn[] = [
@@ -106,6 +108,7 @@ const RaceResultDetail = () => {
                 setLoading(false);
                 setDetail(res.data.data);
                 if (type == "personal") {
+                    setMarkNumber(res.data.data.memberList[0].markNo || "");
                     let cpList = res.data.data.memberList[0].segs.flatMap((item) => item.cps);
                     setPersonalResultList(cpList);
                     const speeds = cpList.filter(item => item.speedRaw > 0).map(item => item.speedRaw);
@@ -123,6 +126,13 @@ const RaceResultDetail = () => {
             })
         }
     }, [matchId, id, rankId, type])
+
+    useEffect(() => {
+        if (markNumber && matchId && type == "personal") {
+            const imageUrl = `${window.location.origin}/api/v1/match/certificate?matchId=${matchId}&markNumber=${markNumber}`
+            setCertificateImageUrl(imageUrl);
+        }
+    }, [markNumber])
 
     return (
         <div className={styles.raceResult}>
@@ -288,6 +298,11 @@ const RaceResultDetail = () => {
                             title={t('teamMember')} loading={loading} columns={teamResultColumns} dataSource={teamResultList} />
                     )}
                 </div>
+                {type == "personal" && certificateImageUrl && (
+                    <div className={styles.certificateContainer}>
+                        <img src={certificateImageUrl} alt="Certificate" />
+                    </div>
+                )}
             </div>
         </div>
     )
