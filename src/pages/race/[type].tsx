@@ -29,16 +29,6 @@ const Registration = (props: Props) => {
         if (res.data.code === 0) {
             const data = res.data.data as API.MatchInfoType | null;
             if (data) {
-                let groups = [{
-                    id: 1,
-                    name: '中学组3天72KM',
-                    cost: '888'
-                }, {
-                    id: 2,
-                    name: '小学组3天68KM',
-                    cost: '688'
-                },]
-                data.matches[0].groups = groups;
                 setCurrentMatchInfo(data.matches[0])
             }
 
@@ -87,7 +77,7 @@ const Registration = (props: Props) => {
     }, [router])
 
     return (
-        <div className={styles.registration}>
+        <div className={styles.registration} id='registration'>
             <PageHeader backgroundImage='/images/title_bg/registration.png' title={t('race')} />
             <div className={styles.tag_box} id='registration'>
                 <TagSelector
@@ -117,10 +107,10 @@ const Registration = (props: Props) => {
                                 <div className={styles.group_box} key={group.id}>
                                     <div className={styles.cell}>
                                         <div className={styles.cell_title}>
-                                            {group.name}
+                                            {group?.[i18n.language === 'zh' ? 'nameZh' : 'nameEn'] || t('registration.nodataText')}
                                         </div>
                                         <div className={styles.cell_price}>
-                                            {`¥${group.cost}/人`}
+                                            {`¥${group.cost}/${t('registration.person')}`}
                                         </div>
                                         <div className={styles.cell_btn} onClick={() => { setIsModalOpen(true); setCurrentGroup(group) }}>
                                             {t('registration.now')}
@@ -233,11 +223,11 @@ const Registration = (props: Props) => {
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                title="免责声明"
+                title={t('registration.disclaimerTitle')}
             >
                 <div className={styles.modal_content}>
                     <div className={styles.modal_text}>
-                        {t('registration.disclaimer')}
+                        {t('registration.disclaimerText')}
                     </div>
                     <div className={styles.modal_btn_group}>
                         <div className={styles.modal_cancel_btn} onClick={() => setIsModalOpen(false)}>

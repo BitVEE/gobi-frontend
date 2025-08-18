@@ -62,7 +62,6 @@ const MatchDetailCard = (props: Props) => {
 
     useEffect(() => {
         if (matchDetail) {
-            console.log(matchDetail)
             getMatchStatus()
             handleDateStatus();
         }

@@ -49,5 +49,164 @@
                 color: #FF6A14;
             }
         }
+
+        .cell_info_box {
+            width: 100%;
+            margin-top: 24px;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 21px;
+            line-height: 100%;
+            letter-spacing: 0%;
+
+            .info_title {
+                color: #2E2E2E;
+
+                .required {
+                    color: #C93620;
+                    font-size: 18px;
+                    margin-left: 5px;
+                }
+            }
+
+            .info_ipt {
+                width: 100%;
+                height: 60px;
+                border-radius: 8px;
+                margin-top: 12px;
+                background-color: #F8F8F8;
+                border: 1px solid #E0E0E0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                input {
+                    width: 97%;
+                    height: 100%;
+                    border: none;
+                    background: transparent;
+                    outline: none;
+                    color: #121212;
+                    font-size: 16px;
+                }
+
+                select {
+                    width: 97%;
+                    height: 100%;
+                    border: none;
+                    background: transparent;
+                    outline: none;
+                    color: #121212;
+                    font-size: 16px;
+                }
+
+                textarea {
+                    width: 97%;
+                    height: 100%;
+                    border: none;
+                    outline: none;
+                    background: transparent;
+                    overflow: hidden;
+                    resize: none;
+                }
+
+                textarea::placeholder {
+                    font-size: 16px;
+                }
+
+
+                .date_ipt-text::-webkit-datetime-edit {
+                    display: none;
+                }
+
+                .hide-date_ipt::-webkit-inner-spin-button,
+                .hide-date_ipt::-webkit-calendar-picker-indicator {
+                    display: none;
+                    -webkit-appearance: none;
+                }
+
+
+                .ipt_radio {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    margin-left: 20px;
+
+                }
+
+            }
+        }
+
+    }
+
+    .payment_box {
+        width: 100%;
+        background-color: #F8F8F8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 74px;
+
+        .agree_title {
+            width: 85%;
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            font-size: 21px;
+            line-height: 150%;
+            letter-spacing: 0%;
+            vertical-align: middle;
+            color: #121212;
+            margin-top: 12px;
+
+            .agree_text {
+                margin-left: 8px;
+            }
+
+            .protocol {
+                text-decoration: underline;
+                color: #FF6A14;
+                cursor: pointer;
+            }
+        }
+
+        .cost_box {
+            width: 85%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 21px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            vertical-align: middle;
+            margin-top: 37.5px;
+            margin-bottom: 13.5px;
+
+            .price {
+                color: #121212;
+            }
+
+            .pay_btn {
+                opacity: 1;
+                border-radius: 8px;
+                background-color: #FF6A14;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 21px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                color: #FFFFFF;
+                padding: 10px 20px;
+                cursor: pointer;
+            }
+
+        }
     }
 }
