@@ -19,27 +19,7 @@ const RaceResult = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
     const [total, setTotal] = useState<number>(0);
-    // 先固定请求id=3的比赛
     const [matchId, setMatchId] = useState<number>(0);
-    // id=3的比赛的分组
-    const GroupList = [
-        {
-            id: 14,
-            matchId: 3,
-            geexekMatchGroupId: 56167,
-            nameEn: "Middle School",
-            nameZh: "中学组&90公里",
-            cost: 21999,
-        },
-        {
-            id: 15,
-            matchId: 3,
-            geexekMatchGroupId: 56168,
-            nameEn: "Primary School",
-            nameZh: "小学组&80公里",
-            cost: 19999,
-        },
-    ]
     const teamResultColumns: TableColumn[] = [
         {
             title: t("index"),
