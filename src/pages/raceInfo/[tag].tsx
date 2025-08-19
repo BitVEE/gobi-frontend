@@ -61,7 +61,7 @@ const RaceImage = () => {
 
     return (
         <div className={styles.raceImage}>
-            <PageHeader title={t("header.raceInfo")} backgroundImage="/images/title_bg/race_image_page_bg.png" />
+            <PageHeader title={t("header.raceInfo")} backgroundImage="/images/title_bg/race_info_page_bg.png" />
             <div className={styles.raceImageContainer}>
                 <TagSelector
                     tags={[
