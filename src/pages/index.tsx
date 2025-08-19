@@ -72,7 +72,8 @@ export default function Home() {
                   title={i18n.language === 'zh' ? item.titleZh : item.titleEn}
                   // text={i18n.language === 'zh' ? item.contentZh : item.contentEn}
                   text={formatDate(Number(item.createdAt) * 1000)}
-                  imgSrc={item.coverUrl} />
+                  imgSrc={item.coverUrl}
+                  link={item.type == 1 ? "/raceInfo/detail?id=" + item.id : "/raceImage/detail?id=" + item.id} />
                 : <Card
                   imgHeight={301}
                   key={item.id}
@@ -80,6 +81,7 @@ export default function Home() {
                   // text={i18n.language === 'zh' ? item.contentZh : item.contentEn}
                   text={formatDate(Number(item.createdAt) * 1000)}
                   imgSrc={item.coverUrl}
+                  link={item.type == 1 ? "/raceInfo/detail?id=" + item.id : "/raceImage/detail?id=" + item.id}
                 />
             ))
           }

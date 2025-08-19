@@ -45,7 +45,7 @@ export const NewsAPI = {
      * @param id 新闻ID
      * @returns 新闻详情
      */
-    getNewsDetail: (id: string) => http.get<API.NewsDetail>(`${baseURL}/article/detail/${id}`),
+    getNewsDetail: (id: string) => http.get<API.APIResult<API.NewsDetail>>(`${baseURL}/article/detail?id=${id}`),
 
 }
 

@@ -271,7 +271,7 @@ declare namespace API {
     }
 
     interface NewsDetail {
-        article: NewsListItem[]
+        article: NewsListItem
     }
 
 

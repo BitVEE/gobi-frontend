@@ -65,6 +65,7 @@ const NewsList: React.FC<NewsListProps> = ({
                                 title={locale === 'zh' ? item.titleZh : item.titleEn}
                                 text={formatDate(Number(item.createdAt) * 1000)}
                                 imgSrc={item.coverUrl}
+                                link={item.type == 1 ? "/raceInfo/detail?id=" + item.id : "/raceImage/detail?id=" + item.id}
                             />
                         ))
                     }

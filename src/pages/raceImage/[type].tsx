@@ -25,6 +25,13 @@ const RaceImage = () => {
             } else {
                 getNewsList();
             }
+        } else {
+            router.push({
+                pathname: router.pathname,
+                query: {
+                    type: 'selectedAlbum',
+                }
+            })
         }
     }, [type, page]);
 

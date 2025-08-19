@@ -11,15 +11,16 @@ type Props = {
     text?: string;
     imgSrc?: string;
     isShowBorder?: boolean;
+    link?: string;
 };
 
-const Card = ({ width = 400, height = 455, imgHeight = 208, title = "", text = "", imgSrc = "/images/home/poster.svg", isShowBorder = true }: Props) => {
+const Card = ({ width = 400, height = 455, imgHeight = 208, title = "", text = "", imgSrc = "/images/home/poster.svg", isShowBorder = true, link }: Props) => {
     const router = useRouter()
     const [isHovered, setIsHovered] = useState(false);
 
     return (
         <div className={styles.card} style={{ width: `${width}px`, height: `${height}px` }}>
-            <div style={{ height: `${imgHeight}px` }}>
+            <div onClick={() => link && router.push(link)} style={{ height: `${imgHeight}px` }}>
                 <Image
                     src={imgSrc}
                     alt="News Poster"

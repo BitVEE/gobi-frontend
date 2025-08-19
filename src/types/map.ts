@@ -108,7 +108,7 @@ export const newTagMap = {
     latestNews: "",
     gobiStory: "戈友故事",
     raceIntroduction: "赛事介绍",
-    raceAgenda: "赛事日程",
+    raceAgenda: "赛事章程",
     raceManual: "赛事手册",
 }
 // 通过标签获取标签名称
