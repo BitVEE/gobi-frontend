@@ -102,3 +102,16 @@ for (const key in GenderValue) {
 export function getGenderByChinese(chineseName: string): keyof typeof GenderValue | undefined {
     return chineseToGender[chineseName];
 }
+
+
+export const newTagMap = {
+    latestNews: "",
+    gobiStory: "戈友故事",
+    raceIntroduction: "赛事介绍",
+    raceAgenda: "赛事日程",
+    raceManual: "赛事手册",
+}
+// 通过标签获取标签名称
+export function getNewTagByName(name: string) {
+    return newTagMap[name as keyof typeof newTagMap]
+}

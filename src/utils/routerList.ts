@@ -17,7 +17,7 @@ const routerList = [
         name: "raceInfo",
         children: [
             { name: "raceInfoList.latestNews", path: '/raceInfo/latestNews' },
-            { name: "raceInfoList.gobistory", path: '/raceInfo/gobistory' },
+            { name: "raceInfoList.gobiStory", path: '/raceInfo/gobiStory' },
             { name: "raceInfoList.raceIntroduction", path: '/raceInfo/raceIntroduction' },
             { name: "raceInfoList.raceAgenda", path: '/raceInfo/raceAgenda' },
             { name: "raceInfoList.raceManual", path: '/raceInfo/raceManual' },

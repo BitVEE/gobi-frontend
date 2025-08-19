@@ -242,6 +242,7 @@ declare namespace API {
         type: number
         page: number
         size: number
+        tag?: string
     }
 
     type NewsListItem = {

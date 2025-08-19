@@ -10,6 +10,7 @@ import { NewsAPI } from "@/api";
 // It serves as the entry point for the user interface
 // and displays the main content of the application.
 import styles from '../styles/home.module.scss'
+import { formatDate } from "@/utils/tool";
 
 
 // The main functional component for the home page
@@ -39,23 +40,6 @@ export default function Home() {
     // and can be used for further processing or display in the UI.
     // @ts-ignore
     console.log(newsData.data);
-  }
-
-  const formatDate = (str: any) => {
-    let date:any = new Date(str);
-    let year:any = date.getFullYear();
-    let month:any = date.getMonth() + 1;
-    month = month < 10 ? ('0' + month) : month;
-    let day = date.getDate();
-    day = day < 10 ? ('0' + day) : day;
-    let h = date.getHours();
-    h = h < 10 ? ('0' + h) : h;
-    let m = date.getMinutes();
-    m = m < 10 ? ('0' + m) : m;
-    let s = date.getSeconds();
-    s = s < 10 ? ('0' + s) : s;
-    // return year + '-' + month + '-' + day + ' ' + h + ':' + m + ':' + s;
-    return year + '-' + month + '-' + day ;
   }
 
 
