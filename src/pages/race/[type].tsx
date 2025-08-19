@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import getLocaleProps from "@/utils/getLocaleProps";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 
 import styles from './registration.module.scss'
 import PageHeader from '@/components/PageHeader';
@@ -16,6 +17,8 @@ const Registration = (props: Props) => {
     const router = useRouter()
     const { type } = router.query;
     const { t, i18n } = useTranslation("common", { keyPrefix: "header" });
+    const token = useSelector((state: any) => state.commonSlice.token);
+
     const [selectedSubTitle, setSelectedSubTitle] = useState<string | number>(
         typeof type === 'string' ? type : ''
     );
@@ -112,7 +115,7 @@ const Registration = (props: Props) => {
                                         <div className={styles.cell_price}>
                                             {`¥${group.cost}/${t('registration.person')}`}
                                         </div>
-                                        <div className={styles.cell_btn} onClick={() => { setIsModalOpen(true); setCurrentGroup(group) }}>
+                                        <div className={styles.cell_btn} onClick={() => { if(token) {setIsModalOpen(true); setCurrentGroup(group)} else{ alert(t('registration.loginTips'))} }}>
                                             {t('registration.now')}
                                         </div>
                                     </div>
@@ -223,6 +226,7 @@ const Registration = (props: Props) => {
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
+                isClickOutsideToClose={true}
                 title={t('registration.disclaimerTitle')}
             >
                 <div className={styles.modal_content}>

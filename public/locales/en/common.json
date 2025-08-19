@@ -34,6 +34,19 @@
             "next": "Next Step",
             "requiredFields": "There are still required fields not filled in",
             "noAgreement": "Please agree to the terms",
+            "loginTips": "Please log in first",
+            "submitting": "Submitting",
+            "congratulation": "Registration Submitted Successfully!",
+            "registrationFailed": "Registration Submission Failed",
+            "congratulationText": "Please complete the payment before the registration deadline. Failure to pay on time will be considered as automatic forfeiture of registration rights.",
+            "noPaymentMethods": "No payment methods available",
+            "paying": "Processing Payment",
+            "goToPay": "Go to Pay",
+            "paySuccess": "Payment successful",
+            "payFail": "Payment failed",
+            "payFailText": "Please re-register",
+            "payFailText2": "If you have any questions, please contact the organizer",
+            "payFailText3": "Please re-register or contact the organizer",
             "status": {
                 "in": "Open",
                 "registrationEnd": "Registration Ended",
@@ -41,6 +54,7 @@
                 "matchClosed": "Event Closed"
             },
             "infoList": {
+                "avatar": "Avatar",
                 "name": "Full Name",
                 "enName": "English Name",
                 "gender": "Gender",
@@ -93,7 +107,7 @@
                 "parentPhoneNumber": "Parent’s Mobile Number",
                 "parentEmail": "Parent’s Email",
                 "guardianName": "Guardian’s Full Name",
-                "guradianRelationship": "Relationship to the Guardian",
+                "guardianRelationship": "Relationship to the Guardian",
                 "guardianWechat": "Guardian’s WeChat ID",
                 "guardianPhoneNumber": "Guardian’s Contact Number",
                 "emergencyPhoneNumber": "Emergency Contact Number"

@@ -3,10 +3,12 @@ import getLocaleProps from "@/utils/getLocaleProps";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useSelector } from 'react-redux';
 
-
+import { RegistrationAPI } from '@/api';
 import styles from './info.module.scss'
 import MatchDetailCard from '@/components/MatchDetailCard';
+import Modal from '@/components/Modal';
 
 type Props = {};
 
@@ -14,12 +16,12 @@ const Info = (props: Props) => {
     const router = useRouter()
     const { groupInfo, matchDetail } = router.query;
     const { t, i18n } = useTranslation("common", { keyPrefix: "header.registration" });
+    const token = useSelector((state: any) => state.commonSlice.token);
 
     const [group, setGroup] = useState<any>();
     const [currentMatchInfo, setCurrentMatchInfo] = useState<API.MatchesListType>();
 
     const [photoUrl, setPhotoUrl] = useState<string>("");
-
     const [name, setName] = useState<string>("");
     const [enName, setEnName] = useState<string>("");
     const [gender, setGender] = useState<string>("1");
@@ -53,69 +55,120 @@ const Info = (props: Props) => {
     const [sportsBackground, setSportsBackground] = useState<string>("");
     const [psychologicalNotes, setPsychologicalNotes] = useState<string>("");
     const [isAgreed, setIsAgreed] = useState<boolean>(false);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+    const [orderId, setOrderId] = useState<string>("");
 
-    const handleNext = () => {
-        if (isAgreed) {
-            if (name != '' && enName != '' && credentialNumber != '' && phoneNumber != '' && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && parentPhoneNumber != '' && parentEmail != '' && guardianName != '' && guardianRelationship != '' && guardianWechat != '' && guardianPhoneNumber != '' && emergencyPhoneNumber != '' && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '' && additionalNotes != '' && sportsBackground != '') {
-                if (hasJoinedBefore === "1" && beforeMatchName === '') {
-                    alert(t('requiredFields'));
-                } else {
-
-                    const data = {
-                        matchGroupId: group?.id,
-                        matchId: group?.matchId,
-                        name: name,
-                        enName: enName,
-                        gender: gender,
-                        birthday: birthday,
-                        credentialType: credentialType,
-                        credentialNumber: credentialNumber,
-                        phoneNumber: phoneNumber,
-                        nationality: nationality,
-                        city: city,
-                        schoolName: schoolName,
-                        grade: grade,
-                        bloodType: bloodType,
-                        height: height,
-                        weight: weight,
-                        shirtSize: shirtSize,
-                        shoeSize: shoeSize,
-                        hasJoinedBefore: hasJoinedBefore,
-                        beforeMatchName: beforeMatchName,
-                        parentPhoneNumber: parentPhoneNumber,
-                        parentEmail: parentEmail,
-                        guardianName: guardianName,
-                        guardianRelationship: guardianRelationship,
-                        guardianPhoneNumber: guardianPhoneNumber,
-                        guardianWechat: guardianWechat,
-                        emergencyPhoneNumber: emergencyPhoneNumber,
-                        medicationRestrictions: medicationRestrictions,
-                        dietaryRestrictions: dietaryRestrictions,
-                        allergyInformation: allergyInformation,
-                        medicalHistory: medicalHistory,
-                        additionalNotes: additionalNotes,
-                        sportsBackground: sportsBackground,
-                        psychologicalNotes: psychologicalNotes,
-                    }
-                }
-            } else {
+    const handleNext = async () => {
+        if (!token) return alert(t('loginTips'));
+        if (!isAgreed) return alert(t('noAgreement'));
+        if (name != '' && enName != '' && credentialNumber != '' && phoneNumber != '' && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && parentPhoneNumber != '' && parentEmail != '' && guardianName != '' && guardianRelationship != '' && guardianWechat != '' && guardianPhoneNumber != '' && emergencyPhoneNumber != '' && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '' && additionalNotes != '' && sportsBackground != '' && photoUrl != '') {
+            if (hasJoinedBefore === "1" && beforeMatchName === '') {
                 alert(t('requiredFields'));
+            } else {
+                setIsModalOpen(true)
+                // uploadImage
+                const uploadRes = await RegistrationAPI.uploadImage({ image: photoUrl.replace(/.*;base64,/, '') });
+                const imageUrl = uploadRes.data.data.imageUrl + '/' + uploadRes.data.data.variants[0];
+                console.log("imageUrl", imageUrl);
+                setPhotoUrl(imageUrl);
+
+                const data: API.RegistrationParams = {
+                    matchGroupId: group?.id,
+                    matchId: group?.matchId,
+                    name: name,
+                    enName: enName,
+                    gender: Number(gender),
+                    birthday: birthday,
+                    credentialType: Number(credentialType),
+                    credentialNumber: credentialNumber,
+                    phoneNumber: phoneNumber,
+                    nationality: nationality,
+                    city: city,
+                    schoolName: schoolName,
+                    grade: grade,
+                    bloodType: bloodType,
+                    height: height,
+                    weight: weight,
+                    shirtSize: shirtSize,
+                    shoeSize: shoeSize,
+                    hasJoinedBefore: Number(hasJoinedBefore),
+                    beforeMatchName: beforeMatchName,
+                    parentPhoneNumber: parentPhoneNumber,
+                    parentEmail: parentEmail,
+                    guardianName: guardianName,
+                    guradianRelationship: guardianRelationship,
+                    guardianPhoneNumber: guardianPhoneNumber,
+                    guardianWechat: guardianWechat,
+                    emergencyPhoneNumber: emergencyPhoneNumber,
+                    medicationRestrictions: medicationRestrictions,
+                    dietaryRestrictions: dietaryRestrictions,
+                    allergyInformation: allergyInformation,
+                    medicalHistory: medicalHistory,
+                    additionalNotes: additionalNotes,
+                    sportsBackground: sportsBackground,
+                    psychologicalNotes: psychologicalNotes,
+                    photoUrl: imageUrl
+                }
+
+                const res = await RegistrationAPI.submitRegistration(data);
+                console.log("submitForm res", res.data);
+                if (res.data.code === 0) {
+                    setIsSubmitted(true);
+                    setOrderId(res.data.data.id);
+                } else {
+                    setIsSubmitted(false);
+                    setIsModalOpen(false)
+                    alert(res.data.error || t('registrationFailed'));
+                }
+
             }
         } else {
-            alert(t('noAgreement'));
+            alert(t('requiredFields'));
         }
     }
 
-    useEffect(() => {
-        if (groupInfo && matchDetail) {
-            setGroup(JSON.parse(groupInfo as string));
-            setCurrentMatchInfo(JSON.parse(matchDetail as string));
+
+    const getImgFile = (file: File) => {
+        try {
+            if (file.size > 1024 * 1024 * 5) {
+                return false;
+            }
+
+            if (file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg' || file.type === 'image/webp') {
+                const imgReader = new FileReader()
+                imgReader.onloadend = function (e) {
+                    setPhotoUrl(imgReader.result as any)
+                };
+                imgReader.readAsDataURL(file)
+            } else {
+                // alert(t('fileTypeError'));
+            }
+        } catch (e) {
+
         }
-    }, [groupInfo, matchDetail]);
+
+    }
+
+    const goToPay = () => {
+        router.push({
+            pathname: '/race/pay',
+            query: {
+                matchDetail: JSON.stringify(currentMatchInfo),
+                groupInfo: JSON.stringify(group),
+                registrationId: orderId
+            }
+        })
+    }
 
     useEffect(() => {
-        console.log("isAgreed", isAgreed);
-    }, [isAgreed]);
+        if (groupInfo && matchDetail && token) {
+            setGroup(JSON.parse(groupInfo as string));
+            setCurrentMatchInfo(JSON.parse(matchDetail as string));
+        } else {
+            // router.push('/race/registration');
+        }
+    }, [groupInfo, matchDetail]);
 
     return (
         <div className={styles.info}>
@@ -151,6 +204,42 @@ const Info = (props: Props) => {
 
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
+                        {t('infoList.avatar')}
+                    </div>
+                    <div className={styles.info_ipt} style={{ width: '100px', height: '100px', cursor: 'pointer' }}
+                        onClick={() => {
+                            const fileInput = document.getElementById('hiddenFile');
+                            if (fileInput) (fileInput as HTMLInputElement).click();
+                        }}>
+                        {
+                            photoUrl ?
+                                <Image
+                                    src={photoUrl}
+                                    alt="Avatar"
+                                    width={100}
+                                    height={100}
+                                    className={styles.avatarImage}
+                                />
+                                :
+                                <div className={styles.upload_btn_plus} >+</div>
+                        }
+                        <input
+                            id='hiddenFile'
+                            type="file"
+                            style={{ display: 'none' }}
+                            accept='image/png, image/jpeg, image/jpg, image/webp, image/gif'
+                            onChange={(event) => {
+                                if (event.target.files && event.target.files[0]) {
+                                    getImgFile(event.target.files[0]);
+                                }
+                            }}
+                        />
+                    </div>
+                </div>
+
+                {/* INPUT */}
+                <div className={styles.cell_info_box}>
+                    <div className={styles.info_title}>
                         {t('infoList.name')}
                     </div>
                     <div className={styles.info_ipt}>
@@ -158,11 +247,9 @@ const Info = (props: Props) => {
                     </div>
                 </div>
 
-                {/* INPUT */}
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.enName')}
-                        {/* <span className={styles.required}>{t('infoList.credentialNumberTips')}</span> */}
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setEnName(e.target.value)} />
@@ -380,7 +467,7 @@ const Info = (props: Props) => {
 
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
-                        {t('infoList.guradianRelationship')}
+                        {t('infoList.guardianRelationship')}
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setGuardianRelationship(e.target.value)} />
@@ -507,6 +594,32 @@ const Info = (props: Props) => {
                     </div >
                 </div >
             </div >
+
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title={t(isSubmitted ? 'congratulation' : 'submitting')}
+            >
+                <div className={styles.modal_content}>
+                    {
+                        isSubmitted ?
+                            <div className={styles.congratulation_box}>
+                                <div className={styles.text}>{t('congratulationText')}</div>
+                                <div className={styles.go_to_pay} onClick={goToPay}>{t('goToPay')}</div>
+                            </div>
+
+                            :
+                            <Image
+                                src='/images/icons/loading.svg'
+                                alt="loading"
+                                width={120}
+                                height={200}
+                                className={styles.loadingIcon}
+                            />
+                    }
+
+                </div>
+            </Modal>
         </div >
     )
 }

@@ -1,5 +1,6 @@
 declare namespace API {
     interface APIResult<T> {
+        error: string
         code: number
         data: T
         msg: string
@@ -316,6 +317,58 @@ declare namespace API {
     type MatchInfoType = {
         matches: Array<MatchesListType>,
         total: number
+    }
+
+
+    interface RegistrationParams {
+        matchId: number,
+        matchGroupId: number,
+        name: string,
+        phoneNumber: string,
+        birthday: string,
+        gender: number,
+        credentialType: number,
+        credentialNumber: string,
+        enName: string,
+        nationality: string,
+        city: string,
+        schoolName: string,
+        grade: string,
+        hasJoinedBefore: number,
+        beforeMatchName: string,
+        parentPhoneNumber: string,
+        guardianWechat: string,
+        parentEmail: string,
+        photoUrl: string,
+        guardianName: string,
+        guardianPhoneNumber: string,
+        guradianRelationship: string,
+        emergencyPhoneNumber: string,
+        bloodType: string,
+        height: string,
+        weight: string,
+        shirtSize: string,
+        shoeSize: string,
+        medicationRestrictions: string,
+        dietaryRestrictions: string,
+        allergyInformation: string,
+        medicalHistory: string,
+        additionalNotes: string,
+        sportsBackground: string,
+        psychologicalNotes: string
+    }
+
+    interface RegistrationResult {
+        id: string
+    }
+
+    interface UploadImageParams {
+        image: string
+    }
+
+    interface UploadImageResult {
+        imageUrl: string,
+        variants: Array<string>
     }
 
 }

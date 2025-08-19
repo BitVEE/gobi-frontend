@@ -34,6 +34,19 @@
             "next": "下一步",
             "requiredFields": "还有必填项未填写",
             "noAgreement": "请同意协议",
+            "loginTips": "请先登录",
+            "submitting": "提交中",
+            "congratulation": "提交报名成功",
+            "registrationFailed": "提交报名失败",
+            "congratulationText": "请在报名截止前完成支付，逾期未支付将视为自动放弃报名资格!",
+            "noPaymentMethods": "暂无支付方式",
+            "paying": "支付中",
+            "goToPay": "去支付",
+            "paySuccess": "支付成功",
+            "payFail": "支付失败",
+            "payFailText": "请重新报名",
+            "payFailText2": "如有疑问请联系组委会",
+            "payFailText3": "请重新报名或联系组委会",
             "status": {
                 "in": "报名中",
                 "registrationEnd": "报名结束",
@@ -41,6 +54,7 @@
                 "matchClosed": "赛事关闭"
             },
             "infoList": {
+                "avatar": "头像",
                 "name": "姓名",
                 "enName": "英文名",
                 "gender": "性别",
@@ -93,7 +107,7 @@
                 "parentPhoneNumber": "父母手机号",
                 "parentEmail": "父母邮箱",
                 "guardianName": "监护人姓名",
-                "guradianRelationship": "与监护人关系",
+                "guardianRelationship": "与监护人关系",
                 "guardianWechat": "监护人微信号",
                 "guardianPhoneNumber": "监护人手机号",
                 "emergencyPhoneNumber": "紧急联系人手机号"

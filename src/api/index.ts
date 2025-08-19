@@ -49,9 +49,29 @@ export const NewsAPI = {
 
 }
 
+export const RegistrationAPI = {
+    /**
+     * 提交报名信息
+     * @param params 报名参数
+     * @returns 提交结果
+     */
+    submitRegistration: (params: API.RegistrationParams) => http.post<API.APIResult<API.RegistrationResult>>(`${baseURL}/match/signup/add`, params),
+
+
+    /**
+     * 上传图片
+     * @param file 图片文件
+     * @returns 上传结果
+     */
+    uploadImage: (params: API.UploadImageParams) => http.post<API.APIResult<API.UploadImageResult>>(`${baseURL}/upload_image`, params)
+
+}
+
 export const MatchAPI = {
 
     getMatchList: (params: API.MatchListParams) => http.get<API.APIResult<null>>(`${baseURL}/match/list`, { params }),
+
+    getMatchDetail: (params: API.RegistrationResult) => http.get<API.APIResult<null>>(`${baseURL}/match/detail`, { params }),
 }
 
 /**

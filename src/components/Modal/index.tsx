@@ -7,14 +7,16 @@ interface ModalProps {
     children: React.ReactNode;
     title?: string;
     showCloseButton?: boolean;
+    isClickOutsideToClose?: boolean;
 }
 
 const Modal = ({
     isOpen,
     onClose,
     children,
-    title = '标题',
-    showCloseButton = true
+    title = 'title',
+    showCloseButton = true,
+    isClickOutsideToClose = false,
 }: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false);
 
@@ -37,6 +39,7 @@ const Modal = ({
     }, [isOpen]);
 
     const handleClose = () => {
+        if(!isClickOutsideToClose) return;
         setIsClosing(true);
         setTimeout(() => {
             setIsClosing(false);
