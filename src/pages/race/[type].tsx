@@ -115,7 +115,7 @@ const Registration = (props: Props) => {
                                         <div className={styles.cell_price}>
                                             {`¥${group.cost}/${t('registration.person')}`}
                                         </div>
-                                        <div className={styles.cell_btn} onClick={() => { if(token) {setIsModalOpen(true); setCurrentGroup(group)} else{ alert(t('registration.loginTips'))} }}>
+                                        <div className={styles.cell_btn} onClick={() => { if (token) { setIsModalOpen(true); setCurrentGroup(group) } else { alert(t('registration.loginTips')) } }}>
                                             {t('registration.now')}
                                         </div>
                                     </div>
@@ -134,9 +134,9 @@ const Registration = (props: Props) => {
                             <div className={styles.match_description_title_divider}>
                             </div>
                         </div>
-                        <div className={styles.match_description_text}>
-                            {currentMatchInfo?.[i18n.language === 'zh' ? 'signUpNoticeZh' : 'signUpNoticeEn'] || t('registration.nodataText')}
-                        </div>
+                        <div className={styles.match_description_text}
+                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'signUpNoticeZh' : 'signUpNoticeEn']) || t('registration.nodataText') }}
+                        />
                     </div>
 
                     <div className={styles.match_description_box} id='changePolicy'>
@@ -145,9 +145,9 @@ const Registration = (props: Props) => {
                             <div className={styles.match_description_title_divider}>
                             </div>
                         </div>
-                        <div className={styles.match_description_text}>
-                            {currentMatchInfo?.[i18n.language === 'zh' ? 'quitPolicyZh' : 'quitPolicyEn'] || t('registration.nodataText')}
-                        </div>
+                        <div className={styles.match_description_text}
+                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'quitPolicyZh' : 'quitPolicyEn']) || t('registration.nodataText') }}
+                        />
                     </div>
 
 
@@ -157,9 +157,9 @@ const Registration = (props: Props) => {
                             <div className={styles.match_description_title_divider}>
                             </div>
                         </div>
-                        <div className={styles.match_description_text}>
-                            {currentMatchInfo?.[i18n.language === 'zh' ? 'joinQualificationZh' : 'joinQualificationEn'] || t('registration.nodataText')}
-                        </div>
+                        <div className={styles.match_description_text}
+                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'joinQualificationZh' : 'joinQualificationEn']) || t('registration.nodataText') }}
+                        />
                     </div>
 
                     <div className={styles.match_description_box} id='insurance'>
@@ -168,9 +168,9 @@ const Registration = (props: Props) => {
                             <div className={styles.match_description_title_divider}>
                             </div>
                         </div>
-                        <div className={styles.match_description_text}>
-                            {currentMatchInfo?.[i18n.language === 'zh' ? 'insuranceInfoZh' : 'insuranceInfoEn'] || t('registration.nodataText')}
-                        </div>
+                        <div className={styles.match_description_text}
+                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'insuranceInfoZh' : 'insuranceInfoEn']) || t('registration.nodataText') }}
+                        />
                     </div>
 
                     <div className={styles.match_description_box} id='fee'>
@@ -179,9 +179,9 @@ const Registration = (props: Props) => {
                             <div className={styles.match_description_title_divider}>
                             </div>
                         </div>
-                        <div className={styles.match_description_text}>
-                            {currentMatchInfo?.[i18n.language === 'zh' ? 'expenseInfoZh' : 'expenseInfoEn'] || t('registration.nodataText')}
-                        </div>
+                        <div className={styles.match_description_text}
+                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'expenseInfoZh' : 'expenseInfoEn']) || t('registration.nodataText') }}
+                        />
                     </div>
 
                     <div className={styles.match_description_box} id='rule'>
@@ -190,9 +190,10 @@ const Registration = (props: Props) => {
                             <div className={styles.match_description_title_divider}>
                             </div>
                         </div>
-                        <div className={styles.match_description_text}>
-                            {currentMatchInfo?.[i18n.language === 'zh' ? 'matchRulesZh' : 'matchRulesEn'] || t('registration.nodataText')}
-                        </div>
+                        <div
+                            className={styles.match_description_text}
+                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'matchRulesZh' : 'matchRulesEn']) || t('registration.nodataText') }}
+                        />
                     </div>
 
                     <div className={styles.match_description_box} id='schedule'>
@@ -201,9 +202,9 @@ const Registration = (props: Props) => {
                             <div className={styles.match_description_title_divider}>
                             </div>
                         </div>
-                        <div className={styles.match_description_text}>
-                            {currentMatchInfo?.[i18n.language === 'zh' ? 'matchRulesZh' : 'matchRulesEn'] || t('registration.nodataText')}
-                        </div>
+                        <div className={styles.match_description_text}
+                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'matchManualZh' : 'matchManualEn']) || t('registration.nodataText') }}
+                        />
                     </div>
                 </div>
 
