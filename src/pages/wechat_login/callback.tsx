@@ -8,13 +8,14 @@ import { useTranslation } from "next-i18next";
 
 export default function WechatCallbackPage() {
   const { t } = useTranslation("common")
-  const { query } = useRouter()
-  const jwtToken = query.jwtToken as string
+  const router = useRouter()
+  const { query } = router
+  const jwtToken = query.jwt_token as string
 
   useEffect(() => {
     if (jwtToken) {
       store.dispatch(setToken(jwtToken));
-      window.location.href = '/';
+      router.push('/')
     }
   }, [jwtToken]);
 
