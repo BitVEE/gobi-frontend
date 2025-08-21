@@ -176,6 +176,19 @@
         }
     }
 
+    .wechatLoginLink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 8px;
+        color: #ff6a14;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
     // 媒体查询
     @media (max-width: 768px) {
         padding: 0 12px * 3.84;

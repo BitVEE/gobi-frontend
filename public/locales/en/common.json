@@ -5,7 +5,8 @@
         "chinese": "中文",
         "notFind": "Page not found",
         "loadingText": "Loading, please wait a moment",
-        "nodataText": "Sorry, at the moment there is no information. Come back soon."
+        "nodataText": "Sorry, at the moment there is no information. Come back soon.",
+        "loginProcessing": "Login processing, please wait a moment"
     },
     "header": {
         "home": "Home",

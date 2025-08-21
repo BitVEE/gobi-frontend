@@ -11,7 +11,6 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [code, setCode] = useState('')
     const [isGetCodeing, setIsGetCodeing] = useState(false)
-    const [loginType, setLoginType] = useState('email')
     const [isAgreementChecked, setIsAgreementChecked] = useState(false);
     const [countdown, setCountdown] = useState(0)
     const [emailError, setEmailError] = useState<boolean>(false)
@@ -96,14 +95,6 @@ const Login = () => {
                     height={93}
                     className={styles.loginHeader}
                 />
-                <div className={styles.loginTabs}>
-                    <button type="button" className={loginType === 'email' ? styles.loginTabsTabActive : styles.loginTabsTab} onClick={() => setLoginType('email')}>
-                        {t("login.emailLogin")}
-                    </button>
-                    <button type="button" className={loginType === 'wechat' ? styles.loginTabsTabActive : styles.loginTabsTab} onClick={() => setLoginType('wechat')}>
-                        {t("login.wechatLogin")}
-                    </button>
-                </div>
                 <form className={styles.loginForm} onSubmit={handleSubmit}>
                     <div className={styles.formGroup}>
                         <label htmlFor="email">{t("login.emailLogin")}</label>
@@ -144,8 +135,6 @@ const Login = () => {
                             </div>
                         )}
                     </div>
-
-                    {/* 勾选同意协议 */}
                     <div className={styles.formGroup}>
                         <label className={styles.codeInput}>
                             <input type="checkbox" className={styles.checkbox} checked={isAgreementChecked} onChange={(e) => setIsAgreementChecked(e.target.checked)} />
@@ -157,10 +146,12 @@ const Login = () => {
                             </div>
                         )}
                     </div>
-
                     <button type="submit" className={styles.loginButton}>
                         {t("login.login")}
                     </button>
+                    <div onClick={() => window.location.href = '/api/v1/user/wechat/login'} className={styles.wechatLoginLink}>
+                        {t("login.wechatLogin")}
+                    </div>
                 </form>
             </div>
         </div>
