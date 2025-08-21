@@ -289,6 +289,66 @@
                     }
                 }
             }
+
+        }
+
+
+        .modal_content {
+            width: 100%;
+            // height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin-top: 60px;
+
+            .modal_text {
+                width: 100%;
+                height: 1400px;
+                font-weight: 400;
+                font-size: 36px;
+                letter-spacing: 0%;
+                text-align: center;
+                vertical-align: middle;
+                overflow: scroll;
+
+            }
+
+            .modal_btn_group {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 24px;
+                color: #FFFFFF;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 48px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                position: absolute;
+                bottom: 100px;
+
+                .modal_btn {
+                    opacity: 1;
+                    border-radius: 16px;
+                    background-color: #1F8659;
+                    cursor: pointer;
+                    padding: 24px 48px;
+                    margin-right: 16px;
+                }
+
+                .modal_cancel_btn {
+                    background-color: #C93620;
+                    gap: 10px;
+                    opacity: 1;
+                    padding: 24px 48px;
+                    border-radius: 16px;
+                    cursor: pointer;
+
+                }
+            }
         }
 
     }

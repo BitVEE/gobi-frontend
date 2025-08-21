@@ -389,7 +389,7 @@ const Info = (props: Props) => {
                             ['110', '120', '130', '140', '150', '160', '170', '180'].map((size) => (
                                 <div className={styles.ipt_radio} key={size} >
                                     <input type="radio" id={`size-${size}`} name="size" value={size} checked={size === shirtSize} onChange={(e: any) => setShirtSize(e.target.value)} />
-                                    <label htmlFor={`size-${size}`}>{`${size}cm`}</label>
+                                    <label htmlFor={`size-${size}`} className={styles.ipt_radio_label}>{`${size}cm`}</label>
                                 </div>
                             ))
                         }

@@ -221,7 +221,7 @@
 
     .modal_content {
         width: 100%;
-        height: 100%;
+        height: 300px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -278,5 +278,271 @@
             margin-top: 350px;
         }
 
+        .group_box {
+            width: 85%;
+            margin-top: 82px;
+
+            .cell_title {
+                width: 100%;
+                border-bottom: 6px solid #FF6A14;
+                padding-bottom: 20px;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 48px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+
+            }
+
+
+            .cell_content {
+                margin-top: 80px;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 42px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                display: flex;
+                align-items: center;
+
+                .cell_name {
+                    width: 30%;
+                    color: #121212;
+                }
+
+                .group_name {
+                    color: #FF6A14;
+                }
+            }
+
+            .cell_info_box {
+                width: 100%;
+                margin-top: 48px;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 42px;
+                line-height: 100%;
+                letter-spacing: 0%;
+
+                .info_title {
+                    color: #2E2E2E;
+
+                    .required {
+                        color: #C93620;
+                        font-size: 36px;
+                        margin-left: 10px;
+                    }
+                }
+
+                .info_ipt {
+                    width: 100%;
+                    height: 150px;
+                    border-radius: 16px;
+                    margin-top: 24px;
+                    background-color: #F8F8F8;
+                    border: 2px solid #E0E0E0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-wrap: wrap;
+
+                    input {
+                        width: 97%;
+                        height: 100%;
+                        border: none;
+                        background: transparent;
+                        outline: none;
+                        color: #121212;
+                        font-size: 38px;
+                    }
+
+                    select {
+                        width: 97%;
+                        height: 100%;
+                        border: none;
+                        background: transparent;
+                        outline: none;
+                        color: #121212;
+                        font-size: 38px;
+                    }
+
+                    textarea {
+                        width: 97%;
+                        height: 100%;
+                        border: none;
+                        outline: none;
+                        background: transparent;
+                        overflow: hidden;
+                        resize: none;
+                    }
+
+                    textarea::placeholder {
+                        font-size: 38px;
+                    }
+
+                    .upload_btn_plus {
+                        color: gray;
+                    }
+
+                    .avatarImage {
+                        width: 300px;
+                        height: 300px;
+                        object-fit: cover;
+                        cursor: pointer;
+                    }
+
+
+                    .date_ipt-text::-webkit-datetime-edit {
+                        display: none;
+                    }
+
+                    .hide-date_ipt::-webkit-inner-spin-button,
+                    .hide-date_ipt::-webkit-calendar-picker-indicator {
+                        display: none;
+                        -webkit-appearance: none;
+                    }
+
+
+                    .ipt_radio {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        margin-left: 10px;
+                        margin-top: 10px;
+
+                        .ipt_radio_label {
+                            margin-left: 20px;
+
+                        }
+                    }
+
+                }
+            }
+
+        }
+
+        .payment_box {
+            width: 100%;
+            background-color: #F8F8F8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 74px;
+
+            .agree_title {
+                width: 85%;
+                display: flex;
+                align-items: center;
+                font-weight: 400;
+                font-size: 42px;
+                line-height: 150%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                color: #121212;
+                margin-top: 24px;
+
+                .agree_text {
+                    margin-left: 16px;
+                }
+
+                .protocol {
+                    text-decoration: underline;
+                    color: #FF6A14;
+                    cursor: pointer;
+                }
+            }
+
+            .cost_box {
+                width: 85%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 42px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                margin-top: 75px;
+                margin-bottom: 27px;
+
+                .price {
+                    color: #121212;
+                }
+
+                .pay_btn {
+                    opacity: 1;
+                    border-radius: 16px;
+                    background-color: #FF6A14;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 700;
+                    font-style: Bold;
+                    font-size: 42px;
+                    line-height: 100%;
+                    letter-spacing: 0%;
+                    vertical-align: middle;
+                    color: #FFFFFF;
+                    padding: 20px 40px;
+                    cursor: pointer;
+                }
+
+            }
+        }
+
+        .modal_content {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+
+            .loadingIcon {
+                width: 240px;
+                height: 400px;
+            }
+
+            .congratulation_box {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .text {
+                    font-weight: 400;
+                    font-size: 36px;
+                    line-height: 150%;
+                    letter-spacing: 0%;
+                    text-align: center;
+                    vertical-align: middle;
+                    color: #121212;
+                }
+
+                .go_to_pay {
+                    width: 200px;
+                    padding: 30px;
+                    border-radius: 16px;
+                    background-color: #FF6A14;
+                    color: #FFFFFF;
+                    font-weight: 700;
+                    font-style: Bold;
+                    font-size: 37px;
+                    vertical-align: middle;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 150px;
+                    cursor: pointer;
+                    white-space: nowrap;
+                }
+
+            }
+        }
     }
 }

@@ -58,6 +58,66 @@
 
 .modalBody {}
 
+@media screen and (max-width: 768px) {
+    .modalOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #FFFFFFCC;
+        backdrop-filter: blur(3px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        animation: fadeIn 0.3s ease-out forwards;
+
+    }
+
+    .modalContent {
+        background-color: white;
+        transform: translateY(20px);
+        opacity: 0;
+        animation: slideIn 0.3s ease-out 0.1s forwards;
+        width: 90%;
+        height: auto;
+        // min-height: 1900px;
+        gap: 42px;
+        opacity: 1;
+        border-radius: 16px;
+        padding: 42px;
+        box-shadow: 15px 15px 15px 0px #B1AAAA40;
+
+    }
+
+    .modalHeader {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+            margin: 0;
+            color: #121212;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 48px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            vertical-align: middle;
+
+        }
+
+        .modalHeaderDivider {
+            width: 200px;
+            border-top: 6px solid #FF6A14;
+            margin-top: 12px;
+        }
+    }
+}
+
 // 动画定义
 @keyframes fadeIn {
     from {
