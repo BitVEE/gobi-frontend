@@ -149,7 +149,7 @@ const Login = () => {
                     <button type="submit" className={styles.loginButton}>
                         {t("login.login")}
                     </button>
-                    <div onClick={() => window.location.href = '/api/v1/user/wechat/login'} className={styles.wechatLoginLink}>
+                    <div onClick={() => window.location.href = '/api/v1/user/account/wechat/login'} className={styles.wechatLoginLink}>
                         {t("login.wechatLogin")}
                     </div>
                 </form>
