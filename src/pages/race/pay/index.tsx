@@ -69,7 +69,7 @@ const Info = (props: Props) => {
                     {
                         isPaid ?
                             <div className={styles.congratulation_box}>
-                                <Image src='/images/icon/checked.svg' width={24} height={24} alt='checked' className={styles.checkedIcon} ></Image>
+                                <Image src='/images/icons/checked.svg' width={24} height={24} alt='checked' className={styles.checkedIcon} ></Image>
                                 <div className={styles.text}>{t('paySuccess')}</div>
                                 <div className={styles.go_to_pay} onClick={() => router.push('/user')}>{t('goToPay')}</div>
                             </div>

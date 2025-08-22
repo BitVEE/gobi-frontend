@@ -7,12 +7,10 @@
     .detail_box {
         width: 85%;
         margin-top: 120px;
-
-
     }
 
 
-    .payment_methods_box{
+    .payment_methods_box {
         width: 100%;
     }
 
@@ -22,29 +20,6 @@
         flex-direction: column;
         align-items: center;
         margin-top: 74px;
-
-        .agree_title {
-            width: 85%;
-            display: flex;
-            align-items: center;
-            font-weight: 400;
-            font-size: 21px;
-            line-height: 150%;
-            letter-spacing: 0%;
-            vertical-align: middle;
-            color: #121212;
-            margin-top: 12px;
-
-            .agree_text {
-                margin-left: 8px;
-            }
-
-            .protocol {
-                text-decoration: underline;
-                color: #FF6A14;
-                cursor: pointer;
-            }
-        }
 
         .cost_box {
             width: 85%;
@@ -73,7 +48,7 @@
                 justify-content: center;
                 font-weight: 700;
                 font-style: Bold;
-                font-size: 21px;
+                font-size: 18px;
                 line-height: 100%;
                 letter-spacing: 0%;
                 vertical-align: middle;
@@ -105,7 +80,7 @@
             align-items: center;
             justify-content: center;
 
-            .checkedIcon{
+            .checkedIcon {
                 width: 24px;
                 height: 24px;
                 margin-bottom: 42px;
@@ -140,6 +115,119 @@
                 cursor: pointer;
             }
 
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+
+        .detail_box {
+            width: 85%;
+            margin-top: 350px;
+        }
+
+        .payment_box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 148px;
+
+
+            .cost_box {
+                width: 85%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 42px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                margin-top: 75px;
+                margin-bottom: 27px;
+
+                .price {
+                    color: #121212;
+                }
+
+                .pay_btn {
+                    opacity: 1;
+                    border-radius: 16px;
+                    background-color: #FF6A14;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 700;
+                    font-style: Bold;
+                    font-size: 42px;
+                    line-height: 100%;
+                    letter-spacing: 0%;
+                    vertical-align: middle;
+                    color: #FFFFFF;
+                    padding: 20px 40px;
+                    cursor: pointer;
+                }
+
+            }
+        }
+
+        .modal_content {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+
+            .loadingIcon {
+                width: 240px;
+                height: 400px;
+            }
+
+            .congratulation_box {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .checkedIcon {
+                    width: 48px;
+                    height: 48px;
+                    margin-bottom: 42px;
+                }
+
+                .text {
+                    font-weight: 400;
+                    font-size: 36px;
+                    line-height: 150%;
+                    letter-spacing: 0%;
+                    text-align: center;
+                    vertical-align: middle;
+                    color: #121212;
+                }
+
+                .go_to_pay {
+                    width: 200px;
+                    padding: 20px;
+                    border-radius: 16px;
+                    background-color: #FF6A14;
+                    color: #FFFFFF;
+                    font-weight: 700;
+                    font-style: Bold;
+                    font-size: 32px;
+                    line-height: 100%;
+                    letter-spacing: 0%;
+                    vertical-align: middle;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 150px;
+                    cursor: pointer;
+                }
+
+            }
         }
     }
 }

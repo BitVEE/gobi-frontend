@@ -206,7 +206,7 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.avatar')}
                     </div>
-                    <div className={styles.info_ipt} style={{ width: '100px', height: '100px', cursor: 'pointer' }}
+                    <div className={`${styles.info_avatar} ${styles.info_ipt}`}
                         onClick={() => {
                             const fileInput = document.getElementById('hiddenFile');
                             if (fileInput) (fileInput as HTMLInputElement).click();

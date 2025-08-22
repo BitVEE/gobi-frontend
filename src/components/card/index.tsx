@@ -18,6 +18,7 @@ const Card = ({ width = 400, height = 455, imgHeight = 208, title = "", text = "
     const router = useRouter()
     const [isHovered, setIsHovered] = useState(false);
 
+
     return (
         <div className={styles.card} style={{ width: `${width}px`, height: `${height}px` }}>
             <div onClick={() => link && router.push(link)} style={{ height: `${imgHeight}px` }}>
