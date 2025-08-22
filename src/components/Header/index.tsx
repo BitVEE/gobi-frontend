@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { clearToken } from '@/redux/slice/commonSlice';
 import { useSelector } from 'react-redux';
 import { AuthAPI } from '@/api';
+import Link from 'next/link';
 
 const Header = () => {
     const router = useRouter()
@@ -47,9 +48,14 @@ const Header = () => {
         }
     }, []);
 
+    useEffect(() => {
+        setIsMobileMenuOpen(false)
+    }, [router])
+
     const handleLogout = async () => {
         await AuthAPI.logout()
         store.dispatch(clearToken());
+        router.push("/")
     };
 
     return (
@@ -64,7 +70,7 @@ const Header = () => {
                         {routerList.map((item) => (
                             <div key={item.name} className={styles.navItem} >
                                 {!item.children ? (
-                                    <a href={"/" + router.locale + item.path} className={router.pathname === item.path ? styles.active : ''}>{t(`header.${item.name}` as any)}</a>
+                                    <Link href={item.path} className={router.pathname === item.path ? styles.active : ''}>{t(`header.${item.name}` as any)}</Link>
                                 ) : (
                                     <div className={`${styles.dropdown} ${item.name === router.pathname.split('/')[1] ? styles.active : ''}`}>
                                         <div className={styles.dropdownTrigger} onClick={() => dropdownOpenName === item.name ? setDropdownOpenName("") : setDropdownOpenName(item.name)}>
@@ -73,9 +79,9 @@ const Header = () => {
                                         </div>
                                         <div className={`${styles.dropdownContent} ${dropdownOpenName === item.name ? styles.dropdownContentOpen : ''}`}>
                                             {item.children?.map((child) => (
-                                                <a className={router.asPath === child.path ? styles.dropdownItemActive : styles.dropdownItem} key={child.path} href={"/" + router.locale + child.path}>
+                                                <Link className={router.asPath === child.path ? styles.dropdownItemActive : styles.dropdownItem} key={child.path} href={child.path}>
                                                     {t(`header.${child.name}` as any)}
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                     </div>
@@ -101,10 +107,10 @@ const Header = () => {
                                 </div>
                                 <div className={`${styles.dropdownContent}  ${dropdownOpenName === "profile" ? styles.dropdownContentOpen : ''}`}>
                                     <div className={styles.dropdownItem} onClick={() => handleLogout()}>{t('header.logout')}</div>
-                                    <div className={`${styles.dropdownItem} ${router.pathname == '/user' ? styles.dropdownItemActive : ''} `} onClick={() => router.push("/" + router.locale + "/user")}>{t('header.personalCenter')}</div>
+                                    <div className={`${styles.dropdownItem} ${router.pathname == '/user' ? styles.dropdownItemActive : ''} `} onClick={() => router.push("/user")}>{t('header.personalCenter')}</div>
                                 </div>
                             </div>
-                            : <a href={"/" + router.locale + "/login"} className={styles.loginButton}>{t('header.login')}</a>
+                            : <Link href={"/login"} className={styles.loginButton}>{t('header.login')}</Link>
                         }
                     </div>
                 </div>
