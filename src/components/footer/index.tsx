@@ -41,9 +41,9 @@ const Footer = (props: Props) => {
         <div className={styles.footer}>
             <div className={styles.footerContent}>
                 <div className={styles.footerLogo}>
-                    <Image className={styles.logo} width={54.6} height={21} src="/images/logo.png" alt="GOBI" />
+                    <Image className={styles.logo} width={546} height={210} src="/images/logo.png" alt="GOBI" />
                     <div className={styles.followUs}>
-                        {t("home.followUs" as any)}
+                        {t("home.followUs")}
                         <div className={styles.iconsContainer}>
                             <Image className={styles.icons} width={24} height={24} src="/images/icons/twitch.svg" alt="twitch" />
                             <Image className={styles.icons} width={24} height={24} src="/images/icons/snapchat.svg" alt="twitch" />
@@ -85,7 +85,7 @@ const Footer = (props: Props) => {
                 </div>
 
                 <div className={styles.copyright}>
-                    {t("home.copyright" as any)}
+                    {t("home.copyright")}
                 </div>
             </div>
         </div>

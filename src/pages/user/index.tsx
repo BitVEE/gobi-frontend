@@ -7,7 +7,7 @@ import TagSelector from "@/components/TagSelector";
 import { AuthAPI } from "@/api";
 import TableComponent from "@/components/Table";
 import { useRouter } from "next/router";
-import { SignupStateMap } from "@/types/map";
+import { SignupStateMap } from "@/utils/map";
 const User = () => {
     const { t } = useTranslation("common", { keyPrefix: "user" });
     const [selectedSubTitle, setSelectedSubTitle] = useState<string | number>('myEnroll');

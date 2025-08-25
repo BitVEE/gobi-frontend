@@ -10,7 +10,7 @@ import { GetStaticPaths } from "next";
 import { MatchAPI, ResultAPI } from '@/api'
 import Image from "next/image";
 import { formatTime } from "@/utils/tool";
-import { getCompletionStateByChinese, getRankTypeByChinese } from "@/types/map";
+import { getCompletionStateByChinese, getRankTypeByChinese } from "@/utils/map";
 const RaceResult = () => {
     const router = useRouter();
     const { locale } = router;

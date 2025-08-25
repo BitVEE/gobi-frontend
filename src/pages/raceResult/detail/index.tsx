@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { ResultAPI } from '@/api'
 import Image from "next/image";
 import { formatTime, formatTime2 } from "@/utils/tool";
-import { getCompletionStateByChinese, getRankTypeByChinese } from "@/types/map";
+import { getCompletionStateByChinese, getRankTypeByChinese } from "@/utils/map";
 const RaceResultDetail = () => {
     const router = useRouter();
     const { id, matchId, rankId, type } = router.query;

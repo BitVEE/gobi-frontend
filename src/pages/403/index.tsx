@@ -4,11 +4,11 @@ import Image from "next/image";
 import styles from "@/styles/error.module.scss"
 
 
-const Error = () => {
+const Forbidden = () => {
     return <div className={styles.error}>
-        <Image className={styles.image} width={2180} height={1360} src="/images/404.png" alt="404"></Image>
+        <Image className={styles.image} width={2180} height={1360} src="/images/403.png" alt="404"></Image>
     </div>
 }
 
-export default Error
+export default Forbidden
 export const getStaticProps = getLocaleProps(["common"]);

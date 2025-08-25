@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { GetStaticPaths } from "next";
 import { NewsAPI } from '@/api'
 import NewsList from "@/components/newList";
-import { getNewTagByName } from "@/types/map";
+import { getNewTagByName } from "@/utils/map";
 
 const RaceImage = () => {
     const router = useRouter();
