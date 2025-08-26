@@ -115,43 +115,26 @@ export const newTagMap = {
 export function getNewTagByName(name: string) {
     return newTagMap[name as keyof typeof newTagMap]
 }
-// code
-// 含义
-// 0
-// 无错误
-// 1001
-// 参数错误
-// 1002
-// 请求超时
-// 1003
-// 请求数据不存在
-// 1004
-// 调用外部API失败
-// 1005
-// API Key 错误
-// 1006
-// 用户ID为空
-// 1101
-// 报名信息已存在
-// 1102
-// 赛事不存在
-// 1103
-// 赛事分组不存在
-// 2001
-// 账号已存在
-// 2002
-// 账号不存在
-// 2003
-// 验证码错误
-// 2004
-// JWT Token错误
-// 2011
-// 账号被封禁
-// 10001
-// 服务器内部报错
-// 10003
-// 数据库报错
-// 10004
-// 缓存报错
-// 10005
-// 调用赛客网API报错
+
+export type ErrorCode = keyof typeof ErrorCodeMap
+export const ErrorCodeMap = {
+    0: 'success',
+    1001: 'parameter_error',
+    1002: 'request_timeout',
+    1003: 'request_data_not_exist',
+    1004: 'call_external_api_failure',
+    1005: 'api_key_error',
+    1006: 'user_id_empty',
+    1101: 'signup_info_exist',
+    1102: 'race_not_exist',
+    1103: 'race_group_not_exist',
+    2001: 'account_exist',
+    2002: 'account_not_exist',
+    2003: 'verification_code_error',
+    2004: 'jwt_token_error',
+    2011: 'account_banned',
+    10001: 'server_internal_error',
+    10003: 'database_error',
+    10004: 'cache_error',
+    10005: 'call_external_api_error',
+};

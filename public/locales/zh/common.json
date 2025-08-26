@@ -256,5 +256,26 @@
             "completed": "完赛",
             "notCompleted": "未完赛"
         }
+    },
+    "errorCode": {
+        "success": "成功",
+        "parameter_error": "参数错误",
+        "request_timeout": "请求超时",
+        "request_data_not_exist": "请求数据不存在",
+        "call_external_api_failure": "调用外部API失败",
+        "api_key_error": "API Key 错误",
+        "user_id_empty": "用户ID为空",
+        "signup_info_exist": "报名信息已存在",
+        "race_not_exist": "赛事不存在",
+        "race_group_not_exist": "赛事分组不存在",
+        "account_exist": "账号已存在",
+        "account_not_exist": "账号不存在",
+        "verification_code_error": "验证码错误",
+        "jwt_token_error": "JWT Token错误",
+        "account_banned": "账号被封禁",
+        "server_internal_error": "服务器内部报错",
+        "database_error": "数据库报错",
+        "cache_error": "缓存报错",
+        "call_external_api_error": "调用赛客网API报错"
     }
 }

@@ -256,5 +256,26 @@
             "completed": "Completed",
             "notCompleted": "Not completed"
         }
+    },
+    "errorCode": {
+        "success": "Success",
+        "parameter_error": "Parameter error",
+        "request_timeout": "Request timeout",
+        "request_data_not_exist": "Request data not exist",
+        "call_external_api_failure": "Call external API failure",
+        "api_key_error": "API key error",
+        "user_id_empty": "User ID empty",
+        "signup_info_exist": "Signup info exist",
+        "race_not_exist": "Race not exist",
+        "race_group_not_exist": "Race group not exist",
+        "account_exist": "Account exist",
+        "account_not_exist": "Account not exist",
+        "verification_code_error": "Verification code error",
+        "jwt_token_error": "JWT token error",
+        "account_banned": "Account banned",
+        "server_internal_error": "Server internal error",
+        "database_error": "Database error",
+        "cache_error": "Cache error",
+        "call_external_api_error": "Call external API error"
     }
 }
