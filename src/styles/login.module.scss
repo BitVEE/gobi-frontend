@@ -170,6 +170,10 @@
         font-weight: 600;
         cursor: pointer;
         transition: background 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
 
         &:hover {
             background: #ff6a14e6;

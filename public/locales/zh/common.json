@@ -185,7 +185,8 @@
         "agreementError": "请同意服务条款、隐私条款",
         "useWechatLogin": "使用微信扫码登录青戈赛",
         "useWechatLoginAgreement": "微信登录即表示同意服务条款、隐私条款",
-        "login": "登录"
+        "login": "登录",
+        "loginSuccess": "登录成功"
     },
     "user": {
         "title": "个人中心",

@@ -20,6 +20,7 @@ const Login = () => {
     const [emailError, setEmailError] = useState<boolean>(false)
     const [codeError, setCodeError] = useState<boolean>(false)
     const [agreementError, setAgreementError] = useState<boolean>(false)
+    const [isLogin, setIsLogin] = useState(false)
 
     useEffect(() => {
         if (countdown > 0) {
@@ -46,6 +47,9 @@ const Login = () => {
     }
 
     const handleGetCode = async () => {
+        if (countdown > 0) {
+            return
+        }
         if (!email) {
             setEmailError(true)
             return
@@ -56,6 +60,9 @@ const Login = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        if (isLogin) {
+            return
+        }
         // 校验邮箱
         if (!email) {
             setEmailError(true)
@@ -74,6 +81,7 @@ const Login = () => {
             return
         }
         setAgreementError(false)
+        setIsLogin(true)
         try {
             await AuthAPI.login({
                 email,
@@ -81,22 +89,20 @@ const Login = () => {
             }).then((res) => {
                 if (res.data.code === 0) {
                     dispatch(addToast({
-                        message: '登录成功',
-                        type: 'success',
-                        timeout: 3000
+                        message: t("login.loginSuccess"),
+                        timeout: 30000
                     }))
                     router.push('/' + router.locale)
                 } else {
-                    const text = t(`errorCode.${ErrorCodeMap[res.data.code as ErrorCode]}` as any)
                     dispatch(addToast({
-                        message: text,
-                        type: 'error',
-                        timeout: 3000
+                        message: t(`errorCode.${ErrorCodeMap[res.data.code as ErrorCode]}` as any),
                     }))
                 }
+            }).finally(() => {
+                setIsLogin(false)
             })
         } catch (error) {
-            return
+            setIsLogin(false)
         }
     }
 
@@ -163,14 +169,30 @@ const Login = () => {
                         )}
                     </div>
                     <button type="submit" className={styles.loginButton}>
+                        {isLogin && (
+                            <Image
+                                src='/images/icons/loading-white.svg'
+                                alt="loading"
+                                width={30}
+                                height={30}
+                                className={styles.spinner}
+                            />
+                        )}
                         {t("login.login")}
                     </button>
                     <div onClick={() => window.location.href = '/api/v1/user/account/wechat/login'} className={styles.wechatLoginLink}>
                         {t("login.wechatLogin")}
                     </div>
+                    <div onClick={() => {
+                        dispatch(addToast({
+                            message: t("login.loginSuccess"),
+                        }))
+                    }}>
+                        {t("login.useWechatLogin")}
+                    </div>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

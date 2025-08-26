@@ -4,6 +4,7 @@ import getLocaleProps from "@/utils/getLocaleProps";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useTranslation } from "next-i18next";
+import { addToast } from "@/redux/slice/toastSlice";
 
 
 export default function WechatCallbackPage() {
@@ -15,12 +16,15 @@ export default function WechatCallbackPage() {
   useEffect(() => {
     if (jwtToken) {
       store.dispatch(setToken(jwtToken));
+      store.dispatch(addToast({
+        message: t("login.loginSuccess"),
+      }))
       router.push('/')
     }
   }, [jwtToken]);
 
   return <div style={{ height: "50vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-    <h1>{t("common.loginProcessing")}</h1>
+    <h2>{t("common.loginProcessing")}</h2>
   </div>
 }
 

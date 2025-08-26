@@ -185,7 +185,8 @@
         "agreementError": "Please agree to the service terms and privacy terms",
         "useWechatLogin": "Use wechat scan login",
         "useWechatLoginAgreement": "Wechat login means agree to the service terms and privacy terms",
-        "login": "Login"
+        "login": "Login",
+        "loginSuccess": "Login success"
     },
     "user": {
         "title": "Personal center",

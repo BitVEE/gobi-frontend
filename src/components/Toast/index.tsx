@@ -25,16 +25,24 @@ const ToastItemComponent = ({ id, message, type, timeout = 3000 }: ToastItem) =>
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            dispatch(removeToast(id));
+            remove()
         }, timeout);
         return () => clearTimeout(timer);
     }, [id]);
 
+    const remove = () => {
+        const toast = document.querySelector(`.${styles.toast}[data-id="${id}"]`);
+        toast?.classList.add(styles.exiting);
+        setTimeout(() => {
+            dispatch(removeToast(id));
+        }, 300);
+    }
+
     return (
-        <div className={`${styles.toast} ${styles[type]}`}>
+        <div className={styles.toast} data-id={id}>
             {/* <span className={styles.icon}>此处添加类型图标</span> */}
             <div className={styles.message}>{message}</div>
-            <button className={styles.close} onClick={() => dispatch(removeToast(id))}>
+            <button className={styles.close} onClick={remove}>
                 ×
             </button>
         </div>
