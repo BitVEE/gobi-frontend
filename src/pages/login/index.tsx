@@ -183,13 +183,6 @@ const Login = () => {
                     <div onClick={() => window.location.href = '/api/v1/user/account/wechat/login'} className={styles.wechatLoginLink}>
                         {t("login.wechatLogin")}
                     </div>
-                    <div onClick={() => {
-                        dispatch(addToast({
-                            message: t("login.loginSuccess"),
-                        }))
-                    }}>
-                        {t("login.useWechatLogin")}
-                    </div>
                 </form>
             </div >
         </div >
