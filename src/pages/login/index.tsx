@@ -5,8 +5,12 @@ import Image from 'next/image';
 import { useEffect, useState } from "react";
 import { AuthAPI } from "@/api";
 import { useRouter } from "next/router";
+import { ErrorCode, ErrorCodeMap } from "@/utils/map";
+import { useDispatch } from "react-redux";
+import { addToast } from "@/redux/slice/toastSlice";
 const Login = () => {
     const router = useRouter()
+    const dispatch = useDispatch();
     const { t } = useTranslation("common");
     const [email, setEmail] = useState('')
     const [code, setCode] = useState('')
@@ -76,7 +80,19 @@ const Login = () => {
                 verificationCode: code,
             }).then((res) => {
                 if (res.data.code === 0) {
+                    dispatch(addToast({
+                        message: '登录成功',
+                        type: 'success',
+                        timeout: 3000
+                    }))
                     router.push('/' + router.locale)
+                } else {
+                    const text = t(`errorCode.${ErrorCodeMap[res.data.code as ErrorCode]}` as any)
+                    dispatch(addToast({
+                        message: text,
+                        type: 'error',
+                        timeout: 3000
+                    }))
                 }
             })
         } catch (error) {
