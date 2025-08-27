@@ -3,12 +3,13 @@ import getLocaleProps from "@/utils/getLocaleProps";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { RegistrationAPI } from '@/api';
 import styles from './info.module.scss'
 import MatchDetailCard from '@/components/MatchDetailCard';
 import Modal from '@/components/Modal';
+import { addToast } from "@/redux/slice/toastSlice";
 
 type Props = {};
 
@@ -17,6 +18,7 @@ const Info = (props: Props) => {
     const { groupInfo, matchDetail } = router.query;
     const { t, i18n } = useTranslation("common", { keyPrefix: "header.registration" });
     const token = useSelector((state: any) => state.commonSlice.token);
+    const dispatch = useDispatch()
 
     const [group, setGroup] = useState<any>();
     const [currentMatchInfo, setCurrentMatchInfo] = useState<API.MatchesListType>();
@@ -60,11 +62,11 @@ const Info = (props: Props) => {
     const [orderId, setOrderId] = useState<string>("");
 
     const handleNext = async () => {
-        if (!token) return alert(t('loginTips'));
-        if (!isAgreed) return alert(t('noAgreement'));
+        if (!token) return dispatch(addToast({ message: t("loginTips"), timeout: 3000 }));
+        if (!isAgreed) return dispatch(addToast({ message: t("noAgreement"), timeout: 3000 }));
         if (name != '' && enName != '' && credentialNumber != '' && phoneNumber != '' && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && parentPhoneNumber != '' && parentEmail != '' && guardianName != '' && guardianRelationship != '' && guardianWechat != '' && guardianPhoneNumber != '' && emergencyPhoneNumber != '' && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '' && additionalNotes != '' && sportsBackground != '' && photoUrl != '') {
             if (hasJoinedBefore === "1" && beforeMatchName === '') {
-                alert(t('requiredFields'));
+                dispatch(addToast({ message: t("requiredFields"), timeout: 3000 }));
             } else {
                 setIsModalOpen(true)
                 // uploadImage
@@ -119,12 +121,14 @@ const Info = (props: Props) => {
                 } else {
                     setIsSubmitted(false);
                     setIsModalOpen(false)
-                    alert(res.data.error || t('registrationFailed'));
+                    dispatch(addToast({ message: res.data.error || t('registrationFailed'), timeout: 3000 }));
+
                 }
 
             }
         } else {
-            alert(t('requiredFields'));
+            dispatch(addToast({ message: t("requiredFields"), timeout: 3000 }));
+
         }
     }
 
@@ -142,7 +146,7 @@ const Info = (props: Props) => {
                 };
                 imgReader.readAsDataURL(file)
             } else {
-                // alert(t('fileTypeError'));
+                // dispatch(addToast({ message: t("fileTypeError"), timeout: 3000 }));
             }
         } catch (e) {
 

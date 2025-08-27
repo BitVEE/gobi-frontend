@@ -3,12 +3,13 @@ import getLocaleProps from "@/utils/getLocaleProps";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { RegistrationAPI } from '@/api';
 import styles from './pay.module.scss'
 import MatchDetailCard from '@/components/MatchDetailCard';
 import Modal from '@/components/Modal';
+import { addToast } from "@/redux/slice/toastSlice";
 
 type Props = {};
 
@@ -17,6 +18,7 @@ const Info = (props: Props) => {
     const { groupInfo, matchDetail, registrationId } = router.query;
     const { t } = useTranslation("common", { keyPrefix: "header.registration" });
     const token = useSelector((state: any) => state.commonSlice.token);
+    const dispatch = useDispatch();
 
     const [group, setGroup] = useState<any>();
     const [currentMatchInfo, setCurrentMatchInfo] = useState<API.MatchesListType>();
@@ -26,7 +28,10 @@ const Info = (props: Props) => {
     const [isPaid, setIsPaid] = useState<boolean>(false);
 
     const handleNext = async () => {
-        alert(t('noPaymentMethods'))
+        dispatch(addToast({
+            message: t("noPaymentMethods"),
+            timeout: 3000
+        }))
     }
 
 

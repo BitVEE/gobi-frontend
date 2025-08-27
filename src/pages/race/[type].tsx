@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import getLocaleProps from "@/utils/getLocaleProps";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './registration.module.scss'
 import PageHeader from '@/components/PageHeader';
@@ -10,6 +10,7 @@ import TagSelector from '@/components/TagSelector';
 import MatchDetailCard from '@/components/MatchDetailCard';
 import Modal from '@/components/Modal';
 import { MatchAPI } from '@/api';
+import { addToast } from "@/redux/slice/toastSlice";
 
 type Props = {};
 
@@ -18,6 +19,7 @@ const Registration = (props: Props) => {
     const { type } = router.query;
     const { t, i18n } = useTranslation("common", { keyPrefix: "header" });
     const token = useSelector((state: any) => state.commonSlice.token);
+    const dispatch = useDispatch();
 
     const [selectedSubTitle, setSelectedSubTitle] = useState<string | number>(
         typeof type === 'string' ? type : ''
@@ -115,7 +117,14 @@ const Registration = (props: Props) => {
                                         <div className={styles.cell_price}>
                                             {`¥${group.cost}/${t('registration.person')}`}
                                         </div>
-                                        <div className={styles.cell_btn} onClick={() => { if (token) { setIsModalOpen(true); setCurrentGroup(group) } else { alert(t('registration.loginTips')) } }}>
+                                        <div className={styles.cell_btn} onClick={() => {
+                                            if (token) { setIsModalOpen(true); setCurrentGroup(group) } else {
+                                                dispatch(addToast({
+                                                    message: t("registration.loginTips"),
+                                                    timeout: 3000
+                                                }))
+                                            }
+                                        }}>
                                             {t('registration.now')}
                                         </div>
                                     </div>
