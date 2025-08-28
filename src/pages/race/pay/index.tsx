@@ -4,8 +4,9 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSelector, useDispatch } from 'react-redux';
+import { init, createElement } from '@airwallex/components-sdk';
 
-import { RegistrationAPI } from '@/api';
+import { PaymentAPI } from '@/api';
 import styles from './pay.module.scss'
 import MatchDetailCard from '@/components/MatchDetailCard';
 import Modal from '@/components/Modal';
@@ -16,7 +17,7 @@ type Props = {};
 const Info = (props: Props) => {
     const router = useRouter()
     const { groupInfo, matchDetail, registrationId } = router.query;
-    const { t } = useTranslation("common", { keyPrefix: "header.registration" });
+    const { t, i18n } = useTranslation("common", { keyPrefix: "header.registration" });
     const token = useSelector((state: any) => state.commonSlice.token);
     const dispatch = useDispatch();
 
@@ -27,11 +28,58 @@ const Info = (props: Props) => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isPaid, setIsPaid] = useState<boolean>(false);
 
-    const handleNext = async () => {
-        dispatch(addToast({
-            message: t("noPaymentMethods"),
-            timeout: 3000
-        }))
+    const handlePayment = async () => {
+        // dispatch(addToast({
+        //     message: t("noPaymentMethods"),
+        //     timeout: 3000
+        // }))
+        setIsModalOpen(true)
+    }
+
+    const initPayment = async () => {
+
+        try {
+            // initialize payment systems
+
+            if (orderId) {
+
+                await init({
+                    env: 'prod',
+                    locale: i18n.language as any,
+                    enabledElements: ["payments"]
+                })
+
+                const infoData: any = await PaymentAPI.getPaymentInfo({
+                    matchSignUpId: Number(orderId),
+                    currency: "CNY"
+                })
+                console.log(infoData.data)
+                if (!infoData.data.clientSecret) {
+                    dispatch(addToast({
+                        message: t("noPaymentMethods"),
+                        timeout: 3000
+                    }))
+                    return 
+                }
+
+                const element = await createElement('dropIn', {
+                    intent_id: infoData.data.intentId,
+                    client_secret: infoData.data.clientSecret,
+                    currency: infoData.data.currency,
+                    appearance: {
+                        mode: 'light',
+                        variables: {
+                            colorBrand: '#FF6A14',
+                        },
+                    },
+                });
+
+                element?.mount('dropIn');
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
     }
 
 
@@ -45,25 +93,56 @@ const Info = (props: Props) => {
         }
     }, [groupInfo, matchDetail, registrationId]);
 
+    useEffect(() => {
+        initPayment()
+
+        const onReady = (event: CustomEvent): void => {
+            // console.log(`Element is mounted: ${JSON.stringify(event.detail)}`);
+        };
+
+        const onSuccess = (event: CustomEvent): void => {
+            console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
+            // router.push('/race/registration');
+        };
+
+        const onError = (event: CustomEvent) => {
+            const { error } = event.detail;
+            console.error('There is an error', error);
+        };
+
+        const domElement = document.getElementById('dropIn');
+        domElement?.addEventListener('onReady', onReady as EventListener);
+        domElement?.addEventListener('onSuccess', onSuccess as EventListener);
+        domElement?.addEventListener('onError', onError as EventListener);
+        return () => {
+            domElement?.removeEventListener('onReady', onReady as EventListener);
+            domElement?.removeEventListener('onSuccess', onSuccess as EventListener);
+            domElement?.removeEventListener('onError', onError as EventListener);
+        };
+    }, [router, orderId]);
+
     return (
         <div className={styles.pay}>
             <div className={styles.detail_box}>
-                {currentMatchInfo && <MatchDetailCard matchDetail={currentMatchInfo} />}
+                {currentMatchInfo && <MatchDetailCard matchDetail={currentMatchInfo} groupInfo={group} />}
             </div>
-            <div className={styles.payment_methods_box}>
+            <div className={styles.payment_methods_box} id="dropIn" style={{
+                width: '85%',
+                margin: '48px auto',
+            }}>
 
             </div>
 
-            <div className={styles.payment_box}>
+            {/* <div className={styles.payment_box}>
                 <div className={styles.cost_box}>
                     <div className={styles.price}>
                         {group ? `¥${group.cost}` : '¥0'}
                     </div >
-                    <div className={styles.pay_btn} onClick={handleNext}>
+                    <div className={styles.pay_btn} onClick={handlePayment}>
                         {t('pay')}
                     </div >
                 </div >
-            </div >
+            </div > */}
 
             <Modal
                 isOpen={isModalOpen}

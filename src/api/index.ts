@@ -74,6 +74,11 @@ export const MatchAPI = {
     getMatchDetail: (params: API.RegistrationResult) => http.get<API.APIResult<null>>(`${baseURL}/match/detail`, { params }),
 }
 
+export const PaymentAPI = {
+    getPaymentInfo: (params: API.PaymentInfoParams) => http.post<API.APIResult<null>>(`${baseURL}/airwallex/create_payment_intent`, params),
+
+}
+
 /**
  * 成绩相关API
  */

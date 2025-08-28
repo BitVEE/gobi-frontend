@@ -275,10 +275,24 @@ declare namespace API {
         article: NewsListItem
     }
 
+    interface PaymentInfoParams {
+        matchSignUpId: number,
+        currency: string
+    }
+
 
     interface MatchListParams {
         page: number
         size: number
+    }
+
+    interface MatchesGroupInfoType {
+        cost: number
+        geexekMatchGroupId: number
+        id: number
+        matchId: number
+        nameEn: string
+        nameZh: string
     }
 
     interface MatchesListType {

@@ -94,6 +94,27 @@
                 }
             }
 
+            .group {
+                margin-top: 42px;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 18px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                display: flex;
+                align-items: center;
+
+                .group_title {
+                    color: #121212;
+                    margin-right: 10px;
+                }
+
+                .group_name {
+                    color: #FF6A14;
+                }
+            }
+
         }
 
     }
@@ -177,6 +198,27 @@
                         height: 100px;
                         margin-right: 14px;
                         margin-left: 14px;
+                    }
+                }
+
+                .group {
+                    margin-top: 80px;
+                    font-weight: 700;
+                    font-style: Bold;
+                    font-size: 45px;
+                    line-height: 100%;
+                    letter-spacing: 0%;
+                    vertical-align: middle;
+                    display: flex;
+                    align-items: center;
+
+                    .group_title {
+                        color: #121212;
+                        margin-right: 10px;
+                    }
+
+                    .group_name {
+                        color: #FF6A14;
                     }
                 }
             }

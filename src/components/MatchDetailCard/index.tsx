@@ -6,16 +6,16 @@ import styles from './matchDetailCard.module.scss'
 
 type Props = {
     matchDetail: API.MatchesListType;
+    groupInfo?: API.MatchesGroupInfoType
 };
 
 const MatchDetailCard = (props: Props) => {
     const { t, i18n } = useTranslation("common", { keyPrefix: "header" });
-    const { matchDetail } = props;
+    const { matchDetail, groupInfo } = props;
     const [matchStatus, setMatchStatus] = useState<string>()
     const [startDateStatus, setStartDateStatus] = useState<boolean>(false)
     const [endDateStatus, setEndDateStatus] = useState<boolean>(false)
     const [matchDateStatus, setMatchDateStatus] = useState<boolean>(false)
-
 
     const getMatchStatus = () => {
         if (matchDetail?.state === 1) {
@@ -65,8 +65,7 @@ const MatchDetailCard = (props: Props) => {
             getMatchStatus()
             handleDateStatus();
         }
-
-    }, [matchDetail])
+    }, [matchDetail, i18n.language])
 
     return (
         <div className={styles.matchDetailCard}>
@@ -129,6 +128,30 @@ const MatchDetailCard = (props: Props) => {
                             </div>
                         </div>
                     </div>
+                    {
+                        groupInfo && <div className={styles.group}>
+
+                            <div className={styles.group_title}>
+                                {t('registration.group')}:
+                            </div>
+
+                            <div className={styles.group_name}>
+                                {groupInfo?.[i18n.language === 'zh' ? 'nameZh' : 'nameEn'] || t('registration.nodataText')}
+                            </div>
+                        </div>
+                    }
+
+                    {
+                        groupInfo && <div className={styles.group}>
+                            <div className={styles.group_title}>
+                                {t('registration.cost')}:
+                            </div>
+
+                            <div className={styles.group_name}>
+                                <div className={styles.group_name}>{`¥${groupInfo?.cost}/${t('registration.person')}`}</div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
