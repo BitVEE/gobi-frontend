@@ -27,13 +27,14 @@ const Info = (props: Props) => {
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isPaid, setIsPaid] = useState<boolean>(false);
+    const [isPaying, setIsPaying] = useState<boolean>(false);
 
     const handlePayment = async () => {
         // dispatch(addToast({
         //     message: t("noPaymentMethods"),
         //     timeout: 3000
         // }))
-        setIsModalOpen(true)
+        // setIsModalOpen(true)
     }
 
     const initPayment = async () => {
@@ -53,13 +54,13 @@ const Info = (props: Props) => {
                     matchSignUpId: Number(orderId),
                     currency: "CNY"
                 })
-                console.log(infoData.data)
+                // console.log(infoData.data)
                 if (!infoData.data.clientSecret) {
                     dispatch(addToast({
                         message: t("noPaymentMethods"),
                         timeout: 3000
                     }))
-                    return 
+                    return
                 }
 
                 const element = await createElement('dropIn', {
@@ -89,7 +90,10 @@ const Info = (props: Props) => {
             setCurrentMatchInfo(JSON.parse(matchDetail as string));
             setOrderId(registrationId as string || "");
         } else {
-            // router.push('/race/registration');
+            dispatch(addToast({
+                message: t("loginTips"),
+                timeout: 3000
+            }))
         }
     }, [groupInfo, matchDetail, registrationId]);
 
@@ -102,12 +106,29 @@ const Info = (props: Props) => {
 
         const onSuccess = (event: CustomEvent): void => {
             console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
-            // router.push('/race/registration');
+            setIsPaying(true)
+            setIsModalOpen(true)
+            PaymentAPI.getPaymentResult({ matchSignUpId: Number(orderId) }).then((res: any) => {
+                console.log(res.data.intent)
+                setIsPaying(false)
+                if (res.data) {
+                    setIsPaid(true)
+                } else {
+                    setIsPaid(false)
+                }
+
+            }).catch(err => {
+                setIsPaying(false)
+                setIsPaid(false)
+            })
         };
 
         const onError = (event: CustomEvent) => {
             const { error } = event.detail;
             console.error('There is an error', error);
+            if (error.code === "unauthorized") {
+                initPayment()
+            }
         };
 
         const domElement = document.getElementById('dropIn');
@@ -147,27 +168,23 @@ const Info = (props: Props) => {
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                title={t(isPaid ? 'paySuccess' : 'paying')}
+                title={t(isPaying ? 'paying' : isPaid ? 'congratulationPay' : 'payFail')}
             >
                 <div className={styles.modal_content}>
                     {
-                        isPaid ?
+                        isPaying ? <Image
+                            src='/images/icons/loading.svg'
+                            alt="loading"
+                            width={120}
+                            height={200}
+                            className={styles.loadingIcon}
+                        /> :
                             <div className={styles.congratulation_box}>
                                 <Image src='/images/icons/checked.svg' width={24} height={24} alt='checked' className={styles.checkedIcon} ></Image>
-                                <div className={styles.text}>{t('paySuccess')}</div>
-                                <div className={styles.go_to_pay} onClick={() => router.push('/user')}>{t('goToPay')}</div>
+                                <div className={styles.text}>{t(isPaid ? 'paySuccess' : "payFail")}</div>
+                                <div className={styles.go_to_pay} onClick={() => router.push('/user')}>{t('goToOrderDetail')}</div>
                             </div>
-
-                            :
-                            <Image
-                                src='/images/icons/loading.svg'
-                                alt="loading"
-                                width={120}
-                                height={200}
-                                className={styles.loadingIcon}
-                            />
                     }
-
                 </div>
             </Modal>
         </div >

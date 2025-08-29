@@ -277,7 +277,7 @@ declare namespace API {
 
     interface PaymentInfoParams {
         matchSignUpId: number,
-        currency: string
+        currency?: string
     }
 
 

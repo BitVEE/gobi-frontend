@@ -77,6 +77,8 @@ export const MatchAPI = {
 export const PaymentAPI = {
     getPaymentInfo: (params: API.PaymentInfoParams) => http.post<API.APIResult<null>>(`${baseURL}/airwallex/create_payment_intent`, params),
 
+    getPaymentResult: (params: API.PaymentInfoParams) => http.get<API.APIResult<null>>(`${baseURL}/airwallex/get_payment_intent`, { params }),
+
 }
 
 /**

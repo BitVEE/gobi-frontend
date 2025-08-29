@@ -43,6 +43,8 @@
             "noPaymentMethods": "暂无支付方式",
             "paying": "支付中",
             "goToPay": "去支付",
+            "congratulationPay": "恭喜！",
+            "goToOrderDetail": "去查看订单结果",
             "paySuccess": "支付成功",
             "payFail": "支付失败",
             "payFailText": "请重新报名",

@@ -43,6 +43,8 @@
             "noPaymentMethods": "No payment methods available",
             "paying": "Processing Payment",
             "goToPay": "Go to Pay",
+            "congratulationPay": "Congratulation!",
+            "goToOrderDetail": "View Order Details",
             "paySuccess": "Payment successful",
             "payFail": "Payment failed",
             "payFailText": "Please re-register",
