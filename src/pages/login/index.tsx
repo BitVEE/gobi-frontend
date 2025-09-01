@@ -89,8 +89,7 @@ const Login = () => {
             }).then((res) => {
                 if (res.data.code === 0) {
                     dispatch(addToast({
-                        message: t("login.loginSuccess"),
-                        timeout: 30000
+                        message: t("login.loginSuccess")
                     }))
                     router.push('/' + router.locale)
                 } else {
