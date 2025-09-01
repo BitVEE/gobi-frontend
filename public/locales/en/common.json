@@ -280,5 +280,33 @@
         "database_error": "Database error",
         "cache_error": "Cache error",
         "call_external_api_error": "Call external API error"
+    },
+    "qa": {
+        "raceQa": [
+            {
+                "title": "What exactly is Youth Ultra Gobi Challenge? What can children gain from it?",
+                "answer": "The Challenge is not a competition about winning or losing—it is a unique journey of growth. We designed three progressive stages—Campus Trials, City Exchange Races, and the Gobi Challenge—like stepping stones that children climb one by one. Throughout this process, they move from self-awareness, to steady growth, to learning responsibility, while internalizing qualities such as courage, teamwork, and accountability. At the same time, they interact with peers from other schools and gain a broader perspective of the world."
+            },
+            {
+                "title": "Will children really be able to finish the challenge? What if they can’t keep going?",
+                "answer": "The vast majority of children complete the challenge, thanks to tiered training beforehand: daily check-ins and a variety of training opportunities organized within the school.Combined with encouragement from classmates and teachers, children often prove more resilient than they imagine. If a child truly cannot continue, they will be taken back to camp by the rescue vehicle and cared for by medical staff. In all circumstances, the safety and health of the children come first."
+            },
+            {
+                "title": "How are accommodation and meals arranged? Will there be showers?",
+                "answer": "Accommodation: From May 1–3, students stay in large desert tents (12 per tent, separated by gender, with teachers present). On May 4, they stay in a 4-star standard hotel in Dunhuang.\nMeals: Balanced and nutritious, with local specialties, catering to different student preferences. For special dietary needs (allergies, restrictions, vegetarian, etc.), parents must indicate them during registration. The organizing committee will record them and clearly label dishes at the dining area so students can choose accordingly.\nShowers: Due to significant temperature differences between day and night in the desert, showers are not arranged at the camp, though wash-up areas are provided. Showers are available at the hotel."
+            },
+            {
+                "title": "How is safety guaranteed?",
+                "answer": "Each child will be equipped with a GPS tracker and walkie-talkie, allowing our team to monitor their location in real time. The route will have clear markers and staff stationed along the way, with medical professionals and emergency vehicles on standby. Mandatory rest points are set at supply stations to ensure timely recovery. In the event of extreme weather or emergencies, the organizing committee will immediately activate contingency plans, always prioritizing safety above all."
+            },
+            {
+                "title": "What equipment needs to be prepared?",
+                "answer": "Essential items include a hydration pack/water bottle, lightweight shell jacket, sleeping bag, headlamp, and more. Please refer to the detailed equipment list provided by the organizing committee for exact requirements."
+            },
+            {
+                "title": "If we have already registered but can’t attend, is a refund possible?",
+                "answer": "Yes, there is a clear refund and change policy outlined in the registration instructions. If circumstances change, please contact the school team leader or the organizing committee as soon as possible."
+            }
+        ]
     }
 }
