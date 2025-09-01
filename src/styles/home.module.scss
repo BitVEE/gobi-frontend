@@ -163,10 +163,10 @@
                 height: 189px;
                 opacity: 1;
                 border-radius: 8px;
-                background-color: #F8F8F8;
                 cursor: pointer;
-                margin-bottom: 42px;
-
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     }

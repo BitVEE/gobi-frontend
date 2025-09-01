@@ -14,7 +14,7 @@ type Props = {
     link?: string;
 };
 
-const Card = ({ width = 400, height = 455, imgHeight = 208, title = "", text = "", imgSrc = "/images/home/poster.svg", isShowBorder = true, link }: Props) => {
+const Card = ({ width = 400, height = 455, imgHeight = 301, title = "", text = "", imgSrc = "/images/home/poster.svg", isShowBorder = true, link }: Props) => {
     const router = useRouter()
     const [isHovered, setIsHovered] = useState(false);
 

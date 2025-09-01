@@ -353,7 +353,7 @@ declare namespace API {
         parentPhoneNumber: string,
         guardianWechat: string,
         parentEmail: string,
-        photoUrl: string,
+        photoUrl?: string,
         guardianName: string,
         guardianPhoneNumber: string,
         guradianRelationship: string,

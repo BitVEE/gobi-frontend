@@ -64,16 +64,17 @@ const Info = (props: Props) => {
     const handleNext = async () => {
         if (!token) return dispatch(addToast({ message: t("loginTips"), timeout: 3000 }));
         if (!isAgreed) return dispatch(addToast({ message: t("noAgreement"), timeout: 3000 }));
-        if (name != '' && enName != '' && credentialNumber != '' && phoneNumber != '' && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && parentPhoneNumber != '' && parentEmail != '' && guardianName != '' && guardianRelationship != '' && guardianWechat != '' && guardianPhoneNumber != '' && emergencyPhoneNumber != '' && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '' && additionalNotes != '' && sportsBackground != '' && photoUrl != '') {
+        if (name != '' && enName != '' && credentialNumber != '' && phoneNumber != '' && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && parentPhoneNumber != '' && parentEmail != '' && guardianName != '' && guardianRelationship != '' && guardianWechat != '' && guardianPhoneNumber != '' && emergencyPhoneNumber != '' && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '' && additionalNotes != '' && sportsBackground != '' ) {
             if (hasJoinedBefore === "1" && beforeMatchName === '') {
                 dispatch(addToast({ message: t("requiredFields"), timeout: 3000 }));
             } else {
                 setIsModalOpen(true)
                 // uploadImage
-                const uploadRes = await RegistrationAPI.uploadImage({ image: photoUrl.replace(/.*;base64,/, '') });
-                const imageUrl = uploadRes.data.data.imageUrl + '/' + uploadRes.data.data.variants[0];
-                console.log("imageUrl", imageUrl);
-                setPhotoUrl(imageUrl);
+                // && photoUrl != ''
+                // const uploadRes = await RegistrationAPI.uploadImage({ image: photoUrl.replace(/.*;base64,/, '') });
+                // const imageUrl = uploadRes.data.data.imageUrl + '/' + uploadRes.data.data.variants[0];
+                // console.log("imageUrl", imageUrl);
+                // setPhotoUrl(imageUrl);
 
                 const data: API.RegistrationParams = {
                     matchGroupId: group?.id,
@@ -110,7 +111,7 @@ const Info = (props: Props) => {
                     additionalNotes: additionalNotes,
                     sportsBackground: sportsBackground,
                     psychologicalNotes: psychologicalNotes,
-                    photoUrl: imageUrl
+                    // photoUrl: imageUrl
                 }
 
                 const res = await RegistrationAPI.submitRegistration(data);
@@ -214,7 +215,7 @@ const Info = (props: Props) => {
                     {t('info')}
                 </div>
 
-                <div className={styles.cell_info_box}>
+                {/* <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.avatar')}
                     </div>
@@ -247,12 +248,13 @@ const Info = (props: Props) => {
                             }}
                         />
                     </div>
-                </div>
+                </div> */}
 
                 {/* INPUT */}
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.name')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setName(e.target.value)} />

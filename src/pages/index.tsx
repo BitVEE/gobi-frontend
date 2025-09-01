@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import Card from "@/components/card";
+import LoadingImg from "@/components/LoadingImg";
 import { NewsAPI } from "@/api";
 
 // This is the main page of the application
@@ -69,6 +70,7 @@ export default function Home() {
         <div className={styles.news_list}>
           {
             newsData?.articles.map((item, idx) => (
+<<<<<<< Updated upstream
               window.innerWidth > 768 && idx === 0 ?
                 <Card width={820} isShowBorder={false} key={item.id}
                   title={i18n.language === 'zh' ? item.titleZh : item.titleEn}
@@ -78,6 +80,9 @@ export default function Home() {
                   link={item.type == 1 ? "/raceInfo/detail?id=" + item.id : "/raceImage/detail?id=" + item.id} />
                 : <Card
                   imgHeight={301}
+=======
+                <Card
+>>>>>>> Stashed changes
                   key={item.id}
                   title={i18n.language === 'zh' ? item.titleZh : item.titleEn}
                   // text={i18n.language === 'zh' ? item.contentZh : item.contentEn}
@@ -120,8 +125,9 @@ export default function Home() {
         </div>
         <div className={styles.partner_list}>
           {
-            [0, 1, 2, 3, 4, 5, 6].map((item) => (
-              <div className={styles.partner_item} key={item}>
+            new Array(24).fill(0).map((item, idx) => (
+              <div className={styles.partner_item} key={idx}>
+                <LoadingImg src={`/images/school/${idx + 1}.png`} style={{ width: '100%', height: '100%' }} width={189} height={189} />
               </div>
             ))
           }

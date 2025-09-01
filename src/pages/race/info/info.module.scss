@@ -65,6 +65,13 @@
                     font-size: 18px;
                     margin-left: 5px;
                 }
+
+                .required_symbol {
+                    color: #C93620;
+                    font-size: 25px;
+                    margin-left: 5px;
+                }
+
             }
 
 
@@ -339,6 +346,12 @@
                     .required {
                         color: #C93620;
                         font-size: 36px;
+                        margin-left: 10px;
+                    }
+
+                    .required_symbol {
+                        color: #C93620;
+                        font-size: 50px;
                         margin-left: 10px;
                     }
                 }
