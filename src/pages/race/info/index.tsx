@@ -174,6 +174,14 @@ const Info = (props: Props) => {
         }
     }, [groupInfo, matchDetail]);
 
+
+    const goToProtocol1 = () => {
+        window.open('/protocol/matchProtocol.pdf', '_blank');
+    }
+    const goToProtocol2 = () => {
+        window.open('/protocol/matchSafetyProtocol.pdf', '_blank');
+    }
+
     return (
         <div className={styles.info}>
             <div className={styles.detail_box}>
@@ -583,9 +591,9 @@ const Info = (props: Props) => {
                     <input type="checkbox" id="agree" style={{ cursor: 'pointer' }} onChange={(e: any) => setIsAgreed(e.target.checked)} />
                     <div className={styles.agree_text}>
                         {t('agreement')}
-                        <span className={styles.protocol}>{t('protocol1')}</span>
+                        <span className={styles.protocol} onClick={goToProtocol1}>{t('protocol1')}</span>
                         {t('and')}
-                        <span className={styles.protocol}>{t('protocol2')}</span>
+                        <span className={styles.protocol} onClick={goToProtocol2}>{t('protocol2')}</span>
                     </div>
                 </div>
 
