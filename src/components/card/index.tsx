@@ -10,7 +10,7 @@ type Props = {
     link?: string;
 };
 
-const Card = ({ title = "", text = "", imgSrc = "/images/home/poster.svg", link }: Props) => {
+const Card = ({ title = "", text = "", imgSrc = "/images/home/poster.png", link }: Props) => {
     const router = useRouter()
     const [isHovered, setIsHovered] = useState(false);
 

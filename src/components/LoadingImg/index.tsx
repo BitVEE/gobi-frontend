@@ -3,16 +3,16 @@ import { useState, useEffect, useRef } from 'react';
 
 const LoadingImg = (props: { src: string, style: React.CSSProperties, width: number, height: number, alt?: string }) => {
     const [loading, setLoading] = useState(true)
-    const [placeholderSrc, setPlaceholderSrc] = useState("/home/poster.svg")
+    const [placeholderSrc, setPlaceholderSrc] = useState("/images/home/poster.png")
     const [isInView, setIsInView] = useState(false)
     const imgRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         if (props.src) {
-            if (props.src !== "/home/poster.svg" && props.src.includes("imagedelivery.net") && !props.src.includes("Blur")) {
+            if (props.src !== "/images/home/poster.png" && props.src.includes("imagedelivery.net") && !props.src.includes("Blur")) {
                 setPlaceholderSrc(props.src + "Blur")
             } else {
-                setPlaceholderSrc("/home/poster.svg")
+                setPlaceholderSrc("/images/home/poster.png")
             }
         }
     }, [props.src])
@@ -66,7 +66,7 @@ const LoadingImg = (props: { src: string, style: React.CSSProperties, width: num
                         src={props.src}
                         width={props.width}
                         height={props.height}
-                        priority
+                        priority={true}
                         style={{
                             ...props.style,
                             objectFit: "cover",
@@ -104,7 +104,7 @@ const LoadingImg = (props: { src: string, style: React.CSSProperties, width: num
                             priority
                             onError={(e) => {
                                 const img = e.currentTarget as HTMLImageElement;
-                                img.src = "/home/poster.svg";
+                                img.src = "/images/home/poster.png";
                             }}
                             alt={props.alt || ''}
                         />
