@@ -70,19 +70,7 @@ export default function Home() {
         <div className={styles.news_list}>
           {
             newsData?.articles.map((item, idx) => (
-<<<<<<< Updated upstream
-              window.innerWidth > 768 && idx === 0 ?
-                <Card width={820} isShowBorder={false} key={item.id}
-                  title={i18n.language === 'zh' ? item.titleZh : item.titleEn}
-                  // text={i18n.language === 'zh' ? item.contentZh : item.contentEn}
-                  text={formatDate(Number(item.createdAt) * 1000)}
-                  imgSrc={item.coverUrl}
-                  link={item.type == 1 ? "/raceInfo/detail?id=" + item.id : "/raceImage/detail?id=" + item.id} />
-                : <Card
-                  imgHeight={301}
-=======
                 <Card
->>>>>>> Stashed changes
                   key={item.id}
                   title={i18n.language === 'zh' ? item.titleZh : item.titleEn}
                   // text={i18n.language === 'zh' ? item.contentZh : item.contentEn}
