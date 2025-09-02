@@ -45,7 +45,7 @@
 
             a {
                 text-decoration: none;
-                color: #fff;
+                color: inherit;
             }
 
             &:hover,
@@ -109,6 +109,7 @@
         height: 58px;
         flex-shrink: 0;
         aspect-ratio: 75/29;
+        cursor: pointer;
     }
 
     .loginButton {
@@ -242,7 +243,7 @@
                 height: auto;
 
                 a {
-                    color: #2e2e2e;
+                    color: inherit;
                 }
 
                 &:hover,
