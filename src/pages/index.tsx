@@ -3,7 +3,6 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import Card from "@/components/card";
 import LoadingImg from "@/components/LoadingImg";
 import { NewsAPI } from "@/api";
 
@@ -11,8 +10,8 @@ import { NewsAPI } from "@/api";
 // It serves as the entry point for the user interface
 // and displays the main content of the application.
 import styles from '../styles/home.module.scss'
-import { formatDate } from "@/utils/tool";
 import { useRouter } from "next/router";
+import NewsList from "@/components/newList";
 
 
 // The main functional component for the home page
@@ -21,15 +20,17 @@ import { useRouter } from "next/router";
 export default function Home() {
   const { t, i18n } = useTranslation();
   const [newsData, setNewsData] = useState<API.NewsLisData>();
+  const [loading, setLoading] = useState(false);
   const router = useRouter()
 
   const getNewsData = async () => {
     // This function would typically fetch news data from an API or database.
     // For now, it returns a static array of news items.
+    setLoading(true);
     const newsData = await NewsAPI.getNewsList({
       type: 1,
       page: 1,
-      size: 5,
+      size: 6,
     });
     if (newsData.data.code === 0) {
       // If the API call is successful, set the news data to the state
@@ -38,6 +39,7 @@ export default function Home() {
       // If there is an error, log it to the console
       console.error("Failed to fetch news data:", newsData.data.message);
     }
+    setLoading(false);
     // Debugging: Log the fetched news data to the console
     // This can help in verifying that the data is being fetched correctly
     // and can be used for further processing or display in the UI.
@@ -68,18 +70,10 @@ export default function Home() {
           {t("home.news" as any)}
         </div>
         <div className={styles.news_list}>
-          {
-            newsData?.articles.map((item, idx) => (
-                <Card
-                  key={item.id}
-                  title={i18n.language === 'zh' ? item.titleZh : item.titleEn}
-                  // text={i18n.language === 'zh' ? item.contentZh : item.contentEn}
-                  text={formatDate(Number(item.createdAt) * 1000)}
-                  imgSrc={item.coverUrl}
-                  link={item.type == 1 ? "/raceInfo/detail?id=" + item.id : "/raceImage/detail?id=" + item.id}
-                />
-            ))
-          }
+          <NewsList
+            newsList={newsData?.articles || []}
+            loading={loading}
+          />
         </div>
       </div>
 

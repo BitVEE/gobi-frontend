@@ -3,16 +3,16 @@ import { useState, useEffect, useRef } from 'react';
 
 const LoadingImg = (props: { src: string, style: React.CSSProperties, width: number, height: number, alt?: string }) => {
     const [loading, setLoading] = useState(true)
-    const [placeholderSrc, setPlaceholderSrc] = useState("/default.png")
+    const [placeholderSrc, setPlaceholderSrc] = useState("/home/poster.svg")
     const [isInView, setIsInView] = useState(false)
     const imgRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         if (props.src) {
-            if (props.src !== "/default.png" && props.src.includes("imagedelivery.net") && !props.src.includes("Blur")) {
+            if (props.src !== "/home/poster.svg" && props.src.includes("imagedelivery.net") && !props.src.includes("Blur")) {
                 setPlaceholderSrc(props.src + "Blur")
             } else {
-                setPlaceholderSrc("/default.png")
+                setPlaceholderSrc("/home/poster.svg")
             }
         }
     }, [props.src])
@@ -49,7 +49,7 @@ const LoadingImg = (props: { src: string, style: React.CSSProperties, width: num
     return (
         <div ref={imgRef} style={{ fontSize: "0px" }}>
             {!isInView ? (
-                <Image 
+                <Image
                     src={placeholderSrc}
                     width={props.width}
                     height={props.height}
@@ -62,7 +62,7 @@ const LoadingImg = (props: { src: string, style: React.CSSProperties, width: num
                 />
             ) : (
                 <div style={{ ...props.style, position: "relative" }}>
-                    <Image 
+                    <Image
                         src={props.src}
                         width={props.width}
                         height={props.height}
@@ -76,10 +76,10 @@ const LoadingImg = (props: { src: string, style: React.CSSProperties, width: num
                             maxHeight: "100%",
                             opacity: loading ? 0 : 1
                         }}
-                        onLoad={() => { 
-                            setTimeout(() => { setLoading(false); }, 300); 
+                        onLoad={() => {
+                            setTimeout(() => { setLoading(false); }, 300);
                         }}
-                        onError={(e) => { 
+                        onError={(e) => {
                             const img = e.currentTarget as HTMLImageElement;
                             img.src = placeholderSrc;
                         }}
@@ -102,9 +102,9 @@ const LoadingImg = (props: { src: string, style: React.CSSProperties, width: num
                                 left: "0"
                             }}
                             priority
-                            onError={(e) => { 
+                            onError={(e) => {
                                 const img = e.currentTarget as HTMLImageElement;
-                                img.src = '/default.png';
+                                img.src = "/home/poster.svg";
                             }}
                             alt={props.alt || ''}
                         />

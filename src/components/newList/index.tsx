@@ -13,10 +13,10 @@ import { formatDate } from '@/utils/tool';
 interface NewsListProps {
     newsList: API.NewsListItem[];
     loading: boolean;
-    page: number;
-    total: number;
+    page?: number;
+    total?: number;
     pageSize?: number;
-    onPageChange: (page: number) => void;
+    onPageChange?: (page: number) => void;
 }
 
 const NewsList: React.FC<NewsListProps> = ({
@@ -71,7 +71,7 @@ const NewsList: React.FC<NewsListProps> = ({
                     }
                 </div>
             )}
-            {!loading && newsList.length > 0 && page && total && (
+            {!loading && onPageChange && newsList.length > 0 && page && total && (
                 <div className={styles.pagination}>
                     <PaginationIndicator
                         current={page}
