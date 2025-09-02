@@ -116,6 +116,7 @@
                         line-height: 100%;
                         letter-spacing: 0%;
                         vertical-align: middle;
+
                         span {
                             display: -webkit-box;
                             -webkit-line-clamp: 1;
@@ -131,7 +132,7 @@
                         font-weight: 400;
                         font-style: Regular;
                         font-size: 18px;
-                        line-height: 100%;
+                        line-height: 140%;
                         letter-spacing: 0%;
                         vertical-align: middle;
                         overflow: hidden;
@@ -164,7 +165,7 @@
                 cursor: pointer;
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                justify-content: flex-start;
             }
         }
     }
@@ -233,7 +234,7 @@
                         .qa_item_q {
                             font-weight: 700;
                             font-style: Bold;
-                            font-size: 84px;
+                            font-size: 64px;
                             line-height: 100%;
                             letter-spacing: 0%;
                             vertical-align: middle;
@@ -242,8 +243,8 @@
                         .qa_item_a {
                             font-weight: 400;
                             font-style: Regular;
-                            font-size: 72px;
-                            line-height: 100%;
+                            font-size: 52px;
+                            line-height: 140%;
                             letter-spacing: 0%;
                             vertical-align: middle;
                             margin-top: 64px;
@@ -253,11 +254,17 @@
             }
 
             .partner_list {
+                margin-bottom: 100px;
+
                 .partner_item {
                     width: 400px;
                     height: 400px;
                     margin-top: 52px;
                     border-radius: 16px;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
             }
         }

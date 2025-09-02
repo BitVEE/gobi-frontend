@@ -180,9 +180,12 @@ const Info = (props: Props) => {
                             className={styles.loadingIcon}
                         /> :
                             <div className={styles.congratulation_box}>
-                                <Image src='/images/icons/checked.svg' width={24} height={24} alt='checked' className={styles.checkedIcon} ></Image>
+                                <Image src={`/images/icons/${isPaid ? 'checked' : 'fail'}.svg`} width={24} height={24} alt='checked' className={styles.checkedIcon} ></Image>
                                 <div className={styles.text}>{t(isPaid ? 'paySuccess' : "payFail")}</div>
-                                <div className={styles.go_to_pay} onClick={() => router.push('/user')}>{t('goToOrderDetail')}</div>
+                                <div className={styles.btn_group}>
+                                    <div className={styles.go_to_pay} onClick={() => router.push('/')}>{t('goToHome')}</div>
+                                    <div className={styles.go_to_pay} onClick={() => router.push('/user')}>{t('goToOrderDetail')}</div>
+                                </div>
                             </div>
                     }
                 </div>

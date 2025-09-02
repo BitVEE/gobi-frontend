@@ -13,6 +13,14 @@ import { addToast } from "@/redux/slice/toastSlice";
 
 type Props = {};
 
+const regexPatterns = {
+    phone: /^1[3-9]\d{9}$/,
+    email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    idCard: /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
+    hkPass: /^[a-zA-Z]\d{6,10}$/,
+    passport: /^[a-zA-Z]\d{5,8}$/,
+    twPass: /(^\d{8}$)|(^[a-zA-Z]\d{7,9}$)/
+};
 const Info = (props: Props) => {
     const router = useRouter()
     const { groupInfo, matchDetail } = router.query;
@@ -35,7 +43,7 @@ const Info = (props: Props) => {
     const [city, setCity] = useState<string>("");
     const [schoolName, setSchoolName] = useState<string>("");
     const [grade, setGrade] = useState<string>("");
-    const [bloodType, setBloodType] = useState<string>("");
+    const [bloodType, setBloodType] = useState<string>("A");
     const [height, setHeight] = useState<string>("");
     const [weight, setWeight] = useState<string>("");
     const [shirtSize, setShirtSize] = useState<string>('110');
@@ -64,7 +72,7 @@ const Info = (props: Props) => {
     const handleNext = async () => {
         if (!token) return dispatch(addToast({ message: t("loginTips"), timeout: 3000 }));
         if (!isAgreed) return dispatch(addToast({ message: t("noAgreement"), timeout: 3000 }));
-        if (name != '' && enName != '' && credentialNumber != '' && phoneNumber != '' && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && parentPhoneNumber != '' && parentEmail != '' && guardianName != '' && guardianRelationship != '' && guardianWechat != '' && guardianPhoneNumber != '' && emergencyPhoneNumber != '' && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '' && additionalNotes != '' && sportsBackground != '' ) {
+        if (name != '' && enName != '' && regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber) && regexPatterns.phone.test(phoneNumber.trim()) && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && regexPatterns.phone.test(parentPhoneNumber.trim()) && regexPatterns.email.test(parentEmail.trim()) && guardianName != '' && guardianRelationship != '' && guardianWechat != '' && regexPatterns.phone.test(guardianPhoneNumber.trim()) && regexPatterns.phone.test(emergencyPhoneNumber.trim()) && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '' && additionalNotes != '' && sportsBackground != '') {
             if (hasJoinedBefore === "1" && beforeMatchName === '') {
                 dispatch(addToast({ message: t("requiredFields"), timeout: 3000 }));
             } else {
@@ -128,7 +136,22 @@ const Info = (props: Props) => {
 
             }
         } else {
-            dispatch(addToast({ message: t("requiredFields"), timeout: 3000 }));
+            let warningText = "requiredFields"
+            if (!regexPatterns.phone.test(phoneNumber.trim())) {
+                warningText = "wrongPhonenumber"
+            } else if (!regexPatterns.phone.test(parentPhoneNumber.trim())) {
+                warningText = "wrongParentPhonenumber"
+            } else if (!regexPatterns.email.test(parentEmail.trim())) {
+                warningText = "wrongParentEmail"
+            } else if (!regexPatterns.phone.test(guardianPhoneNumber.trim())) {
+                warningText = "wrongGuardianPhoneNumber"
+            } else if (!regexPatterns.phone.test(emergencyPhoneNumber.trim())) {
+                warningText = "wrongEmergencyPhoneNumber"
+            } else if (!regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber)){
+                warningText = "wrongCredentialNumber"
+            }
+
+            dispatch(addToast({ message: t(warningText as any), timeout: 3000 }));
 
         }
     }
@@ -264,6 +287,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.enName')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setEnName(e.target.value)} />
@@ -274,12 +298,12 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.gender')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <select name="gender" id="gender" onChange={(e) => setGender(e.target.value)} value={gender}>
                             <option value='1'>{t('infoList.genderList.male')}</option>
                             <option value='2'>{t('infoList.genderList.female')}</option>
-                            <option value='3'> {t('infoList.genderList.other')}</option>
                         </select>
                     </div>
                 </div>
@@ -288,6 +312,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.birthday')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="date" name="Date" value={birthday} onChange={(e) => setBirthday(e.target.value)} className={styles.date_ipt} id="id_yy_input" />
@@ -297,9 +322,10 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.credentialType')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <select name="credentialType" id="credentialType" onChange={(e) => setCredentialType(e.target.value)} value={credentialType}>
+                        <select name="credentialType" id="credentialType" onChange={(e) => {setCredentialType(e.target.value); setCredentialNumber(JSON.parse(JSON.stringify(''))) }} value={credentialType}>
                             <option value='1'>{t('infoList.credentialTypeList.1')}</option>
                             <option value='2'>{t('infoList.credentialTypeList.2')}</option>
                             <option value='3'> {t('infoList.credentialTypeList.3')}</option>
@@ -311,43 +337,48 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.credentialNumber')}
+                        <span className={styles.required_symbol}>*</span>
                         <span className={styles.required}>{t('infoList.credentialNumberTips')}</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <input type="text" maxLength={50} onChange={(e) => setCredentialNumber(e.target.value)} />
+                        <input type="text" maxLength={50} value={credentialNumber} onChange={(e) => setCredentialNumber(e.target.value)} />
                     </div>
                 </div>
 
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.phoneNumber')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setPhoneNumber(e.target.value)} />
+                        <input type="text" maxLength={30} value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                     </div>
                 </div>
 
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.nationality')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setNationality(e.target.value)} />
+                        <input type="text" maxLength={30} value={nationality} onChange={(e) => setNationality(e.target.value)} />
                     </div>
                 </div>
 
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.city')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setCity(e.target.value)} />
+                        <input type="text" maxLength={30} value={city} onChange={(e) => setCity(e.target.value)} />
                     </div>
                 </div>
 
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.schoolName')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setSchoolName(e.target.value)} />
@@ -357,6 +388,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.grade')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setGrade(e.target.value)} />
@@ -367,9 +399,16 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.bloodType')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setBloodType(e.target.value)} />
+                        <select name="bloodType" id="bloodType" onChange={(e) => setBloodType(e.target.value)} value={bloodType}>
+                            <option value='A'>A</option>
+                            <option value='B'>B</option>
+                            <option value='AB'>AB</option>
+                            <option value='O'> O</option>
+                            <option value={t('infoList.genderList.other')}> {t('infoList.genderList.other')}</option>
+                        </select>
                     </div>
                 </div>
 
@@ -377,6 +416,7 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.height')}
                         <span className={styles.required}>(cm)</span>
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setHeight(e.target.value)} />
@@ -387,6 +427,7 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.weight')}
                         <span className={styles.required}>(kg)</span>
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setWeight(e.target.value)} />
@@ -397,6 +438,7 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.shirtSize')}
                         <span className={styles.required}>{t('infoList.shirtsizeTips')}</span>
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ justifyContent: 'flex-start' }}>
                         {
@@ -414,6 +456,7 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.shoeSize')}
                         <span className={styles.required}>{t('infoList.shoeSizeTips')}</span>
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setShoeSize(e.target.value)} />
@@ -423,6 +466,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.hasJoinedBefore')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <select name="hasJoinedBefore" id="hasJoinedBefore" onChange={(e) => { setHasJoinedBefore(e.target.value); e.target.value === '0' ? setBeforeMatchName('') : '' }} value={hasJoinedBefore}>
@@ -438,6 +482,7 @@ const Info = (props: Props) => {
                             <div className={styles.info_title}>
                                 {t('infoList.beforeMatchName')}
                                 <span className={styles.required}>{t('infoList.beforeMatchNameTips')}</span>
+                                <span className={styles.required_symbol}>*</span>
                             </div>
                             <div className={styles.info_ipt}>
                                 <input type="text" maxLength={30} onChange={(e) => setBeforeMatchName(e.target.value)} />
@@ -450,6 +495,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.parentPhoneNumber')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setParentPhoneNumber(e.target.value)} />
@@ -461,6 +507,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.parentEmail')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setParentEmail(e.target.value)} />
@@ -472,6 +519,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.guardianName')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setGuardianName(e.target.value)} />
@@ -482,6 +530,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.guardianRelationship')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setGuardianRelationship(e.target.value)} />
@@ -494,6 +543,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.guardianWechat')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setGuardianWechat(e.target.value)} />
@@ -506,6 +556,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.guardianPhoneNumber')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setGuardianPhoneNumber(e.target.value)} />
@@ -516,6 +567,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.emergencyPhoneNumber')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setEmergencyPhoneNumber(e.target.value)} />
@@ -527,6 +579,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box} >
                     <div className={styles.info_title}>
                         {t('infoList.medicationRestrictions')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea name="medicationRestrictions" id="medicationRestrictions" maxLength={220} onChange={(e) => setMedicationRestrictions(e.target.value)}></textarea>
@@ -536,6 +589,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box} >
                     <div className={styles.info_title}>
                         {t('infoList.dietaryRestrictions')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea name="dietaryRestrictions" id="dietaryRestrictions" maxLength={220} onChange={(e) => setDietaryRestrictions(e.target.value)}></textarea>
@@ -545,6 +599,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box} >
                     <div className={styles.info_title}>
                         {t('infoList.allergyInformation')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea name="allergyInformation" id="allergyInformation" maxLength={220} onChange={(e) => setAllergyInformation(e.target.value)}></textarea>
@@ -554,6 +609,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box} >
                     <div className={styles.info_title}>
                         {t('infoList.medicalHistory')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea name="medicalHistory" id="medicalHistory" maxLength={220} onChange={(e) => setMedicalHistory(e.target.value)}></textarea>
@@ -561,6 +617,7 @@ const Info = (props: Props) => {
                 </div> <div className={styles.cell_info_box} >
                     <div className={styles.info_title}>
                         {t('infoList.additionalNotes')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea name="additionalNotes" id="additionalNotes" maxLength={220} onChange={(e) => setAdditionalNotes(e.target.value)}></textarea>
@@ -571,6 +628,7 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.sportsBackground')}
                         <span className={styles.required}>{t('infoList.sportsBackgroundTips')}</span>
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea placeholder={t('infoList.sportsBackgroundPalceholder')} name="sportsBackground" id="sportsBackground" maxLength={220} onChange={(e) => setSportsBackground(e.target.value)}></textarea>
@@ -612,6 +670,7 @@ const Info = (props: Props) => {
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
+                isClickOutsideToClose={true}
                 title={t(isSubmitted ? 'congratulation' : 'submitting')}
             >
                 <div className={styles.modal_content}>
