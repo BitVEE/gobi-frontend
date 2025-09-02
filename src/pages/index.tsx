@@ -56,7 +56,7 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      <div className={styles.poster} style={{ backgroundImage: `url('/images/home/poster.svg')` }}>
+      <div className={styles.poster} style={{ backgroundImage: `url('/images/home/poster.png')` }}>
         <div className={styles.poster_title}>
           {t("home.title" as any)}
         </div>
@@ -116,7 +116,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={styles.poster} style={{ backgroundImage: `url('/images/home/poster-1.svg')` }}>
+      <div className={styles.poster} style={{ backgroundImage: `url('/images/home/poster-1.png')` }}>
         <div className={styles.poster_title}>
           {t("home.title" as any)}
         </div>
