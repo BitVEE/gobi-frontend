@@ -20,7 +20,9 @@ const Card = ({ title = "", text = "", imgSrc = "/images/home/poster.png", link 
             <div onClick={() => link && router.push(link)}>
                 <div className={styles.card_image}>
                     <LoadingImg
-                        style={{ width: "100%", height: "100%" }}
+                        style={{ width: "auto", height: "100%",
+                        aspectRatio: 4 / 3,
+                        objectFit: "cover" }}
                         src={imgSrc}
                         alt={imgSrc}
                         width={400}
