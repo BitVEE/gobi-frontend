@@ -53,7 +53,7 @@
         padding-bottom: 20px;
 
         .news_title {
-            width: 1240px;
+            width: 90%;
             font-size: 24px;
             font-weight: 700;
             margin-bottom: 20px;
@@ -68,7 +68,7 @@
         }
 
         .news_list {
-            width: 1240px;
+            width: 90%;
             // height: 930px;
             display: flex;
             // align-items: center;
@@ -161,11 +161,10 @@
                 width: 189px;
                 height: 189px;
                 opacity: 1;
-                border-radius: 8px;
                 cursor: pointer;
                 display: flex;
                 align-items: center;
-                justify-content: flex-start;
+                justify-content: center;
             }
         }
     }

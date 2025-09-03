@@ -10,6 +10,7 @@ import styles from './info.module.scss'
 import MatchDetailCard from '@/components/MatchDetailCard';
 import Modal from '@/components/Modal';
 import { addToast } from "@/redux/slice/toastSlice";
+import countries from '@/utils/countryAreaCode'
 
 type Props = {};
 
@@ -38,6 +39,7 @@ const Info = (props: Props) => {
     const [birthday, setBirthday] = useState<string>("2000-01-01");
     const [credentialType, setCredentialType] = useState<string>("1");
     const [credentialNumber, setCredentialNumber] = useState<string>("");
+    const [phoneNumberAreaCode, setPhoneNumberAreaCode] = useState<number>(0);
     const [phoneNumber, setPhoneNumber] = useState<string>("");
     const [nationality, setNationality] = useState<string>("");
     const [city, setCity] = useState<string>("");
@@ -50,11 +52,13 @@ const Info = (props: Props) => {
     const [shoeSize, setShoeSize] = useState<string>("");
     const [hasJoinedBefore, setHasJoinedBefore] = useState<string>("1");
     const [beforeMatchName, setBeforeMatchName] = useState<string>("");
+    const [parentPhoneNumberAreaCode, setParentPhoneNumberAreaCode] = useState<number>(0);
     const [parentPhoneNumber, setParentPhoneNumber] = useState<string>("");
     const [parentEmail, setParentEmail] = useState<string>("");
     const [guardianName, setGuardianName] = useState<string>("");
     const [guardianRelationship, setGuardianRelationship] = useState<string>("");
     const [guardianWechat, setGuardianWechat] = useState<string>("");
+    const [guardianPhoneNumberAreaCode, setGuardianPhoneNumberAreaCode] = useState<number>(0)
     const [guardianPhoneNumber, setGuardianPhoneNumber] = useState<string>("");
     const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState<string>("");
     const [medicationRestrictions, setMedicationRestrictions] = useState<string>("");
@@ -72,11 +76,11 @@ const Info = (props: Props) => {
     const handleNext = async () => {
         if (!token) return dispatch(addToast({ message: t("loginTips"), timeout: 3000 }));
         if (!isAgreed) return dispatch(addToast({ message: t("noAgreement"), timeout: 3000 }));
-        if (name != '' && enName != '' && regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber) && regexPatterns.phone.test(phoneNumber.trim()) && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && regexPatterns.phone.test(parentPhoneNumber.trim()) && regexPatterns.email.test(parentEmail.trim()) && guardianName != '' && guardianRelationship != '' && guardianWechat != '' && regexPatterns.phone.test(guardianPhoneNumber.trim()) && regexPatterns.phone.test(emergencyPhoneNumber.trim()) && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '' && additionalNotes != '' && sportsBackground != '') {
+        if (name != '' && enName != '' && regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber) && countries[phoneNumberAreaCode].pattern.test(phoneNumber.trim()) && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && countries[parentPhoneNumberAreaCode].pattern.test(parentPhoneNumber.trim()) && regexPatterns.email.test(parentEmail.trim()) && guardianName != '' && guardianRelationship != '' && guardianWechat != '' &&  countries[guardianPhoneNumberAreaCode].pattern.test(guardianPhoneNumber.trim()) && regexPatterns.phone.test(emergencyPhoneNumber.trim()) && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '') {
             if (hasJoinedBefore === "1" && beforeMatchName === '') {
                 dispatch(addToast({ message: t("requiredFields"), timeout: 3000 }));
             } else {
-                setIsModalOpen(true)
+                // setIsModalOpen(true)
                 // uploadImage
                 // && photoUrl != ''
                 // const uploadRes = await RegistrationAPI.uploadImage({ image: photoUrl.replace(/.*;base64,/, '') });
@@ -93,7 +97,7 @@ const Info = (props: Props) => {
                     birthday: birthday,
                     credentialType: Number(credentialType),
                     credentialNumber: credentialNumber,
-                    phoneNumber: phoneNumber,
+                    phoneNumber: countries[phoneNumberAreaCode].prefix + ' ' + phoneNumber,
                     nationality: nationality,
                     city: city,
                     schoolName: schoolName,
@@ -105,11 +109,11 @@ const Info = (props: Props) => {
                     shoeSize: shoeSize,
                     hasJoinedBefore: Number(hasJoinedBefore),
                     beforeMatchName: beforeMatchName,
-                    parentPhoneNumber: parentPhoneNumber,
+                    parentPhoneNumber: countries[parentPhoneNumberAreaCode].prefix + parentPhoneNumber,
                     parentEmail: parentEmail,
                     guardianName: guardianName,
                     guradianRelationship: guardianRelationship,
-                    guardianPhoneNumber: guardianPhoneNumber,
+                    guardianPhoneNumber: countries[guardianPhoneNumberAreaCode].prefix + guardianPhoneNumber,
                     guardianWechat: guardianWechat,
                     emergencyPhoneNumber: emergencyPhoneNumber,
                     medicationRestrictions: medicationRestrictions,
@@ -137,17 +141,17 @@ const Info = (props: Props) => {
             }
         } else {
             let warningText = "requiredFields"
-            if (!regexPatterns.phone.test(phoneNumber.trim())) {
+            if (!countries[phoneNumberAreaCode].pattern.test(phoneNumber.trim())) {
                 warningText = "wrongPhonenumber"
-            } else if (!regexPatterns.phone.test(parentPhoneNumber.trim())) {
+            } else if (!countries[parentPhoneNumberAreaCode].pattern.test(parentPhoneNumber.trim())) {
                 warningText = "wrongParentPhonenumber"
             } else if (!regexPatterns.email.test(parentEmail.trim())) {
                 warningText = "wrongParentEmail"
-            } else if (!regexPatterns.phone.test(guardianPhoneNumber.trim())) {
+            } else if (!countries[guardianPhoneNumberAreaCode].pattern.test(guardianPhoneNumber.trim())) {
                 warningText = "wrongGuardianPhoneNumber"
             } else if (!regexPatterns.phone.test(emergencyPhoneNumber.trim())) {
                 warningText = "wrongEmergencyPhoneNumber"
-            } else if (!regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber)){
+            } else if (!regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber)) {
                 warningText = "wrongCredentialNumber"
             }
 
@@ -325,7 +329,7 @@ const Info = (props: Props) => {
                         <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <select name="credentialType" id="credentialType" onChange={(e) => {setCredentialType(e.target.value); setCredentialNumber(JSON.parse(JSON.stringify(''))) }} value={credentialType}>
+                        <select name="credentialType" id="credentialType" onChange={(e) => { setCredentialType(e.target.value); setCredentialNumber(JSON.parse(JSON.stringify(''))) }} value={credentialType}>
                             <option value='1'>{t('infoList.credentialTypeList.1')}</option>
                             <option value='2'>{t('infoList.credentialTypeList.2')}</option>
                             <option value='3'> {t('infoList.credentialTypeList.3')}</option>
@@ -350,8 +354,22 @@ const Info = (props: Props) => {
                         {t('infoList.phoneNumber')}
                         <span className={styles.required_symbol}>*</span>
                     </div>
-                    <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                    <div className={styles.info_ipt_box}>
+                        <div className={styles.info_ipt_prefix}>
+                            <select className={styles.phone_prefix} name="prefix" id="prefix" onChange={(e) => setPhoneNumberAreaCode(Number(e.target.value))} value={phoneNumberAreaCode}>
+                                {
+                                    countries.map((item: any, idx) =>
+                                        <option value={idx} key={item.code}>
+                                            {`${item[i18n.language === 'zh' ? 'name' : 'enName']}(${item.prefix})`}
+                                        </option>
+                                    )
+                                }
+                            </select>
+                        </div>
+
+                        <div className={styles.info_ipt_co}>
+                            <input className={styles.phone_ipt} type="text" maxLength={30} value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                        </div>
                     </div>
                 </div>
 
@@ -497,8 +515,23 @@ const Info = (props: Props) => {
                         {t('infoList.parentPhoneNumber')}
                         <span className={styles.required_symbol}>*</span>
                     </div>
-                    <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setParentPhoneNumber(e.target.value)} />
+
+                    <div className={styles.info_ipt_box}>
+                        <div className={styles.info_ipt_prefix}>
+                            <select className={styles.phone_prefix} name="prefix" id="prefix" onChange={(e) => setParentPhoneNumberAreaCode(Number(e.target.value))} value={parentPhoneNumberAreaCode}>
+                                {
+                                    countries.map((item: any, idx) =>
+                                        <option value={idx} key={item.code}>
+                                            {`${item[i18n.language === 'zh' ? 'name' : 'enName']}(${item.prefix})`}
+                                        </option>
+                                    )
+                                }
+                            </select>
+                        </div>
+
+                        <div className={styles.info_ipt_co}>
+                            <input className={styles.phone_ipt} type="text" maxLength={30} value={parentPhoneNumber} onChange={(e) => setParentPhoneNumber(e.target.value)} />
+                        </div>
                     </div>
                 </div>
 
@@ -558,8 +591,23 @@ const Info = (props: Props) => {
                         {t('infoList.guardianPhoneNumber')}
                         <span className={styles.required_symbol}>*</span>
                     </div>
-                    <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setGuardianPhoneNumber(e.target.value)} />
+
+                    <div className={styles.info_ipt_box}>
+                        <div className={styles.info_ipt_prefix}>
+                            <select className={styles.phone_prefix} name="prefix" id="prefix" onChange={(e) => setGuardianPhoneNumberAreaCode(Number(e.target.value))} value={guardianPhoneNumberAreaCode}>
+                                {
+                                    countries.map((item: any, idx) =>
+                                        <option value={idx} key={item.code}>
+                                            {`${item[i18n.language === 'zh' ? 'name' : 'enName']}(${item.prefix})`}
+                                        </option>
+                                    )
+                                }
+                            </select>
+                        </div>
+
+                        <div className={styles.info_ipt_co}>
+                            <input className={styles.phone_ipt} type="text" maxLength={30} value={guardianPhoneNumber} onChange={(e) => setGuardianPhoneNumber(e.target.value)} />
+                        </div>
                     </div>
                 </div>
 
@@ -617,7 +665,6 @@ const Info = (props: Props) => {
                 </div> <div className={styles.cell_info_box} >
                     <div className={styles.info_title}>
                         {t('infoList.additionalNotes')}
-                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea name="additionalNotes" id="additionalNotes" maxLength={220} onChange={(e) => setAdditionalNotes(e.target.value)}></textarea>
@@ -628,7 +675,6 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.sportsBackground')}
                         <span className={styles.required}>{t('infoList.sportsBackgroundTips')}</span>
-                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea placeholder={t('infoList.sportsBackgroundPalceholder')} name="sportsBackground" id="sportsBackground" maxLength={220} onChange={(e) => setSportsBackground(e.target.value)}></textarea>
