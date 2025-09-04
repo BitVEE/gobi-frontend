@@ -211,6 +211,13 @@
         "raceName": "Race name",
         "status": "Status"
     },
+    "partner": {
+        "title":"Partners",
+        "sponsor":"Sponsors",
+        "schools":"Schools",
+        "shop":"Shop",
+        "community":"Community"
+    },
     "raceResult": {
         "title": "Result query",
         "personalResult": "Personal result",
