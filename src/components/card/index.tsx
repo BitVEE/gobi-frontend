@@ -16,8 +16,8 @@ const Card = ({ title = "", text = "", imgSrc = "/images/home/poster.png", link 
 
 
     return (
-        <div className={styles.card}>
-            <div onClick={() => link && router.push(link)}>
+        <div className={styles.card}  onClick={() => link && router.push(link)}>
+            <div>
                 <div className={styles.card_image}>
                     <LoadingImg
                         style={{ width: "auto", height: "100%",

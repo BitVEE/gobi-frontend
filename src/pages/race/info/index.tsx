@@ -60,6 +60,7 @@ const Info = (props: Props) => {
     const [guardianWechat, setGuardianWechat] = useState<string>("");
     const [guardianPhoneNumberAreaCode, setGuardianPhoneNumberAreaCode] = useState<number>(0)
     const [guardianPhoneNumber, setGuardianPhoneNumber] = useState<string>("");
+    const [emergencyPhoneNumberAreaCode, setemergencyPhoneNumberAreaCode] = useState<number>(0);
     const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState<string>("");
     const [medicationRestrictions, setMedicationRestrictions] = useState<string>("");
     const [dietaryRestrictions, setDietaryRestrictions] = useState<string>("");
@@ -76,7 +77,7 @@ const Info = (props: Props) => {
     const handleNext = async () => {
         if (!token) return dispatch(addToast({ message: t("loginTips"), timeout: 3000 }));
         if (!isAgreed) return dispatch(addToast({ message: t("noAgreement"), timeout: 3000 }));
-        if (name != '' && enName != '' && regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber) && countries[phoneNumberAreaCode].pattern.test(phoneNumber.trim()) && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && countries[parentPhoneNumberAreaCode].pattern.test(parentPhoneNumber.trim()) && regexPatterns.email.test(parentEmail.trim()) && guardianName != '' && guardianRelationship != '' && guardianWechat != '' &&  countries[guardianPhoneNumberAreaCode].pattern.test(guardianPhoneNumber.trim()) && regexPatterns.phone.test(emergencyPhoneNumber.trim()) && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '') {
+        if (name != '' && enName != '' && regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber) && countries[phoneNumberAreaCode].pattern.test(phoneNumber.trim()) && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && countries[parentPhoneNumberAreaCode].pattern.test(parentPhoneNumber.trim()) && regexPatterns.email.test(parentEmail.trim()) && guardianName != '' && guardianRelationship != '' && guardianWechat != '' && countries[guardianPhoneNumberAreaCode].pattern.test(guardianPhoneNumber.trim()) && countries[emergencyPhoneNumberAreaCode].pattern.test(emergencyPhoneNumber.trim()) && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '') {
             if (hasJoinedBefore === "1" && beforeMatchName === '') {
                 dispatch(addToast({ message: t("requiredFields"), timeout: 3000 }));
             } else {
@@ -115,7 +116,7 @@ const Info = (props: Props) => {
                     guradianRelationship: guardianRelationship,
                     guardianPhoneNumber: countries[guardianPhoneNumberAreaCode].prefix + guardianPhoneNumber,
                     guardianWechat: guardianWechat,
-                    emergencyPhoneNumber: emergencyPhoneNumber,
+                    emergencyPhoneNumber: countries[emergencyPhoneNumberAreaCode].prefix + emergencyPhoneNumber,
                     medicationRestrictions: medicationRestrictions,
                     dietaryRestrictions: dietaryRestrictions,
                     allergyInformation: allergyInformation,
@@ -149,7 +150,7 @@ const Info = (props: Props) => {
                 warningText = "wrongParentEmail"
             } else if (!countries[guardianPhoneNumberAreaCode].pattern.test(guardianPhoneNumber.trim())) {
                 warningText = "wrongGuardianPhoneNumber"
-            } else if (!regexPatterns.phone.test(emergencyPhoneNumber.trim())) {
+            } else if (!countries[emergencyPhoneNumberAreaCode].pattern.test(emergencyPhoneNumber.trim())) {
                 warningText = "wrongEmergencyPhoneNumber"
             } else if (!regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber)) {
                 warningText = "wrongCredentialNumber"
@@ -356,7 +357,7 @@ const Info = (props: Props) => {
                     </div>
                     <div className={styles.info_ipt_box}>
                         <div className={styles.info_ipt_prefix}>
-                            <select className={styles.phone_prefix} name="prefix" id="prefix" onChange={(e) => setPhoneNumberAreaCode(Number(e.target.value))} value={phoneNumberAreaCode}>
+                            <select id="selectPhone" className={styles.phone_prefix} name="prefix" onChange={(e) => setPhoneNumberAreaCode(Number(e.target.value))} value={phoneNumberAreaCode}>
                                 {
                                     countries.map((item: any, idx) =>
                                         <option value={idx} key={item.code}>
@@ -462,7 +463,7 @@ const Info = (props: Props) => {
                         {
                             ['110', '120', '130', '140', '150', '160', '170', '180'].map((size) => (
                                 <div className={styles.ipt_radio} key={size} >
-                                    <input type="radio" id={`size-${size}`} name="size" value={size} checked={size === shirtSize} onChange={(e: any) => setShirtSize(e.target.value)} />
+                                    <input className={styles.radio_box} type="radio" id={`size-${size}`} name="size" value={size} checked={size === shirtSize} onChange={(e: any) => setShirtSize(e.target.value)} />
                                     <label htmlFor={`size-${size}`} className={styles.ipt_radio_label}>{`${size}cm`}</label>
                                 </div>
                             ))
@@ -617,9 +618,24 @@ const Info = (props: Props) => {
                         {t('infoList.emergencyPhoneNumber')}
                         <span className={styles.required_symbol}>*</span>
                     </div>
-                    <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setEmergencyPhoneNumber(e.target.value)} />
+                    <div className={styles.info_ipt_box}>
+                        <div className={styles.info_ipt_prefix}>
+                            <select className={styles.phone_prefix} name="prefix" id="prefix" onChange={(e) => setemergencyPhoneNumberAreaCode(Number(e.target.value))} value={emergencyPhoneNumberAreaCode}>
+                                {
+                                    countries.map((item: any, idx) =>
+                                        <option value={idx} key={item.code}>
+                                            {`${item[i18n.language === 'zh' ? 'name' : 'enName']}(${item.prefix})`}
+                                        </option>
+                                    )
+                                }
+                            </select>
+                        </div>
+
+                        <div className={styles.info_ipt_co}>
+                            <input className={styles.phone_ipt} type="text" maxLength={30} value={emergencyPhoneNumber} onChange={(e) => setEmergencyPhoneNumber(e.target.value)} />
+                        </div>
                     </div>
+
                 </div>
 
 
