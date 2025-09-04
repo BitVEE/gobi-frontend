@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
-const LoadingImg = (props: { src: string, style: React.CSSProperties, width: number, height: number, alt?: string, noPlaceholder?: boolean }) => {
+const LoadingImg = (props: { src: string, style: React.CSSProperties, width: number, height: number, alt?: string, noPlaceholder?: boolean, Fstyle?: React.CSSProperties }) => {
     const [loading, setLoading] = useState(true)
     const [placeholderSrc, setPlaceholderSrc] = useState("/images/home/poster.png")
     const [isInView, setIsInView] = useState(false)
@@ -10,11 +10,7 @@ const LoadingImg = (props: { src: string, style: React.CSSProperties, width: num
     useEffect(() => {
         if (!props.noPlaceholder) {
             if (props.src) {
-                if (props.src !== "/images/home/poster.png" && props.src.includes("imagedelivery.net") && !props.src.includes("Blur")) {
-                    setPlaceholderSrc(props.src + "Blur")
-                } else {
-                    setPlaceholderSrc("/images/home/poster.png")
-                }
+                setPlaceholderSrc("/images/home/poster.png")
             }
         } else {
             setPlaceholderSrc("")
@@ -48,26 +44,26 @@ const LoadingImg = (props: { src: string, style: React.CSSProperties, width: num
         }
     }, [props.src])
 
-    if (!props.src) {
-        return null;
-    }
-
     return (
         <div ref={imgRef} style={{ fontSize: "0px" }}>
-            {!isInView ? (
+            {!isInView ? placeholderSrc && (
                 <Image
                     src={placeholderSrc}
+                    priority={true}
                     width={props.width}
                     height={props.height}
                     alt={props.alt || ''}
                     style={{
                         objectFit: "cover",
+                        minWidth: "100%",
                         maxWidth: "100%",
+                        minHeight: "100%",
+                        maxHeight: "100%",
                         ...props.style
                     }}
                 />
             ) : (
-                <div style={{ ...props.style, position: "relative" }}>
+                <div style={{ ...props.style, position: "relative", ...props.Fstyle }}>
                     <Image
                         src={props.src}
                         width={props.width}
@@ -91,7 +87,7 @@ const LoadingImg = (props: { src: string, style: React.CSSProperties, width: num
                         }}
                         alt={props.alt || ''}
                     />
-                    {loading && (
+                    {loading && placeholderSrc && (
                         <Image
                             src={placeholderSrc}
                             width={props.width}

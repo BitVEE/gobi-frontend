@@ -44,6 +44,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({ backgroundImage, title }) => {
             width: '10rem',
             objectFit: 'cover',
           }}
+          Fstyle={{
+            width: '100vw',
+          }}
         />
         <div className={styles.overlay} />
       </div>
