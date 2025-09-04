@@ -19,7 +19,13 @@ const nextConfig = {
         hostname: 'imagedelivery.net',
         port: '',
         pathname: '/**',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'storage.exploring.cn',
+        port: '',
+        pathname: '/**',
+      },
     ]
   }
 }
