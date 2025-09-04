@@ -3,7 +3,7 @@ const routerList = [
     {
         name: "race",
         children: [
-            { name: "raceList.race", path: '/race/race' },
+            { name: "raceList.race", path: '/race/registration' },
             { name: "raceList.notice", path: '/race/notice' },
             { name: "raceList.changePolicy", path: '/race/changePolicy' },
             { name: "raceList.qualification", path: '/race/qualification' },
@@ -17,7 +17,7 @@ const routerList = [
         name: "raceInfo",
         children: [
             { name: "raceInfoList.latestNews", path: '/raceInfo/latestNews' },
-            { name: "raceInfoList.gobistory", path: '/raceInfo/gobistory' },
+            { name: "raceInfoList.gobiStory", path: '/raceInfo/gobiStory' },
             { name: "raceInfoList.raceIntroduction", path: '/raceInfo/raceIntroduction' },
             { name: "raceInfoList.raceAgenda", path: '/raceInfo/raceAgenda' },
             { name: "raceInfoList.raceManual", path: '/raceInfo/raceManual' },
@@ -26,8 +26,8 @@ const routerList = [
     {
         name: "raceResult",
         children: [
-            { name: "raceResultList.personalResult", path: '/raceResult/personalResult' },
-            { name: "raceResultList.teamResult", path: '/raceResult/teamResult' },
+            { name: "raceResultList.personalResult", path: '/raceResult/personal' },
+            { name: "raceResultList.teamResult", path: '/raceResult/team' },
         ]
     },
     {

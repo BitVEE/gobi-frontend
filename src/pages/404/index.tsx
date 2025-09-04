@@ -1,12 +1,12 @@
 import React from "react";
-import { useTranslation } from "next-i18next";
 import getLocaleProps from "@/utils/getLocaleProps";
+import Image from "next/image";
+import styles from "@/styles/error.module.scss"
 
 
 const Error = () => {
-    const { t } = useTranslation("common");
-    return <div style={{ height: "50vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <h1>{t("common.notFind")}</h1>
+    return <div className={styles.error}>
+        <Image className={styles.image} width={2180} height={1360} src="/images/404.png" alt="404"></Image>
     </div>
 }
 

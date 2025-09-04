@@ -7,7 +7,7 @@ import TagSelector from "@/components/TagSelector";
 import { AuthAPI } from "@/api";
 import TableComponent from "@/components/Table";
 import { useRouter } from "next/router";
-import { SignupStateMap } from "@/types/map";
+import { SignupStateMap } from "@/utils/map";
 const User = () => {
     const { t } = useTranslation("common", { keyPrefix: "user" });
     const [selectedSubTitle, setSelectedSubTitle] = useState<string | number>('myEnroll');
@@ -16,8 +16,20 @@ const User = () => {
     const [filteredSignupHistory, setFilteredSignupHistory] = useState<API.SignupHistoryItem[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const { locale } = useRouter();
+    const router = useRouter()
     const [page, setPage] = useState<number>(1);
     const [total, setTotal] = useState<number>(0);
+
+    const goToPay = (e: any) => {
+        router.push({
+            pathname: '/race/pay',
+            query: {
+                matchDetail: JSON.stringify(e.matchDetail),
+                groupInfo: JSON.stringify(e.matchGroupDetail),
+                registrationId: e.id
+            }
+        })
+    }
 
     useEffect(() => {
         setLoading(true);
@@ -47,9 +59,9 @@ const User = () => {
 
     const signupColumns = [
         { title: t('name'), dataIndex: 'name', key: 'name', render: (text: string, record: API.SignupHistoryItem) => <div className={styles.name}>{locale == "en" ? record.enName : text}</div> },
-        { title: t('raceName'), dataIndex: 'matchId', key: 'matchId' },
-        { title: t('group'), dataIndex: 'matchGroupId', key: 'matchGroupId' },
-        { title: t('status'), dataIndex: 'state', key: 'state', render: (text: string) => <div className={styles.status}>{t(SignupStateMap[Number(text)])}</div> },
+        { title: t('raceName'), dataIndex: 'matchDetail', key: 'matchDetail', render: (text: any) => <div className={styles.name}>{locale == "en" ? text.nameEn : text.nameZh}</div> },
+        { title: t('group'), dataIndex: 'matchGroupDetail', key: 'matchGroupDetail', render: (text: any) => <div className={styles.name}>{locale == "en" ? text.nameEn : text.nameZh}</div> },
+        { title: t('status'), dataIndex: 'state', key: 'state', render: (text: string, record: API.SignupHistoryItem) => <div onClick={() => Number(text) == 1 && goToPay(record)} className={styles.status} style={{ color: Number(text) == 1 ? '#22A16A' : '#000000', textDecoration: Number(text) == 1 ? 'underline' : 'none' }}>{t(SignupStateMap[Number(text)])}</div> },
     ];
 
 

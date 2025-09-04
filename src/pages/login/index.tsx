@@ -5,18 +5,22 @@ import Image from 'next/image';
 import { useEffect, useState } from "react";
 import { AuthAPI } from "@/api";
 import { useRouter } from "next/router";
+import { ErrorCode, ErrorCodeMap } from "@/utils/map";
+import { useDispatch } from "react-redux";
+import { addToast } from "@/redux/slice/toastSlice";
 const Login = () => {
     const router = useRouter()
+    const dispatch = useDispatch();
     const { t } = useTranslation("common");
     const [email, setEmail] = useState('')
     const [code, setCode] = useState('')
     const [isGetCodeing, setIsGetCodeing] = useState(false)
-    const [loginType, setLoginType] = useState('email')
     const [isAgreementChecked, setIsAgreementChecked] = useState(false);
     const [countdown, setCountdown] = useState(0)
     const [emailError, setEmailError] = useState<boolean>(false)
     const [codeError, setCodeError] = useState<boolean>(false)
     const [agreementError, setAgreementError] = useState<boolean>(false)
+    const [isLogin, setIsLogin] = useState(false)
 
     useEffect(() => {
         if (countdown > 0) {
@@ -43,6 +47,9 @@ const Login = () => {
     }
 
     const handleGetCode = async () => {
+        if (countdown > 0) {
+            return
+        }
         if (!email) {
             setEmailError(true)
             return
@@ -53,6 +60,9 @@ const Login = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        if (isLogin) {
+            return
+        }
         // 校验邮箱
         if (!email) {
             setEmailError(true)
@@ -71,17 +81,27 @@ const Login = () => {
             return
         }
         setAgreementError(false)
+        setIsLogin(true)
         try {
             await AuthAPI.login({
                 email,
                 verificationCode: code,
             }).then((res) => {
                 if (res.data.code === 0) {
+                    dispatch(addToast({
+                        message: t("login.loginSuccess")
+                    }))
                     router.push('/' + router.locale)
+                } else {
+                    dispatch(addToast({
+                        message: t(`errorCode.${ErrorCodeMap[res.data.code as ErrorCode]}` as any),
+                    }))
                 }
+            }).finally(() => {
+                setIsLogin(false)
             })
         } catch (error) {
-            return
+            setIsLogin(false)
         }
     }
 
@@ -96,14 +116,6 @@ const Login = () => {
                     height={93}
                     className={styles.loginHeader}
                 />
-                <div className={styles.loginTabs}>
-                    <button type="button" className={loginType === 'email' ? styles.loginTabsTabActive : styles.loginTabsTab} onClick={() => setLoginType('email')}>
-                        {t("login.emailLogin")}
-                    </button>
-                    <button type="button" className={loginType === 'wechat' ? styles.loginTabsTabActive : styles.loginTabsTab} onClick={() => setLoginType('wechat')}>
-                        {t("login.wechatLogin")}
-                    </button>
-                </div>
                 <form className={styles.loginForm} onSubmit={handleSubmit}>
                     <div className={styles.formGroup}>
                         <label htmlFor="email">{t("login.emailLogin")}</label>
@@ -144,12 +156,11 @@ const Login = () => {
                             </div>
                         )}
                     </div>
-
-                    {/* 勾选同意协议 */}
                     <div className={styles.formGroup}>
                         <label className={styles.codeInput}>
                             <input type="checkbox" className={styles.checkbox} checked={isAgreementChecked} onChange={(e) => setIsAgreementChecked(e.target.checked)} />
                             {t("login.agreement")}
+                            <a href="/protocol/user.pdf" >{t("login.userAgreement")}</a>
                         </label>
                         {agreementError && (
                             <div className={styles.errorMessage}>
@@ -157,13 +168,24 @@ const Login = () => {
                             </div>
                         )}
                     </div>
-
                     <button type="submit" className={styles.loginButton}>
+                        {isLogin && (
+                            <Image
+                                src='/images/icons/loading-white.svg'
+                                alt="loading"
+                                width={30}
+                                height={30}
+                                className={styles.spinner}
+                            />
+                        )}
                         {t("login.login")}
                     </button>
+                    <div onClick={() => window.location.href = '/api/v1/user/account/wechat/login'} className={styles.wechatLoginLink}>
+                        {t("login.wechatLogin")}
+                    </div>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

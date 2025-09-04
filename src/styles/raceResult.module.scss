@@ -1,0 +1,480 @@
+.raceResult {
+    width: 100%;
+
+    .raceResultContainer {
+        margin: 0 100px;
+
+        .raceResultContent {
+            margin-top: 46px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 32px;
+
+            .searchBox {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 8px;
+                background: #f8f8f8;
+                padding: 0 20px;
+                height: 60px;
+
+                input {
+                    width: 100%;
+                    height: 60px;
+                    padding: 0px;
+                    border: none;
+                    border-radius: 8px;
+                    background: #f8f8f8;
+                    color: rgba(18, 18, 18, 0.3);
+                    font-family: Raleway;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                }
+
+                input:focus {
+                    outline: none;
+                }
+
+                button {
+                    width: 20px;
+                    height: 60px;
+                    border: none;
+                    border-radius: 8px;
+                    padding: 0;
+                    background: #f8f8f8;
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+            }
+
+            .raceResultTable {
+                width: 100%;
+            }
+
+            .divider {
+                width: 100%;
+                height: 2px;
+                background-color: #ff6a14;
+            }
+        }
+
+        .certificateContainer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 32px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                max-width: 800px;
+            }
+        }
+    }
+
+    .raceResultDetailContainer {
+        margin: 0 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+
+        .raceResultDetailTop {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            height: 660px;
+
+            .raceResultDetailTopBg {
+                z-index: 0;
+                position: absolute;
+                width: 100%;
+                height: 660px;
+                background-image: url("/images/result_query/result_query_header_bg.png");
+                background-size: auto 100%;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+
+            .raceResultDetailTopLeft {
+                position: relative;
+                z-index: 1;
+                margin-left: 20px;
+                min-width: 390px;
+                min-height: 390px;
+                border-radius: 390px;
+                aspect-ratio: 1 / 1;
+                background: #fff;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+                background-image: url("/images/result_query/result_query_header_bg.svg");
+                background-size: 100% 100%;
+                overflow: hidden;
+
+                .raceResultDetailTopLeftTitle {
+                    color: #ff6a14;
+                    text-align: center;
+                    font-family: Raleway;
+                    font-size: 100px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                    width: 100%;
+                }
+
+                .raceResultDetailTopLeftSubTitle {
+                    color: #2e2e2e;
+                    text-align: right;
+                    font-family: Raleway;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    width: 100%;
+                    margin-right: 50px;
+                }
+            }
+
+            .raceResultDetailTopRight {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .raceResultDetailTopRightItem {
+                    width: 243px;
+                    height: 145px;
+                    background-color: #ff6a14;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 16px;
+                    padding: 36px 48px;
+                    position: relative;
+
+                    .raceResultDetailTopRightItemTitle {
+                        color: #fff;
+                        font-family: Raleway;
+                        font-size: 28px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: normal;
+                    }
+
+                    .raceResultDetailTopRightItemSubTitle {
+                        color: #fff;
+                        font-family: Raleway;
+                        font-size: 21px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: normal;
+                    }
+
+                    .raceResultDetailTopRightItemIcon {
+                        width: 24px;
+                        height: 24px;
+                        position: absolute;
+                        top: 36px;
+                        right: 20px;
+                    }
+                }
+
+                .raceResultDetailTopRightItem:nth-child(2) {
+                    background: #fb8c4e;
+                }
+
+                .raceResultDetailTopRightItem:nth-child(3) {
+                    background: #ffae80;
+                }
+            }
+        }
+
+        .raceResultDetailBottom {
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.8);
+            position: relative;
+            top: -50px;
+
+            .raceResultDetailBottomItem {
+                min-width: 140px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 24px;
+
+                .raceResultDetailBottomItemTitle {
+                    color: #121212;
+                    text-align: center;
+                    font-family: Raleway;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                }
+
+                .raceResultDetailBottomItemSubTitle {
+                    color: #121212;
+                    text-align: center;
+                    font-family: Raleway;
+                    font-size: 21px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+            }
+
+            .raceResultDetailBottomDivider {
+                height: 142px;
+                background: #ffd1b7;
+                border-left: 2px solid #ffd1b7;
+            }
+
+            .raceResultDetailBottomRight {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-end;
+                gap: 10px;
+
+                .raceResultDetailBottomRightItem {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    gap: 24px;
+
+                    .raceResultDetailBottomRightItemTitle {
+                        color: #121212;
+                        text-align: center;
+                        font-family: Raleway;
+                        font-size: 21px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: normal;
+                        position: relative;
+                        width: 100%;
+                        text-align: left;
+                    }
+
+                    .raceResultDetailBottomRightItemTitle::before {
+                        content: "";
+                        width: 100%;
+                        height: 4px;
+                        border-radius: 2px;
+                        background-color: #2e2e2e;
+                        position: absolute;
+                        top: calc(100% + 12px);
+                        left: 0;
+                    }
+
+                    .raceResultDetailBottomRightItemTitle::after {
+                        content: "";
+                        width: var(--after-width);
+                        height: 4px;
+                        border-radius: 2px;
+                        background-color: #ff6a14;
+                        position: absolute;
+                        top: calc(100% + 12px);
+                        left: 0;
+                        transition: all 0.3s ease-in-out;
+                    }
+
+                    .raceResultDetailBottomRightItemSubTitle {
+                        color: #8d8d8d;
+                        text-align: center;
+                        font-family: Raleway;
+                        font-size: 18px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: normal;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .raceResultContainer {
+            margin: 0 20px * 3.84;
+
+            .raceResultContent {
+                margin-top: 0px;
+                gap: 52px * 3.84;
+
+                .searchBox {
+                    border-radius: 8px * 3.84;
+                    padding: 0 20px * 3.84;
+                    height: 60px * 3.84;
+
+                    input {
+                        height: 60px * 3.84;
+                        border-radius: 8px * 3.84;
+                        font-size: 16px * 3.84;
+                    }
+
+                    input:focus {
+                        outline: none;
+                    }
+
+                    button {
+                        width: 20px * 3.84;
+                        height: 60px * 3.84;
+                        border-radius: 8px * 3.84;
+
+                        img {
+                            width: 20px * 3.84;
+                            height: 20px * 3.84;
+                        }
+                    }
+                }
+
+                .divider {
+                    height: 2px * 3.84;
+                }
+            }
+            .certificateContainer {
+                margin-top: 52px * 3.84;
+
+                img {
+                    max-width: 100%;
+                }
+            }
+        }
+        .raceResultDetailContainer {
+            margin: 0;
+            margin-bottom: 52px * 3.84;
+
+            .raceResultDetailTop {
+                flex-direction: column;
+                height: auto;
+                gap: 24px * 3.84;
+
+                .raceResultDetailTopBg {
+                    height: 353px * 3.84;
+                }
+
+                .raceResultDetailTopLeft {
+                    width: 290px * 3.84;
+                    height: 290px * 3.84;
+                    margin: 32px * 3.84 42px * 3.84;
+                    margin-top: 50px * 3.84;
+
+                    .raceResultDetailTopLeftTitle {
+                        font-size: 65px * 3.84;
+                    }
+
+                    .raceResultDetailTopLeftSubTitle {
+                        font-size: 14px * 3.84;
+                        margin-right: 40px * 3.84;
+                    }
+                }
+
+                .raceResultDetailTopRight {
+                    width: 100%;
+
+                    .raceResultDetailTopRightItem {
+                        width: 100%;
+                        height: 145px * 3.84;
+                        padding: 36px * 3.84 100px * 3.84;
+                        gap: 16px * 3.84;
+
+                        .raceResultDetailTopRightItemTitle {
+                            font-size: 28px * 3.84;
+                        }
+
+                        .raceResultDetailTopRightItemSubTitle {
+                            font-size: 21px * 3.84;
+                        }
+
+                        .raceResultDetailTopRightItemIcon {
+                            width: 24px * 3.84;
+                            height: 24px * 3.84;
+                            top: 36px * 3.84;
+                            right: 100px * 3.84;
+                        }
+                    }
+                }
+            }
+
+            .raceResultDetailBottom {
+                height: auto;
+                gap: 24px * 3.84 0;
+                flex-wrap: wrap;
+                overflow: hidden;
+                justify-content: center;
+                top: 0;
+
+                .raceResultDetailBottomItem {
+                    height: 100px * 3.84;
+                    gap: 16px * 3.84;
+                    width: calc(50% - 2px * 3.84);
+
+                    .raceResultDetailBottomItemTitle {
+                        font-size: 24px * 3.84;
+                    }
+
+                    .raceResultDetailBottomItemSubTitle {
+                        font-size: 21px * 3.84;
+                    }
+                }
+
+                .raceResultDetailBottomDivider {
+                    width: 2px * 3.84;
+                    height: 100px * 3.84;
+                    position: relative;
+                    left: 2px * 3.84;
+                }
+
+                .raceResultDetailBottomRight {
+                    width: 100%;
+                    max-width: 143px * 3.84;
+                    height: auto;
+                    gap: 10px * 3.84;
+
+                    .raceResultDetailBottomRightItem {
+                        width: 100%;
+                        gap: 24px * 3.84;
+
+                        .raceResultDetailBottomRightItemTitle {
+                            font-size: 21px * 3.84;
+                        }
+
+                        .raceResultDetailBottomRightItemTitle::before,
+                        .raceResultDetailBottomRightItemTitle::after {
+                            height: 4px * 3.84;
+                            border-radius: 2px * 3.84;
+                            top: calc(100% + 12px * 3.84);
+                        }
+
+                        .raceResultDetailBottomRightItemSubTitle {
+                            font-size: 18px * 3.84;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

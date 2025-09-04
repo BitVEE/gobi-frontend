@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 import PaginationIndicator from '../PaginationIndicator';
 
 // 定义表格列和数据的类型
-interface TableColumn {
+export interface TableColumn {
     title: string;
     dataIndex: string;
     key: string;
@@ -23,13 +23,16 @@ interface TableProps {
     };
     rowKey: string;
     loading: boolean;
-    setPage: (page: number) => void;
+    setPage?: (page: number) => void;
+    title?: string;
+    rowClick?: (record: any) => void;
 }
 
-const TableComponent: React.FC<TableProps> = ({ columns, dataSource, pagination, rowKey, loading, setPage }) => {
+const TableComponent: React.FC<TableProps> = ({ columns, dataSource, pagination, rowKey, loading, setPage, title, rowClick }) => {
     const { t } = useTranslation("common");
     return (
         <div className={styles.tableContainer}>
+            {title && !loading && <div className={styles.title}>{title}</div>}
             {loading && <div className={styles.loading}>
                 <Image
                     src='/images/icons/loading.svg'
@@ -53,31 +56,33 @@ const TableComponent: React.FC<TableProps> = ({ columns, dataSource, pagination,
                 </div>
             )}
             {!loading && dataSource.length !== 0 && (
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            {columns.map((column) => (
-                                <th key={column.key} className={styles.tableHeader}>
-                                    {column.title}
-                                </th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {dataSource.map((row) => (
-                            <tr key={row[rowKey]} className={styles.tableRow}>
+                <div className={styles.tableWrapper}>
+                    <table className={styles.table}>
+                        <thead>
+                            <tr>
                                 {columns.map((column) => (
-                                    <td key={`${row[rowKey]}-${column.key}`} className={styles.tableCell}>
-                                        {column.render?.(row[column.dataIndex], row) ?? row[column.dataIndex]}
-                                    </td>
+                                    <th key={column.key} className={styles.tableHeader}>
+                                        {column.title}
+                                    </th>
                                 ))}
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {dataSource.map((row) => (
+                                <tr key={row[rowKey]} className={styles.tableRow} onClick={() => rowClick?.(row)}>
+                                    {columns.map((column) => (
+                                        <td key={`${row[rowKey]}-${column.key}`} className={styles.tableCell}>
+                                            {column.render?.(row[column.dataIndex], row) ?? row[column.dataIndex]}
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
-            {pagination?.total && (
-                <PaginationIndicator total={pagination?.total || 0} current={pagination?.current || 0} pageSize={pagination?.pageSize || 0} onPageChange={setPage} />
+            {!loading && pagination?.total !== 0 && pagination?.current && dataSource.length !== 0 && (
+                <PaginationIndicator total={pagination?.total} current={pagination?.current} pageSize={pagination?.pageSize} onPageChange={(page) => setPage?.(page)} />
             )}
         </div>
     );

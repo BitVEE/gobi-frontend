@@ -1,0 +1,100 @@
+.container {
+    position: fixed;
+    top: 98px;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 9999;
+    display: grid;
+    gap: 10px;
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .toast {
+        padding: 8px 12px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        animation: slideIn 0.3s ease-out;
+        position: relative;
+        padding-right: 30px;
+        background-color: rgba(0, 0, 0, 0.4);
+        color: #fff;
+        opacity: 0.75;
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        &.exiting {
+            animation: slideOut 0.3s ease-in;
+        }
+
+        @keyframes slideOut {
+            to {
+                transform: translateX(150%);
+            }
+        }
+
+        &.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        &.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        &.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .close {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 14px;
+            line-height: 20px;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 3px;
+            right: 3px;
+        }
+    }
+
+    // 媒体查询
+    @media screen and (max-width: 768px) {
+        top: 72px * 3.84;
+        max-height: calc(100vh - 144px * 3.84);
+        gap: 10px * 3.84;
+
+        .toast {
+            padding: 8px * 3.84 12px * 3.84;
+            border-radius: 4px * 3.84;
+            font-size: 18px * 3.84;
+            padding-right: 30px * 3.84;
+
+            .close {
+                font-size: 14px * 3.84;
+                line-height: 20px * 3.84;
+                width: 20px * 3.84;
+                height: 20px * 3.84;
+                top: 3px * 3.84;
+                right: 3px * 3.84;
+            }
+        }
+    }
+}

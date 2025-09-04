@@ -9,8 +9,12 @@ import commonSlice from './slice/commonSlice'
 // 4. 导入子模块end
 
 // 创建reducer(合并拆分的reducer) 
+import toastSlice from './slice/toastSlice';
+// 5. 导入子模块reducers end
+
 const rootReducer = combineReducers({
     commonSlice,
+    toastSlice,
 });
 
 // 持久化配置
