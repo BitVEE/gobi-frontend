@@ -103,7 +103,7 @@ export default function Home() {
 
       <div className={styles.news_container}>
         <div className={styles.news_title} style={{ borderBottom: '2px solid #FF6A14', paddingBottom: '12px' }}>
-          {t("home.partner" as any)}
+          {t("partner.joinSchool" as any)}
         </div>
         <div className={styles.partner_list}>
           {

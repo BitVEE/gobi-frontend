@@ -40,8 +40,8 @@ const routerList = [
     {
         name: "partner",
         children: [
-            { name: "partnerList.partner", path: '/partner/partner' },
             { name: "partnerList.joinSchool", path: '/partner/joinSchool' },
+            { name: "partnerList.partner", path: '/partner/partner' },
         ]
     },
     {

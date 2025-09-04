@@ -213,8 +213,8 @@
     },
     "partner": {
         "title":"Partners",
-        "sponsor":"Sponsors",
-        "schools":"Schools",
+        "partner":"Sponsors",
+        "joinSchool":"Schools",
         "shop":"Shop",
         "community":"Community"
     },

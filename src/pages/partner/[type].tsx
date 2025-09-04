@@ -1,15 +1,13 @@
 import { useRouter } from 'next/router'
 import styles from './partner.module.scss'
 import { useTranslation } from "next-i18next";
-import Image from 'next/image'
 import getLocaleProps from "@/utils/getLocaleProps"
 import { useEffect, useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import TagSelector from "@/components/TagSelector";
-import { AuthAPI } from "@/api";
-import TableComponent from "@/components/Table";
+import LoadingImg from '@/components/LoadingImg';
 
-type Props={};
+type Props = {};
 
 const Contributors = (props: Props) => {
     const { t } = useTranslation("common", { keyPrefix: "partner" });
@@ -43,24 +41,24 @@ const Contributors = (props: Props) => {
             }
         }
 
-    }, [type])
+    }, [router])
 
 
-    return(
+    return (
         <div className={styles.partner}>
-            <PageHeader title={t('title')} backgroundImage="/images/partner/flags.png" />
+            <PageHeader title={t(type as any)} backgroundImage="/images/partner/flags.png" />
 
             <div className={styles.bar}>
                 <TagSelector
                     tags={[
-                        { title: t('sponsor'), value: 'partner' },
-                        { title: t('schools'), value: 'joinSchool' },
+                        { title: t('joinSchool'), value: 'joinSchool' },
+                        { title: t('partner'), value: 'partner' },
                         // { title: t('shop'), value: 2 },
                         // { title: t('community'), value: 3 }
                     ]}
                     styleType='text'
                     selectedValue={selectedSubTitle}
-                    onChange={(value) => { router.push(`/${router.locale }/partner/${value}`);  }}
+                    onChange={(value) => { router.push(`/${router.locale}/partner/${value}`); }}
                 />
 
                 <a href="" className={styles.anchor1}></a>
@@ -68,27 +66,33 @@ const Contributors = (props: Props) => {
             </div>
 
 
+            <div className={styles.partners} id='joinSchool'>
+                <div className={styles.titleBox}>
+                    <div className={styles.text}>{t("joinSchool")}</div>
+                    <hr className={styles.orangeLine} />
+                </div>
+                <div className={styles.partner_list}>
+                    {
+                        new Array(24).fill(0).map((item, idx) => (
+                            <div className={styles.partner_item} key={idx}>
+                                <LoadingImg noPlaceholder src={`/images/school/${idx + 1}.png`} style={{ width: '100%', height: '100%' }} width={189} height={189} />
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
 
             <div className={styles.partners} id='partner'>
                 <div className={styles.titleBox}>
-                    <div className={styles.text}>{t("sponsor")}</div>
-                    <hr className={styles.orangeLine}/>
+                    <div className={styles.text}>{t("partner")}</div>
+                    <hr className={styles.orangeLine} />
                 </div>
                 <div>
                     {Array.from({ length: 18 }, (_, i) => <span key={i}><div className={styles.card}></div></span>)}
                 </div>
             </div>
 
-            <div className={styles.partners} id='joinSchool'>
-                <div className={styles.titleBox}>
-                    <div className={styles.text}>{t("schools")}</div>
-                    <hr className={styles.orangeLine}/>
-                </div>
-                <div>
-                    {Array.from({ length: 18 }, (_, i) => <span key={i}><div className={styles.card}></div></span>)}
-                </div>
-            </div>
-            
+
         </div>
     )
 }
