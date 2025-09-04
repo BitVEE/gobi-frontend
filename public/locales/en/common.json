@@ -39,7 +39,7 @@
             "wrongParentPhonenumber": "Invalid parent phone number format",
             "wrongGuardianPhoneNumber": "Invalid guardian phone number format",
             "wrongEmergencyPhoneNumber": "Invalid emergency contact phone number format",
-            "wrongCredentialNumber": "证件号码格式不正确",
+            "wrongCredentialNumber": "Invalid ID number format",
             "noAgreement": "Please agree to the terms",
             "loginTips": "Please log in first",
             "submitting": "Submitting",
