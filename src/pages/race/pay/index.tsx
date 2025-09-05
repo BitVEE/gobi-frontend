@@ -85,17 +85,18 @@ const Info = (props: Props) => {
 
 
     useEffect(() => {
-        if (groupInfo && matchDetail && registrationId && token) {
-            setGroup(JSON.parse(groupInfo as string));
-            setCurrentMatchInfo(JSON.parse(matchDetail as string));
-            setOrderId(registrationId as string || "");
-        } else {
+        if (!token) {
             dispatch(addToast({
                 message: t("loginTips"),
                 timeout: 3000
             }))
         }
-    }, [groupInfo, matchDetail, registrationId]);
+        if (groupInfo && matchDetail && registrationId) {
+            setGroup(JSON.parse(groupInfo as string));
+            setCurrentMatchInfo(JSON.parse(matchDetail as string));
+            setOrderId(registrationId as string || "");
+        }
+    }, [groupInfo, matchDetail, registrationId, token]);
 
     useEffect(() => {
         initPayment()
@@ -126,8 +127,12 @@ const Info = (props: Props) => {
         const onError = (event: CustomEvent) => {
             const { error } = event.detail;
             console.error('There is an error', error);
-            if (error.code === "unauthorized") {
-                initPayment()
+            try {
+                if (error?.code === "unauthorized") {
+                    initPayment()
+                }
+            } catch (e) {
+
             }
         };
 

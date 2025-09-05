@@ -22,6 +22,20 @@ const regexPatterns = {
     passport: /^[a-zA-Z]\d{5,8}$/,
     twPass: /(^\d{8}$)|(^[a-zA-Z]\d{7,9}$)/
 };
+
+const agreementList = [
+    {
+        isAgreed: false
+    }, {
+        isAgreed: false
+    }, {
+        isAgreed: false
+    }, {
+        isAgreed: false
+    }, {
+        isAgreed: false
+    },
+]
 const Info = (props: Props) => {
     const router = useRouter()
     const { groupInfo, matchDetail } = router.query;
@@ -32,14 +46,18 @@ const Info = (props: Props) => {
     const [group, setGroup] = useState<any>();
     const [currentMatchInfo, setCurrentMatchInfo] = useState<API.MatchesListType>();
 
+    const [photoFile, setPhotoFile] = useState<File>();
     const [photoUrl, setPhotoUrl] = useState<string>("");
+    const [credentialPhotoFile, setCredentialPhotoFile] = useState<File>();
+    const [credentialPhotoUrl, setCredentialPhotoUrl] = useState<string>("");
+
     const [name, setName] = useState<string>("");
     const [enName, setEnName] = useState<string>("");
     const [gender, setGender] = useState<string>("1");
     const [birthday, setBirthday] = useState<string>("2000-01-01");
     const [credentialType, setCredentialType] = useState<string>("1");
     const [credentialNumber, setCredentialNumber] = useState<string>("");
-    const [phoneNumberAreaCode, setPhoneNumberAreaCode] = useState<number>(0);
+    const [phoneNumberAreaCode, setPhoneNumberAreaCode] = useState<number>(40);
     const [phoneNumber, setPhoneNumber] = useState<string>("");
     const [nationality, setNationality] = useState<string>("");
     const [city, setCity] = useState<string>("");
@@ -52,15 +70,15 @@ const Info = (props: Props) => {
     const [shoeSize, setShoeSize] = useState<string>("");
     const [hasJoinedBefore, setHasJoinedBefore] = useState<string>("1");
     const [beforeMatchName, setBeforeMatchName] = useState<string>("");
-    const [parentPhoneNumberAreaCode, setParentPhoneNumberAreaCode] = useState<number>(0);
+    const [parentPhoneNumberAreaCode, setParentPhoneNumberAreaCode] = useState<number>(40);
     const [parentPhoneNumber, setParentPhoneNumber] = useState<string>("");
     const [parentEmail, setParentEmail] = useState<string>("");
     const [guardianName, setGuardianName] = useState<string>("");
     const [guardianRelationship, setGuardianRelationship] = useState<string>("");
     const [guardianWechat, setGuardianWechat] = useState<string>("");
-    const [guardianPhoneNumberAreaCode, setGuardianPhoneNumberAreaCode] = useState<number>(0)
+    const [guardianPhoneNumberAreaCode, setGuardianPhoneNumberAreaCode] = useState<number>(40)
     const [guardianPhoneNumber, setGuardianPhoneNumber] = useState<string>("");
-    const [emergencyPhoneNumberAreaCode, setemergencyPhoneNumberAreaCode] = useState<number>(0);
+    const [emergencyPhoneNumberAreaCode, setemergencyPhoneNumberAreaCode] = useState<number>(40);
     const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState<string>("");
     const [medicationRestrictions, setMedicationRestrictions] = useState<string>("");
     const [dietaryRestrictions, setDietaryRestrictions] = useState<string>("");
@@ -69,25 +87,27 @@ const Info = (props: Props) => {
     const [additionalNotes, setAdditionalNotes] = useState<string>("");
     const [sportsBackground, setSportsBackground] = useState<string>("");
     const [psychologicalNotes, setPsychologicalNotes] = useState<string>("");
-    const [isAgreed, setIsAgreed] = useState<boolean>(false);
+    const [agreeList, setAgreeList] = useState<any>(agreementList);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
     const [orderId, setOrderId] = useState<string>("");
 
     const handleNext = async () => {
         if (!token) return dispatch(addToast({ message: t("loginTips"), timeout: 3000 }));
-        if (!isAgreed) return dispatch(addToast({ message: t("noAgreement"), timeout: 3000 }));
-        if (name != '' && enName != '' && regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber) && countries[phoneNumberAreaCode].pattern.test(phoneNumber.trim()) && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && countries[parentPhoneNumberAreaCode].pattern.test(parentPhoneNumber.trim()) && regexPatterns.email.test(parentEmail.trim()) && guardianName != '' && guardianRelationship != '' && guardianWechat != '' && countries[guardianPhoneNumberAreaCode].pattern.test(guardianPhoneNumber.trim()) && countries[emergencyPhoneNumberAreaCode].pattern.test(emergencyPhoneNumber.trim()) && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '') {
+        if (!agreeList.every((item: any) => item.isAgreed === true)) return dispatch(addToast({ message: t("noAgreement"), timeout: 3000 }));
+        if (name != '' && enName != '' && regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber) && countries[phoneNumberAreaCode].pattern.test(phoneNumber.trim()) && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && countries[parentPhoneNumberAreaCode].pattern.test(parentPhoneNumber.trim()) && regexPatterns.email.test(parentEmail.trim()) && guardianName != '' && guardianRelationship != '' && countries[guardianPhoneNumberAreaCode].pattern.test(guardianPhoneNumber.trim()) && countries[emergencyPhoneNumberAreaCode].pattern.test(emergencyPhoneNumber.trim()) && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '' && photoFile && credentialPhotoFile) {
             if (hasJoinedBefore === "1" && beforeMatchName === '') {
                 dispatch(addToast({ message: t("requiredFields"), timeout: 3000 }));
             } else {
                 setIsModalOpen(true)
-                // uploadImage
-                // && photoUrl != ''
-                // const uploadRes = await RegistrationAPI.uploadImage({ image: photoUrl.replace(/.*;base64,/, '') });
-                // const imageUrl = uploadRes.data.data.imageUrl + '/' + uploadRes.data.data.variants[0];
-                // console.log("imageUrl", imageUrl);
-                // setPhotoUrl(imageUrl);
+
+                // upload photoFile
+                const uploadRes = await RegistrationAPI.uploadImage({ file: photoFile });
+                if (uploadRes.data.code != 0) return dispatch(addToast({ message: uploadRes.data.error, timeout: 3000 }))
+
+                // upload credential photo
+                const uploadResC = await RegistrationAPI.uploadImage({ file: credentialPhotoFile });
+                if (uploadResC.data.code != 0) return dispatch(addToast({ message: uploadResC.data.error, timeout: 3000 }))
 
                 const data: API.RegistrationParams = {
                     matchGroupId: group?.id,
@@ -110,13 +130,13 @@ const Info = (props: Props) => {
                     shoeSize: shoeSize,
                     hasJoinedBefore: Number(hasJoinedBefore),
                     beforeMatchName: beforeMatchName,
-                    parentPhoneNumber: countries[parentPhoneNumberAreaCode].prefix + parentPhoneNumber,
+                    parentPhoneNumber: countries[parentPhoneNumberAreaCode].prefix + ' ' + parentPhoneNumber,
                     parentEmail: parentEmail,
                     guardianName: guardianName,
                     guradianRelationship: guardianRelationship,
-                    guardianPhoneNumber: countries[guardianPhoneNumberAreaCode].prefix + guardianPhoneNumber,
+                    guardianPhoneNumber: countries[guardianPhoneNumberAreaCode].prefix + ' ' + guardianPhoneNumber,
                     guardianWechat: guardianWechat,
-                    emergencyPhoneNumber: countries[emergencyPhoneNumberAreaCode].prefix + emergencyPhoneNumber,
+                    emergencyPhoneNumber: countries[emergencyPhoneNumberAreaCode].prefix + ' ' + emergencyPhoneNumber,
                     medicationRestrictions: medicationRestrictions,
                     dietaryRestrictions: dietaryRestrictions,
                     allergyInformation: allergyInformation,
@@ -124,11 +144,12 @@ const Info = (props: Props) => {
                     additionalNotes: additionalNotes,
                     sportsBackground: sportsBackground,
                     psychologicalNotes: psychologicalNotes,
-                    // photoUrl: imageUrl
+                    photoUrl: uploadRes.data.data.imageUrl,
+                    credentialPhotoUrl: uploadResC.data.data.imageUrl
                 }
 
                 const res = await RegistrationAPI.submitRegistration(data);
-                console.log("submitForm res", res.data);
+                // console.log("submitForm res", res.data);
                 if (res.data.code === 0) {
                     setIsSubmitted(true);
                     setOrderId(res.data.data.id);
@@ -162,20 +183,33 @@ const Info = (props: Props) => {
     }
 
 
-    const getImgFile = (file: File) => {
+    const getImgFile = (file: File, isCredentialPhoto: Boolean) => {
         try {
             if (file.size > 1024 * 1024 * 5) {
+                dispatch(addToast({ message: t("imgSizeError"), timeout: 3000 }));
                 return false;
             }
 
             if (file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg' || file.type === 'image/webp') {
                 const imgReader = new FileReader()
+
+                if (isCredentialPhoto) {
+                    setCredentialPhotoFile(file)
+                } else {
+                    setPhotoFile(file)
+                }
+
                 imgReader.onloadend = function (e) {
-                    setPhotoUrl(imgReader.result as any)
+                    if (isCredentialPhoto) {
+                        setCredentialPhotoUrl(imgReader.result as any)
+                    } else {
+                        setPhotoUrl(imgReader.result as any)
+
+                    }
                 };
                 imgReader.readAsDataURL(file)
             } else {
-                // dispatch(addToast({ message: t("fileTypeError"), timeout: 3000 }));
+                dispatch(addToast({ message: t("imgTypeError"), timeout: 3000 }));
             }
         } catch (e) {
 
@@ -243,46 +277,49 @@ const Info = (props: Props) => {
                     {t('info')}
                 </div>
 
-                {/* <div className={styles.cell_info_box}>
+
+                <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
-                        {t('infoList.avatar')}
+                        {t('infoList.photoUrl')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
-                    <div className={`${styles.info_avatar} ${styles.info_ipt}`}
+                    <div className={`${styles.info_photo} ${styles.info_ipt}`}
                         onClick={() => {
-                            const fileInput = document.getElementById('hiddenFile');
+                            const fileInput = document.getElementById('photoUrlHiddenFile');
                             if (fileInput) (fileInput as HTMLInputElement).click();
                         }}>
                         {
                             photoUrl ?
                                 <Image
                                     src={photoUrl}
-                                    alt="Avatar"
+                                    alt="photoUrl"
                                     width={100}
                                     height={100}
-                                    className={styles.avatarImage}
+                                    className={styles.photoImage}
                                 />
                                 :
                                 <div className={styles.upload_btn_plus} >+</div>
                         }
                         <input
-                            id='hiddenFile'
+                            id='photoUrlHiddenFile'
                             type="file"
                             style={{ display: 'none' }}
-                            accept='image/png, image/jpeg, image/jpg, image/webp, image/gif'
+                            accept='image/png, image/jpeg, image/jpg, image/webp'
                             onChange={(event) => {
                                 if (event.target.files && event.target.files[0]) {
-                                    getImgFile(event.target.files[0]);
+                                    getImgFile(event.target.files[0], false);
                                 }
                             }}
                         />
                     </div>
-                </div> */}
+                </div>
 
                 {/* INPUT */}
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.name')}
                         <span className={styles.required_symbol}>*</span>
+                        <span className={styles.required}>{t('infoList.nameTips')}</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setName(e.target.value)} />
@@ -328,6 +365,7 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.credentialType')}
                         <span className={styles.required_symbol}>*</span>
+                        <span className={styles.required}>{t('infoList.credentialTypeTips')}</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <select name="credentialType" id="credentialType" onChange={(e) => { setCredentialType(e.target.value); setCredentialNumber(JSON.parse(JSON.stringify(''))) }} value={credentialType}>
@@ -343,10 +381,46 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.credentialNumber')}
                         <span className={styles.required_symbol}>*</span>
-                        <span className={styles.required}>{t('infoList.credentialNumberTips')}</span>
+                        <span className={styles.required}>{t(`infoList.credentialNumberTips${credentialType}` as any) as string}</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={50} value={credentialNumber} onChange={(e) => setCredentialNumber(e.target.value)} />
+                    </div>
+                </div>
+
+                <div className={styles.cell_info_box}>
+                    <div className={styles.info_title}>
+                        {t(`infoList.credentialPhotoTips${credentialType}` as any) as string}
+                        <span className={styles.required_symbol}>*</span>
+                    </div>
+                    <div className={`${styles.info_credential_photo} ${styles.info_ipt}`}
+                        onClick={() => {
+                            const fileInput = document.getElementById('credentialPhotoUrlHiddenFile');
+                            if (fileInput) (fileInput as HTMLInputElement).click();
+                        }}>
+                        {
+                            credentialPhotoUrl ?
+                                <Image
+                                    src={credentialPhotoUrl}
+                                    alt="credentialPhotoUrl"
+                                    width={100}
+                                    height={100}
+                                    className={styles.credential_photo_image}
+                                />
+                                :
+                                <div className={styles.upload_btn_plus} >+</div>
+                        }
+                        <input
+                            id='credentialPhotoUrlHiddenFile'
+                            type="file"
+                            style={{ display: 'none' }}
+                            accept='image/png, image/jpeg, image/jpg, image/webp'
+                            onChange={(event) => {
+                                if (event.target.files && event.target.files[0]) {
+                                    getImgFile(event.target.files[0], true);
+                                }
+                            }}
+                        />
                     </div>
                 </div>
 
@@ -577,7 +651,6 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.guardianWechat')}
-                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setGuardianWechat(e.target.value)} />
@@ -710,14 +783,37 @@ const Info = (props: Props) => {
 
             <div className={styles.payment_box}>
                 <div className={styles.agree_title}>
-                    <input type="checkbox" id="agree" style={{ cursor: 'pointer' }} onChange={(e: any) => setIsAgreed(e.target.checked)} />
-                    <div className={styles.agree_text}>
-                        {t('agreement')}
-                        <span className={styles.protocol} onClick={goToProtocol1}>{t('protocol1')}</span>
-                        {t('and')}
-                        <span className={styles.protocol} onClick={goToProtocol2}>{t('protocol2')}</span>
+                    <div className={styles.agree_text_title}>
+                        {t('agreementTitle')}
                     </div>
                 </div>
+
+                {
+                    agreeList.map((item: any, idx: number) => (
+                        <div className={styles.agree_title} key={idx}>
+                            <input type="checkbox" id={`agree${idx}`} style={{ cursor: 'pointer' }} onChange={(e: any) => {
+                                let curList = agreeList
+                                curList[idx].isAgreed = e.target.checked
+                                setAgreeList(JSON.parse(JSON.stringify(curList)))
+                            }} />
+                            <div className={styles.agree_text}>
+                                {
+                                    idx === 4 ?
+                                        <>
+                                            {t('agreement')}
+                                            <span className={styles.protocol} onClick={goToProtocol1}>{t('protocol1')}</span>
+                                            {t('and')}
+                                            <span className={styles.protocol} onClick={goToProtocol2}>{t('protocol2')}</span>
+                                            {t('suffix')}
+                                        </>
+                                        :
+                                        <> {t(`agreement${idx + 1}` as any) as string}</>
+                                }
+                            </div>
+
+                        </div>
+                    ))
+                }
 
                 <div className={styles.cost_box}>
                     <div className={styles.price}>
@@ -732,7 +828,6 @@ const Info = (props: Props) => {
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                isClickOutsideToClose={true}
                 title={t(isSubmitted ? 'congratulation' : 'submitting')}
             >
                 <div className={styles.modal_content}>

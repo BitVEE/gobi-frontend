@@ -354,6 +354,7 @@ declare namespace API {
         guardianWechat: string,
         parentEmail: string,
         photoUrl?: string,
+        credentialPhotoUrl?: string,
         guardianName: string,
         guardianPhoneNumber: string,
         guradianRelationship: string,
@@ -377,7 +378,7 @@ declare namespace API {
     }
 
     interface UploadImageParams {
-        image: string
+        file: File | undefined
     }
 
     interface UploadImageResult {

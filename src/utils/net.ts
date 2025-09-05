@@ -9,7 +9,10 @@ axios.interceptors.request.use(
     if (!config.headers) {
       config.headers = new AxiosHeaders()
     }
-    config.headers['Content-Type'] = 'application/json'
+    
+    if (!config.headers['Content-Type']) {
+      config.headers['Content-Type'] = 'application/json'
+    }
     config.headers['Authorization'] = token ? `Bearer ${token}` : ''
     return config
   },
@@ -91,8 +94,8 @@ const net = {
   get<T>(url: string, params?: object) {
     return axios.get<T>(url, params)
   },
-  post<T>(url: string, data?: object) {
-    return axios.post<T>(url, data)
+  post<T>(url: string, data?: object, config?: object) {
+    return axios.post<T>(url, data, config)
   },
   delete<T>(url: string, data?: object) {
     return axios.delete<T>(url, { data })
