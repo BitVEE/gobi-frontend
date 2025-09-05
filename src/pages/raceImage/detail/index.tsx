@@ -150,6 +150,13 @@ const RaceImageDetail = () => {
                                     </div>
                                 ))}
                             </div>}
+                            {newsDetail?.type == 3 && <div className={styles.raceImageDetailImageList}>
+                                {newsDetail?.imageList?.map((item: any) => (
+                                    <div key={item.id} className={styles.raceImageDetailImage}>
+                                        <video src={item.url} controls style={{ width: '100%', height: '100%' }} crossOrigin="anonymous" />
+                                    </div>
+                                ))}
+                            </div>}
                         </>
                     }
                 </div>
