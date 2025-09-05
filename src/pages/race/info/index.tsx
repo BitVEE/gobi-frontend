@@ -81,7 +81,7 @@ const Info = (props: Props) => {
             if (hasJoinedBefore === "1" && beforeMatchName === '') {
                 dispatch(addToast({ message: t("requiredFields"), timeout: 3000 }));
             } else {
-                // setIsModalOpen(true)
+                setIsModalOpen(true)
                 // uploadImage
                 // && photoUrl != ''
                 // const uploadRes = await RegistrationAPI.uploadImage({ image: photoUrl.replace(/.*;base64,/, '') });
