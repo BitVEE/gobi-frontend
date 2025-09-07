@@ -280,5 +280,12 @@
         "database_error": "Database error",
         "cache_error": "Cache error",
         "call_external_api_error": "Call external API error"
+    },
+    "about":{
+        "title": "Gobi,Action,Teamwork,service",
+        "brandStory": "Brand story",
+        "internationalGobieCenter": "International Gobie Center",
+        "contactUs": "Contact us",
+        "text": "text"
     }
 }

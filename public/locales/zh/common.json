@@ -280,5 +280,13 @@
         "database_error": "数据库报错",
         "cache_error": "缓存报错",
         "call_external_api_error": "调用赛客网API报错"
+    },
+    "about":{
+        "title": "青戈赛,行动Action,合作Teamwork,服务service",
+        "brandStory": "品牌故事",
+        "internationalGobieCenter": "国际戈友中心",
+        "contactUs": "联系我们",
+        "text": "text",
+        "texthead":"texthead"
     }
 }
