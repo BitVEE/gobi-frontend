@@ -280,5 +280,30 @@
         "database_error": "数据库报错",
         "cache_error": "缓存报错",
         "call_external_api_error": "调用赛客网API报错"
+    },
+    "qa": {
+    "userQuestions": "用户问题",
+    "raceQuestions": "比赛问题", 
+    "healthQuestions": "健康问题",
+    "cards": {
+        "raceCards": {
+        "card1": { "title": "比赛卡片 1", "text": "比赛卡片 1 的内容。" },
+        "card2": { "title": "比赛卡片 2", "text": "比赛卡片 2 的内容。" },
+        "card3": { "title": "比赛卡片 3", "text": "比赛卡片 3 的内容。" },
+        "card4": { "title": "比赛卡片 4", "text": "比赛卡片 4 的内容。" },
+        "card5": { "title": "比赛卡片 5", "text": "比赛卡片 5 的内容。" },
+        "card6": { "title": "比赛卡片 6", "text": "比赛卡片 6 的内容。" }
+        
+        },
+        "healthCards": {
+        "card1": { "title": "健康卡片 1", "text": "健康卡片 1 的内容。" },
+        "card2": { "title": "健康卡片 2", "text": "健康卡片 2 的内容。" },
+        "card3": { "title": "健康卡片 3", "text": "健康卡片 3 的内容。" },
+        "card4": { "title": "健康卡片 4", "text": "健康卡片 4 的内容。" },
+        "card5": { "title": "健康卡片 5", "text": "健康卡片 5 的内容。" },
+        "card6": { "title": "健康卡片 6", "text": "健康卡片 6 的内容。" }
+        
+        }
     }
+  }
 }

@@ -1,0 +1,105 @@
+.qa{
+  width: 100%;
+  height: 100%;
+
+  .middleSection {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sectionTitle {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: "Raleway", sans-serif;
+    margin-bottom: 8px;
+    width: 1240px;
+  }
+
+  .sectionDivider {
+    width: 1240px;
+    height: 2px;
+    background-color: #ff6A14;
+    margin-bottom: 50px; 
+  }
+
+  .cardContainer {
+    width: 100%;
+    max-width: 1240px;
+    display: flex;
+    flex-wrap: wrap;      
+    gap: 20px;              
+    justify-content: center;
+    }
+  
+  .card {
+    background: #f8f8f8;
+    width: 400px;
+    height: 328px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    margin-left: 20;
+    padding: 32px; 
+}
+
+  .cardTitle {
+    font-size: 18px;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  .cardText {
+    font-size: 16px;
+    font-family: "Raleway", sans-serif;
+    color: #121212;
+    line-height: 24px; 
+  }
+
+  @media screen and (max-width: 768px) {
+    .middleSection {
+      padding: 20px;
+    }
+
+    .sectionTitle {
+      font-size: 24px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .sectionDivider {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .cardContainer {
+      flex-direction: column;
+      gap: 16px;
+      max-width: 100%;
+      align-items: center;
+    }
+
+    .card {
+      width: 90%;
+      min-height: 400px; // bigger starting height for text
+      height: auto;       // allow it to grow with content
+      padding: 24px;
+      margin-left: 0;
+    }
+
+    .cardTitle {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .cardText {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
