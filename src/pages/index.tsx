@@ -107,7 +107,7 @@ export default function Home() {
         </div>
         <div className={styles.partner_list}>
           {
-            new Array(24).fill(0).map((item, idx) => (
+            new Array(30).fill(0).map((item, idx) => (
               <div className={styles.partner_item} key={idx}>
                 <LoadingImg noPlaceholder src={`/images/school/${idx + 1}.png`} style={{ width: '100%', height: '100%' }} width={189} height={189} />
               </div>
