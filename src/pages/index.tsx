@@ -44,7 +44,7 @@ export default function Home() {
     // This can help in verifying that the data is being fetched correctly
     // and can be used for further processing or display in the UI.
     // @ts-ignore
-    console.log(newsData.data);
+    // console.log(newsData.data);
   }
 
 

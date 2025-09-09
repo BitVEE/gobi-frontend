@@ -6,7 +6,8 @@
         "notFind": "页面不存在",
         "loadingText": "加载中...",
         "nodataText": "暂无数据",
-        "loginProcessing": "登录处理中..."
+        "loginProcessing": "登录处理中...",
+        "siteTitle": "青戈赛"
     },
     "header": {
         "home": "首页",

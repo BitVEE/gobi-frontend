@@ -6,7 +6,8 @@
         "notFind": "Page not found",
         "loadingText": "Loading, please wait a moment",
         "nodataText": "Sorry, at the moment there is no information. Come back soon.",
-        "loginProcessing": "Login processing, please wait a moment"
+        "loginProcessing": "Login processing, please wait a moment",
+        "siteTitle": "ULTRA GOBI"
     },
     "header": {
         "home": "Home",
