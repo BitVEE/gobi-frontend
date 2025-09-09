@@ -84,7 +84,7 @@ export default function Home() {
         <div className={styles.qa_list}>
           {
             (t("qa.raceQa", { returnObjects: true }) as Array<{ title: string, answer: string }>).map((item: { title: string; answer: string }) => (
-              <div className={styles.qa_item} key={item.title} onClick={() => { router.push('/qa/raceQa?title=' + item.title) }}>
+              <div className={styles.qa_item} key={item.title} onClick={() => { router.push('/qa') }}>
                 <Image width={24} height={24} src="/images/icons/rebot.svg" alt="rebot Icon" className={styles.qa_item_title} style={{ marginTop: '24px' }} />
                 <div className={styles.qa_item_content}>
                   <div className={styles.qa_item_q}>
