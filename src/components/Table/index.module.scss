@@ -78,6 +78,9 @@
         display: flex;
         align-items: flex-start;
     }
+    .tableWrapper::-webkit-scrollbar {
+        display: none;
+    }
 
     .table {
         width: 100%;

@@ -41,7 +41,7 @@ const Footer = (props: Props) => {
         <div className={styles.footer}>
             <div className={styles.footerContent}>
                 <div className={styles.footerLogo}>
-                    <Image className={styles.logo} width={546} height={210} src="/images/logo.png" alt="GOBI" />
+                    <Image className={styles.logo} width={450} height={113} src="/images/logo.png" alt="GOBI" />
                     <div className={styles.followUs}>
                         {t("home.followUs")}
                         <div className={styles.iconsContainer}>

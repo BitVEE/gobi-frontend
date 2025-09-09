@@ -43,7 +43,6 @@
         }
     }
 
-
     .news_container {
         width: 100%;
         height: 100%;
@@ -92,7 +91,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                background-color: #F8F8F8;
+                background-color: #f8f8f8;
                 border-radius: 8px;
                 cursor: pointer;
                 flex-shrink: 0;
@@ -117,6 +116,15 @@
                         line-height: 100%;
                         letter-spacing: 0%;
                         vertical-align: middle;
+
+                        span {
+                            display: -webkit-box;
+                            -webkit-line-clamp: 1;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
                     }
 
                     .qa_item_a {
@@ -124,16 +132,20 @@
                         font-weight: 400;
                         font-style: Regular;
                         font-size: 18px;
-                        line-height: 100%;
+                        line-height: 140%;
                         letter-spacing: 0%;
                         vertical-align: middle;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
                     }
                 }
-
             }
 
             .qa_item:hover {
-                background-color: #FFD1B7;
+                background-color: #ffd1b7;
             }
         }
 
@@ -143,24 +155,21 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin: 0 0 30px 0;
 
             .partner_item {
                 width: 189px;
                 height: 189px;
                 opacity: 1;
-                border-radius: 8px;
-                background-color: #F8F8F8;
                 cursor: pointer;
-                margin-bottom: 42px;
-
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     }
 
-
     @media (max-width: 768px) {
-
         .poster {
             height: 60vh;
             background-size: cover;
@@ -189,6 +198,7 @@
 
         .news_container {
             .news_title {
+                width: 90%;
                 margin-top: 102px;
                 font-weight: 700;
                 font-style: Bold;
@@ -199,8 +209,8 @@
             }
 
             .news_list {
+                width: 90%;
                 margin-top: 40px;
-
             }
 
             .qa_list {
@@ -214,29 +224,26 @@
                     margin-bottom: 40px;
                     border-radius: 16px;
 
-
                     .qa_item_title {
                         width: 68px;
                         height: 68px;
                     }
 
                     .qa_item_content {
-
                         .qa_item_q {
                             font-weight: 700;
                             font-style: Bold;
-                            font-size: 84px;
+                            font-size: 64px;
                             line-height: 100%;
                             letter-spacing: 0%;
                             vertical-align: middle;
-
                         }
 
                         .qa_item_a {
                             font-weight: 400;
                             font-style: Regular;
-                            font-size: 72px;
-                            line-height: 100%;
+                            font-size: 52px;
+                            line-height: 140%;
                             letter-spacing: 0%;
                             vertical-align: middle;
                             margin-top: 64px;
@@ -246,15 +253,19 @@
             }
 
             .partner_list {
+                margin-bottom: 100px;
 
                 .partner_item {
                     width: 400px;
                     height: 400px;
                     margin-top: 52px;
                     border-radius: 16px;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
             }
         }
-
     }
 }

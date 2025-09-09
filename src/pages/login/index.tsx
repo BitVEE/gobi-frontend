@@ -160,6 +160,7 @@ const Login = () => {
                         <label className={styles.codeInput}>
                             <input type="checkbox" className={styles.checkbox} checked={isAgreementChecked} onChange={(e) => setIsAgreementChecked(e.target.checked)} />
                             {t("login.agreement")}
+                            <a href="/protocol/user.pdf" >{t("login.userAgreement")}</a>
                         </label>
                         {agreementError && (
                             <div className={styles.errorMessage}>

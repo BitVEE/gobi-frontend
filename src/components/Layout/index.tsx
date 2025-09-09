@@ -13,7 +13,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     const token = useSelector((state: any) => state.commonSlice.token);
-    const whiteList = ['/user']
+    const whiteList = ['/user', '/race/pay', '/race/info']
     const router = useRouter()
     const { pathname } = router
 

@@ -10,9 +10,32 @@ import styles from './info.module.scss'
 import MatchDetailCard from '@/components/MatchDetailCard';
 import Modal from '@/components/Modal';
 import { addToast } from "@/redux/slice/toastSlice";
+import countries from '@/utils/countryAreaCode'
 
 type Props = {};
 
+const regexPatterns = {
+    phone: /^1[3-9]\d{9}$/,
+    email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    idCard: /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
+    hkPass: /^[a-zA-Z]\d{6,10}$/,
+    passport: /^[a-zA-Z]\d{5,8}$/,
+    twPass: /(^\d{8}$)|(^[a-zA-Z]\d{7,9}$)/
+};
+
+const agreementList = [
+    {
+        isAgreed: false
+    }, {
+        isAgreed: false
+    }, {
+        isAgreed: false
+    }, {
+        isAgreed: false
+    }, {
+        isAgreed: false
+    },
+]
 const Info = (props: Props) => {
     const router = useRouter()
     const { groupInfo, matchDetail } = router.query;
@@ -23,31 +46,39 @@ const Info = (props: Props) => {
     const [group, setGroup] = useState<any>();
     const [currentMatchInfo, setCurrentMatchInfo] = useState<API.MatchesListType>();
 
+    const [photoFile, setPhotoFile] = useState<File>();
     const [photoUrl, setPhotoUrl] = useState<string>("");
+    const [credentialPhotoFile, setCredentialPhotoFile] = useState<File>();
+    const [credentialPhotoUrl, setCredentialPhotoUrl] = useState<string>("");
+
     const [name, setName] = useState<string>("");
     const [enName, setEnName] = useState<string>("");
     const [gender, setGender] = useState<string>("1");
     const [birthday, setBirthday] = useState<string>("2000-01-01");
     const [credentialType, setCredentialType] = useState<string>("1");
     const [credentialNumber, setCredentialNumber] = useState<string>("");
+    const [phoneNumberAreaCode, setPhoneNumberAreaCode] = useState<number>(40);
     const [phoneNumber, setPhoneNumber] = useState<string>("");
     const [nationality, setNationality] = useState<string>("");
     const [city, setCity] = useState<string>("");
     const [schoolName, setSchoolName] = useState<string>("");
     const [grade, setGrade] = useState<string>("");
-    const [bloodType, setBloodType] = useState<string>("");
+    const [bloodType, setBloodType] = useState<string>("A");
     const [height, setHeight] = useState<string>("");
     const [weight, setWeight] = useState<string>("");
     const [shirtSize, setShirtSize] = useState<string>('110');
     const [shoeSize, setShoeSize] = useState<string>("");
     const [hasJoinedBefore, setHasJoinedBefore] = useState<string>("1");
     const [beforeMatchName, setBeforeMatchName] = useState<string>("");
+    const [parentPhoneNumberAreaCode, setParentPhoneNumberAreaCode] = useState<number>(40);
     const [parentPhoneNumber, setParentPhoneNumber] = useState<string>("");
     const [parentEmail, setParentEmail] = useState<string>("");
     const [guardianName, setGuardianName] = useState<string>("");
     const [guardianRelationship, setGuardianRelationship] = useState<string>("");
     const [guardianWechat, setGuardianWechat] = useState<string>("");
+    const [guardianPhoneNumberAreaCode, setGuardianPhoneNumberAreaCode] = useState<number>(40)
     const [guardianPhoneNumber, setGuardianPhoneNumber] = useState<string>("");
+    const [emergencyPhoneNumberAreaCode, setemergencyPhoneNumberAreaCode] = useState<number>(40);
     const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState<string>("");
     const [medicationRestrictions, setMedicationRestrictions] = useState<string>("");
     const [dietaryRestrictions, setDietaryRestrictions] = useState<string>("");
@@ -56,24 +87,27 @@ const Info = (props: Props) => {
     const [additionalNotes, setAdditionalNotes] = useState<string>("");
     const [sportsBackground, setSportsBackground] = useState<string>("");
     const [psychologicalNotes, setPsychologicalNotes] = useState<string>("");
-    const [isAgreed, setIsAgreed] = useState<boolean>(false);
+    const [agreeList, setAgreeList] = useState<any>(agreementList);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
     const [orderId, setOrderId] = useState<string>("");
 
     const handleNext = async () => {
         if (!token) return dispatch(addToast({ message: t("loginTips"), timeout: 3000 }));
-        if (!isAgreed) return dispatch(addToast({ message: t("noAgreement"), timeout: 3000 }));
-        if (name != '' && enName != '' && credentialNumber != '' && phoneNumber != '' && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && parentPhoneNumber != '' && parentEmail != '' && guardianName != '' && guardianRelationship != '' && guardianWechat != '' && guardianPhoneNumber != '' && emergencyPhoneNumber != '' && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '' && additionalNotes != '' && sportsBackground != '' && photoUrl != '') {
+        if (!agreeList.every((item: any) => item.isAgreed === true)) return dispatch(addToast({ message: t("noAgreement"), timeout: 3000 }));
+        if (name != '' && enName != '' && regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber) && countries[phoneNumberAreaCode].pattern.test(phoneNumber.trim()) && nationality != '' && city != '' && schoolName != '' && grade != '' && bloodType != '' && height != '' && weight != '' && shoeSize != '' && countries[parentPhoneNumberAreaCode].pattern.test(parentPhoneNumber.trim()) && regexPatterns.email.test(parentEmail.trim()) && guardianName != '' && guardianRelationship != '' && countries[guardianPhoneNumberAreaCode].pattern.test(guardianPhoneNumber.trim()) && countries[emergencyPhoneNumberAreaCode].pattern.test(emergencyPhoneNumber.trim()) && medicationRestrictions != '' && dietaryRestrictions != '' && allergyInformation != '' && medicalHistory != '' && photoFile && credentialPhotoFile) {
             if (hasJoinedBefore === "1" && beforeMatchName === '') {
                 dispatch(addToast({ message: t("requiredFields"), timeout: 3000 }));
             } else {
                 setIsModalOpen(true)
-                // uploadImage
-                const uploadRes = await RegistrationAPI.uploadImage({ image: photoUrl.replace(/.*;base64,/, '') });
-                const imageUrl = uploadRes.data.data.imageUrl + '/' + uploadRes.data.data.variants[0];
-                console.log("imageUrl", imageUrl);
-                setPhotoUrl(imageUrl);
+
+                // upload photoFile
+                const uploadRes = await RegistrationAPI.uploadImage({ file: photoFile });
+                if (uploadRes.data.code != 0) return dispatch(addToast({ message: uploadRes.data.error, timeout: 3000 }))
+
+                // upload credential photo
+                const uploadResC = await RegistrationAPI.uploadImage({ file: credentialPhotoFile });
+                if (uploadResC.data.code != 0) return dispatch(addToast({ message: uploadResC.data.error, timeout: 3000 }))
 
                 const data: API.RegistrationParams = {
                     matchGroupId: group?.id,
@@ -84,7 +118,7 @@ const Info = (props: Props) => {
                     birthday: birthday,
                     credentialType: Number(credentialType),
                     credentialNumber: credentialNumber,
-                    phoneNumber: phoneNumber,
+                    phoneNumber: countries[phoneNumberAreaCode].prefix + ' ' + phoneNumber,
                     nationality: nationality,
                     city: city,
                     schoolName: schoolName,
@@ -96,13 +130,13 @@ const Info = (props: Props) => {
                     shoeSize: shoeSize,
                     hasJoinedBefore: Number(hasJoinedBefore),
                     beforeMatchName: beforeMatchName,
-                    parentPhoneNumber: parentPhoneNumber,
+                    parentPhoneNumber: countries[parentPhoneNumberAreaCode].prefix + ' ' + parentPhoneNumber,
                     parentEmail: parentEmail,
                     guardianName: guardianName,
                     guradianRelationship: guardianRelationship,
-                    guardianPhoneNumber: guardianPhoneNumber,
+                    guardianPhoneNumber: countries[guardianPhoneNumberAreaCode].prefix + ' ' + guardianPhoneNumber,
                     guardianWechat: guardianWechat,
-                    emergencyPhoneNumber: emergencyPhoneNumber,
+                    emergencyPhoneNumber: countries[emergencyPhoneNumberAreaCode].prefix + ' ' + emergencyPhoneNumber,
                     medicationRestrictions: medicationRestrictions,
                     dietaryRestrictions: dietaryRestrictions,
                     allergyInformation: allergyInformation,
@@ -110,11 +144,12 @@ const Info = (props: Props) => {
                     additionalNotes: additionalNotes,
                     sportsBackground: sportsBackground,
                     psychologicalNotes: psychologicalNotes,
-                    photoUrl: imageUrl
+                    photoUrl: uploadRes.data.data.imageUrl,
+                    credentialPhotoUrl: uploadResC.data.data.imageUrl
                 }
 
                 const res = await RegistrationAPI.submitRegistration(data);
-                console.log("submitForm res", res.data);
+                // console.log("submitForm res", res.data);
                 if (res.data.code === 0) {
                     setIsSubmitted(true);
                     setOrderId(res.data.data.id);
@@ -127,26 +162,54 @@ const Info = (props: Props) => {
 
             }
         } else {
-            dispatch(addToast({ message: t("requiredFields"), timeout: 3000 }));
+            let warningText = "requiredFields"
+            if (!countries[phoneNumberAreaCode].pattern.test(phoneNumber.trim())) {
+                warningText = "wrongPhonenumber"
+            } else if (!countries[parentPhoneNumberAreaCode].pattern.test(parentPhoneNumber.trim())) {
+                warningText = "wrongParentPhonenumber"
+            } else if (!regexPatterns.email.test(parentEmail.trim())) {
+                warningText = "wrongParentEmail"
+            } else if (!countries[guardianPhoneNumberAreaCode].pattern.test(guardianPhoneNumber.trim())) {
+                warningText = "wrongGuardianPhoneNumber"
+            } else if (!countries[emergencyPhoneNumberAreaCode].pattern.test(emergencyPhoneNumber.trim())) {
+                warningText = "wrongEmergencyPhoneNumber"
+            } else if (!regexPatterns[credentialType === '1' ? 'idCard' : credentialType === '2' ? 'passport' : credentialType === '3' ? 'hkPass' : 'twPass'].test(credentialNumber)) {
+                warningText = "wrongCredentialNumber"
+            }
+
+            dispatch(addToast({ message: t(warningText as any), timeout: 3000 }));
 
         }
     }
 
 
-    const getImgFile = (file: File) => {
+    const getImgFile = (file: File, isCredentialPhoto: Boolean) => {
         try {
             if (file.size > 1024 * 1024 * 5) {
+                dispatch(addToast({ message: t("imgSizeError"), timeout: 3000 }));
                 return false;
             }
 
             if (file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg' || file.type === 'image/webp') {
                 const imgReader = new FileReader()
+
+                if (isCredentialPhoto) {
+                    setCredentialPhotoFile(file)
+                } else {
+                    setPhotoFile(file)
+                }
+
                 imgReader.onloadend = function (e) {
-                    setPhotoUrl(imgReader.result as any)
+                    if (isCredentialPhoto) {
+                        setCredentialPhotoUrl(imgReader.result as any)
+                    } else {
+                        setPhotoUrl(imgReader.result as any)
+
+                    }
                 };
                 imgReader.readAsDataURL(file)
             } else {
-                // dispatch(addToast({ message: t("fileTypeError"), timeout: 3000 }));
+                dispatch(addToast({ message: t("imgTypeError"), timeout: 3000 }));
             }
         } catch (e) {
 
@@ -173,6 +236,14 @@ const Info = (props: Props) => {
             // router.push('/race/registration');
         }
     }, [groupInfo, matchDetail]);
+
+
+    const goToProtocol1 = () => {
+        window.open('/protocol/matchProtocol.pdf', '_blank');
+    }
+    const goToProtocol2 = () => {
+        window.open('/protocol/matchSafetyProtocol.pdf', '_blank');
+    }
 
     return (
         <div className={styles.info}>
@@ -206,35 +277,37 @@ const Info = (props: Props) => {
                     {t('info')}
                 </div>
 
+
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
-                        {t('infoList.avatar')}
+                        {t('infoList.photoUrl')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
-                    <div className={`${styles.info_avatar} ${styles.info_ipt}`}
+                    <div className={`${styles.info_photo} ${styles.info_ipt}`}
                         onClick={() => {
-                            const fileInput = document.getElementById('hiddenFile');
+                            const fileInput = document.getElementById('photoUrlHiddenFile');
                             if (fileInput) (fileInput as HTMLInputElement).click();
                         }}>
                         {
                             photoUrl ?
                                 <Image
                                     src={photoUrl}
-                                    alt="Avatar"
+                                    alt="photoUrl"
                                     width={100}
                                     height={100}
-                                    className={styles.avatarImage}
+                                    className={styles.photoImage}
                                 />
                                 :
                                 <div className={styles.upload_btn_plus} >+</div>
                         }
                         <input
-                            id='hiddenFile'
+                            id='photoUrlHiddenFile'
                             type="file"
                             style={{ display: 'none' }}
-                            accept='image/png, image/jpeg, image/jpg, image/webp, image/gif'
+                            accept='image/png, image/jpeg, image/jpg, image/webp'
                             onChange={(event) => {
                                 if (event.target.files && event.target.files[0]) {
-                                    getImgFile(event.target.files[0]);
+                                    getImgFile(event.target.files[0], false);
                                 }
                             }}
                         />
@@ -245,6 +318,8 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.name')}
+                        <span className={styles.required_symbol}>*</span>
+                        <span className={styles.required}>{t('infoList.nameTips')}</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setName(e.target.value)} />
@@ -254,6 +329,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.enName')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setEnName(e.target.value)} />
@@ -264,12 +340,12 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.gender')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <select name="gender" id="gender" onChange={(e) => setGender(e.target.value)} value={gender}>
                             <option value='1'>{t('infoList.genderList.male')}</option>
                             <option value='2'>{t('infoList.genderList.female')}</option>
-                            <option value='3'> {t('infoList.genderList.other')}</option>
                         </select>
                     </div>
                 </div>
@@ -278,6 +354,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.birthday')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="date" name="Date" value={birthday} onChange={(e) => setBirthday(e.target.value)} className={styles.date_ipt} id="id_yy_input" />
@@ -287,9 +364,11 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.credentialType')}
+                        <span className={styles.required_symbol}>*</span>
+                        <span className={styles.required}>{t('infoList.credentialTypeTips')}</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <select name="credentialType" id="credentialType" onChange={(e) => setCredentialType(e.target.value)} value={credentialType}>
+                        <select name="credentialType" id="credentialType" onChange={(e) => { setCredentialType(e.target.value); setCredentialNumber(JSON.parse(JSON.stringify(''))) }} value={credentialType}>
                             <option value='1'>{t('infoList.credentialTypeList.1')}</option>
                             <option value='2'>{t('infoList.credentialTypeList.2')}</option>
                             <option value='3'> {t('infoList.credentialTypeList.3')}</option>
@@ -301,43 +380,98 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.credentialNumber')}
-                        <span className={styles.required}>{t('infoList.credentialNumberTips')}</span>
+                        <span className={styles.required_symbol}>*</span>
+                        <span className={styles.required}>{t(`infoList.credentialNumberTips${credentialType}` as any) as string}</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <input type="text" maxLength={50} onChange={(e) => setCredentialNumber(e.target.value)} />
+                        <input type="text" maxLength={50} value={credentialNumber} onChange={(e) => setCredentialNumber(e.target.value)} />
+                    </div>
+                </div>
+
+                <div className={styles.cell_info_box}>
+                    <div className={styles.info_title}>
+                        {t(`infoList.credentialPhotoTips${credentialType}` as any) as string}
+                        <span className={styles.required_symbol}>*</span>
+                    </div>
+                    <div className={`${styles.info_credential_photo} ${styles.info_ipt}`}
+                        onClick={() => {
+                            const fileInput = document.getElementById('credentialPhotoUrlHiddenFile');
+                            if (fileInput) (fileInput as HTMLInputElement).click();
+                        }}>
+                        {
+                            credentialPhotoUrl ?
+                                <Image
+                                    src={credentialPhotoUrl}
+                                    alt="credentialPhotoUrl"
+                                    width={100}
+                                    height={100}
+                                    className={styles.credential_photo_image}
+                                />
+                                :
+                                <div className={styles.upload_btn_plus} >+</div>
+                        }
+                        <input
+                            id='credentialPhotoUrlHiddenFile'
+                            type="file"
+                            style={{ display: 'none' }}
+                            accept='image/png, image/jpeg, image/jpg, image/webp'
+                            onChange={(event) => {
+                                if (event.target.files && event.target.files[0]) {
+                                    getImgFile(event.target.files[0], true);
+                                }
+                            }}
+                        />
                     </div>
                 </div>
 
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.phoneNumber')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
-                    <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setPhoneNumber(e.target.value)} />
+                    <div className={styles.info_ipt_box}>
+                        <div className={styles.info_ipt_prefix}>
+                            <select id="selectPhone" className={styles.phone_prefix} name="prefix" onChange={(e) => setPhoneNumberAreaCode(Number(e.target.value))} value={phoneNumberAreaCode}>
+                                {
+                                    countries.map((item: any, idx) =>
+                                        <option value={idx} key={item.code}>
+                                            {`${item[i18n.language === 'zh' ? 'name' : 'enName']}(${item.prefix})`}
+                                        </option>
+                                    )
+                                }
+                            </select>
+                        </div>
+
+                        <div className={styles.info_ipt_co}>
+                            <input className={styles.phone_ipt} type="text" maxLength={30} value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                        </div>
                     </div>
                 </div>
 
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.nationality')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setNationality(e.target.value)} />
+                        <input type="text" maxLength={30} value={nationality} onChange={(e) => setNationality(e.target.value)} />
                     </div>
                 </div>
 
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.city')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setCity(e.target.value)} />
+                        <input type="text" maxLength={30} value={city} onChange={(e) => setCity(e.target.value)} />
                     </div>
                 </div>
 
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.schoolName')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setSchoolName(e.target.value)} />
@@ -347,6 +481,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.grade')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setGrade(e.target.value)} />
@@ -357,9 +492,16 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.bloodType')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setBloodType(e.target.value)} />
+                        <select name="bloodType" id="bloodType" onChange={(e) => setBloodType(e.target.value)} value={bloodType}>
+                            <option value='A'>A</option>
+                            <option value='B'>B</option>
+                            <option value='AB'>AB</option>
+                            <option value='O'> O</option>
+                            <option value={t('infoList.genderList.other')}> {t('infoList.genderList.other')}</option>
+                        </select>
                     </div>
                 </div>
 
@@ -367,6 +509,7 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.height')}
                         <span className={styles.required}>(cm)</span>
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setHeight(e.target.value)} />
@@ -377,6 +520,7 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.weight')}
                         <span className={styles.required}>(kg)</span>
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setWeight(e.target.value)} />
@@ -387,12 +531,13 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.shirtSize')}
                         <span className={styles.required}>{t('infoList.shirtsizeTips')}</span>
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ justifyContent: 'flex-start' }}>
                         {
                             ['110', '120', '130', '140', '150', '160', '170', '180'].map((size) => (
                                 <div className={styles.ipt_radio} key={size} >
-                                    <input type="radio" id={`size-${size}`} name="size" value={size} checked={size === shirtSize} onChange={(e: any) => setShirtSize(e.target.value)} />
+                                    <input className={styles.radio_box} type="radio" id={`size-${size}`} name="size" value={size} checked={size === shirtSize} onChange={(e: any) => setShirtSize(e.target.value)} />
                                     <label htmlFor={`size-${size}`} className={styles.ipt_radio_label}>{`${size}cm`}</label>
                                 </div>
                             ))
@@ -404,6 +549,7 @@ const Info = (props: Props) => {
                     <div className={styles.info_title}>
                         {t('infoList.shoeSize')}
                         <span className={styles.required}>{t('infoList.shoeSizeTips')}</span>
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setShoeSize(e.target.value)} />
@@ -413,6 +559,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.hasJoinedBefore')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <select name="hasJoinedBefore" id="hasJoinedBefore" onChange={(e) => { setHasJoinedBefore(e.target.value); e.target.value === '0' ? setBeforeMatchName('') : '' }} value={hasJoinedBefore}>
@@ -428,6 +575,7 @@ const Info = (props: Props) => {
                             <div className={styles.info_title}>
                                 {t('infoList.beforeMatchName')}
                                 <span className={styles.required}>{t('infoList.beforeMatchNameTips')}</span>
+                                <span className={styles.required_symbol}>*</span>
                             </div>
                             <div className={styles.info_ipt}>
                                 <input type="text" maxLength={30} onChange={(e) => setBeforeMatchName(e.target.value)} />
@@ -440,9 +588,25 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.parentPhoneNumber')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
-                    <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setParentPhoneNumber(e.target.value)} />
+
+                    <div className={styles.info_ipt_box}>
+                        <div className={styles.info_ipt_prefix}>
+                            <select className={styles.phone_prefix} name="prefix" id="prefix" onChange={(e) => setParentPhoneNumberAreaCode(Number(e.target.value))} value={parentPhoneNumberAreaCode}>
+                                {
+                                    countries.map((item: any, idx) =>
+                                        <option value={idx} key={item.code}>
+                                            {`${item[i18n.language === 'zh' ? 'name' : 'enName']}(${item.prefix})`}
+                                        </option>
+                                    )
+                                }
+                            </select>
+                        </div>
+
+                        <div className={styles.info_ipt_co}>
+                            <input className={styles.phone_ipt} type="text" maxLength={30} value={parentPhoneNumber} onChange={(e) => setParentPhoneNumber(e.target.value)} />
+                        </div>
                     </div>
                 </div>
 
@@ -451,6 +615,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.parentEmail')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setParentEmail(e.target.value)} />
@@ -462,6 +627,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.guardianName')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setGuardianName(e.target.value)} />
@@ -472,6 +638,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.guardianRelationship')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt}>
                         <input type="text" maxLength={30} onChange={(e) => setGuardianRelationship(e.target.value)} />
@@ -496,9 +663,25 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.guardianPhoneNumber')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
-                    <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setGuardianPhoneNumber(e.target.value)} />
+
+                    <div className={styles.info_ipt_box}>
+                        <div className={styles.info_ipt_prefix}>
+                            <select className={styles.phone_prefix} name="prefix" id="prefix" onChange={(e) => setGuardianPhoneNumberAreaCode(Number(e.target.value))} value={guardianPhoneNumberAreaCode}>
+                                {
+                                    countries.map((item: any, idx) =>
+                                        <option value={idx} key={item.code}>
+                                            {`${item[i18n.language === 'zh' ? 'name' : 'enName']}(${item.prefix})`}
+                                        </option>
+                                    )
+                                }
+                            </select>
+                        </div>
+
+                        <div className={styles.info_ipt_co}>
+                            <input className={styles.phone_ipt} type="text" maxLength={30} value={guardianPhoneNumber} onChange={(e) => setGuardianPhoneNumber(e.target.value)} />
+                        </div>
                     </div>
                 </div>
 
@@ -506,10 +689,26 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.emergencyPhoneNumber')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
-                    <div className={styles.info_ipt}>
-                        <input type="text" maxLength={30} onChange={(e) => setEmergencyPhoneNumber(e.target.value)} />
+                    <div className={styles.info_ipt_box}>
+                        <div className={styles.info_ipt_prefix}>
+                            <select className={styles.phone_prefix} name="prefix" id="prefix" onChange={(e) => setemergencyPhoneNumberAreaCode(Number(e.target.value))} value={emergencyPhoneNumberAreaCode}>
+                                {
+                                    countries.map((item: any, idx) =>
+                                        <option value={idx} key={item.code}>
+                                            {`${item[i18n.language === 'zh' ? 'name' : 'enName']}(${item.prefix})`}
+                                        </option>
+                                    )
+                                }
+                            </select>
+                        </div>
+
+                        <div className={styles.info_ipt_co}>
+                            <input className={styles.phone_ipt} type="text" maxLength={30} value={emergencyPhoneNumber} onChange={(e) => setEmergencyPhoneNumber(e.target.value)} />
+                        </div>
                     </div>
+
                 </div>
 
 
@@ -517,6 +716,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box} >
                     <div className={styles.info_title}>
                         {t('infoList.medicationRestrictions')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea name="medicationRestrictions" id="medicationRestrictions" maxLength={220} onChange={(e) => setMedicationRestrictions(e.target.value)}></textarea>
@@ -526,6 +726,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box} >
                     <div className={styles.info_title}>
                         {t('infoList.dietaryRestrictions')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea name="dietaryRestrictions" id="dietaryRestrictions" maxLength={220} onChange={(e) => setDietaryRestrictions(e.target.value)}></textarea>
@@ -535,6 +736,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box} >
                     <div className={styles.info_title}>
                         {t('infoList.allergyInformation')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea name="allergyInformation" id="allergyInformation" maxLength={220} onChange={(e) => setAllergyInformation(e.target.value)}></textarea>
@@ -544,6 +746,7 @@ const Info = (props: Props) => {
                 <div className={styles.cell_info_box} >
                     <div className={styles.info_title}>
                         {t('infoList.medicalHistory')}
+                        <span className={styles.required_symbol}>*</span>
                     </div>
                     <div className={styles.info_ipt} style={{ height: '90px', padding: '10px' }}>
                         <textarea name="medicalHistory" id="medicalHistory" maxLength={220} onChange={(e) => setMedicalHistory(e.target.value)}></textarea>
@@ -580,14 +783,37 @@ const Info = (props: Props) => {
 
             <div className={styles.payment_box}>
                 <div className={styles.agree_title}>
-                    <input type="checkbox" id="agree" style={{ cursor: 'pointer' }} onChange={(e: any) => setIsAgreed(e.target.checked)} />
-                    <div className={styles.agree_text}>
-                        {t('agreement')}
-                        <span className={styles.protocol}>{t('protocol1')}</span>
-                        {t('and')}
-                        <span className={styles.protocol}>{t('protocol2')}</span>
+                    <div className={styles.agree_text_title}>
+                        {t('agreementTitle')}
                     </div>
                 </div>
+
+                {
+                    agreeList.map((item: any, idx: number) => (
+                        <div className={styles.agree_title} key={idx}>
+                            <input type="checkbox" id={`agree${idx}`} style={{ cursor: 'pointer' }} onChange={(e: any) => {
+                                let curList = agreeList
+                                curList[idx].isAgreed = e.target.checked
+                                setAgreeList(JSON.parse(JSON.stringify(curList)))
+                            }} />
+                            <div className={styles.agree_text}>
+                                {
+                                    idx === 4 ?
+                                        <>
+                                            {t('agreement')}
+                                            <span className={styles.protocol} onClick={goToProtocol1}>{t('protocol1')}</span>
+                                            {t('and')}
+                                            <span className={styles.protocol} onClick={goToProtocol2}>{t('protocol2')}</span>
+                                            {t('suffix')}
+                                        </>
+                                        :
+                                        <> {t(`agreement${idx + 1}` as any) as string}</>
+                                }
+                            </div>
+
+                        </div>
+                    ))
+                }
 
                 <div className={styles.cost_box}>
                     <div className={styles.price}>

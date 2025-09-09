@@ -36,6 +36,10 @@
                     line-height: normal;
                 }
 
+                input:disabled {
+                    cursor: not-allowed;
+                }
+
                 input:focus {
                     outline: none;
                 }

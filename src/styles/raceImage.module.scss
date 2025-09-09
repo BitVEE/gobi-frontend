@@ -34,15 +34,42 @@
                 }
             }
 
-            .raceImageDetailContent{
+            .raceImageDetailContent {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                
-                .rich_text{
+
+                .rich_text {
                     width: 100%;
+                    line-height: 150%;
+                    font-size: 21px;
+
+                    p {
+                        width: 100%;
+                    }
+
+                    img {
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                    video {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+
+                    ul {
+                        width: 100%;
+                        list-style: none;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .rich_text {
+                        font-size: 60px;
+                    }
                 }
             }
 
@@ -64,7 +91,24 @@
                     width: 100%;
                     height: 100%;
                 }
+            }
 
+            .raceVideoDetailImageList {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                grid-gap: 12px;
+
+                .raceVideoDetailImage {
+                    width: 100%;
+                    height: auto;
+                    overflow: hidden;
+                }
+
+                video {
+                    width: 100%;
+                    height: 100%;
+                }
             }
 
             .loading,
@@ -102,9 +146,11 @@
     @media screen and (max-width: 768px) {
         .raceImageContainer {
             margin: 0 20px * 3.84;
+
             .raceImageContent {
                 margin-top: 0;
             }
+
             .raceImageDetail {
                 .raceImageDetailTitle {
                     .raceImageDetailTime {
@@ -131,6 +177,23 @@
                         height: 100%;
                     }
                 }
+                .raceVideoDetailImageList {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: repeat(1, 1fr);
+                    grid-gap: 12px * 3.84;
+
+                    .raceVideoDetailImage {
+                        width: 100%;
+                        height: auto;
+                        overflow: hidden;
+                    }
+
+                    video {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
 
                 .loading,
                 .nodata {
@@ -139,6 +202,7 @@
                     .text {
                         font-size: 16px * 3.84;
                     }
+
                     .loadingIcon {
                         width: 120px * 3.84;
                         height: 200px * 3.84;
@@ -150,6 +214,106 @@
                     }
                 }
             }
+        }
+    }
+
+    // 图片放大展示模态框样式
+    .imageModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        cursor: pointer;
+
+        .imageModalContent {
+            position: relative;
+            width: calc(100% - 100px);
+            height: calc(100% - 100px);
+            cursor: default;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .modalCloseButton {
+                position: absolute;
+                top: -40px;
+                right: 0;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 40px;
+                cursor: pointer;
+                z-index: 1001;
+                padding: 0;
+                line-height: 1;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: #ccc;
+                }
+            }
+
+            .modalPrevButton,
+            .modalNextButton {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(255, 255, 255, 0.2);
+                border: none;
+                color: white;
+                font-size: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 50px;
+                height: 80px;
+                cursor: pointer;
+                z-index: 1001;
+                padding: 10px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.4);
+                }
+            }
+
+            .modalPrevButton {
+                left: 20px;
+            }
+
+            .modalNextButton {
+                right: 20px;
+            }
+
+            .modalImageContainer {
+                position: relative;
+                width: calc(100% - 200px);
+                height: auto;
+            }
+
+            .modalImageCounter {
+                position: absolute;
+                bottom: -40px;
+                left: 50%;
+                transform: translateX(-50%);
+                color: white;
+                font-size: 16px;
+                font-family: Raleway;
+            }
+        }
+    }
+
+    // 响应式设计
+    @media screen and (max-width: 768px) {
+        .imageModal {
+            display: none;
         }
     }
 }

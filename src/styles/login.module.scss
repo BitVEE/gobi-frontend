@@ -117,6 +117,10 @@
                 align-items: center;
                 justify-content: flex-start;
                 gap: 12px;
+                a {
+                    color: #ff6a14;
+                    text-decoration: underline;
+                }
             }
 
             .getCodeButton {

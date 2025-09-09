@@ -40,15 +40,15 @@ const routerList = [
     {
         name: "partner",
         children: [
-            { name: "partnerList.partner", path: '/partner/partner' },
             { name: "partnerList.joinSchool", path: '/partner/joinSchool' },
+            { name: "partnerList.partner", path: '/partner/partner' },
         ]
     },
     {
         name: "qa",
         children: [
-            { name: "qaList.raceQa", path: '/qa/raceQa' },
-            { name: "qaList.healthQa", path: '/qa/healthQa' },
+            { name: "qaList.raceQa", path: '/qa' },
+            // { name: "qaList.healthQa", path: '/qa/healthQa' },
         ]
     },
     {
