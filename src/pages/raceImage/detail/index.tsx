@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { NewsAPI } from '@/api'
 import { formatDate } from "@/utils/tool";
 import Image from "next/image";
+import LoadingImg from "@/components/LoadingImg";
 
 const RaceImageDetail = () => {
     const router = useRouter();
@@ -16,6 +17,27 @@ const RaceImageDetail = () => {
     const { t } = useTranslation("common");
     const [loading, setLoading] = useState<boolean>(false);
     const [newsDetail, setNewsDetail] = useState<API.NewsListItem>();
+    const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+    // 监听页面宽度变化
+    useEffect(() => {
+        const handleResize = () => {
+            if (typeof window !== 'undefined' && window.innerWidth > 768) {
+                setIsMobileMenuOpen(false);
+            } else {
+                setIsMobileMenuOpen(true);
+            }
+        };
+        if (typeof window !== 'undefined') {
+            handleResize();
+            window.addEventListener('resize', handleResize);
+            return () => {
+                window.removeEventListener('resize', handleResize);
+            };
+        }
+    }, []);
 
     useEffect(() => {
         if (id) {
@@ -42,6 +64,34 @@ const RaceImageDetail = () => {
             setLoading(false);
         })
     }
+
+    const openImageModal = (index: number) => {
+        if (isMobileMenuOpen) {
+            return;
+        }
+        setCurrentImageIndex(index);
+        setIsModalOpen(true);
+    };
+
+    const closeImageModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const goToPreviousImage = () => {
+        if (newsDetail?.imageList && newsDetail.imageList.length > 0) {
+            setCurrentImageIndex((prevIndex) =>
+                prevIndex === 0 ? newsDetail.imageList.length - 1 : prevIndex - 1
+            );
+        }
+    };
+
+    const goToNextImage = () => {
+        if (newsDetail?.imageList && newsDetail.imageList.length > 0) {
+            setCurrentImageIndex((prevIndex) =>
+                prevIndex === newsDetail.imageList.length - 1 ? 0 : prevIndex + 1
+            );
+        }
+    };
 
     return (
         <div className={styles.raceImage}>
@@ -88,9 +138,10 @@ const RaceImageDetail = () => {
                                 </div>
                             </div>
                             {newsDetail?.type == 2 && <div className={styles.raceImageDetailImageList}>
-                                {newsDetail?.imageList?.map((item: any) => (
-                                    <div key={item.id} className={styles.raceImageDetailImage}>
-                                        <Image
+                                {newsDetail?.imageList?.map((item: any, index: number) => (
+                                    <div key={item.id} className={styles.raceImageDetailImage} onClick={() => openImageModal(index)}>
+                                        <LoadingImg
+                                            style={{ width: '100%', height: '100%' }}
                                             src={item.url}
                                             alt={item.url}
                                             width={400}
@@ -99,10 +150,46 @@ const RaceImageDetail = () => {
                                     </div>
                                 ))}
                             </div>}
+                            {newsDetail?.type == 3 && <div className={newsDetail?.imageList?.length > 2 ? styles.raceImageDetailImageList : styles.raceVideoDetailImageList}>
+                                {newsDetail?.imageList?.map((item: any) => (
+                                    <div key={item.id} className={styles.raceImageDetailImage}>
+                                        <video src={item.url} controls style={{ width: '100%', height: '100%' }} crossOrigin="anonymous" />
+                                    </div>
+                                ))}
+                            </div>}
                         </>
                     }
                 </div>
             </div>
+
+            {/* 图片放大展示模态框 */}
+            {isModalOpen && newsDetail?.imageList && (
+                <div className={styles.imageModal} onClick={closeImageModal}>
+                    <div className={styles.imageModalContent} onClick={(e) => e.stopPropagation()}>
+                        <button className={styles.modalCloseButton} onClick={closeImageModal}>
+                            ×
+                        </button>
+                        <button className={styles.modalPrevButton} onClick={goToPreviousImage}>
+                            ‹
+                        </button>
+                        <div className={styles.modalImageContainer}>
+                            <LoadingImg
+                                style={{ width: '100%', height: '100%' }}
+                                src={newsDetail.imageList[currentImageIndex].url}
+                                alt={newsDetail.imageList[currentImageIndex].url}
+                                width={800}
+                                height={416}
+                            />
+                        </div>
+                        <button className={styles.modalNextButton} onClick={goToNextImage}>
+                            ›
+                        </button>
+                        <div className={styles.modalImageCounter}>
+                            {currentImageIndex + 1} / {newsDetail.imageList.length}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

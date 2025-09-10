@@ -236,6 +236,7 @@ const RaceResult = () => {
                             id='searchInput'
                             placeholder={t('search')}
                             type='text'
+                            disabled={loading}
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter') {
                                     if (loading) {
@@ -243,6 +244,11 @@ const RaceResult = () => {
                                     }
                                     const input = document.getElementById('searchInput') as HTMLInputElement
                                     setKeyword(input.value)
+                                }
+                            }}
+                            onChange={(e) => {
+                                if (!e.target.value) {
+                                    setKeyword('')
                                 }
                             }}
 

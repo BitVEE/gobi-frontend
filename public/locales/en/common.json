@@ -6,7 +6,8 @@
         "notFind": "Page not found",
         "loadingText": "Loading, please wait a moment",
         "nodataText": "Sorry, at the moment there is no information. Come back soon.",
-        "loginProcessing": "Login processing, please wait a moment"
+        "loginProcessing": "Login processing, please wait a moment",
+        "siteTitle": "ULTRA GOBI"
     },
     "header": {
         "home": "Home",
@@ -23,17 +24,29 @@
             "cost": "Base Fee",
             "info": "Registration Details",
             "disclaimerTitle": "Disclaimer",
-            "disclaimerText": "Disclaimer text goes here.",
+            "disclaimerText": "以下信息仅用于被监护人提供行程安排、保险、救援等用途，未经您允许，概不对任何第三方透露。 我们建议被监护人进行健康自查，听取专业医生的意见。\n 以下情形不适宜参加活动：\n 1、先天性心脑病和风湿性心脏病、高血压和脑血管疾病、心肌炎和其他心脏病、冠状动脉病 \n 2、有慢性病史、有慢性病史现稳定期但继续参与运动时间不满三个月者；\n 3、行前一周内患感冒发烧、胸闷憋气、心悸症状连续三天以上者，严重失眠、胃肠道疾病\n 4、行前 72 小时内有外伤事故者。\n 本人确认为被监护人报名参加“第四届玄奘之路国际青少年戈壁挑战赛”活动，并发表如下声明：\n 1. 本人承诺为被监护人报名此次赛事活动，并为被监护人做全面体检，身心健康，符合户外活动的身心要求。本人所填写被监护人基本信息和病史，均真实有效且无任何隐瞒，如有出现不符或明知被监护人不符合活动要求而隐瞒导致发生意外等一切后果，由本人承担全部责任。\n 2. 本人全面知悉甲方已充分告知对参赛者的身体、装备、技术要求，并已备好充分必要的防范措施，履行了检查义务。活动期间，被监护人服从甲方及其工作人员的指挥、管理和要求，包括但不限于活动日程安排等，凡因违反甲方规定或本声明擅自行动而造成的一切后果（包括给自身或他人造成的人身或财产之伤害、侵害等）由本人承担全部责任。\n 3. 本人全面理解本次活动对于被监护人的身体和精神意志方面都有一定的要求和风险，包括在崎岖地带进行徒步活动，可能遭遇恶劣天气，可能远离城市救助和医疗服务等，本人对潜在的风险有正常的判断、预见及注意，如由于天气、地理环境发生变化，且甲方及其工作人员处置并无不当的，本人不追究甲方任何责任。\n 4. 本人理解被监护人参加本次活动时，有可能面对非活动组织因素导致的真实意外风险而受到伤害，这些风险包括但不限于交通事故、摔跤、碰撞、落石、动物袭击、水淹、雷击等意外。本人清楚获知甲方无法全面预见并控制此类风险和不利，理解以上所列的风险并不完全含括了此次活动中的所有可能的风险，并且同意免责和放弃权利并不仅限于以上所列的风险中。\n 5. 在活动过程中，如由于其他被监护人或学校老师自身原因导致对被监护人的损害或损失的，与甲方无关，本人不得追究甲方责任。\n 6. 本人同意接受甲方在活动期间为被监护人提供的现场医务治疗，服从医疗人员提出的退赛决定，如果本人隐瞒被监护人伤情或病情，导致的后果由本人自行承担。本人同意和保证，如果任何时候本人相信条件是不安全的，那么本人会立刻中断被监护人进一步参加活动。\n 7. 本人同意甲方及其工作人员有权根据天气、装备、体力等因素决定队员名单、乃至取消、变更活动计划。\n 8. 本人同意，一旦签署，此安全声明将生效。此声明同样有效于本人的继承人、近亲、执行人、管理人、个人代表和转让人。\n 9. 本人已经阅读本声明，签署目的是为甲方向本人再次明确被监护人参与户外活动的风险，提高自律能力和抗风险能力，免除一些不必要的后果，让活动更安全、更快乐。\n 10. 本人已明白无误地知悉、理解、掌握本声明的全部内容和含义并完全接受。\n 本声明的任何条款的无效、失效和不可执行不影响或不损害其他条款的有效性、生效和可执行性。",
             "disagree": "Decline",
             "agree": "Agree",
             "person": "person",
+            "agreementTitle": "Please check each item to confirm that you have read and agreed before submitting the registration form.",
             "agreement": "I have thoroughly reviewed and agree to sign",
+            "agreement1": "I have fully and accurately provided my child’s health information, medical history, psychological traits, medication, and special care needs. I accept full responsibility for any risk caused by withholding information.",
+            "agreement2": "I understand and agree that my child must follow all safety rules, schedules, and instructions during the event. The organizer may terminate participation if repeated violations or serious safety risks occur.",
+            "agreement3": "I authorize the organizer’s staff to assist with medication or medical transfer according to the established plan and notify me immediately.",
+            "agreement4": "I have provided contact information that is reachable 24/7 during the event and will ensure it remains valid.",
             "and": "and",
             "protocol1": "《Youth Gobi IV Registration Agreement》",
             "protocol2": "《Youth Gobi IV Safety Declaration》",
+            "suffix":". And understand the potential outdoor risks and countermeasures.",
             "pay": "Pay",
             "next": "Next Step",
             "requiredFields": "There are still required fields not filled in",
+            "wrongPhonenumber": "Invalid phone number format",
+            "wrongParentEmail": "Invalid parent email format",
+            "wrongParentPhonenumber": "Invalid parent phone number format",
+            "wrongGuardianPhoneNumber": "Invalid guardian phone number format",
+            "wrongEmergencyPhoneNumber": "Invalid emergency contact phone number format",
+            "wrongCredentialNumber": "Invalid ID number format",
             "noAgreement": "Please agree to the terms",
             "loginTips": "Please log in first",
             "submitting": "Submitting",
@@ -43,6 +56,7 @@
             "noPaymentMethods": "No payment methods available",
             "paying": "Processing Payment",
             "goToPay": "Go to Pay",
+            "goToHome": "Go back to home page",
             "congratulationPay": "Congratulation!",
             "goToOrderDetail": "View Order Details",
             "paySuccess": "Payment successful",
@@ -50,6 +64,8 @@
             "payFailText": "Please re-register",
             "payFailText2": "If you have any questions, please contact the organizer",
             "payFailText3": "Please re-register or contact the organizer",
+            "imgSizeError": "Maximum image size: 5MB",
+            "imgTypeError": "Please use JPG, PNG, or webp formats",
             "status": {
                 "in": "Open",
                 "registrationEnd": "Registration Ended",
@@ -57,17 +73,18 @@
                 "matchClosed": "Event Closed"
             },
             "infoList": {
-                "avatar": "Avatar",
-                "name": "Full Name",
-                "enName": "English Name",
-                "gender": "Gender",
+                "name": "Name on ID",
+                "nameTips": "(Please fill in the full name exactly as it appears on the official ID (must match the name on the ID card, passport, or other official document).",
+                "enName": "Student's English Name",
+                "gender": "Student's Gender",
                 "genderList": {
                     "male": "Male",
                     "female": "Female",
                     "other": "other"
                 },
-                "birthday": "Date of Birth",
-                "credentialType": "ID Type",
+                "birthday": "Student's Date of Birth",
+                "credentialType": "Student's ID Type",
+                "credentialTypeTips": "(Please fill in the student's ID number corresponding to the selected ID type, which is only used for insurance purchase, hotel check-in, and ticket booking)",
                 "credentialTypeList": {
                     "1": "Resident ID Card",
                     "2": "Passport",
@@ -75,21 +92,28 @@
                     "4": "Taiwan Compatriot Permit"
                 },
                 "credentialNumber": "ID Number",
-                "credentialNumberTips": "(Please provide the student's valid ID number only, used for insurance purchase, hotel check-in, and ticket booking)",
+                "credentialNumberTips1": "(Please provide the student's valid resident ID number, which is only used for insurance purchase, hotel check-in, and ticket booking)",
+                "credentialNumberTips2": "(Please provide the student's valid passport number, which is only used for insurance purchase, hotel check-in, and ticket booking)",
+                "credentialNumberTips3": "(Please provide the student's valid number of Hong Kong-Macau Return Permit, which is only used for insurance purchase, hotel check-in, and ticket booking)",
+                "credentialNumberTips4": "(Please provide the student's valid number of Taiwan Compatriot Permit, which is only used for insurance purchase, hotel check-in, and ticket booking)",
+                "credentialPhotoTips1": "Please upload the front (portrait) photo of the student resident ID card",
+                "credentialPhotoTips2": "Please upload a photo of the student passport information page",
+                "credentialPhotoTips3": "Please upload the front photo of the student's Hong Kong-Macau Return Permit",
+                "credentialPhotoTips4": "Please upload the front photo of the student's Taiwan Compatriot Permit",
                 "phoneNumber": "Phone Number",
-                "nationality": "Nationality",
+                "nationality": "Student's Nationality",
                 "city": "City of Residence",
                 "schoolName": "School Name",
                 "grade": "Current Grade",
-                "bloodType": "Blood Type",
-                "height": "Height",
-                "weight": "Weight",
-                "SizeReference": "Size Reference",
+                "bloodType": "Student's Blood Type",
+                "height": "Student's Height",
+                "weight": "Student's Weight",
+                "SizeReference": "Students's Size Reference",
                 "shirtSize": "Shirt Size",
                 "shirtsizeTips": "(Based on height in cm)",
                 "shoeSize": "Shoe Size",
                 "shoeSizeTips": "(CN or EU size accepted)",
-                "medicationRestrictions": "25.Medication Restrictions",
+                "medicationRestrictions": "Medication Restrictions",
                 "dietaryRestrictions": "Dietary Restrictions",
                 "allergyInformation": "Allergy Information",
                 "medicalHistory": "Medical History",
@@ -157,7 +181,7 @@
         "about": "About",
         "aboutList": {
             "brandStory": "Brand story",
-            "internationalGobieCenter": "International Gobie Center",
+            "internationalGobieCenter": "International Gobi Center",
             "contactUs": "Contact us"
         },
         "login": "Login",
@@ -165,7 +189,7 @@
         "personalCenter": "Personal center"
     },
     "home": {
-        "title": "The 3rd Xuanzang International Youth Gobi Challenge",
+        "title": "The Xuanzang International Youth Ultra Gobi Challenge",
         "subtitle": "ULTRA GOBI",
         "news": "News",
         "qa": "User Q&A",
@@ -183,10 +207,11 @@
         "codePlaceholder": "Please enter code",
         "codeError": "Code error",
         "getCode": "Get code",
-        "agreement": "I have read and agree to the service terms and privacy terms",
-        "agreementError": "Please agree to the service terms and privacy terms",
+        "agreement": "I have read and agree to the",
+        "userAgreement": "user registration agreement",
+        "agreementError": "Please agree to the user registration agreement",
         "useWechatLogin": "Use wechat scan login",
-        "useWechatLoginAgreement": "Wechat login means agree to the service terms and privacy terms",
+        "useWechatLoginAgreement": "Wechat login means agree to the user registration agreement",
         "login": "Login",
         "loginSuccess": "Login success"
     },
@@ -202,6 +227,13 @@
         "group": "Group",
         "raceName": "Race name",
         "status": "Status"
+    },
+    "partner": {
+        "title": "Partners",
+        "partner": "Sponsors",
+        "joinSchool": "Schools",
+        "shop": "Shop",
+        "community": "Community"
     },
     "raceResult": {
         "title": "Result query",
@@ -281,11 +313,41 @@
         "cache_error": "Cache error",
         "call_external_api_error": "Call external API error"
     },
+<<<<<<< HEAD
     "about":{
         "title": "Gobi,Action,Teamwork,service",
         "brandStory": "Brand story",
         "internationalGobieCenter": "International Gobie Center",
         "contactUs": "Contact us",
         "text": "text"
+=======
+    "qa": {
+        "raceQa": [
+            {
+                "title": "What exactly is Youth Ultra Gobi Challenge? What can children gain from it?",
+                "answer": "The Challenge is not a competition about winning or losing—it is a unique journey of growth. We designed three progressive stages—Campus Trials, City Exchange Races, and the Gobi Challenge—like stepping stones that children climb one by one. Throughout this process, they move from self-awareness, to steady growth, to learning responsibility, while internalizing qualities such as courage, teamwork, and accountability. At the same time, they interact with peers from other schools and gain a broader perspective of the world."
+            },
+            {
+                "title": "Will children really be able to finish the challenge? What if they can’t keep going?",
+                "answer": "The vast majority of children complete the challenge, thanks to tiered training beforehand: daily check-ins and a variety of training opportunities organized within the school.Combined with encouragement from classmates and teachers, children often prove more resilient than they imagine. If a child truly cannot continue, they will be taken back to camp by the rescue vehicle and cared for by medical staff. In all circumstances, the safety and health of the children come first."
+            },
+            {
+                "title": "How are accommodation and meals arranged? Will there be showers?",
+                "answer": "Accommodation: From May 1–3, students stay in large desert tents (12 per tent, separated by gender, with teachers present). On May 4, they stay in a 4-star standard hotel in Dunhuang.\nMeals: Balanced and nutritious, with local specialties, catering to different student preferences. For special dietary needs (allergies, restrictions, vegetarian, etc.), parents must indicate them during registration. The organizing committee will record them and clearly label dishes at the dining area so students can choose accordingly.\nShowers: Due to significant temperature differences between day and night in the desert, showers are not arranged at the camp, though wash-up areas are provided. Showers are available at the hotel."
+            },
+            {
+                "title": "How is safety guaranteed?",
+                "answer": "Each child will be equipped with a GPS tracker and walkie-talkie, allowing our team to monitor their location in real time. The route will have clear markers and staff stationed along the way, with medical professionals and emergency vehicles on standby. Mandatory rest points are set at supply stations to ensure timely recovery. In the event of extreme weather or emergencies, the organizing committee will immediately activate contingency plans, always prioritizing safety above all."
+            },
+            {
+                "title": "What equipment needs to be prepared?",
+                "answer": "Essential items include a hydration pack/water bottle, lightweight shell jacket, sleeping bag, headlamp, and more. Please refer to the detailed equipment list provided by the organizing committee for exact requirements."
+            },
+            {
+                "title": "If we have already registered but can’t attend, is a refund possible?",
+                "answer": "Yes, there is a clear refund and change policy outlined in the registration instructions. If circumstances change, please contact the school team leader or the organizing committee as soon as possible."
+            }
+        ]
+>>>>>>> e2f91c3905e2f9a54a15610b58cace00f1f53732
     }
 }

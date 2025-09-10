@@ -58,10 +58,19 @@ const Header = () => {
         router.push("/")
     };
 
+    const handleDropdownClick = (e: any, item: any) => {
+        if (isMobileMenuOpen) {
+            e.preventDefault();
+            dropdownOpenName === item.name ? setDropdownOpenName("") : setDropdownOpenName(item.name)
+        }
+    };
+
     return (
         <header className={styles.header} id='site-header'>
             <div className={styles.container}>
-                <Image width={150} height={58} className={styles.logo} src="/images/logo.png" alt="GOBI" />
+                <Link href="/" onClick={() => { router.push('/') }}  >
+                    <Image width={900} height={227} className={styles.logo} src="/images/logo.png" alt="GOBI" />
+                </Link>
                 <div className={styles.mobileMenuButton} onClick={toggleMobileMenu}>
                     <Image width={30} height={30} className={styles.mobileMenuIcon} src={isMobileMenuOpen ? "/images/icons/close.svg" : "/images/icons/menu.svg"} alt="menu" />
                 </div>
@@ -73,10 +82,10 @@ const Header = () => {
                                     <Link href={item.path} className={router.pathname === item.path ? styles.active : ''}>{t(`header.${item.name}` as any)}</Link>
                                 ) : (
                                     <div className={`${styles.dropdown} ${item.name === router.pathname.split('/')[1] ? styles.active : ''}`}>
-                                        <div className={styles.dropdownTrigger} onClick={() => dropdownOpenName === item.name ? setDropdownOpenName("") : setDropdownOpenName(item.name)}>
+                                        <Link href={item.children[0].path} className={styles.dropdownTrigger} onClick={(e) => handleDropdownClick(e, item)}>
                                             {t(`header.${item.name}` as any)}
                                             <div className={styles.dropdownTriggerArrow} />
-                                        </div>
+                                        </Link>
                                         <div className={`${styles.dropdownContent} ${dropdownOpenName === item.name ? styles.dropdownContentOpen : ''}`}>
                                             {item.children?.map((child) => (
                                                 <Link className={router.asPath === child.path ? styles.dropdownItemActive : styles.dropdownItem} key={child.path} href={child.path}>

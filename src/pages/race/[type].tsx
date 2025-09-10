@@ -3,6 +3,7 @@ import getLocaleProps from "@/utils/getLocaleProps";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import Image from 'next/image';
 
 import styles from './registration.module.scss'
 import PageHeader from '@/components/PageHeader';
@@ -223,12 +224,9 @@ const Registration = (props: Props) => {
                     </div>
                     <div className={styles.contact_qrcode_group}>
                         <div className={styles.contact_qrcode}>
-
+                            <Image src="/images/contactQRCode.jpg" width={250} height={250}  alt='contact'/>
                         </div>
 
-                        <div className={styles.contact_qrcode}>
-
-                        </div>
                     </div>
                 </div>
             </div>

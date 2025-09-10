@@ -63,7 +63,11 @@ export const RegistrationAPI = {
      * @param file 图片文件
      * @returns 上传结果
      */
-    uploadImage: (params: API.UploadImageParams) => http.post<API.APIResult<API.UploadImageResult>>(`${baseURL}/upload_image`, params)
+    uploadImage: (params: API.UploadImageParams) => http.post<API.APIResult<API.UploadImageResult>>(`${baseURL}/upload_file`, params, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })
 
 }
 
