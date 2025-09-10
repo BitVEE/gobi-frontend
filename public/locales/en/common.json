@@ -142,21 +142,12 @@
         },
         "raceList": {
             "race": "Race registration",
-            "notice": "Notice",
-            "changePolicy": "Change policy",
-            "qualification": "Qualification",
-            "insurance": "Insurance",
-            "fee": "Fee",
-            "rule": "Rule",
-            "schedule": "Schedule"
+            "notice": "Notice"
         },
         "raceInfo": "Race information",
         "raceInfoList": {
-            "latestNews": "Latest news",
-            "gobiStory": "Gobi story",
-            "raceIntroduction": "Race introduction",
-            "raceAgenda": "Race agenda",
-            "raceManual": "Race manual"
+            "raceNews": "Race news",
+            "gobiStory": "Gobi story"
         },
         "raceResult": "Result query",
         "raceResultList": {

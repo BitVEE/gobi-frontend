@@ -20,7 +20,7 @@ const RaceImage = () => {
     const [newsList, setNewsList] = useState<API.NewsListItem[]>([]);
 
     useEffect(() => {
-        if (tag == 'latestNews' || tag == 'gobiStory' || tag == 'raceIntroduction' || tag == 'raceAgenda' || tag == 'raceManual') {
+        if (tag == 'raceNews' || tag == 'gobiStory') {
             if (page !== 1) {
                 setPage(1);
             } else {
@@ -30,7 +30,7 @@ const RaceImage = () => {
             router.push({
                 pathname: router.pathname,
                 query: {
-                    tag: 'latestNews',
+                    tag: 'raceNews',
                 }
             })
         }
@@ -65,11 +65,8 @@ const RaceImage = () => {
             <div className={styles.raceImageContainer}>
                 <TagSelector
                     tags={[
-                        { title: t('header.raceInfoList.latestNews'), value: 'latestNews' },
-                        { title: t('header.raceInfoList.gobiStory'), value: 'gobiStory' },
-                        { title: t('header.raceInfoList.raceIntroduction'), value: 'raceIntroduction' },
-                        { title: t('header.raceInfoList.raceAgenda'), value: 'raceAgenda' },
-                        { title: t('header.raceInfoList.raceManual'), value: 'raceManual' },
+                        { title: t('header.raceInfoList.raceNews'), value: 'raceNews' },
+                        { title: t('header.raceInfoList.gobiStory'), value: 'gobiStory' }
                     ]}
                     styleType='text'
                     selectedValue={tag as string}

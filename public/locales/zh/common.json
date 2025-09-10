@@ -142,21 +142,12 @@
         },
         "raceList": {
             "race": "赛事报名",
-            "notice": "报名须知",
-            "changePolicy": "退改政策",
-            "qualification": "参赛资格",
-            "insurance": "保险说明",
-            "fee": "费用说明",
-            "rule": "赛事规则",
-            "schedule": "赛事日程"
+            "notice": "报名须知"
         },
         "raceInfo": "赛事信息",
         "raceInfoList": {
-            "latestNews": "最新资讯",
-            "gobiStory": "戈友故事",
-            "raceIntroduction": "赛事介绍",
-            "raceAgenda": "赛事章程",
-            "raceManual": "赛事手册"
+            "raceNews": "赛事资讯",
+            "gobiStory": "戈友故事"
         },
         "raceResult": "成绩查询",
         "raceResultList": {
