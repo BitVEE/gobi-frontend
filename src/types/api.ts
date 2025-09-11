@@ -326,6 +326,8 @@ declare namespace API {
         startSignUpDate?: string
         state?: number
         updatedAt?: number
+        pdfUrlEn: string
+        pdfUrlZh: string
     }
 
     type MatchInfoType = {

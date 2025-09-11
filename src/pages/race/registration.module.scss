@@ -88,7 +88,22 @@
                     font-weight: 400;
                     font-size: 18px;
                     line-height: 150%;
-                    margin-top: 24px;
+                    color: #ff6a14;
+                    margin-top: 32px;
+
+                    a {
+                        display: flex;
+                        align-items: flex-end;
+                        color: inherit;
+                        font-size: 18px;
+                        vertical-align: bottom;
+                        img {
+                            width: 24px;
+                            height: 24px;
+                            margin-right: 8px;
+                            margin-bottom: 4px;
+                        }
+                    }
                 }
             }
         }
@@ -251,7 +266,17 @@
                         font-weight: 400;
                         font-size: 40px;
                         line-height: 150%;
-                        margin-top: 24px;
+                        margin-top: 40px;
+
+                        a {
+                            font-size: 40px;
+                            img {
+                                width: 52px;
+                                height: 52px;
+                                margin-right: 16px;
+                                margin-bottom: 8px;
+                            }
+                        }
                     }
                 }
             }

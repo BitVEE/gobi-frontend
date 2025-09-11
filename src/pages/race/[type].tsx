@@ -138,9 +138,13 @@ const Registration = (props: Props) => {
                             <div className={styles.match_description_title_divider}>
                             </div>
                         </div>
-                        <div className={styles.match_description_text}
-                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'signUpNoticeZh' : 'signUpNoticeEn']) || t('registration.nodataText') }}
-                        />
+                        <div className={styles.match_description_text}>
+                            <a href={currentMatchInfo?.[i18n.language === 'zh' ? 'pdfUrlZh' : 'pdfUrlEn']} target='_blank'>
+                                <img src='/images/icons/pdf.svg' alt='pdf' />
+                                {t('registration.pdf')}
+                                {currentMatchInfo?.[i18n.language === 'zh' ? 'pdfUrlZh' : 'pdfUrlEn'].split('.').pop()}
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -150,7 +154,7 @@ const Registration = (props: Props) => {
                     </div>
                     <div className={styles.contact_qrcode_group}>
                         <div className={styles.contact_qrcode}>
-                            <Image src="/images/contactQRCode.jpg" width={250} height={250}  alt='contact'/>
+                            <Image src="/images/contactQRCode.jpg" width={250} height={250} alt='contact' />
                         </div>
                     </div>
                 </div>
