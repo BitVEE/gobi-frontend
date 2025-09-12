@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 const RaceImage = () => {
     const router = useRouter();
     const { tag } = router.query;
-    const { t } = useTranslation("common", {keyPrefix:"qa"});
+    const { t } = useTranslation("common", { keyPrefix: "qa" });
 
     const raceCards = t("cards.raceCards", { returnObjects: true });
     const healthCards = t("cards.healthCards", { returnObjects: true });
@@ -27,14 +27,11 @@ const RaceImage = () => {
                         { title: t('raceQuestions'), value: 'raceQuestions' },
                     ]}
                     styleType='text'
-                    selectedValue={tag as string}
+                    selectedValue={'raceQuestions'}
                     loading={false}
                     onChange={(value) => {
                         router.push({
-                            pathname: router.pathname,
-                            query: {
-                                tag: value,
-                            }
+                            pathname: router.pathname
                         })
                     }}
                 />
@@ -43,26 +40,16 @@ const RaceImage = () => {
                 <h2 className={styles.sectionTitle}>{t("raceQuestions")}</h2>
                 <div className={styles.sectionDivider}></div>
                 <div className={styles.cardContainer}>
-                    {Object.values(raceCards).map((item, idx) => ( 
-                        <div className={styles.card} key={idx}>
-                            <div className={styles.cardTitle}>{item.title}</div>
-                            <div className={styles.cardText}>{item.text}</div>
-                        </div>
-                    ))}
+                    {
+                        (t("raceQa", { returnObjects: true }) as Array<{ title: string, answer: string }>).map((item: { title: string; answer: string }, idx: any) => (
+                            <div className={styles.card} key={idx}>
+                                <div className={styles.cardTitle}>{item.title}</div>
+                                <div className={styles.cardText}>{item.answer}</div>
+                            </div>
+                        ))
+                    }
                 </div>
-                <h2 className={styles.sectionTitle}>{t("healthQuestions")}</h2>
-                <div className={styles.sectionDivider}></div>
-                <div className={styles.cardContainer}>
-                    {Object.values(healthCards).map((item, idx) => ( 
-                        <div className={styles.card} key={idx}>
-                            <div className={styles.cardTitle}>{item.title}</div>
-                            <div className={styles.cardText}>{item.text}</div>
-                        </div>
-                    ))}
-                </div>
-
             </div>
-
         </div>
     )
 }
