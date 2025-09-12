@@ -38,8 +38,8 @@ const routerList = [
     {
         name: "qa",
         children: [
-            { name: "qaList.raceQa", path: '/qa/raceQa' },
-            { name: "qaList.healthQa", path: '/qa/healthQa' },
+            { name: "qaList.raceQa", path: '/qa' },
+            // { name: "qaList.healthQa", path: '/qa/healthQa' },
         ]
     },
     {

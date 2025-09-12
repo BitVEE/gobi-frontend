@@ -331,6 +331,63 @@
                 "title": "If we have already registered but can’t attend, is a refund possible?",
                 "answer": "Yes, there is a clear refund and change policy outlined in the registration instructions. If circumstances change, please contact the school team leader or the organizing committee as soon as possible."
             }
-        ]
+        ],
+        "userQuestions": "User Questions",
+        "raceQuestions": "Race Questions",
+        "healthQuestions": "Health Questions",
+        "cards": {
+            "raceCards": {
+                "card1": {
+                    "title": "Race Card 1",
+                    "text": "Content for race card 1."
+                },
+                "card2": {
+                    "title": "Race Card 2",
+                    "text": "Content for race card 2."
+                },
+                "card3": {
+                    "title": "Race Card 3",
+                    "text": "Content for race card 3."
+                },
+                "card4": {
+                    "title": "Race Card 4",
+                    "text": "Content for race card 4."
+                },
+                "card5": {
+                    "title": "Race Card 5",
+                    "text": "Content for race card 5."
+                },
+                "card6": {
+                    "title": "Race Card 6",
+                    "text": "Content for race card 6."
+                }
+            },
+            "healthCards": {
+                "card1": {
+                    "title": "Health Card 1",
+                    "text": "Content for health card 1."
+                },
+                "card2": {
+                    "title": "Health Card 2",
+                    "text": "Content for health card 2."
+                },
+                "card3": {
+                    "title": "Health Card 3",
+                    "text": "Content for health card 3."
+                },
+                "card4": {
+                    "title": "Health Card 4",
+                    "text": "Content for health card 4."
+                },
+                "card5": {
+                    "title": "Health Card 5",
+                    "text": "Content for health card 5."
+                },
+                "card6": {
+                    "title": "Health Card 6",
+                    "text": "Content for health card 6."
+                }
+            }
+        }
     }
 }
