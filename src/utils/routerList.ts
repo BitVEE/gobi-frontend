@@ -32,7 +32,7 @@ const routerList = [
         name: "partner",
         children: [
             { name: "partnerList.joinSchool", path: '/partner/joinSchool' },
-            { name: "partnerList.partner", path: '/partner/partner' },
+            // { name: "partnerList.partner", path: '/partner/partner' },
         ]
     },
     {

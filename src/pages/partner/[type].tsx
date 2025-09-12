@@ -52,7 +52,7 @@ const Contributors = (props: Props) => {
                 <TagSelector
                     tags={[
                         { title: t('joinSchool'), value: 'joinSchool' },
-                        { title: t('partner'), value: 'partner' },
+                        // { title: t('partner'), value: 'partner' },
                         // { title: t('shop'), value: 2 },
                         // { title: t('community'), value: 3 }
                     ]}
@@ -82,7 +82,7 @@ const Contributors = (props: Props) => {
                 </div>
             </div>
 
-            <div className={styles.partners} id='partner'>
+            {/* <div className={styles.partners} id='partner'>
                 <div className={styles.titleBox}>
                     <div className={styles.text}>{t("partner")}</div>
                     <hr className={styles.orangeLine} />
@@ -90,7 +90,7 @@ const Contributors = (props: Props) => {
                 <div>
                     {Array.from({ length: 18 }, (_, i) => <span key={i}><div className={styles.card}></div></span>)}
                 </div>
-            </div>
+            </div> */}
 
 
         </div>
