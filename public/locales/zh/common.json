@@ -258,6 +258,7 @@
         "totalLength": "总里程",
         "totalTime": "总时间",
         "teamMember": "团队成员",
+        "detail": "详情>>",
         "rankList": {
             "PersonalTotalRank": "个人总榜",
             "MenTotalRank": "男子总榜",

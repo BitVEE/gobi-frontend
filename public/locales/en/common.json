@@ -258,6 +258,7 @@
         "totalLength": "Total length",
         "totalTime": "Total time",
         "teamMember": "Team member",
+        "detail": "Detail>>",
         "rankList": {
             "PersonalTotalRank": "Personal total rank",
             "MenTotalRank": "Men's total rank",

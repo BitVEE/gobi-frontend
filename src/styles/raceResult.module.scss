@@ -61,6 +61,20 @@
 
             .raceResultTable {
                 width: 100%;
+                .state {
+                    width: auto;
+
+                    .state_button {
+                        margin-left: 8px;
+                        padding: 0;
+                        background: none;
+                        color: #ff6a14;
+                        font-size: inherit;
+                        text-decoration: underline;
+                        border: none;
+                        cursor: pointer;
+                    }
+                }
             }
 
             .divider {
@@ -351,6 +365,14 @@
                         img {
                             width: 20px * 3.84;
                             height: 20px * 3.84;
+                        }
+                    }
+                }
+
+                .raceResultTable {
+                    .state {
+                        .state_button {
+                            margin-left: 8px * 3.84;
                         }
                     }
                 }

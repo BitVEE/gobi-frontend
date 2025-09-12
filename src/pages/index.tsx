@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import LoadingImg from "@/components/LoadingImg";
-import { NewsAPI } from "@/api";
+import { MatchAPI, NewsAPI } from "@/api";
 
 // This is the main page of the application
 // It serves as the entry point for the user interface
@@ -12,6 +12,7 @@ import { NewsAPI } from "@/api";
 import styles from '../styles/home.module.scss'
 import { useRouter } from "next/router";
 import NewsList from "@/components/newList";
+import MatchDetailCard from "@/components/MatchDetailCard";
 
 
 // The main functional component for the home page
@@ -22,6 +23,19 @@ export default function Home() {
   const [newsData, setNewsData] = useState<API.NewsLisData>();
   const [loading, setLoading] = useState(false);
   const router = useRouter()
+  const [currentMatchInfo, setCurrentMatchInfo] = useState<API.MatchesListType>()
+
+
+  const getMatchInfo = async () => {
+    const res = await MatchAPI.getMatchList({ page: 1, size: 10 })
+    if (res.data.code === 0) {
+      const data = res.data.data as API.MatchInfoType | null;
+      if (data) {
+        setCurrentMatchInfo(data.matches[0])
+      }
+
+    }
+  }
 
   const getNewsData = async () => {
     // This function would typically fetch news data from an API or database.
@@ -51,6 +65,7 @@ export default function Home() {
   useEffect(() => {
 
     getNewsData()
+    getMatchInfo()
 
   }, []);
 
@@ -62,6 +77,15 @@ export default function Home() {
         </div>
         <div className={styles.poster_subtitle}>
           {t("home.subtitle" as any)}
+        </div>
+      </div>
+
+      <div className={styles.news_container}>
+        <div className={styles.news_title}>
+          {t("header.race")}
+        </div>
+        <div className={styles.news_list}>
+          {currentMatchInfo && <MatchDetailCard pageName='home' matchDetail={currentMatchInfo} />}
         </div>
       </div>
 
