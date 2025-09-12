@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 200px;
+    padding-bottom: 100px;
 
     .tag_box {
         width: 85%;
@@ -98,6 +98,7 @@
                         color: inherit;
                         font-size: 18px;
                         vertical-align: bottom;
+
                         img {
                             width: 24px;
                             height: 24px;
@@ -123,22 +124,34 @@
                 vertical-align: middle;
                 border-bottom: 2px solid #FF6A14;
                 padding-bottom: 12px;
+                margin-bottom: 40px;
 
             }
 
             .contact_qrcode_group {
                 width: 100%;
                 display: flex;
-                align-items: center;
-                margin-top: 42px;
+                // align-items: center;
+                // justify-content: center;
 
                 .contact_qrcode {
-                    width: 250px;
-                    height: 250px;
-                    opacity: 1;
-                    // border-radius: 8px;
-                    // background-color: #E0E0E0;
-                    margin-right: 40px;
+                    // width: 150px;
+                    // height: 150px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    // justify-content: center;
+                    margin-right: 50px;
+
+                    .contact_title_box {
+                        font-size: 20px;
+                        white-space: nowrap;
+                    }
+
+                    .contact_email {
+                        margin-left: 5px;
+                        margin-top: 50px;
+                    }
                 }
             }
         }
@@ -271,6 +284,7 @@
 
                         a {
                             font-size: 40px;
+
                             img {
                                 width: 52px;
                                 height: 52px;
@@ -302,17 +316,29 @@
                 .contact_qrcode_group {
                     width: 100%;
                     display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    margin-top: 42px;
+                    // flex-direction: column;
+                    // align-items: center;
+                    // flex-wrap: wrap;
+                    margin-top: 80px;
 
                     .contact_qrcode {
                         width: 100%;
-                        height: 1000px;
+                        // height: 1000px;
                         opacity: 1;
                         border-radius: 16px;
                         margin-right: 40px;
+
+
+                        .contact_title_box {
+                            font-size: 60px;
+                            white-space: nowrap;
+                        }
+
+                        .contact_email {
+                            margin-left: 5px;
+                            margin-top: 200px;
+                            font-size: 60px;
+                        }
 
                     }
                 }

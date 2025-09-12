@@ -12,7 +12,15 @@
     "header": {
         "home": "Home",
         "race": "Race registration",
+        "email": "Email",
+        "wxQrcode": "WeChat Official Account",
         "registration": {
+            "payableTo": "Payable To:",
+            "phone": "Phone: ",
+            "addrTitle": "Commpany Address: ",
+            "nameTitle": "Commpany Name: ",
+            "commpanyName": "Xingzhi Future(Beijing) Culture and Sports Development Co., Ltd.",
+            "commpanyAddr": "Room107,Building 9 ,Kaisheng Jiayuan, Haidian District, Beijing,China",
             "place": "Venue",
             "contact": "Contact Organizer",
             "startDate": "Registration Start",

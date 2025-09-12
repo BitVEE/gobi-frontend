@@ -29,14 +29,6 @@ const Info = (props: Props) => {
     const [isPaid, setIsPaid] = useState<boolean>(false);
     const [isPaying, setIsPaying] = useState<boolean>(false);
 
-    const handlePayment = async () => {
-        // dispatch(addToast({
-        //     message: t("noPaymentMethods"),
-        //     timeout: 3000
-        // }))
-        // setIsModalOpen(true)
-    }
-
     const initPayment = async () => {
 
         try {
@@ -98,77 +90,84 @@ const Info = (props: Props) => {
         }
     }, [groupInfo, matchDetail, registrationId, token]);
 
-    useEffect(() => {
-        initPayment()
+    // useEffect(() => {
+    //     initPayment()
 
-        const onReady = (event: CustomEvent): void => {
-            // console.log(`Element is mounted: ${JSON.stringify(event.detail)}`);
-        };
+    //     const onReady = (event: CustomEvent): void => {
+    //         // console.log(`Element is mounted: ${JSON.stringify(event.detail)}`);
+    //     };
 
-        const onSuccess = (event: CustomEvent): void => {
-            console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
-            setIsPaying(true)
-            setIsModalOpen(true)
-            PaymentAPI.getPaymentResult({ matchSignUpId: Number(orderId) }).then((res: any) => {
-                console.log(res.data.intent)
-                setIsPaying(false)
-                if (res.data) {
-                    setIsPaid(true)
-                } else {
-                    setIsPaid(false)
-                }
+    //     const onSuccess = (event: CustomEvent): void => {
+    //         console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
+    //         setIsPaying(true)
+    //         setIsModalOpen(true)
+    //         PaymentAPI.getPaymentResult({ matchSignUpId: Number(orderId) }).then((res: any) => {
+    //             console.log(res.data.intent)
+    //             setIsPaying(false)
+    //             if (res.data) {
+    //                 setIsPaid(true)
+    //             } else {
+    //                 setIsPaid(false)
+    //             }
 
-            }).catch(err => {
-                setIsPaying(false)
-                setIsPaid(false)
-            })
-        };
+    //         }).catch(err => {
+    //             setIsPaying(false)
+    //             setIsPaid(false)
+    //         })
+    //     };
 
-        const onError = (event: CustomEvent) => {
-            const { error } = event.detail;
-            console.error('There is an error', error);
-            try {
-                if (error?.code === "unauthorized") {
-                    initPayment()
-                }
-            } catch (e) {
+    //     const onError = (event: CustomEvent) => {
+    //         const { error } = event.detail;
+    //         console.error('There is an error', error);
+    //         try {
+    //             if (error?.code === "unauthorized") {
+    //                 initPayment()
+    //             }
+    //         } catch (e) {
 
-            }
-        };
+    //         }
+    //     };
 
-        const domElement = document.getElementById('dropIn');
-        domElement?.addEventListener('onReady', onReady as EventListener);
-        domElement?.addEventListener('onSuccess', onSuccess as EventListener);
-        domElement?.addEventListener('onError', onError as EventListener);
-        return () => {
-            domElement?.removeEventListener('onReady', onReady as EventListener);
-            domElement?.removeEventListener('onSuccess', onSuccess as EventListener);
-            domElement?.removeEventListener('onError', onError as EventListener);
-        };
-    }, [router, orderId]);
+    //     const domElement = document.getElementById('dropIn');
+    //     domElement?.addEventListener('onReady', onReady as EventListener);
+    //     domElement?.addEventListener('onSuccess', onSuccess as EventListener);
+    //     domElement?.addEventListener('onError', onError as EventListener);
+    //     return () => {
+    //         domElement?.removeEventListener('onReady', onReady as EventListener);
+    //         domElement?.removeEventListener('onSuccess', onSuccess as EventListener);
+    //         domElement?.removeEventListener('onError', onError as EventListener);
+    //     };
+    // }, [router, orderId]);
 
     return (
         <div className={styles.pay}>
             <div className={styles.detail_box}>
                 {currentMatchInfo && <MatchDetailCard matchDetail={currentMatchInfo} groupInfo={group} />}
             </div>
-            <div className={styles.payment_methods_box} id="dropIn" style={{
+
+            {/* <div className={styles.payment_methods_box} id="dropIn" style={{
                 width: '85%',
                 margin: '48px auto',
             }}>
+            </div> */}
 
+            <div className={styles.payable_container}>
+                <div className={styles.payable_title}>
+                    {t('payableTo')}
+                </div>
+
+                <div className={styles.payable_box}>
+                    {t('nameTitle') + t('commpanyName')}
+                </div>
+
+                <div className={styles.payable_box}>
+                    {t('addrTitle') + t('commpanyAddr')}
+                </div>
+
+                <div className={styles.payable_box}>
+                    {`${t('phone')}(+86) 17788096872`} 
+                </div>
             </div>
-
-            {/* <div className={styles.payment_box}>
-                <div className={styles.cost_box}>
-                    <div className={styles.price}>
-                        {group ? `¥${group.cost}` : '¥0'}
-                    </div >
-                    <div className={styles.pay_btn} onClick={handlePayment}>
-                        {t('pay')}
-                    </div >
-                </div >
-            </div > */}
 
             <Modal
                 isOpen={isModalOpen}

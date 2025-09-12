@@ -12,7 +12,15 @@
     "header": {
         "home": "首页",
         "race": "赛事报名",
+        "email": "邮箱",
+        "wxQrcode": "微信公众号",
         "registration": {
+            "payableTo": "收款方:",
+            "phone": "电话: ",
+            "addrTitle": "公司地址: ",
+            "nameTitle": "公司名称: ",
+            "commpanyName": "行知未来（北京）文化体育发展有限公司",
+            "commpanyAddr": "北京市海淀区凯盛嘉园 9 号楼 107 室",
             "place": "赛事地点",
             "contact": "联系组委会",
             "startDate": "报名开始",
