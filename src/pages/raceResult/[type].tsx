@@ -52,9 +52,20 @@ const RaceResult = () => {
             title: t("state"),
             dataIndex: "state",
             key: "state",
-            render: (text: string, record: API.ResultRankDetailItem) => {
-                return <>{getCompletionStateByChinese(text) ? t(`completionState.${getCompletionStateByChinese(text)}` as any) : text}</>
-            }
+            render: (text: string, record: API.ResultRankDetailItem) => <div className={styles.state}>
+                {(getCompletionStateByChinese(text) ? t(`completionState.${getCompletionStateByChinese(text)}` as any) : text) as string}
+                <button className={styles.state_button} onClick={() => {
+                    router.push({
+                        pathname: "/raceResult/detail",
+                        query: {
+                            type: type,
+                            matchId: matchId,
+                            id: record.id,
+                            rankId: selectedRank,
+                        }
+                    })
+                }}>{t("detail")}</button>
+            </div>
         },
     ]
     const personalResultColumns: TableColumn[] = [
@@ -95,8 +106,20 @@ const RaceResult = () => {
             dataIndex: "state",
             key: "state",
             render: (text: string, record: API.ResultRankDetailItem) => {
-                return <>{getCompletionStateByChinese(text) ? t(`completionState.${getCompletionStateByChinese(text)}` as any) : text}</>
-
+                return <div className={styles.state}>
+                    {(getCompletionStateByChinese(text) ? t(`completionState.${getCompletionStateByChinese(text)}` as any) : text) as string}
+                    <button className={styles.state_button} onClick={() => {
+                        router.push({
+                            pathname: "/raceResult/detail",
+                            query: {
+                                type: type,
+                                matchId: matchId,
+                                id: record.id,
+                                rankId: selectedRank,
+                            }
+                        })
+                    }}>{t("detail")}</button>
+                </div>
             }
         },
     ]
@@ -290,17 +313,6 @@ const RaceResult = () => {
                             columns={type == "team" ? teamResultColumns : type == "personal" ? personalResultColumns : []}
                             dataSource={resultList}
                             setPage={setPage}
-                            rowClick={(record) => {
-                                router.push({
-                                    pathname: "/raceResult/detail",
-                                    query: {
-                                        type: type,
-                                        matchId: matchId,
-                                        id: record.id,
-                                        rankId: selectedRank,
-                                    }
-                                })
-                            }}
                         />
                     </div>
                     <div className={styles.divider} />

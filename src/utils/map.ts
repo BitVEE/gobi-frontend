@@ -105,11 +105,8 @@ export function getGenderByChinese(chineseName: string): keyof typeof GenderValu
 
 
 export const newTagMap = {
-    latestNews: "",
-    gobiStory: "戈友故事",
-    raceIntroduction: "赛事介绍",
-    raceAgenda: "赛事章程",
-    raceManual: "赛事手册",
+    raceNews: "赛事资讯",
+    gobiStory: "戈友故事"
 }
 // 通过标签获取标签名称
 export function getNewTagByName(name: string) {

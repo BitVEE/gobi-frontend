@@ -115,6 +115,27 @@
                 }
             }
 
+            .now {
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                margin-top: 24px;
+
+                .now_text {
+                    height: 40px;
+                    border-radius: 8px;
+                    background: #FF6A14;
+                    color: #fff;
+                    display: flex;
+                    padding: 8px 24px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    cursor: pointer;
+                }
+            }
+
         }
 
     }
@@ -219,6 +240,18 @@
 
                     .group_name {
                         color: #FF6A14;
+                    }
+                }
+
+                .now {
+                    font-size: 16px * 3;
+                    margin-top: 24px * 3;
+    
+                    .now_text {
+                        height: 40px * 3;
+                        border-radius: 8px * 3;
+                        padding: 8px * 3 24px * 3;
+                        gap: 10px * 3;
                     }
                 }
             }

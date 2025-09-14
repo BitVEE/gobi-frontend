@@ -12,7 +12,15 @@
     "header": {
         "home": "Home",
         "race": "Race registration",
+        "email": "Email",
+        "wxQrcode": "WeChat Official Account",
         "registration": {
+            "payableTo": "Payable To:",
+            "phone": "Phone: ",
+            "addrTitle": "Commpany Address: ",
+            "nameTitle": "Commpany Name: ",
+            "commpanyName": "Xingzhi Future(Beijing) Culture and Sports Development Co., Ltd.",
+            "commpanyAddr": "Room107,Building 9 ,Kaisheng Jiayuan, Haidian District, Beijing,China",
             "place": "Venue",
             "contact": "Contact Organizer",
             "startDate": "Registration Start",
@@ -23,6 +31,7 @@
             "group": "Category",
             "cost": "Base Fee",
             "info": "Registration Details",
+            "pdf": "Event Description PDF.",
             "disclaimerTitle": "Disclaimer",
             "disclaimerText": "以下信息仅用于被监护人提供行程安排、保险、救援等用途，未经您允许，概不对任何第三方透露。 我们建议被监护人进行健康自查，听取专业医生的意见。\n 以下情形不适宜参加活动：\n 1、先天性心脑病和风湿性心脏病、高血压和脑血管疾病、心肌炎和其他心脏病、冠状动脉病 \n 2、有慢性病史、有慢性病史现稳定期但继续参与运动时间不满三个月者；\n 3、行前一周内患感冒发烧、胸闷憋气、心悸症状连续三天以上者，严重失眠、胃肠道疾病\n 4、行前 72 小时内有外伤事故者。\n 本人确认为被监护人报名参加“第四届玄奘之路国际青少年戈壁挑战赛”活动，并发表如下声明：\n 1. 本人承诺为被监护人报名此次赛事活动，并为被监护人做全面体检，身心健康，符合户外活动的身心要求。本人所填写被监护人基本信息和病史，均真实有效且无任何隐瞒，如有出现不符或明知被监护人不符合活动要求而隐瞒导致发生意外等一切后果，由本人承担全部责任。\n 2. 本人全面知悉甲方已充分告知对参赛者的身体、装备、技术要求，并已备好充分必要的防范措施，履行了检查义务。活动期间，被监护人服从甲方及其工作人员的指挥、管理和要求，包括但不限于活动日程安排等，凡因违反甲方规定或本声明擅自行动而造成的一切后果（包括给自身或他人造成的人身或财产之伤害、侵害等）由本人承担全部责任。\n 3. 本人全面理解本次活动对于被监护人的身体和精神意志方面都有一定的要求和风险，包括在崎岖地带进行徒步活动，可能遭遇恶劣天气，可能远离城市救助和医疗服务等，本人对潜在的风险有正常的判断、预见及注意，如由于天气、地理环境发生变化，且甲方及其工作人员处置并无不当的，本人不追究甲方任何责任。\n 4. 本人理解被监护人参加本次活动时，有可能面对非活动组织因素导致的真实意外风险而受到伤害，这些风险包括但不限于交通事故、摔跤、碰撞、落石、动物袭击、水淹、雷击等意外。本人清楚获知甲方无法全面预见并控制此类风险和不利，理解以上所列的风险并不完全含括了此次活动中的所有可能的风险，并且同意免责和放弃权利并不仅限于以上所列的风险中。\n 5. 在活动过程中，如由于其他被监护人或学校老师自身原因导致对被监护人的损害或损失的，与甲方无关，本人不得追究甲方责任。\n 6. 本人同意接受甲方在活动期间为被监护人提供的现场医务治疗，服从医疗人员提出的退赛决定，如果本人隐瞒被监护人伤情或病情，导致的后果由本人自行承担。本人同意和保证，如果任何时候本人相信条件是不安全的，那么本人会立刻中断被监护人进一步参加活动。\n 7. 本人同意甲方及其工作人员有权根据天气、装备、体力等因素决定队员名单、乃至取消、变更活动计划。\n 8. 本人同意，一旦签署，此安全声明将生效。此声明同样有效于本人的继承人、近亲、执行人、管理人、个人代表和转让人。\n 9. 本人已经阅读本声明，签署目的是为甲方向本人再次明确被监护人参与户外活动的风险，提高自律能力和抗风险能力，免除一些不必要的后果，让活动更安全、更快乐。\n 10. 本人已明白无误地知悉、理解、掌握本声明的全部内容和含义并完全接受。\n 本声明的任何条款的无效、失效和不可执行不影响或不损害其他条款的有效性、生效和可执行性。",
             "disagree": "Decline",
@@ -37,7 +46,7 @@
             "and": "and",
             "protocol1": "《Youth Gobi IV Registration Agreement》",
             "protocol2": "《Youth Gobi IV Safety Declaration》",
-            "suffix":". And understand the potential outdoor risks and countermeasures.",
+            "suffix": ". And understand the potential outdoor risks and countermeasures.",
             "pay": "Pay",
             "next": "Next Step",
             "requiredFields": "There are still required fields not filled in",
@@ -142,21 +151,12 @@
         },
         "raceList": {
             "race": "Race registration",
-            "notice": "Notice",
-            "changePolicy": "Change policy",
-            "qualification": "Qualification",
-            "insurance": "Insurance",
-            "fee": "Fee",
-            "rule": "Rule",
-            "schedule": "Schedule"
+            "notice": "Notice"
         },
         "raceInfo": "Race information",
         "raceInfoList": {
-            "latestNews": "Latest news",
-            "gobiStory": "Gobi story",
-            "raceIntroduction": "Race introduction",
-            "raceAgenda": "Race agenda",
-            "raceManual": "Race manual"
+            "raceNews": "Race news",
+            "gobiStory": "Gobi story"
         },
         "raceResult": "Result query",
         "raceResultList": {
@@ -266,6 +266,7 @@
         "totalLength": "Total length",
         "totalTime": "Total time",
         "teamMember": "Team member",
+        "detail": "Detail>>",
         "rankList": {
             "PersonalTotalRank": "Personal total rank",
             "MenTotalRank": "Men's total rank",
@@ -313,14 +314,13 @@
         "cache_error": "Cache error",
         "call_external_api_error": "Call external API error"
     },
-<<<<<<< HEAD
     "about":{
         "title": "Gobi,Action,Teamwork,service",
         "brandStory": "Brand story",
         "internationalGobieCenter": "International Gobie Center",
         "contactUs": "Contact us",
         "text": "text"
-=======
+    },
     "qa": {
         "raceQa": [
             {
@@ -348,6 +348,5 @@
                 "answer": "Yes, there is a clear refund and change policy outlined in the registration instructions. If circumstances change, please contact the school team leader or the organizing committee as soon as possible."
             }
         ]
->>>>>>> e2f91c3905e2f9a54a15610b58cace00f1f53732
     }
 }

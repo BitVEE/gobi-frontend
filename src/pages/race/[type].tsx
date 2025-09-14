@@ -89,13 +89,7 @@ const Registration = (props: Props) => {
                 <TagSelector
                     tags={[
                         { title: t("race"), value: "registration" },
-                        { title: t('raceList.notice'), value: "notice" },
-                        { title: t('raceList.changePolicy'), value: "changePolicy" },
-                        { title: t('raceList.qualification'), value: "qualification" },
-                        { title: t('raceList.insurance'), value: "insurance" },
-                        { title: t('raceList.fee'), value: "fee" },
-                        { title: t('raceList.rule'), value: "rule" },
-                        { title: t('raceList.schedule'), value: "schedule" },
+                        { title: t('raceList.notice'), value: "notice" }
                     ]}
                     styleType='text'
                     selectedValue={selectedSubTitle}
@@ -144,77 +138,13 @@ const Registration = (props: Props) => {
                             <div className={styles.match_description_title_divider}>
                             </div>
                         </div>
-                        <div className={styles.match_description_text}
-                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'signUpNoticeZh' : 'signUpNoticeEn']) || t('registration.nodataText') }}
-                        />
-                    </div>
-
-                    <div className={styles.match_description_box} id='changePolicy'>
-                        <div className={styles.match_description_title}>
-                            {t('raceList.changePolicy')}
-                            <div className={styles.match_description_title_divider}>
-                            </div>
+                        <div className={styles.match_description_text}>
+                            <a href={currentMatchInfo?.[i18n.language === 'zh' ? 'pdfUrlZh' : 'pdfUrlEn']} target='_blank'>
+                                <img src='/images/icons/pdf.svg' alt='pdf' />
+                                {t('registration.pdf')}
+                                {currentMatchInfo?.[i18n.language === 'zh' ? 'pdfUrlZh' : 'pdfUrlEn'].split('.').pop()}
+                            </a>
                         </div>
-                        <div className={styles.match_description_text}
-                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'quitPolicyZh' : 'quitPolicyEn']) || t('registration.nodataText') }}
-                        />
-                    </div>
-
-
-                    <div className={styles.match_description_box} id='qualification'>
-                        <div className={styles.match_description_title}>
-                            {t('raceList.qualification')}
-                            <div className={styles.match_description_title_divider}>
-                            </div>
-                        </div>
-                        <div className={styles.match_description_text}
-                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'joinQualificationZh' : 'joinQualificationEn']) || t('registration.nodataText') }}
-                        />
-                    </div>
-
-                    <div className={styles.match_description_box} id='insurance'>
-                        <div className={styles.match_description_title}>
-                            {t('raceList.insurance')}
-                            <div className={styles.match_description_title_divider}>
-                            </div>
-                        </div>
-                        <div className={styles.match_description_text}
-                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'insuranceInfoZh' : 'insuranceInfoEn']) || t('registration.nodataText') }}
-                        />
-                    </div>
-
-                    <div className={styles.match_description_box} id='fee'>
-                        <div className={styles.match_description_title}>
-                            {t('raceList.fee')}
-                            <div className={styles.match_description_title_divider}>
-                            </div>
-                        </div>
-                        <div className={styles.match_description_text}
-                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'expenseInfoZh' : 'expenseInfoEn']) || t('registration.nodataText') }}
-                        />
-                    </div>
-
-                    <div className={styles.match_description_box} id='rule'>
-                        <div className={styles.match_description_title}>
-                            {t('raceList.rule')}
-                            <div className={styles.match_description_title_divider}>
-                            </div>
-                        </div>
-                        <div
-                            className={styles.match_description_text}
-                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'matchRulesZh' : 'matchRulesEn']) || t('registration.nodataText') }}
-                        />
-                    </div>
-
-                    <div className={styles.match_description_box} id='schedule'>
-                        <div className={styles.match_description_title}>
-                            {t('raceList.schedule')}
-                            <div className={styles.match_description_title_divider}>
-                            </div>
-                        </div>
-                        <div className={styles.match_description_text}
-                            dangerouslySetInnerHTML={{ __html: (currentMatchInfo?.[i18n.language === 'zh' ? 'matchManualZh' : 'matchManualEn']) || t('registration.nodataText') }}
-                        />
                     </div>
                 </div>
 
@@ -224,9 +154,21 @@ const Registration = (props: Props) => {
                     </div>
                     <div className={styles.contact_qrcode_group}>
                         <div className={styles.contact_qrcode}>
-                            <Image src="/images/contactQRCode.jpg" width={250} height={250}  alt='contact'/>
+                            <div className={styles.contact_title_box}>
+                                {t('wxQrcode')} 
+                            </div>
+
+                            <Image src="/images/contactQRCode.jpg" width={150} height={150} alt='contact' />
                         </div>
 
+                        <div className={styles.contact_qrcode}>
+                            <div className={styles.contact_title_box}>
+                                {t('email')}
+                            </div>
+                            <div className={styles.contact_email}>
+                                yaolan@exploring.cn
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

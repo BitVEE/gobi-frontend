@@ -3,15 +3,18 @@ import { useTranslation } from "next-i18next";
 import { useState, useEffect } from "react";
 
 import styles from './matchDetailCard.module.scss'
+import { useRouter } from 'next/router';
 
 type Props = {
     matchDetail: API.MatchesListType;
-    groupInfo?: API.MatchesGroupInfoType
+    groupInfo?: API.MatchesGroupInfoType;
+    pageName?: 'home' | 'detail';
 };
 
 const MatchDetailCard = (props: Props) => {
+    const router = useRouter()
     const { t, i18n } = useTranslation("common", { keyPrefix: "header" });
-    const { matchDetail, groupInfo } = props;
+    const { matchDetail, groupInfo, pageName } = props;
     const [matchStatus, setMatchStatus] = useState<string>()
     const [startDateStatus, setStartDateStatus] = useState<boolean>(false)
     const [endDateStatus, setEndDateStatus] = useState<boolean>(false)
@@ -82,9 +85,9 @@ const MatchDetailCard = (props: Props) => {
                         <div className={styles.title_name}>
                             {matchDetail?.[i18n.language === 'zh' ? 'nameZh' : 'nameEn']}
                         </div>
-                        <div className={styles.title_status}>
+                        {pageName !== 'home' && <div className={styles.title_status}>
                             {matchStatus}
-                        </div>
+                        </div>}
                     </div>
                     <div className={styles.text}>
                         <div className={styles.text_title}>
@@ -128,6 +131,13 @@ const MatchDetailCard = (props: Props) => {
                             </div>
                         </div>
                     </div>
+
+                    {pageName === 'home' && <div className={styles.now}>
+                        <div className={styles.now_text} onClick={() => router.push(`/race/registration`)}>
+                            {t('registration.now')}
+                        </div>
+                    </div>}
+
                     {
                         groupInfo && <div className={styles.group}>
 
