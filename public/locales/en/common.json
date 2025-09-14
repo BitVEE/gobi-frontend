@@ -314,12 +314,14 @@
         "cache_error": "Cache error",
         "call_external_api_error": "Call external API error"
     },
-    "about":{
+    "about": {
         "title": "Gobi,Action,Teamwork,service",
         "brandStory": "Brand story",
         "internationalGobieCenter": "International Gobie Center",
         "contactUs": "Contact us",
-        "text": "text"
+        "text": "text",
+        "email": "Email",
+        "wxQrcode": "WeChat Official Account"
     },
     "qa": {
         "raceQa": [

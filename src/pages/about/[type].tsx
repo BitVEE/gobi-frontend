@@ -6,10 +6,8 @@ import getLocaleProps from "@/utils/getLocaleProps"
 import { useEffect, useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import TagSelector from "@/components/TagSelector";
-import { AuthAPI } from "@/api";
-import TableComponent from "@/components/Table";
 
-type Props={};
+type Props = {};
 
 const About = (props: Props) => {
     const { t } = useTranslation("common", { keyPrefix: "about" });
@@ -46,94 +44,61 @@ const About = (props: Props) => {
     }, [type])
 
 
-    return(
+    return (
         <div className={styles.about}>
             <PageHeader title={t('title')} backgroundImage="/images/about/header.png" />
 
             <div className={styles.all}>
-                <div>
-                    <TagSelector
-                        tags={[
-                            { title: t('brandStory'), value: 'brandStory' },
-                            { title: t('internationalGobieCenter'), value: 'internationalGobieCenter' },
-                            { title: t('contactUs'), value: 'contactUs' }
-                        ]}
-                        styleType='text'
-                        selectedValue={selectedSubTitle}
-                        onChange={(value) => { router.push(`/${router.locale }/about/${value}`);  }}
-                    />
-                </div>
-
-              
-
-                
-
-
-
-                <div className={styles.partners} id='brandStory'>
-                    <div className={styles.box1}> 
-                        <div className={styles.box2}>
-                            <div className={styles.titletex}><b>{t("brandStory")}</b></div>
-                            <hr className={styles.orangeLine}/>
-                        </div>
-
-                        <div className={styles.box3}>
-                             <div className={styles.text1}>{t("text")}</div>
-                             <div className={styles.text}>{t("text")}</div>
-
-                        </div>
-
-                        <div className={styles.box3}>
-                             <div className={styles.text1}>{t("text")}</div>
-                             <div className={styles.text}>{t("text")}</div>
-
-                        </div>
-
-                         <div className={styles.box4}>
-                             <div className={styles.text1}>{t("text")}</div>
-                             <div className={styles.text}>{t("text")}</div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div className={styles.partners} id='internationalGobieCenter'>
-                    <div className={styles.box1}> 
-                        <div className={styles.box2}>
-                            <div className={styles.titletex}><b>{t("internationalGobieCenter")}</b></div>
-                            <hr className={styles.orangeLine}/>
-                        </div>
-                    </div>
-
-                    
-                </div>
-
-
-
-
-
-                
-                <div className={styles.partners} id='contactUs'>
-                   <div className={styles.box1}> 
-                        <div className={styles.box2}>
-                            <div className={styles.titletex}><b>{t("contactUs")}</b></div>
-                            <hr className={styles.orangeLine}/>
-                    </div>
-                        
-                    </div>
-                </div>
-                    {/* "cards":{
-                        "card1":{image}
-                        "crad2":{image}
-                           
-                    } */}
+                <TagSelector
+                    tags={[
+                        { title: t('brandStory'), value: 'brandStory' },
+                        { title: t('contactUs'), value: 'contactUs' }
+                    ]}
+                    styleType='text'
+                    selectedValue={selectedSubTitle}
+                    onChange={(value) => { router.push(`/${router.locale}/about/${value}`); }}
+                />
             </div>
-            
-        </div> 
-)}
-    
+
+            <div className={styles.contact_box} id='brandStory'>
+                <div className={styles.contact_title}>
+                    {t('brandStory')}
+                </div>
+                <div className={styles.story_text}>
+                    {t('brandStory')}
+                </div>
+            </div>
+
+
+            <div className={styles.contact_box} id='contactUs'>
+                <div className={styles.contact_title}>
+                    {t('contactUs')}
+                </div>
+                <div className={styles.contact_qrcode_group}>
+                    <div className={styles.contact_qrcode}>
+                        <div className={styles.contact_title_box}>
+                            {t('wxQrcode')}
+                        </div>
+
+                        <Image src="/images/contactQRCode.jpg" width={150} height={150} alt='contact' />
+                    </div>
+
+                    <div className={styles.contact_qrcode}>
+                        <div className={styles.contact_title_box}>
+                            {t('email')}
+                        </div>
+                        <div className={styles.contact_email}>
+                            yaolan@exploring.cn
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    )
+}
+
 
 
 export default About
