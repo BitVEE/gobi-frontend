@@ -69,7 +69,7 @@ const TableComponent: React.FC<TableProps> = ({ columns, dataSource, pagination,
                         </thead>
                         <tbody>
                             {dataSource.map((row) => (
-                                <tr key={row[rowKey]} className={styles.tableRow} onClick={() => rowClick?.(row)}>
+                                <tr key={row[rowKey]} className={styles.tableRow} style={rowClick ? { cursor: "pointer" } : {}} onClick={() => rowClick?.(row)}>
                                     {columns.map((column) => (
                                         <td key={`${row[rowKey]}-${column.key}`} className={styles.tableCell}>
                                             {column.render?.(row[column.dataIndex], row) ?? row[column.dataIndex]}

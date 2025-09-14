@@ -59,28 +59,28 @@
                 }
             }
 
-            .raceResultTable {
-                width: 100%;
-                .state {
-                    width: auto;
-
-                    .state_button {
-                        margin-left: 8px;
-                        padding: 0;
-                        background: none;
-                        color: #ff6a14;
-                        font-size: inherit;
-                        text-decoration: underline;
-                        border: none;
-                        cursor: pointer;
-                    }
-                }
-            }
-
             .divider {
                 width: 100%;
                 height: 2px;
                 background-color: #ff6a14;
+            }
+        }
+
+        .raceResultTable {
+            width: 100%;
+            .state {
+                width: auto;
+
+                .state_button {
+                    margin-left: 8px;
+                    padding: 0;
+                    background: none;
+                    color: #ff6a14;
+                    font-size: inherit;
+                    text-decoration: underline;
+                    border: none;
+                    cursor: pointer;
+                }
             }
         }
 
@@ -369,18 +369,19 @@
                     }
                 }
 
-                .raceResultTable {
-                    .state {
-                        .state_button {
-                            margin-left: 8px * 3.84;
-                        }
-                    }
-                }
-
                 .divider {
                     height: 2px * 3.84;
                 }
             }
+
+            .raceResultTable {
+                .state {
+                    .state_button {
+                        margin-left: 8px * 3.84;
+                    }
+                }
+            }
+
             .certificateContainer {
                 margin-top: 52px * 3.84;
 

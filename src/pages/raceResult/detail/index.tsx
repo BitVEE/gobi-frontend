@@ -87,8 +87,21 @@ const RaceResultDetail = () => {
             title: t("state"),
             dataIndex: "state",
             key: "state",
-            render: (text: string) => {
-                return <>{getCompletionStateByChinese(text) ? t(`completionState.${getCompletionStateByChinese(text)}` as any) : text}</>
+            render: (text: string, record: API.ResultMember) => {
+                return <div className={styles.state}>
+                    {(getCompletionStateByChinese(text) ? t(`completionState.${getCompletionStateByChinese(text)}` as any) : text) as string}
+                    <button className={styles.state_button} onClick={() => {
+                        router.push({
+                            pathname: "/raceResult/detail",
+                            query: {
+                                type: "personal",
+                                matchId: matchId,
+                                id: record.userId,
+                                rankId,
+                            }
+                        })
+                    }}>{t("detail")}</button>
+                </div>
             }
         },
     ]
@@ -283,19 +296,7 @@ const RaceResultDetail = () => {
                             title={t('segmentDetail')} loading={loading} columns={personalResultColumns} dataSource={personalResultList} />
                     )}
                     {type == "team" && (
-                        <TableComponent rowKey='userId'
-                            rowClick={(record) => {
-                                router.push({
-                                    pathname: "/raceResult/detail",
-                                    query: {
-                                        type: "personal",
-                                        matchId: matchId,
-                                        id: record.userId,
-                                        rankId,
-                                    }
-                                })
-                            }}
-                            title={t('teamMember')} loading={loading} columns={teamResultColumns} dataSource={teamResultList} />
+                        <TableComponent rowKey='userId' title={t('teamMember')} loading={loading} columns={teamResultColumns} dataSource={teamResultList} />
                     )}
                 </div>
                 {type == "personal" && certificateImageUrl && (
