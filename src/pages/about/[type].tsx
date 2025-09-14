@@ -41,7 +41,7 @@ const About = (props: Props) => {
             }
         }
 
-    }, [type])
+    }, [type, router])
 
 
     return (
@@ -65,7 +65,7 @@ const About = (props: Props) => {
                     {t('brandStory')}
                 </div>
                 <div className={styles.story_text}>
-                    {t('brandStory')}
+                    {t('storyDes')}
                 </div>
             </div>
 

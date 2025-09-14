@@ -23,15 +23,16 @@
             vertical-align: middle;
             border-bottom: 2px solid #FF6A14;
             padding-bottom: 12px;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
 
         }
 
         .story_text {
             font-size: 20px;
-            line-height: 32px;
+            line-height: 170%;
             color: #121212;
-            margin-bottom: 60px;
+            white-space: pre-wrap;
+            text-indent: 2em;
         }
 
         .contact_qrcode_group {
@@ -79,6 +80,7 @@
                 vertical-align: middle;
                 border-bottom: 4px solid #FF6A14;
                 padding-bottom: 24px;
+                margin-bottom: 60px;
 
             }
 
@@ -86,7 +88,7 @@
                 font-size: 60px;
                 line-height: 64px;
                 color: #121212;
-                margin-bottom: 80px;
+                line-height: 200%;
             }
 
             .contact_qrcode_group {
