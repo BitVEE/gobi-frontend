@@ -27,31 +27,40 @@ export default function Home() {
 
 
   const getMatchInfo = async () => {
-    const res = await MatchAPI.getMatchList({ page: 1, size: 10 })
-    if (res.data.code === 0) {
-      const data = res.data.data as API.MatchInfoType | null;
-      if (data) {
-        setCurrentMatchInfo(data.matches[0])
-      }
+    try {
+      const res = await MatchAPI.getMatchList({ page: 1, size: 10 })
+      if (res.data.code === 0) {
+        const data = res.data.data as API.MatchInfoType | null;
+        if (data) {
+          setCurrentMatchInfo(data.matches[0])
+        }
 
+      }
+    } catch (err) {
+      console.log(err)
     }
+
   }
 
   const getNewsData = async () => {
     // This function would typically fetch news data from an API or database.
     // For now, it returns a static array of news items.
-    setLoading(true);
-    const newsData = await NewsAPI.getNewsList({
-      type: 1,
-      page: 1,
-      size: 6,
-    });
-    if (newsData.data.code === 0) {
-      // If the API call is successful, set the news data to the state
-      setNewsData(newsData.data.data);
-    } else {
-      // If there is an error, log it to the console
-      console.error("Failed to fetch news data:", newsData.data.message);
+    try {
+      setLoading(true);
+      const newsData = await NewsAPI.getNewsList({
+        type: 1,
+        page: 1,
+        size: 6,
+      });
+      if (newsData.data.code === 0) {
+        // If the API call is successful, set the news data to the state
+        setNewsData(newsData.data.data);
+      } else {
+        // If there is an error, log it to the console
+        console.error("Failed to fetch news data:", newsData.data.message);
+      }
+    } catch (err) {
+      console.log(err)
     }
     setLoading(false);
     // Debugging: Log the fetched news data to the console
