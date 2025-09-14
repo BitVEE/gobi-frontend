@@ -1,0 +1,125 @@
+.about {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .all {
+        width: 85%;
+    }
+
+    .contact_box {
+        margin-top: 74px;
+        width: 85%;
+
+        .contact_title {
+            width: 100%;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 32px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            vertical-align: middle;
+            border-bottom: 2px solid #FF6A14;
+            padding-bottom: 12px;
+            margin-bottom: 40px;
+
+        }
+
+        .story_text {
+            font-size: 20px;
+            line-height: 32px;
+            color: #121212;
+            margin-bottom: 60px;
+        }
+
+        .contact_qrcode_group {
+            width: 100%;
+            display: flex;
+            // align-items: center;
+            // justify-content: center;
+
+            .contact_qrcode {
+                // width: 150px;
+                // height: 150px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                // justify-content: center;
+                margin-right: 50px;
+
+                .contact_title_box {
+                    font-size: 20px;
+                    white-space: nowrap;
+                }
+
+                .contact_email {
+                    margin-left: 5px;
+                    font-size: 20px;
+                    margin-top: 50px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+
+        .contact_box {
+            margin-top: 100px;
+            width: 85%;
+
+            .contact_title {
+                width: 100%;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 64px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                border-bottom: 4px solid #FF6A14;
+                padding-bottom: 24px;
+
+            }
+
+            .story_text {
+                font-size: 60px;
+                line-height: 64px;
+                color: #121212;
+                margin-bottom: 80px;
+            }
+
+            .contact_qrcode_group {
+                width: 100%;
+                display: flex;
+                // flex-direction: column;
+                // align-items: center;
+                // flex-wrap: wrap;
+                margin-top: 80px;
+
+                .contact_qrcode {
+                    width: 100%;
+                    // height: 1000px;
+                    opacity: 1;
+                    border-radius: 16px;
+                    margin-right: 40px;
+
+
+                    .contact_title_box {
+                        font-size: 60px;
+                        white-space: nowrap;
+                    }
+
+                    .contact_email {
+                        margin-left: 5px;
+                        margin-top: 200px;
+                        font-size: 60px;
+                    }
+
+                }
+            }
+        }
+    }
+
+
+}
