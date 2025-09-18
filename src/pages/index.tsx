@@ -116,16 +116,16 @@ export default function Home() {
         </div>
         <div className={styles.qa_list}>
           {
-            (t("qa.raceQa", { returnObjects: true }) as Array<{ title: string, answer: string }>).map((item: { title: string; answer: string }) => (
-              <div className={styles.qa_item} key={item.title} onClick={() => { router.push('/qa') }}>
+            (t("qa.raceQa", { returnObjects: true }) as unknown as Array<{ theme: string, content: any }>).map((item: { theme: string; content: any }, idx: any) => (
+              <div className={styles.qa_item} key={item.theme} onClick={() => { router.push('/qa') }}>
                 <Image width={24} height={24} src="/images/icons/rebot.svg" alt="rebot Icon" className={styles.qa_item_title} style={{ marginTop: '24px' }} />
                 <div className={styles.qa_item_content}>
                   <div className={styles.qa_item_q}>
                     <Image width={24} height={24} src="/images/icons/question.svg" alt="q Icon" className={styles.qa_item_title} style={{ marginRight: '16px' }} />
-                    <span>{item.title}</span>
+                    <span>{item.content[0].title}</span>
                   </div>
                   <div className={styles.qa_item_a}>
-                    {item.answer}
+                    {item.content[0].answer}
                   </div>
                 </div>
               </div>
