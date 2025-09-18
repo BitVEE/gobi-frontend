@@ -45,10 +45,13 @@ const Footer = (props: Props) => {
                     <div className={styles.followUs}>
                         {t("home.followUs")}
                         <div className={styles.iconsContainer}>
-                            <Image className={styles.icons} width={24} height={24} src="/images/icons/twitch.svg" alt="twitch" />
-                            <Image className={styles.icons} width={24} height={24} src="/images/icons/snapchat.svg" alt="twitch" />
-                            <Image className={styles.icons} width={24} height={24} src="/images/icons/facebook.svg" alt="twitch" />
-                            <Image className={styles.icons} width={24} height={24} src="/images/icons/youtube.svg" alt="twitch" />
+                            <div className={styles.qrcode}>
+                                <Image className={styles.qrcodeImg} src="/images/contactQRCode.jpg" width={150} height={150} alt='contact' />
+                                <Image className={styles.icons} width={24} height={24} src="/images/icons/wechat.svg" alt="wechat" />
+                            </div>
+                            <a href="mailto:yaolan@exploring.cn" target="_blank">
+                                <Image className={styles.icons} width={24} height={24} src="/images/icons/email.svg" alt="email" />
+                            </a>
                         </div>
                     </div>
 
