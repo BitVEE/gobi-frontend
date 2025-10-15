@@ -52,7 +52,8 @@ const About = (props: Props) => {
                 <TagSelector
                     tags={[
                         { title: t('brandStory'), value: 'brandStory' },
-                        { title: t('contactUs'), value: 'contactUs' }
+                        { title: t('creator'), value: 'creator' },
+                        { title: t('contactUs'), value: 'contactUs' },
                     ]}
                     styleType='text'
                     selectedValue={selectedSubTitle}
@@ -66,6 +67,15 @@ const About = (props: Props) => {
                 </div>
                 <div className={styles.story_text}>
                     {t('storyDes')}
+                </div>
+            </div>
+
+            <div className={styles.contact_box} id='creator'>
+                <div className={styles.contact_title}>
+                    {t('creator')}
+                </div>
+                <div className={styles.story_text}>
+                    {t('creatorName')}
                 </div>
             </div>
 

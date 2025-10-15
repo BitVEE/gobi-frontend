@@ -46,6 +46,7 @@ const routerList = [
         name: "about",
         children: [
             { name: "aboutList.brandStory", path: '/about/brandStory' },
+            { name: "aboutList.creator", path: '/about/creator' },
             // { name: "aboutList.internationalGobieCenter", path: '/about/internationalGobieCenter' },
             { name: "aboutList.contactUs", path: '/about/contactUs' },
         ]
