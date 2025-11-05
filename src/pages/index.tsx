@@ -84,9 +84,9 @@ export default function Home() {
         <div className={styles.poster_title}>
           {t("home.title" as any)}
         </div>
-        <div className={styles.poster_subtitle}>
+        {/* <div className={styles.poster_subtitle}>
           {t("home.subtitle" as any)}
-        </div>
+        </div> */}
       </div>
 
       <div className={styles.news_container}>
@@ -153,9 +153,9 @@ export default function Home() {
         <div className={styles.poster_title}>
           {t("home.title" as any)}
         </div>
-        <div className={styles.poster_subtitle}>
+        {/* <div className={styles.poster_subtitle}>
           {t("home.subtitle" as any)}
-        </div>
+        </div> */}
       </div>
 
     </div>

@@ -155,10 +155,23 @@ const Registration = (props: Props) => {
                     <div className={styles.contact_qrcode_group}>
                         <div className={styles.contact_qrcode}>
                             <div className={styles.contact_title_box}>
-                                {t('wxQrcode')} 
+                                {t('wxQrcode')}
                             </div>
-
                             <Image src="/images/contactQRCode.jpg" width={150} height={150} alt='contact' />
+                        </div>
+
+                        <div className={styles.contact_qrcode}>
+                            <div className={styles.contact_title_box} style={{marginBottom: '5px'}}>
+                                {t('adminWxQrcode')}
+                            </div>
+                            <Image src="/images/adminQRCode.png" width={140} height={140} alt='contact' />
+                        </div>
+
+                          <div className={styles.contact_qrcode}>
+                            <div className={styles.contact_title_box} style={{marginBottom: '5px'}}>
+                                {t('adminWAQrcode')}
+                            </div>
+                            <Image src="/images/adminWAQRCode.png" width={140} height={140} alt='contact' />
                         </div>
 
                         <div className={styles.contact_qrcode}>
