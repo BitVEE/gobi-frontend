@@ -54,7 +54,7 @@ const Footer = (props: Props) => {
                                 <Image className={styles.icons} width={24} height={24} src="/images/icons/wechat2.svg" alt="wechat" />
                             </div>
                             <div className={styles.qrcode}>
-                                <Image className={styles.qrcodeImg} style={{ padding: "20px 8px 8px 10px" }} src="/images/adminWAQRCode.png" width={150} height={150} alt='contact' />
+                                <Image className={styles.qrcodeImg} style={{ padding: "12px 5px 5px 10px" }} src="/images/adminWAQRCode.png" width={150} height={150} alt='contact' />
                                 <Image className={styles.icons} width={24} height={24} src="/images/icons/whatsapp.svg" alt="whatsapp" />
                             </div>
                             <a href="mailto:yaolan@exploring.cn" target="_blank">
