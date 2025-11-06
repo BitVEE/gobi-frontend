@@ -173,7 +173,7 @@
         "partner": "Partners",
         "partnerList": {
             "partner": "Partners",
-            "joinSchool": "Join school"
+            "joinSchool": "Schools"
         },
         "qa": "FAQ",
         "qaList": {
@@ -183,7 +183,7 @@
         "about": "About",
         "aboutList": {
             "brandStory": "Brand story",
-            "creator": "Creator",
+            "creator": "Founder",
             "internationalGobieCenter": "International Gobi Center",
             "contactUs": "Contact us"
         },
