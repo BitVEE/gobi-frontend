@@ -236,7 +236,9 @@
         "partner": "Sponsors",
         "joinSchool": "Schools",
         "shop": "Shop",
-        "community": "Community"
+        "community": "Community",
+        "readNews": "Read News",
+        "news": "News"
     },
     "raceResult": {
         "title": "Result query",

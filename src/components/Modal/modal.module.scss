@@ -20,14 +20,22 @@
     transform: translateY(20px);
     opacity: 0;
     animation: slideIn 0.3s ease-out 0.1s forwards;
-    width: 764px;
-    height: 537px;
     gap: 42px;
     opacity: 1;
     border-radius: 8px;
     padding: 42px;
     box-shadow: 15px 15px 15px 0px #B1AAAA40;
+}
 
+.commonModalContent {
+    width: 764px;
+    height: 537px;
+}
+
+.fullscreenModalContent {
+    width: 1000px;
+    height: 800px;
+    border-radius: 0;
 }
 
 .modalHeader {
@@ -53,6 +61,15 @@
         border-top: 3px solid #FF6A14;
         margin-top: 12px;
     }
+}
+
+.modalCloseButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 }
 
 
@@ -81,7 +98,7 @@
         transform: translateY(20px);
         opacity: 0;
         animation: slideIn 0.3s ease-out 0.1s forwards;
-        width: 90%;
+        // width: 90%;
         height: auto;
         // min-height: 1900px;
         gap: 42px;
@@ -92,18 +109,31 @@
 
     }
 
+    .commonModalContent {
+        width: 90%;
+    }
+
+    .fullscreenModalContent {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        box-shadow: none;
+
+    }
+
     .modalHeader {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 50px;
 
         h3 {
             margin: 0;
             color: #121212;
             font-weight: 700;
             font-style: Bold;
-            font-size: 48px;
+            font-size: 55px;
             line-height: 100%;
             letter-spacing: 0%;
             vertical-align: middle;
@@ -115,6 +145,15 @@
             border-top: 6px solid #FF6A14;
             margin-top: 12px;
         }
+    }
+
+    .modalCloseButton {
+        position: absolute;
+        top: 20px;
+        right: 100px;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
     }
 }
 

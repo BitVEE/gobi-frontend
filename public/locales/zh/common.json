@@ -236,7 +236,9 @@
         "partner": "合作伙伴",
         "joinSchool": "参与学校",
         "shop": "线上商城",
-        "community": "成长社区"
+        "community": "成长社区",
+        "readNews": "阅读新闻",
+        "news": "新闻"
     },
     "raceResult": {
         "title": "成绩查询",

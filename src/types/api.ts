@@ -388,4 +388,17 @@ declare namespace API {
         variants: Array<string>
     }
 
+    type SchoolListResult = {
+        data: Array<SchoolListItem>
+    }
+
+    interface SchoolListItem {
+        id: number
+        order: number
+        nameEn: string
+        nameZh: string
+        logoUrl: string
+        articleCount: number
+    }
+
 }

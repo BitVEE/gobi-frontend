@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import styles from './modal.module.scss';
 
 interface ModalProps {
@@ -7,6 +8,7 @@ interface ModalProps {
     children: React.ReactNode;
     title?: string;
     showCloseButton?: boolean;
+    isFullscreenModal?: boolean;
     isClickOutsideToClose?: boolean;
 }
 
@@ -15,7 +17,8 @@ const Modal = ({
     onClose,
     children,
     title = 'title',
-    showCloseButton = true,
+    showCloseButton = false,
+    isFullscreenModal = false,
     isClickOutsideToClose = false,
 }: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false);
@@ -39,7 +42,7 @@ const Modal = ({
     }, [isOpen]);
 
     const handleClose = () => {
-        if(!isClickOutsideToClose) return;
+        if (!isClickOutsideToClose) return;
         setIsClosing(true);
         setTimeout(() => {
             setIsClosing(false);
@@ -55,7 +58,7 @@ const Modal = ({
             onClick={handleClose}
         >
             <div
-                className={`${styles.modalContent} ${isClosing ? styles.closing : ''}`}
+                className={`${styles.modalContent} ${isFullscreenModal ? styles.fullscreenModalContent : styles.commonModalContent} ${isClosing ? styles.closing : ''}`}
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className={styles.modalHeader}>
@@ -63,7 +66,12 @@ const Modal = ({
                     <div className={styles.modalHeaderDivider}>
                     </div>
                 </div>
-
+                
+                {showCloseButton && (
+                    <div className={styles.modalCloseButton} onClick={()=>{setIsClosing(false); onClose()}}>
+                        <Image src="/images/icons/closeModal.svg" width={24} height={24} alt="Close" />
+                    </div>
+                )}
                 <div className={styles.modalBody}>
                     {children}
                 </div>
