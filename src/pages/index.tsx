@@ -13,6 +13,7 @@ import styles from '../styles/home.module.scss'
 import { useRouter } from "next/router";
 import NewsList from "@/components/newList";
 import MatchDetailCard from "@/components/MatchDetailCard";
+import SchoolList from "@/components/SchoolList";
 
 
 // The main functional component for the home page
@@ -139,13 +140,7 @@ export default function Home() {
           {t("partner.joinSchool" as any)}
         </div>
         <div className={styles.partner_list}>
-          {
-            new Array(30).fill(0).map((item, idx) => (
-              <div className={styles.partner_item} key={idx}>
-                <LoadingImg noPlaceholder src={`/images/school/${idx + 1}.png`} style={{ width: '100%', height: '100%' }} width={189} height={189} />
-              </div>
-            ))
-          }
+          <SchoolList />
         </div>
       </div>
 

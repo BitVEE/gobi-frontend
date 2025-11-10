@@ -240,10 +240,11 @@ declare namespace API {
     }
 
     interface NewsListParams {
-        type: number
+        type?: number
         page: number
         size: number
         tag?: string
+        schoolId?: number
     }
 
     type NewsListItem = {
@@ -259,6 +260,15 @@ declare namespace API {
         contentZh?: string
         extra?: object // 可选的额外字段
         imageList?: any// 可选的图片列表
+        schoolList?: School[]
+    }
+
+    type School = {
+        id: number
+        order: number
+        nameEn: string
+        nameZh: string
+        logoUrl: string
     }
 
     type NewsLisData = {

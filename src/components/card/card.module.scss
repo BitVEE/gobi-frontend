@@ -3,13 +3,13 @@
     cursor: pointer;
 
     .card_image {
-        width: 400px;
+        width: 100%;
         border-radius: 8px 8px 0 0;
         overflow: hidden;
     }
 
     .card_content {
-        width: 400px;
+        width: 100%;
         background: #f8f8f8;
         border-radius: 0 0 8px 8px;
         display: flex;
@@ -18,8 +18,24 @@
         color: #000;
 
         .card_box {
-            width: 400px;
+            width: 100%;
             padding: 24px;
+
+            .card_school {
+                height: auto;
+                width: 100%;
+                margin-bottom: 12px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+
+                .card_school_item {
+                    height: 24px;
+                    img {
+                        height: 100%;
+                    }
+                }
+            }
 
             .card_title {
                 font-weight: 700;
@@ -69,17 +85,25 @@
         border-radius: 8px * 3.84;
 
         .card_image {
-            width: 335px * 3.84;
+            width: 100%;
             border-radius: 8px * 3.84 8px * 3.84 0 0;
         }
 
         .card_content {
-            width: 335px * 3.84;
+            width: 100%;
             border-radius: 0 0 8px * 3.84 8px * 3.84;
 
             .card_box {
-                width: 335px * 3.84;
+                width: 100%;
                 padding: 24px * 3.84;
+                .card_school {
+                    margin-bottom: 12px * 3.84;
+                    gap: 8px * 3.84;
+
+                    .card_school_item {
+                        height: 24px * 3.84;
+                    }
+                }
 
                 .card_title {
                     font-size: 18px * 3.84;

@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styles from './modal.module.scss';
+import { useTranslation } from 'next-i18next';
 
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
+    onBack?: () => void;
     children: React.ReactNode;
     title?: string;
     showCloseButton?: boolean;
@@ -20,7 +22,9 @@ const Modal = ({
     showCloseButton = false,
     isFullscreenModal = false,
     isClickOutsideToClose = false,
+    onBack,
 }: ModalProps) => {
+    const { t } = useTranslation("common");
     const [isClosing, setIsClosing] = useState(false);
 
     useEffect(() => {
@@ -61,14 +65,22 @@ const Modal = ({
                 className={`${styles.modalContent} ${isFullscreenModal ? styles.fullscreenModalContent : styles.commonModalContent} ${isClosing ? styles.closing : ''}`}
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className={styles.modalHeader}>
+                {title ? <div className={styles.modalHeader}>
                     <h3>{title}</h3>
                     <div className={styles.modalHeaderDivider}>
                     </div>
-                </div>
-                
+                </div> : onBack && (
+                    <div className={styles.modalBackButton} onClick={() => { setIsClosing(false); onBack() }}>
+                        <h3>
+                            <Image src="/images/icons/arrow-left.svg" width={24} height={24} alt="Back" />
+                            {t('common.back')}
+                        </h3>
+                        <div className={styles.modalHeaderDivider} />
+                    </div>
+                )}
+
                 {showCloseButton && (
-                    <div className={styles.modalCloseButton} onClick={()=>{setIsClosing(false); onClose()}}>
+                    <div className={styles.modalCloseButton} onClick={() => { setIsClosing(false); onClose() }}>
                         <Image src="/images/icons/closeModal.svg" width={24} height={24} alt="Close" />
                     </div>
                 )}

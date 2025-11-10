@@ -8,21 +8,24 @@ type Props = {
     text?: string;
     imgSrc?: string;
     link?: string;
+    showSchoolList?: boolean;
+    schoolList?: API.School[];
+    clickItem?: () => void;
 };
 
-const Card = ({ title = "", text = "", imgSrc = "/images/home/poster.png", link }: Props) => {
+const Card = ({ title = "", text = "", imgSrc = "/images/home/poster.png", link, showSchoolList = true, schoolList, clickItem = () => { } }: Props) => {
     const router = useRouter()
     const [isHovered, setIsHovered] = useState(false);
 
 
     return (
-        <div className={styles.card}  onClick={() => link && router.push(link)}>
+        <div className={styles.card} onClick={() => (link && router.push(link)) || clickItem()}>
             <div>
                 <div className={styles.card_image}>
                     <LoadingImg
-                        style={{ width: "auto", height: "100%",
-                        aspectRatio: 4 / 3,
-                        objectFit: "cover" }}
+                        style={showSchoolList ?
+                            { width: "auto", height: "100%", aspectRatio: 4 / 3, objectFit: "cover" } :
+                            { width: "auto", height: "100%", aspectRatio: 4 / 1.1, objectFit: "cover" }}
                         src={imgSrc}
                         alt={imgSrc}
                         width={400}
@@ -32,6 +35,15 @@ const Card = ({ title = "", text = "", imgSrc = "/images/home/poster.png", link 
             </div>
             <div className={styles.card_content} style={{ backgroundColor: isHovered ? "#FF6A14" : "#F8F8F8", color: isHovered ? "#FFFFFF" : "#121212" }} onTouchStartCapture={() => setIsHovered(true)} onTouchEndCapture={() => setIsHovered(false)} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
                 <div className={styles.card_box}>
+                    {showSchoolList && schoolList && schoolList?.length > 0 && (
+                        <div className={styles.card_school}>
+                            {schoolList?.map((school) => (
+                                <div key={school.id} className={styles.card_school_item}>
+                                    <img src={school.logoUrl} alt={school.nameZh} />
+                                </div>
+                            ))}
+                        </div>
+                    )}
                     <div className={styles.card_title}>
                         {title}
                     </div>

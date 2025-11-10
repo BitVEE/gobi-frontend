@@ -5,9 +5,7 @@ import getLocaleProps from "@/utils/getLocaleProps"
 import { useEffect, useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import TagSelector from "@/components/TagSelector";
-import LoadingImg from '@/components/LoadingImg';
-import { SchoolAPI } from "@/api";
-import Modal from '@/components/Modal';
+import SchoolList from '@/components/SchoolList';
 
 type Props = {};
 
@@ -18,13 +16,8 @@ const Contributors = (props: Props) => {
     const [selectedSubTitle, setSelectedSubTitle] = useState<string | number>(
         typeof type === 'string' ? type : ''
     );
-    const [schoolList, setSchoolList] = useState<API.SchoolListResult['data']>([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [school, setSchool] = useState<API.SchoolListItem>({} as API.SchoolListItem);
-
 
     useEffect(() => {
-        fetchSchoolList()
         if (type) {
             if (typeof type === 'string') {
                 setSelectedSubTitle(type)
@@ -48,23 +41,6 @@ const Contributors = (props: Props) => {
         }
 
     }, [router])
-
-
-    const fetchSchoolList = async () => {
-        const result = await SchoolAPI.getSchoolList();
-        console.log(result.data);
-        if (result.data.code === 0) {
-            setSchoolList(result.data.data.data);
-        } else {
-            console.error("Failed to fetch school list:", result.data.msg);
-        }
-    }
-
-    const handleNews = (school: API.SchoolListItem) => {
-        setIsModalOpen(true);
-        console.log(school);
-        setSchool(school);
-    }
 
 
     return (
@@ -94,52 +70,8 @@ const Contributors = (props: Props) => {
                     <div className={styles.text}>{t("joinSchool")}</div>
                     <hr className={styles.orangeLine} />
                 </div>
-                <div className={styles.partner_list}>
-                    {schoolList.length > 0 ? schoolList.map((item) => (
-                        <div className={styles.partner_item} key={item.id}>
-                            <LoadingImg noPlaceholder src={item.logoUrl} style={{ width: '100%', height: '100%' }} width={189} height={189} alt={item.nameEn} />
-                            {
-                                item.articleCount > 0 ?
-                                    <div className={styles.read_btn} onClick={() => handleNews(item)}>{t("readNews")}</div>
-                                    :
-                                    <></>
-                            }
-                        </div>
-                    )) :
-                        <></>
-                        // new Array(30).fill(0).map((item, idx) => (
-                        //     <div className={styles.partner_item} key={idx}>
-                        //         <LoadingImg noPlaceholder src={`/images/school/${idx + 1}.png`} style={{ width: '100%', height: '100%' }} width={189} height={189} />
-                        //     </div>
-                        // ))
-                    }
-                </div>
+                <SchoolList />
             </div>
-
-            {/* <div className={styles.partners} id='partner'>
-                <div className={styles.titleBox}>
-                    <div className={styles.text}>{t("partner")}</div>
-                    <hr className={styles.orangeLine} />
-                </div>
-                <div>
-                    {Array.from({ length: 18 }, (_, i) => <span key={i}><div className={styles.card}></div></span>)}
-                </div>
-            </div> */}
-
-
-            <Modal
-                isOpen={isModalOpen}
-                showCloseButton={true}
-                isFullscreenModal={true}
-                onClose={() => setIsModalOpen(false)}
-                title={t('news')}
-            >
-                <div className={styles.modal_content}>
-                    <div className={styles.news_school}>
-                        <LoadingImg noPlaceholder src={school.logoUrl} style={{ width: '100%', height: '100%' }} width={189} height={189} alt={school.nameEn} />
-                    </div>
-                </div>
-            </Modal>
         </div>
     )
 }
