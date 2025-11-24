@@ -109,9 +109,12 @@ const Registration = (props: Props) => {
                                         <div className={styles.cell_title}>
                                             {group?.[i18n.language === 'zh' ? 'nameZh' : 'nameEn'] || t('registration.nodataText')}
                                         </div>
-                                        <div className={styles.cell_price}>
-                                            {`¥${group.cost}/${t('registration.person')}`}
-                                        </div>
+                                        {
+                                            group?.cost > 0 &&
+                                            <div className={styles.cell_price}>
+                                                {`¥${group.cost}/${t('registration.person')}`}
+                                            </div>
+                                        }
                                         <div className={styles.cell_btn} onClick={() => {
                                             if (token) { setIsModalOpen(true); setCurrentGroup(group) } else {
                                                 dispatch(addToast({
@@ -161,14 +164,14 @@ const Registration = (props: Props) => {
                         </div>
 
                         <div className={styles.contact_qrcode}>
-                            <div className={styles.contact_title_box} style={{marginBottom: '5px'}}>
+                            <div className={styles.contact_title_box} style={{ marginBottom: '5px' }}>
                                 {t('adminWxQrcode')}
                             </div>
                             <Image src="/images/adminQRCode.png" width={140} height={140} alt='contact' />
                         </div>
 
-                          <div className={styles.contact_qrcode}>
-                            <div className={styles.contact_title_box} style={{marginBottom: '5px'}}>
+                        <div className={styles.contact_qrcode}>
+                            <div className={styles.contact_title_box} style={{ marginBottom: '5px' }}>
                                 {t('adminWAQrcode')}
                             </div>
                             <Image src="/images/adminWAQRCode.png" width={140} height={140} alt='contact' />
