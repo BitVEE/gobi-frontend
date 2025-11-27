@@ -240,6 +240,33 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
         );
     };
 
+    //视频播放函数
+    const viewVideo = (item: any) => {
+        const extractYouTubeVideoId = (url: string) => {
+            const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+            const match = url.match(regex);
+            return match ? match[1] : null;
+        };
+        const videoId = extractYouTubeVideoId(item.url);
+
+        return !videoId ?
+            <video
+                src={item.url}
+                controls
+                style={{ width: '100%', height: '100%' }}
+                crossOrigin="anonymous"
+            /> : <iframe
+                src={`https://www.youtube.com/embed/${videoId}`}
+                title={videoId}
+                frameBorder="0"
+                allowFullScreen
+                style={{
+                    width: '100%',
+                    height: '100%',
+                }}
+            />
+    };
+
     // 渲染视频列表（type=3）
     const renderVideoList = () => {
         const videoList = newsDetail?.imageList || [];
@@ -249,12 +276,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
             <div className={gridClass}>
                 {videoList.map((item: any) => (
                     <div key={item.id} className={styles.newsDetailVideo}>
-                        <video
-                            src={item.url}
-                            controls
-                            style={{ width: '100%', height: '100%' }}
-                            crossOrigin="anonymous"
-                        />
+                        {viewVideo(item)}
                     </div>
                 ))}
             </div>
