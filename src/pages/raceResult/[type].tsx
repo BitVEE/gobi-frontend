@@ -19,6 +19,7 @@ const RaceResult = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
     const [total, setTotal] = useState<number>(0);
+    const [matchList, setMatchList] = useState<API.MatchesListType[]>([]);
     const [matchId, setMatchId] = useState<number>(0);
     const teamResultColumns: TableColumn[] = [
         {
@@ -145,6 +146,7 @@ const RaceResult = () => {
                     setMatchId(data.matches[0].id)
                     setGroupList(data.matches[0].groups)
                     setSelectedGroup(data.matches[0].groups[0].id)
+                    setMatchList(data.matches)
                 } catch (error) {
                     console.log(error)
                 }
@@ -254,54 +256,89 @@ const RaceResult = () => {
                     }}
                 />
                 <div className={styles.raceResultContent}>
-                    {matchId > 0 && <div className={styles.searchBox}>
-                        <input
-                            id='searchInput'
-                            placeholder={t('search')}
-                            type='text'
-                            disabled={loading}
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter') {
-                                    if (loading) {
-                                        return
+                    <div className={styles.raceResultFilter}>
+                        {matchId > 0 && <div className={styles.searchBox}>
+                            <input
+                                id='searchInput'
+                                placeholder={t('search')}
+                                type='text'
+                                disabled={loading}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        if (loading) {
+                                            return
+                                        }
+                                        const input = document.getElementById('searchInput') as HTMLInputElement
+                                        setKeyword(input.value)
                                     }
-                                    const input = document.getElementById('searchInput') as HTMLInputElement
-                                    setKeyword(input.value)
+                                }}
+                                onChange={(e) => {
+                                    if (!e.target.value) {
+                                        setKeyword('')
+                                    }
+                                }}
+                            />
+                            <button onClick={() => {
+                                if (loading) {
+                                    return
                                 }
-                            }}
-                            onChange={(e) => {
-                                if (!e.target.value) {
-                                    setKeyword('')
-                                }
-                            }}
+                                const input = document.getElementById('searchInput') as HTMLInputElement
+                                setKeyword(input.value)
+                            }}>
+                                <Image width={20} height={20} src="/images/icons/search.svg" alt="search" />
+                            </button>
+                        </div>}
 
-                        />
-                        <button onClick={() => {
-                            if (loading) {
-                                return
-                            }
-                            const input = document.getElementById('searchInput') as HTMLInputElement
-                            setKeyword(input.value)
-                        }}>
-                            <Image width={20} height={20} src="/images/icons/search.svg" alt="search" />
-                        </button>
-                    </div>}
-                    {groupList?.length > 0 && <TagSelector
-                        loading={loading}
-                        tags={groupList.map(item => ({ title: locale == "en" ? item.nameEn : item.nameZh, value: item.id }))}
-                        styleType="outlined"
-                        selectedValue={selectedGroup}
-                        title={t('group')}
-                        onChange={(value) => {
-                            setSelectedGroup(Number(value))
-                        }}
-                    />}
+                        <form className={styles.raceResultFilterItem}>
+                            {matchList?.length > 0 && (
+                                <label htmlFor="matchSelect" className={styles.selectContainer}>
+                                    <Image className={styles.selectIconLeft} width={20} height={20} src="/images/icons/calendar.svg" alt="select" />
+                                    <select
+                                        id="matchSelect"
+                                        value={matchId}
+                                        disabled={loading}
+                                        onChange={(e) => {
+                                            setMatchId(Number(e.target.value))
+                                        }}
+                                        className={styles.select}
+                                    >
+                                        {matchList.map(item => (
+                                            <option key={item.id} value={item.id}>
+                                                {locale === "en" ? item.nameEn || "" : item.nameZh || ""}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <Image className={styles.selectIconRight} width={20} height={20} src="/images/icons/arrow-down-black.svg" alt="select" />
+                                </label>
+                            )}
+                            {groupList?.length > 0 && (
+                                <label htmlFor="groupSelect" className={styles.selectContainer}>
+                                    <Image className={styles.selectIconLeft} width={20} height={20} src="/images/icons/people.svg" alt="select" />
+                                    <select
+                                        id="groupSelect"
+                                        value={selectedGroup}
+                                        disabled={loading}
+                                        onChange={(e) => {
+                                            setSelectedGroup(Number(e.target.value))
+                                        }}
+                                        className={styles.select}
+                                    >
+                                        {groupList.map(item => (
+                                            <option key={item.id} value={item.id}>
+                                                {locale === "en" ? item.nameEn : item.nameZh}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <Image className={styles.selectIconRight} width={20} height={20} src="/images/icons/arrow-down-black.svg" alt="select" />
+                                </label>
+                            )}
+                        </form>
+                    </div>
                     {rankList?.length > 0 && <TagSelector
                         loading={loading}
                         tags={rankList.map(item => ({ title: getRankTypeByChinese(item.name) ? t(`rankList.${getRankTypeByChinese(item.name)}` as any) as string : item.name, value: item.id }))}
                         styleType="outlined"
                         selectedValue={selectedRank}
-                        title={t('rank')}
                         onChange={(value) => {
                             setSelectedRank(Number(value))
                         }}
