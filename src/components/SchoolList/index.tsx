@@ -129,7 +129,7 @@ const SchoolList: React.FC<SchoolListProps> = () => {
                                 objectFit: "contain",
                             }} width={500} height={300} alt={item.nameEn} />
                             {item.articleCount > 0 &&
-                                <div style={{ fontSize: "12px", height: "20px", lineHeight: "20px", width: "20px", textAlign: "center" }} className={styles.order}>{item.order}</div>
+                                <div style={{ fontSize: "12px", height: "20px", lineHeight: "20px", width: "20px", textAlign: "center" }} className={styles.order}>{item.articleCount}</div>
                             }
                             {item.articleCount > 0 &&
                                 <div className={styles.overlay} onClick={() => handleNews(item)}>
