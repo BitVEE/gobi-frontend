@@ -1,35 +1,66 @@
 .partner_list {
     width: 100%;
-    display: flex;
+    display: grid;
+    gap: 32px;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
     margin-top: 20px;
 
     .partner_item {
-        width: 189px;
-        height: 129px;
-        opacity: 1;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        padding: 10px;
+        position: relative;
+        background-color: #fff;
+        aspect-ratio: 3 / 2;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        font-size: 0;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        margin-top: 20px;
-        --width: 189px;
-        --height: 84px;
+        justify-content: center;
 
-        .read_btn {
-            width: 111px;
-            height: 32px;
+        .order {
+            font-family: sans-serif;
+            position: absolute;
+            top: 10px;
+            right: 10px;
             background-color: #ff6a14;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            font-size: 12px;
-            cursor: pointer;
+            color: #fff;
+            border-radius: 50%;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-end;
+            justify-content: flex-end;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+
+            .read_btn {
+                padding: 10px;
+                color: #ff6a14;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+
+                .arrow {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    .partner_item_hover {
+        @extend .partner_item;
+        border-color: #ff6a14;
+        .overlay {
+            left: 0;
         }
     }
 }
@@ -95,30 +126,16 @@
 @media (max-width: 768px) {
     .partner_list {
         margin-bottom: 100px;
+        gap: 32px * 3.84;
+        margin-top: 20px * 3.84;
 
         .partner_item {
-            width: 600px;
-            height: 400px;
-            margin-top: 52px;
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            --width: 600px;
-            --height: 300px;
+            padding: 10px * 3.84;
+            border-width: 1px * 3.84;
 
-            .read_btn {
-                width: 350px;
-                height: 90px;
-                background-color: #ff6a14;
-                border-radius: 16px;
-                color: white;
-                font-weight: bold;
-                font-size: 36px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            .order {
+                right: 10px * 3.84;
+                top: 10px * 3.84;
             }
         }
     }

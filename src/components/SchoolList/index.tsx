@@ -23,6 +23,7 @@ const SchoolList: React.FC<SchoolListProps> = () => {
     const [newsList, setNewsList] = useState<API.NewsListItem[]>([]);
     const [isNewsDetailModalOpen, setIsNewsDetailModalOpen] = useState(false);
     const [newsId, setNewsId] = useState<string | number>('');
+    const [isHoveredIndex, setIsHoveredIndex] = useState<number>(-1);
 
     const fetchSchoolList = async () => {
         if (loadingSchoolList) {
@@ -113,15 +114,30 @@ const SchoolList: React.FC<SchoolListProps> = () => {
                     />
                     <div className={styles.text}>{t('common.loadingText')}</div>
                 </div>
-                : <div className={styles.partner_list}>
+                : <div
+                    className={styles.partner_list} style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(285px, 1fr))' }}
+                    onMouseLeave={() => setIsHoveredIndex(-1)}>
                     {schoolList.length > 0 ? schoolList.map((item) => (
-                        <div className={styles.partner_item} key={item.id}>
-                            <LoadingImg noPlaceholder src={item.logoUrl} style={{ width: "var(--width)", height: "var(--height)", objectFit: "contain" }} width={500} height={300} alt={item.nameEn} />
-                            {
-                                item.articleCount > 0 ?
-                                    <div className={styles.read_btn} onClick={() => handleNews(item)}>{t("partner.readNews")}</div>
-                                    :
-                                    <></>
+                        <div
+                            className={isHoveredIndex == item.id ? styles.partner_item_hover : styles.partner_item}
+                            style={{ borderRadius: 8 }} key={item.id}
+                            onMouseEnter={() => setIsHoveredIndex(item.id)}
+                            onTouchStart={() => setIsHoveredIndex(item.id)}
+                        >
+                            <LoadingImg noPlaceholder src={item.logoUrl} style={{
+                                aspectRatio: 3 / 2,
+                                objectFit: "contain",
+                            }} width={500} height={300} alt={item.nameEn} />
+                            {item.articleCount > 0 &&
+                                <div style={{ fontSize: "12px", height: "20px", lineHeight: "20px", width: "20px", textAlign: "center" }} className={styles.order}>{item.order}</div>
+                            }
+                            {item.articleCount > 0 &&
+                                <div className={styles.overlay} onClick={() => handleNews(item)}>
+                                    <div className={styles.read_btn} style={{ fontSize: "14px", padding: "10px" }} >
+                                        {t("partner.readNews")}
+                                        <Image className={styles.arrow} src="/images/icons/arrow-left.svg" width={14} height={14} alt="Back" />
+                                    </div>
+                                </div>
                             }
                         </div>
                     )) :
