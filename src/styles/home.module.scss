@@ -12,7 +12,7 @@
 
         .poster_title {
             position: absolute;
-            top: 50%;
+            top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
@@ -23,6 +23,7 @@
             letter-spacing: 0%;
             text-align: center;
             vertical-align: middle;
+            white-space: nowrap;
         }
 
         .poster_subtitle {
@@ -152,20 +153,7 @@
         .partner_list {
             width: 90%;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
             margin: 0 0 30px 0;
-
-            .partner_item {
-                width: 189px;
-                height: 189px;
-                opacity: 1;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
         }
     }
 
@@ -184,6 +172,7 @@
                 letter-spacing: 0%;
                 text-align: center;
                 vertical-align: middle;
+                white-space: inherit;
             }
 
             .poster_subtitle {
@@ -254,17 +243,6 @@
 
             .partner_list {
                 margin-bottom: 100px;
-
-                .partner_item {
-                    width: 400px;
-                    height: 400px;
-                    margin-top: 52px;
-                    border-radius: 16px;
-
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
             }
         }
     }

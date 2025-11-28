@@ -5,7 +5,7 @@ import getLocaleProps from "@/utils/getLocaleProps"
 import { useEffect, useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import TagSelector from "@/components/TagSelector";
-import LoadingImg from '@/components/LoadingImg';
+import SchoolList from '@/components/SchoolList';
 
 type Props = {};
 
@@ -16,7 +16,6 @@ const Contributors = (props: Props) => {
     const [selectedSubTitle, setSelectedSubTitle] = useState<string | number>(
         typeof type === 'string' ? type : ''
     );
-
 
     useEffect(() => {
         if (type) {
@@ -71,28 +70,8 @@ const Contributors = (props: Props) => {
                     <div className={styles.text}>{t("joinSchool")}</div>
                     <hr className={styles.orangeLine} />
                 </div>
-                <div className={styles.partner_list}>
-                    {
-                        new Array(30).fill(0).map((item, idx) => (
-                            <div className={styles.partner_item} key={idx}>
-                                <LoadingImg noPlaceholder src={`/images/school/${idx + 1}.png`} style={{ width: '100%', height: '100%' }} width={189} height={189} />
-                            </div>
-                        ))
-                    }
-                </div>
+                <SchoolList />
             </div>
-
-            {/* <div className={styles.partners} id='partner'>
-                <div className={styles.titleBox}>
-                    <div className={styles.text}>{t("partner")}</div>
-                    <hr className={styles.orangeLine} />
-                </div>
-                <div>
-                    {Array.from({ length: 18 }, (_, i) => <span key={i}><div className={styles.card}></div></span>)}
-                </div>
-            </div> */}
-
-
         </div>
     )
 }

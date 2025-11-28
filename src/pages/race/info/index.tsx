@@ -264,12 +264,15 @@ const Info = (props: Props) => {
                     </div>
                 </div>
 
-                <div className={styles.cell_content}>
-                    <div className={styles.cell_name}>
-                        {t('cost')}
+                {
+                    group?.cost > 0 &&
+                    <div className={styles.cell_content}>
+                        <div className={styles.cell_name}>
+                            {t('cost')}
+                        </div>
+                        <div className={styles.group_name}>{`¥${group?.cost}/${t('person')}`}</div>
                     </div>
-                    <div className={styles.group_name}>{`¥${group?.cost}/${t('person')}`}</div>
-                </div>
+                }
             </div>
 
             <div className={styles.group_box}>
@@ -817,7 +820,7 @@ const Info = (props: Props) => {
 
                 <div className={styles.cost_box}>
                     <div className={styles.price}>
-                        {group ? `¥${group.cost}` : '¥0'}
+                        {group && group.cost > 0 ? `¥${group.cost}` : ''}
                     </div >
                     <div className={styles.pay_btn} onClick={handleNext}>
                         {t('next')}

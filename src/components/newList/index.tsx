@@ -11,12 +11,14 @@ import { formatDate } from '@/utils/tool';
 
 
 interface NewsListProps {
+    showSchoolList?: boolean;
     newsList: API.NewsListItem[];
     loading: boolean;
     page?: number;
     total?: number;
     pageSize?: number;
     onPageChange?: (page: number) => void;
+    clickItem?: (id: number) => void;
 }
 
 const NewsList: React.FC<NewsListProps> = ({
@@ -26,6 +28,8 @@ const NewsList: React.FC<NewsListProps> = ({
     total,
     pageSize = 9,
     onPageChange,
+    showSchoolList = true,
+    clickItem = (id: number) => { },
 }) => {
     const { t } = useTranslation("common");
     const { locale } = useRouter();
@@ -57,15 +61,18 @@ const NewsList: React.FC<NewsListProps> = ({
                 </div>
             )}
             {!loading && newsList.length > 0 && (
-                <div className={styles.news_list_wrapper}>
+                <div className={showSchoolList ? styles.news_list_wrapper : styles.news_list_wrapper_no_school}>
                     {
                         newsList.map((item) => (
                             <Card
                                 key={item.id}
+                                showSchoolList={showSchoolList}
+                                schoolList={item.schoolList}
                                 title={locale === 'zh' ? item.titleZh : item.titleEn}
                                 text={formatDate(Number(item.createdAt) * 1000)}
                                 imgSrc={item.coverUrl}
-                                link={item.type == 1 ? "/raceInfo/detail?id=" + item.id : "/raceImage/detail?id=" + item.id}
+                                link={showSchoolList ? item.type == 1 ? "/raceInfo/detail?id=" + item.id : "/raceImage/detail?id=" + item.id : ""}
+                                clickItem={() => clickItem(item.id)}
                             />
                         ))
                     }

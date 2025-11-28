@@ -34,7 +34,13 @@ const RaceImage = () => {
                 }
             })
         }
-    }, [tag, page]);
+    }, [tag]);
+
+    useEffect(() => {
+        if (page !== 0 && (tag == 'raceNews' || tag == 'gobiStory')) {
+            getNewsList();
+        }
+    }, [page]);
 
 
 

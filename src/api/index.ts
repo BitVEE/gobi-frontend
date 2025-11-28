@@ -85,6 +85,10 @@ export const PaymentAPI = {
 
 }
 
+export const SchoolAPI = {
+    getSchoolList: () => http.get<API.APIResult<API.SchoolListResult>>(`${baseURL}/school/list`),
+}
+
 /**
  * 成绩相关API
  */

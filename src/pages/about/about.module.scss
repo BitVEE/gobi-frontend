@@ -40,6 +40,7 @@
             display: flex;
             // align-items: center;
             // justify-content: center;
+            flex-wrap: wrap;
 
             .contact_qrcode {
                 // width: 150px;
@@ -94,6 +95,7 @@
             .contact_qrcode_group {
                 width: 100%;
                 display: flex;
+                justify-content: space-between;
                 // flex-direction: column;
                 // align-items: center;
                 // flex-wrap: wrap;

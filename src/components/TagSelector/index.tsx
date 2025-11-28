@@ -42,19 +42,21 @@ const TagSelector: React.FC<TagSelectorProps> = ({ tags, styleType, onChange, se
                     {title}
                 </div>
             )}
-            <div className={getStyleClass()}>
-                {
-                    tags.map((tag) => (
-                        <button
-                            key={tag.value}
-                            onClick={() => handleTagSelect(tag.value)}
-                            className={`${styles.tag} ${selectedValue === tag.value ? styles.selected_tag : ''}`}
-                            disabled={loading}
-                        >
-                            {tag.title}
-                        </button>
-                    ))
-                }
+            <div className={styles.tagSelectorContent}>
+                <div className={getStyleClass()}>
+                    {
+                        tags.map((tag) => (
+                            <button
+                                key={tag.value}
+                                onClick={() => handleTagSelect(tag.value)}
+                                className={`${styles.tag} ${selectedValue === tag.value ? styles.selected_tag : ''}`}
+                                disabled={loading}
+                            >
+                                {tag.title}
+                            </button>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     );

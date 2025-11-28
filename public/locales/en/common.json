@@ -7,13 +7,16 @@
         "loadingText": "Loading, please wait a moment",
         "nodataText": "Sorry, at the moment there is no information. Come back soon.",
         "loginProcessing": "Login processing, please wait a moment",
-        "siteTitle": "ULTRA GOBI"
+        "siteTitle": "ULTRA GOBI",
+        "back": "go back"
     },
     "header": {
         "home": "Home",
-        "race": "Race registration",
+        "race": "Register now",
         "email": "Email",
         "wxQrcode": "WeChat Official Account",
+        "adminWxQrcode": "Administrator WeChat Account",
+        "adminWAQrcode": "Administrator WhatsApp Account",
         "registration": {
             "payableTo": "Payable To:",
             "phone": "Phone: ",
@@ -139,7 +142,7 @@
                 "no": "No",
                 "year": "Year",
                 "beforeMatchName": "Prior Event",
-                "beforeMatchNameTips": "(e.g. 7th Youth Gobi Challenge)",
+                "beforeMatchNameTips": "(e.g. 7th Youth Ultra Gobi)",
                 "parentPhoneNumber": "Parent’s Mobile Number",
                 "parentEmail": "Parent’s Email",
                 "guardianName": "Guardian’s Full Name",
@@ -150,38 +153,38 @@
             }
         },
         "raceList": {
-            "race": "Race registration",
+            "race": "Registration",
             "notice": "Notice"
         },
-        "raceInfo": "Race information",
+        "raceInfo": "Information",
         "raceInfoList": {
-            "raceNews": "Race news",
+            "raceNews": "News",
             "gobiStory": "Gobi story"
         },
         "raceResult": "Result query",
         "raceResultList": {
-            "personalResult": "Personal result",
+            "personalResult": "Individual result",
             "teamResult": "Team result"
         },
-        "raceImage": "Race images",
+        "raceImage": "Photos",
         "raceImageList": {
-            "selectedAlbum": "Selected album",
-            "selectedVideo": "Selected video"
+            "selectedAlbum": "Individual Photos",
+            "selectedVideo": "Event Video"
         },
-        "partner": "Partners",
+        "partner": "Schools",
         "partnerList": {
             "partner": "Partners",
-            "joinSchool": "Join school"
+            "joinSchool": "Schools"
         },
-        "qa": "FAQ",
+        "qa": "FAQS",
         "qaList": {
-            "raceQa": "FAQ",
+            "raceQa": "FAQS",
             "healthQa": "Health Q&A"
         },
-        "about": "About",
+        "about": "About Us",
         "aboutList": {
             "brandStory": "Brand story",
-            "creator": "Creator",
+            "creator": "About the Creators",
             "internationalGobieCenter": "International Gobi Center",
             "contactUs": "Contact us"
         },
@@ -190,7 +193,7 @@
         "personalCenter": "Personal center"
     },
     "home": {
-        "title": "The Xuanzang International Youth Ultra Gobi Challenge",
+        "title": "Youth Ultra Gobi",
         "subtitle": "ULTRA GOBI",
         "news": "News",
         "qa": "User Q&A",
@@ -198,7 +201,7 @@
         "qaAnswer": "Gobi Friends Answers",
         "partner": "Partners",
         "followUs": "Follow Us",
-        "copyright": "Copyright © 2025 Gobi Race. All Rights Reserved."
+        "copyright": "Copyright © 2025 Youth Ultra Gobi. All Rights Reserved."
     },
     "login": {
         "emailLogin": "Email login",
@@ -234,11 +237,13 @@
         "partner": "Sponsors",
         "joinSchool": "Schools",
         "shop": "Shop",
-        "community": "Community"
+        "community": "Community",
+        "readNews": "View all News",
+        "news": "News"
     },
     "raceResult": {
         "title": "Result query",
-        "personalResult": "Personal result",
+        "personalResult": "Individual result",
         "teamResult": "Team result",
         "inputName": "Please input name/brand number",
         "inputTeamName": "Please input team name",
@@ -316,15 +321,17 @@
         "call_external_api_error": "Call external API error"
     },
     "about": {
-        "title": "Gobi,Action,Teamwork,service",
+        "title": "Action,Teamwork,Service",
         "brandStory": "Brand story",
         "internationalGobieCenter": "International Gobie Center",
         "contactUs": "Contact us",
         "email": "Email",
         "wxQrcode": "WeChat Official Account",
-        "storyDes": "Getting to Know a Person\nIn 2024, \"Black Myth: Wukong\" emerged as a sensation, making \"Wukong\" not only a household name in China and Asia, but also a \"superstar\" in Europe and America. In order to uncover the truth of the legend, \"Wukong\" embarked on a journey to the West filled with danger and wonder. The story of \"Wukong\" actually occurred over 1300 years ago during the Tang Dynasty. However, the one who embarked on the journey to seek the \"truth\" and obtain the \"true scriptures\" was \"Wukong's\" master Xuanzang, a dedicated monk who single-mindedly pursued the truth of Buddhist scriptures to bring the \"true scriptures\" back to China.\n\n\tCreating an Event\nYouth aged 8-18 from around the world participate in the \"Xuanzang Road International Youth Gobi Challenge\" on the Gobi desert where Xuanzang traveled westward. In China, this is an internationally leading youth outdoor achievement program, exclusively for Chinese international characteristic schools and students. The youth will engage in a Gobi hiking competition on the desolate Moheyanqi Gobi desert in northwest China. The event theme is \"Brave Heart.\" Guided by the \"Xuanzang Spirit\" of never giving up and accomplishing the mission, the youth will cultivate growth values of \"Action,\" \"Teamwork,\" and \"Service,\" achieving \"measuring the world with their feet and reshaping themselves with courage.\" The program aims to create a healthy atmosphere of active sports and build an exclusive platform for international characteristic school exchanges. The event uniquely designs the EEC three-tier progressive event model: Campus Experience (Experience), City Exchange (Exchange), and Gobi Challenge (Challenge). The SDP exclusive campus execution partner system includes campus assistants, mentors (such as renowned entrepreneurs), Qinggeyou teaching assistants providing feedback services, school leaders, and professional guidance systems including school education and sports expert teams.\n\n\tTracing the Event's Origins and Impact\nIn 2006, \"Xingzhi Exploration Company\" collaborated with China Central Television to launch the \"China-India Friendship Year Key Cultural Investigation Activity - Xuanzang Road.\" The activity attracted elites from China's business, academic, and media circles to form a joint investigation team. They went to the plateau, descended into the Gobi, crossed the Tianshan Mountains, passed through snow-capped ridges, traversed the uninhabited Lop Nur, and went through war-torn Afghanistan, personally experiencing the extreme conditions that Xuanzang endured.\nOn November 22 of the same year, then-Chinese President Hu Jintao met with the Xuanzang Journey delegation in New Delhi, India. In September 2014, President Xi Jinping presented the documentary \"Xuanzang Journey\" to Indian Prime Minister Narendra Modi as a state gift.\nIn September 2014, President Xi Jinping presented the documentary \"Xuanzang's Journey\" to Indian Prime Minister Modi as a state gift;\nIn September 2023, the project was awarded the 2023 \"Global World Heritage Education Innovation Case Award\" (AWHEIC) at the 45th World Heritage Conference of the UNESCO Asia-Pacific Heritage Center in Saudi Arabia;\nIn September 2023, Ms. Irina Bokova, former Director-General of UNESCO, Mr. Shen Wei, Vice-President of the European Union Asia Center, and others visited Xingzhi Group to discuss cultural heritage, sustainable development, and cultural exchange.\nOn October 20, 2023, on the occasion of the third Belt and Road Forum for International Cooperation, Mr. Erik Solheim, Co-Chairman of the EU Centre for Asia, Chairman and Vice Chairman of the Belt and Road International Alliance for Green Development, former UN Deputy Secretary-General and Executive Director of the United Nations Environment Programme, Mr. Mustafa Saeed, Executive Director of the Pakistan-China Society, and Ms. Yan Rui, Executive Director (Director) of the EU Centre for Asia and Chief Representative for China Affairs, came to Xingzhi Group for a discussion.",
-        "creator": "Founder of the \"Youth Gobi Challenge\" Website",
-        "creatorName": "Tsinghua University High School International (THIS)\nAfter the conclusion of the 3rd Youth Gobi Challenge in 2024, students from the Tsinghua Team of Tsinghua University High School International, including Alan Liu, Bai Fu, Eric Pei, Bobby Li, Alex Hou, and others, initiated the platform to address the needs of overseas youth hiking enthusiasts to learn about the \"Gobi Challenge\", register for competitions, and interact. After more than 3 months of technical integration and content development by the above-mentioned founders, the \"Youth Gobi Challenge\" website was officially launched following trial operation, debugging, and improvements."
+        "adminWxQrcode": "Administrator WeChat Account",
+        "adminWAQrcode": "Administrator WhatsApp Account",
+        "storyDes": "Getting to Know a Person\nIn 2024, \"Black Myth: Wukong\" emerged as a sensation, making \"Wukong\" not only a household name in China and Asia, but also a \"superstar\" in Europe and America. In order to uncover the truth of the legend, \"Wukong\" embarked on a journey to the West filled with danger and wonder. The story of \"Wukong\" actually occurred over 1300 years ago during the Tang Dynasty. However, the one who embarked on the journey to seek the \"truth\" and obtain the \"true scriptures\" was \"Wukong's\" master Xuanzang, a dedicated monk who single-mindedly pursued the truth of Buddhist scriptures to bring the \"true scriptures\" back to China.\n\n\tCreating an Event\nYouth aged 8-18 from around the world participate in the \"Xuanzang Road International Youth Ultra Gobi\" on the Gobi desert where Xuanzang traveled westward. In China, this is an internationally leading youth outdoor achievement program, exclusively for Chinese international characteristic schools and students. The youth will engage in a Gobi hiking competition on the desolate Moheyanqi Gobi desert in northwest China. The event theme is \"Brave Heart.\" Guided by the \"Xuanzang Spirit\" of never giving up and accomplishing the mission, the youth will cultivate growth values of \"Action,\" \"Teamwork,\" and \"Service,\" achieving \"measuring the world with their feet and reshaping themselves with courage.\" The program aims to create a healthy atmosphere of active sports and build an exclusive platform for international characteristic school exchanges. The event uniquely designs the EEC three-tier progressive event model: Campus Experience (Experience), City Exchange (Exchange), and Gobi Challenge (Challenge). The SDP exclusive campus execution partner system includes campus assistants, mentors (such as renowned entrepreneurs), Qinggeyou teaching assistants providing feedback services, school leaders, and professional guidance systems including school education and sports expert teams.\n\n\tTracing the Event's Origins and Impact\nIn 2006, \"Xingzhi Exploration Company\" collaborated with China Central Television to launch the \"China-India Friendship Year Key Cultural Investigation Activity - Xuanzang Road.\" The activity attracted elites from China's business, academic, and media circles to form a joint investigation team. They went to the plateau, descended into the Gobi, crossed the Tianshan Mountains, passed through snow-capped ridges, traversed the uninhabited Lop Nur, and went through war-torn Afghanistan, personally experiencing the extreme conditions that Xuanzang endured.\nOn November 22 of the same year, then-Chinese President Hu Jintao met with the Xuanzang Journey delegation in New Delhi, India. In September 2014, President Xi Jinping presented the documentary \"Xuanzang Journey\" to Indian Prime Minister Narendra Modi as a state gift.\nIn September 2014, President Xi Jinping presented the documentary \"Xuanzang's Journey\" to Indian Prime Minister Modi as a state gift;\nIn September 2023, the project was awarded the 2023 \"Global World Heritage Education Innovation Case Award\" (AWHEIC) at the 45th World Heritage Conference of the UNESCO Asia-Pacific Heritage Center in Saudi Arabia;\nIn September 2023, Ms. Irina Bokova, former Director-General of UNESCO, Mr. Shen Wei, Vice-President of the European Union Asia Center, and others visited Xingzhi Group to discuss cultural heritage, sustainable development, and cultural exchange.\nOn October 20, 2023, on the occasion of the third Belt and Road Forum for International Cooperation, Mr. Erik Solheim, Co-Chairman of the EU Centre for Asia, Chairman and Vice Chairman of the Belt and Road International Alliance for Green Development, former UN Deputy Secretary-General and Executive Director of the United Nations Environment Programme, Mr. Mustafa Saeed, Executive Director of the Pakistan-China Society, and Ms. Yan Rui, Executive Director (Director) of the EU Centre for Asia and Chief Representative for China Affairs, came to Xingzhi Group for a discussion.",
+        "creator": "Founder of the \"Youth Ultra Gobi\" Website",
+        "creatorName": "Tsinghua International School (THIS)\nAfter the conclusion of the 3rd Youth Ultra Gobi in 2024, students from the Tsinghua Team of Tsinghua International School, including Alan Liu、Bai Fu、Keming Pei、Bobby Li、Alex Hou and others, initiated the platform to address the needs of overseas youth hiking enthusiasts to learn about the \"Gobi Challenge\", register for competitions, and interact. After more than 3 months of technical integration and content development by the above-mentioned founders, the \"Youth Ultra Gobi\" website was officially launched following trial operation, debugging, and improvements."
     },
     "qa": {
         "raceQa": [
@@ -332,11 +339,11 @@
                 "theme": "Program Positioning & Value",
                 "content": [
                     {
-                        "title": "What is the Youth Gobi Challenge in essence, and how is it different from a regular competition?",
-                        "answer": "The Youth Gobi Challenge is not a conventional “competition,” but rather a youth development journey centered on Action, Teamwork, and Service. It consists of three stages—Campus Experience → City Exchange → Gobi Challenge, guiding students progressively through the dimensions of Heart, Mind, and Body along the path of To Know→ To Become→ To Make Known. Throughout the process, the emphasis is on educational value and authentic experiences, while also providing a platform for exchange and joint development among international schools."
+                        "title": "What is the Youth Ultra Gobi in essence, and how is it different from a regular competition?",
+                        "answer": "The Youth Ultra Gobi is not a conventional “competition,” but rather a youth development journey centered on Action, Teamwork, and Service. It consists of three stages—Campus Experience → City Exchange → Gobi Challenge, guiding students progressively through the dimensions of Heart, Mind, and Body along the path of To Know→ To Become→ To Make Known. Throughout the process, the emphasis is on educational value and authentic experiences, while also providing a platform for exchange and joint development among international schools."
                     },
                     {
-                        "title": "Are there awards or honors for participants?？",
+                        "title": "Are there awards or honors for participants?",
                         "answer": "Yes, three levels of honors are designed in the system for individual, team, and school:\n For Individual: Certificate of Courageous, Completion Certificate, Commemorative Medal, Gold/Silver/Bronze Medal\n For Team: Gold Gobi Team, Gold Title Team \n For School: Shackleton Award, Team Spirit Award"
                     }
                 ]
@@ -371,7 +378,7 @@
                     },
                     {
                         "title": "Can students join the Gobi Challenge directly?",
-                        "answer": "No. The Youth Gobi Challenge is a complete growth path requiring the students to participate in the Campus Experience → City Exchange → Gobi Challenge in order."
+                        "answer": "No. The Youth Ultra Gobi is a complete growth path requiring the students to participate in the Campus Experience → City Exchange → Gobi Challenge in order."
                     },
                     {
                         "title": "How many kilometers do the participants cover each day during the Gobi Challenge? Do they run or walk?",

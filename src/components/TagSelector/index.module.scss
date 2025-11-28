@@ -9,6 +9,15 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+
+    .tagSelectorContent {
+        overflow: scroll;
+        width: 100%;
+    }
+    .tagSelectorContent::-webkit-scrollbar {
+        display: none;
+    }
+
     .tagSelectorTitle {
         color: #121212;
         font-family: Raleway;
@@ -41,6 +50,7 @@
         text-align: left;
         padding: 0;
         cursor: pointer;
+        text-transform: capitalize;
     }
     .tag:after {
         content: "";
@@ -88,11 +98,15 @@
 
 .tagSelectorOutlined {
     @extend .tagSelector;
+    gap: 12px;
+    flex-wrap: nowrap;
+    width: fit-content;
+
     .tag {
         border: 1px solid #ff6a14;
-        background: #fff;
+        background: #f8f8f8;
         min-width: 100px;
-        padding: 8px 23px;
+        padding: 8px 32px;
         color: #ff6a14;
         text-align: center;
         font-family: Raleway;
@@ -102,12 +116,8 @@
         line-height: normal;
         text-align: center;
         cursor: pointer;
-    }
-    .tag:first-child {
-        border-radius: 8px 0px 0px 8px;
-    }
-    .tag:last-child {
-        border-radius: 0px 8px 8px 0px;
+        border-radius: 16px;
+        white-space: nowrap;
     }
     .tag:hover {
         background: #ffd1b7;
@@ -123,17 +133,13 @@
         color: #fff;
     }
     @media screen and (max-width: 768px) {
+        gap: 12px * 3.84;
         .tag {
             border: 1px * 3.84 solid #ff6a14;
             min-width: 100px * 3.84;
             font-size: 16px * 3.84;
-            padding: 8px * 3.84 23px * 3.84;
-        }
-        .tag:first-child {
-            border-radius: 8px * 3.84 0px 0px 8px * 3.84;
-        }
-        .tag:last-child {
-            border-radius: 0px 8px * 3.84 8px * 3.84 0px;
+            padding: 8px * 3.84 32px * 3.84;
+            border-radius: 16px * 3.84;
         }
     }
 }

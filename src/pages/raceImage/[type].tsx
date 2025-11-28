@@ -33,7 +33,15 @@ const RaceImage = () => {
                 }
             })
         }
-    }, [type, page]);
+    }, [type]);
+
+    useEffect(() => {
+        if (page !== 0 && (type == 'selectedAlbum' || type == 'selectedVideo')) {
+            getNewsList();
+        }
+    }, [page]);
+
+
 
     const getNewsList = () => {
         if (loading) {

@@ -11,8 +11,77 @@
             align-items: flex-start;
             gap: 32px;
 
-            .searchBox {
+            .raceResultFilter {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
                 width: 100%;
+                gap: 32px;
+
+                .raceResultFilterItem {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: 32px;
+                }
+
+                .selectContainer {
+                    min-width: 200px;
+                    height: 60px;
+                    border-radius: 8px;
+                    border: 1px solid #e0e0e0;
+                    background-color: #f8f8f8;
+                    cursor: pointer;
+                    position: relative;
+                }
+
+                .selectIconRight {
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    top: 50%;
+                    right: 16px;
+                    transform: translateY(-50%);
+                }
+
+                .selectIconLeft {
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    top: 50%;
+                    left: 16px;
+                    transform: translateY(-50%);
+                }
+
+                .select {
+                    width: 100%;
+                    height: 60px;
+                    color: #2e2e2e;
+                    border: none;
+                    background-color: transparent;
+                    font-family: Raleway;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    cursor: pointer;
+                    appearance: none;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    position: relative;
+                    z-index: 1;
+                    padding: 0 44px;
+                }
+
+                .select:disabled {
+                    cursor: not-allowed;
+                    opacity: 0.6;
+                }
+            }
+
+            .searchBox {
+                width: 300px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -342,7 +411,44 @@
                 margin-top: 0px;
                 gap: 52px * 3.84;
 
+                .raceResultFilter {
+                    gap: 16px * 3.84;
+                    flex-direction: column-reverse;
+
+                    .raceResultFilterItem {
+                        gap: 16px * 3.84;
+                        flex-direction: column;
+                    }
+
+                    .selectContainer {
+                        width: 100%;
+                        height: 60px * 3.84;
+                        border-radius: 8px * 3.84;
+                        border-width: 1px * 3.84;
+                    }
+
+                    .selectIconRight {
+                        width: 20px * 3.84;
+                        height: 20px * 3.84;
+                        right: 16px * 3.84;
+                        transform: translateY(-50%) rotate(270deg);
+                    }
+
+                    .selectIconLeft {
+                        width: 20px * 3.84;
+                        height: 20px * 3.84;
+                        left: 16px * 3.84;
+                    }
+
+                    .select {
+                        font-size: 16px * 3.84;
+                        height: 60px * 3.84;
+                        padding: 0 44px * 3.84;
+                    }
+                }
+
                 .searchBox {
+                    width: 100%;
                     border-radius: 8px * 3.84;
                     padding: 0 20px * 3.84;
                     height: 60px * 3.84;
