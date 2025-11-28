@@ -52,6 +52,15 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
+    .card.expanded {//new stuff
+          .cardHeader {
+            .cardTitle {
+              white-space: normal;
+              overflow: visible;
+              text-overflow: clip;
+            }
+          }
+        }
 
     .cardHeader {
       display: flex;
@@ -64,6 +73,9 @@
         font-weight: bold;
         margin: 0;
         flex: 1;
+        white-space: nowrap;     
+        overflow: hidden;           
+        text-overflow: ellipsis; 
       }
 
       .arrowContainer {
@@ -147,8 +159,8 @@
         border-radius: 8px * 3.84;
         padding: 16px * 3.84;
       }
-
-      .cardHeader {
+      
+      .cardHeader { 
         .cardTitle {
           font-size: 18px * 3.84;
           font-weight: bold;
