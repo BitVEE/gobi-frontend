@@ -159,17 +159,17 @@
         "raceInfo": "Information",
         "raceInfoList": {
             "raceNews": "News",
-            "gobiStory": "Gobi story"
+            "gobiStory": "Gobi stories"
         },
         "raceResult": "Result query",
         "raceResultList": {
-            "personalResult": "Individual result",
-            "teamResult": "Team result"
+            "personalResult": "Individual results",
+            "teamResult": "Team results"
         },
         "raceImage": "Photos",
         "raceImageList": {
             "selectedAlbum": "Individual Photos",
-            "selectedVideo": "Event Video"
+            "selectedVideo": "Event Videos"
         },
         "partner": "Schools",
         "partnerList": {
@@ -243,8 +243,8 @@
     },
     "raceResult": {
         "title": "Result query",
-        "personalResult": "Individual result",
-        "teamResult": "Team result",
+        "personalResult": "Individual results",
+        "teamResult": "Team results",
         "inputName": "Please input name/brand number",
         "inputTeamName": "Please input team name",
         "search": "Search",
