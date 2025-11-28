@@ -49,13 +49,14 @@ const Footer = (props: Props) => {
                                 <Image className={styles.qrcodeImg} src="/images/contactQRCode.jpg" width={150} height={150} alt='contact' />
                                 <Image className={styles.icons} width={24} height={24} src="/images/icons/wechat1.svg" alt="wechat" />
                             </div>
+
                             <div className={styles.qrcode}>
                                 <Image className={styles.qrcodeImg} style={{ padding: "15px 10px 10px 10px" }} src="/images/adminQRCode.png" width={150} height={150} alt='contact' />
-                                <Image className={styles.icons} width={24} height={24} src="/images/icons/wechat2.svg" alt="wechat" />
+                                <Image className={styles.icons} width={22} height={22} src="/images/icons/wechat2.svg" alt="wechat" />
                             </div>
                             <div className={styles.qrcode}>
                                 <Image className={styles.qrcodeImg} style={{ padding: "12px 5px 5px 10px" }} src="/images/adminWAQRCode.png" width={150} height={150} alt='contact' />
-                                <Image className={styles.icons} width={24} height={24} src="/images/icons/whatsapp.svg" alt="whatsapp" />
+                                <Image className={styles.icons} width={22} height={22} src="/images/icons/whatsapp.svg" alt="whatsapp" />
                             </div>
                             <a href="mailto:yaolan@exploring.cn" target="_blank">
                                 <Image className={styles.icons} width={24} height={24} src="/images/icons/email.svg" alt="email" />
