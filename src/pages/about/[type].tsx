@@ -106,7 +106,6 @@ const About = (props: Props) => {
                         </div>
                         <Image src="/images/adminWAQRCode.png" width={140} height={140} alt='contact' />
                     </div>
-
                     <div className={styles.contact_qrcode}>
                         <div className={styles.contact_title_box}>
                             {t('email')}
