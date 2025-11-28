@@ -11,6 +11,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@airwallex/components-sdk": "^1.24.2",
+    "@reduxjs/toolkit": "^2.8.2",
     "@types/node": "24.1.0",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
@@ -19,10 +21,13 @@
     "http-proxy-middleware": "^2.0.6",
     "i18next": "^25.3.2",
     "next": "15.4.3",
+    "next-i18next": "^15.4.2",
     "postcss-pxtorem": "^6.1.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-i18next": "^15.6.1",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
     "sass": "^1.89.2",
     "typescript": "5.8.3"
   }

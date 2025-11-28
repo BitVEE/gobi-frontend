@@ -1,0 +1,145 @@
+.tagSelector {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.tagSelectorContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    .tagSelectorContent {
+        overflow: scroll;
+        width: 100%;
+    }
+    .tagSelectorContent::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tagSelectorTitle {
+        color: #121212;
+        font-family: Raleway;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+    @media screen and (max-width: 768px) {
+        gap: 12px * 3.84;
+        .tagSelectorTitle {
+            font-size: 24px * 3.84;
+        }
+    }
+}
+
+.tagSelectorText {
+    @extend .tagSelector;
+    padding: 24px 0;
+    gap: 60px;
+    .tag {
+        border: none;
+        background: none;
+        color: #121212;
+        font-family: Raleway;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-align: left;
+        padding: 0;
+        cursor: pointer;
+        text-transform: capitalize;
+    }
+    .tag:after {
+        content: "";
+        display: block;
+        margin-top: 12px;
+        width: 85px;
+        height: 1.5px;
+        background-color: #ff6a14;
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+        transform-origin: left;
+    }
+    .selected_tag:after {
+        height: 3px;
+    }
+    .selected_tag:after,
+    .tag:hover:after {
+        transform: scaleX(1);
+    }
+    .tag:disabled {
+        opacity: 0.8;
+        cursor: not-allowed;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 52px * 3.84 0;
+        gap: 40px * 3.84;
+        row-gap: 32px * 3.84;
+
+        .tag {
+            font-size: 16px * 3.84;
+            max-width: 85px * 3.84;
+        }
+
+        .tag:after {
+            margin-top: 12px * 3.84;
+            width: 85px * 3.84;
+            height: 1.5px * 3.84;
+        }
+        .selected_tag:after {
+            height: 3px * 3.84;
+        }
+    }
+}
+
+.tagSelectorOutlined {
+    @extend .tagSelector;
+    gap: 12px;
+    flex-wrap: nowrap;
+    width: fit-content;
+
+    .tag {
+        border: 1px solid #ff6a14;
+        background: #f8f8f8;
+        min-width: 100px;
+        padding: 8px 32px;
+        color: #ff6a14;
+        text-align: center;
+        font-family: Raleway;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 16px;
+        white-space: nowrap;
+    }
+    .tag:hover {
+        background: #ffd1b7;
+        color: #fff;
+    }
+    .tag:disabled {
+        opacity: 0.8;
+        cursor: not-allowed;
+    }
+    .selected_tag,
+    .selected_tag:hover {
+        background: #ff6a14;
+        color: #fff;
+    }
+    @media screen and (max-width: 768px) {
+        gap: 12px * 3.84;
+        .tag {
+            border: 1px * 3.84 solid #ff6a14;
+            min-width: 100px * 3.84;
+            font-size: 16px * 3.84;
+            padding: 8px * 3.84 32px * 3.84;
+            border-radius: 16px * 3.84;
+        }
+    }
+}

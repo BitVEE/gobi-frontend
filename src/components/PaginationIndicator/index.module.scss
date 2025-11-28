@@ -1,0 +1,56 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    button {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        cursor: pointer;
+        border-radius: 4px;
+        border: 1px solid #ff6a14;
+        color: #ff6a14;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 123.6%;
+    }
+
+    button.active {
+        background-color: #ff6a14;
+        color: #fff;
+    }
+    button:disabled {
+        cursor: not-allowed;
+        border-color: #bcbcbc;
+        color: #e0e0e0;
+    }
+    .previousButton {
+        margin-right: 10px;
+    }
+    .nextButton {
+        margin-left: 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+        gap: 4px * 3.84;
+        button {
+            width: 30px * 3.84;
+            height: 30px * 3.84;
+            font-size: 11px * 3.84;
+            border-radius: 4px * 3.84;
+            border: 1px * 3.84 solid #ff6a14;
+        }
+        .previousButton {
+            margin-right: 10px * 3.84;
+        }
+        .nextButton {
+            margin-left: 10px * 3.84;
+        }
+    }
+}

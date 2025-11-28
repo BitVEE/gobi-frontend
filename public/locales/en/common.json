@@ -1,0 +1,474 @@
+{
+    "common": {
+        "language": "en",
+        "english": "English",
+        "chinese": "中文",
+        "notFind": "Page not found",
+        "loadingText": "Loading, please wait a moment",
+        "nodataText": "Sorry, at the moment there is no information. Come back soon.",
+        "loginProcessing": "Login processing, please wait a moment",
+        "siteTitle": "ULTRA GOBI",
+        "back": "go back"
+    },
+    "header": {
+        "home": "Home",
+        "race": "Register now",
+        "email": "Email",
+        "wxQrcode": "WeChat Official Account",
+        "adminWxQrcode": "Administrator WeChat Account",
+        "adminWAQrcode": "Administrator WhatsApp Account",
+        "registration": {
+            "payableTo": "Payable To:",
+            "phone": "Phone: ",
+            "addrTitle": "Commpany Address: ",
+            "nameTitle": "Commpany Name: ",
+            "commpanyName": "Xingzhi Future(Beijing) Culture and Sports Development Co., Ltd.",
+            "commpanyAddr": "Room107,Building 9 ,Kaisheng Jiayuan, Haidian District, Beijing,China",
+            "place": "Venue",
+            "contact": "Contact Organizer",
+            "startDate": "Registration Start",
+            "endDate": "Registration End",
+            "matchDate": "Event Date",
+            "now": "Register Now",
+            "nodataText": "Sorry, at the moment there is no information.",
+            "group": "Category",
+            "cost": "Base Fee",
+            "info": "Registration Details",
+            "pdf": "Event Description PDF.",
+            "disclaimerTitle": "Disclaimer",
+            "disclaimerText": "以下信息仅用于被监护人提供行程安排、保险、救援等用途，未经您允许，概不对任何第三方透露。 我们建议被监护人进行健康自查，听取专业医生的意见。\n 以下情形不适宜参加活动：\n 1、先天性心脑病和风湿性心脏病、高血压和脑血管疾病、心肌炎和其他心脏病、冠状动脉病 \n 2、有慢性病史、有慢性病史现稳定期但继续参与运动时间不满三个月者；\n 3、行前一周内患感冒发烧、胸闷憋气、心悸症状连续三天以上者，严重失眠、胃肠道疾病\n 4、行前 72 小时内有外伤事故者。\n 本人确认为被监护人报名参加“第四届玄奘之路国际青少年戈壁挑战赛”活动，并发表如下声明：\n 1. 本人承诺为被监护人报名此次赛事活动，并为被监护人做全面体检，身心健康，符合户外活动的身心要求。本人所填写被监护人基本信息和病史，均真实有效且无任何隐瞒，如有出现不符或明知被监护人不符合活动要求而隐瞒导致发生意外等一切后果，由本人承担全部责任。\n 2. 本人全面知悉甲方已充分告知对参赛者的身体、装备、技术要求，并已备好充分必要的防范措施，履行了检查义务。活动期间，被监护人服从甲方及其工作人员的指挥、管理和要求，包括但不限于活动日程安排等，凡因违反甲方规定或本声明擅自行动而造成的一切后果（包括给自身或他人造成的人身或财产之伤害、侵害等）由本人承担全部责任。\n 3. 本人全面理解本次活动对于被监护人的身体和精神意志方面都有一定的要求和风险，包括在崎岖地带进行徒步活动，可能遭遇恶劣天气，可能远离城市救助和医疗服务等，本人对潜在的风险有正常的判断、预见及注意，如由于天气、地理环境发生变化，且甲方及其工作人员处置并无不当的，本人不追究甲方任何责任。\n 4. 本人理解被监护人参加本次活动时，有可能面对非活动组织因素导致的真实意外风险而受到伤害，这些风险包括但不限于交通事故、摔跤、碰撞、落石、动物袭击、水淹、雷击等意外。本人清楚获知甲方无法全面预见并控制此类风险和不利，理解以上所列的风险并不完全含括了此次活动中的所有可能的风险，并且同意免责和放弃权利并不仅限于以上所列的风险中。\n 5. 在活动过程中，如由于其他被监护人或学校老师自身原因导致对被监护人的损害或损失的，与甲方无关，本人不得追究甲方责任。\n 6. 本人同意接受甲方在活动期间为被监护人提供的现场医务治疗，服从医疗人员提出的退赛决定，如果本人隐瞒被监护人伤情或病情，导致的后果由本人自行承担。本人同意和保证，如果任何时候本人相信条件是不安全的，那么本人会立刻中断被监护人进一步参加活动。\n 7. 本人同意甲方及其工作人员有权根据天气、装备、体力等因素决定队员名单、乃至取消、变更活动计划。\n 8. 本人同意，一旦签署，此安全声明将生效。此声明同样有效于本人的继承人、近亲、执行人、管理人、个人代表和转让人。\n 9. 本人已经阅读本声明，签署目的是为甲方向本人再次明确被监护人参与户外活动的风险，提高自律能力和抗风险能力，免除一些不必要的后果，让活动更安全、更快乐。\n 10. 本人已明白无误地知悉、理解、掌握本声明的全部内容和含义并完全接受。\n \t本声明的任何条款的无效、失效和不可执行不影响或不损害其他条款的有效性、生效和可执行性。",
+            "disagree": "Decline",
+            "agree": "Agree",
+            "person": "person",
+            "agreementTitle": "Please check each item to confirm that you have read and agreed before submitting the registration form.",
+            "agreement": "I have thoroughly reviewed and agree to sign",
+            "agreement1": "I have fully and accurately provided my child’s health information, medical history, psychological traits, medication, and special care needs. I accept full responsibility for any risk caused by withholding information.",
+            "agreement2": "I understand and agree that my child must follow all safety rules, schedules, and instructions during the event. The organizer may terminate participation if repeated violations or serious safety risks occur.",
+            "agreement3": "I authorize the organizer’s staff to assist with medication or medical transfer according to the established plan and notify me immediately.",
+            "agreement4": "I have provided contact information that is reachable 24/7 during the event and will ensure it remains valid.",
+            "and": "and",
+            "protocol1": "《Youth Gobi IV Registration Agreement》",
+            "protocol2": "《Youth Gobi IV Safety Declaration》",
+            "suffix": ". And understand the potential outdoor risks and countermeasures.",
+            "pay": "Pay",
+            "next": "Next Step",
+            "requiredFields": "There are still required fields not filled in",
+            "wrongPhonenumber": "Invalid phone number format",
+            "wrongParentEmail": "Invalid parent email format",
+            "wrongParentPhonenumber": "Invalid parent phone number format",
+            "wrongGuardianPhoneNumber": "Invalid guardian phone number format",
+            "wrongEmergencyPhoneNumber": "Invalid emergency contact phone number format",
+            "wrongCredentialNumber": "Invalid ID number format",
+            "noAgreement": "Please agree to the terms",
+            "loginTips": "Please log in first",
+            "submitting": "Submitting",
+            "congratulation": "Registration Submitted Successfully!",
+            "registrationFailed": "Registration Submission Failed",
+            "congratulationText": "Please complete the payment before the registration deadline. Failure to pay on time will be considered as automatic forfeiture of registration rights.",
+            "noPaymentMethods": "No payment methods available",
+            "paying": "Processing Payment",
+            "goToPay": "Go to Pay",
+            "goToHome": "Go back to home page",
+            "congratulationPay": "Congratulation!",
+            "goToOrderDetail": "View Order Details",
+            "paySuccess": "Payment successful",
+            "payFail": "Payment failed",
+            "payFailText": "Please re-register",
+            "payFailText2": "If you have any questions, please contact the organizer",
+            "payFailText3": "Please re-register or contact the organizer",
+            "imgSizeError": "Maximum image size: 5MB",
+            "imgTypeError": "Please use JPG, PNG, or webp formats",
+            "status": {
+                "in": "Open",
+                "registrationEnd": "Registration Ended",
+                "matchEnd": "Event Ended",
+                "matchClosed": "Event Closed"
+            },
+            "infoList": {
+                "name": "Name on ID",
+                "nameTips": "(Please fill in the full name exactly as it appears on the official ID (must match the name on the ID card, passport, or other official document).",
+                "enName": "Student's English Name",
+                "gender": "Student's Gender",
+                "genderList": {
+                    "male": "Male",
+                    "female": "Female",
+                    "other": "other"
+                },
+                "birthday": "Student's Date of Birth",
+                "credentialType": "Student's ID Type",
+                "credentialTypeTips": "(Please fill in the student's ID number corresponding to the selected ID type, which is only used for insurance purchase, hotel check-in, and ticket booking)",
+                "credentialTypeList": {
+                    "1": "Resident ID Card",
+                    "2": "Passport",
+                    "3": "Hong Kong-Macau Return Permit",
+                    "4": "Taiwan Compatriot Permit"
+                },
+                "credentialNumber": "ID Number",
+                "credentialNumberTips1": "(Please provide the student's valid resident ID number, which is only used for insurance purchase, hotel check-in, and ticket booking)",
+                "credentialNumberTips2": "(Please provide the student's valid passport number, which is only used for insurance purchase, hotel check-in, and ticket booking)",
+                "credentialNumberTips3": "(Please provide the student's valid number of Hong Kong-Macau Return Permit, which is only used for insurance purchase, hotel check-in, and ticket booking)",
+                "credentialNumberTips4": "(Please provide the student's valid number of Taiwan Compatriot Permit, which is only used for insurance purchase, hotel check-in, and ticket booking)",
+                "credentialPhotoTips1": "Please upload the front (portrait) photo of the student resident ID card",
+                "credentialPhotoTips2": "Please upload a photo of the student passport information page",
+                "credentialPhotoTips3": "Please upload the front photo of the student's Hong Kong-Macau Return Permit",
+                "credentialPhotoTips4": "Please upload the front photo of the student's Taiwan Compatriot Permit",
+                "phoneNumber": "Phone Number",
+                "nationality": "Student's Nationality",
+                "city": "City of Residence",
+                "schoolName": "School Name",
+                "grade": "Current Grade",
+                "bloodType": "Student's Blood Type",
+                "height": "Student's Height",
+                "weight": "Student's Weight",
+                "SizeReference": "Students's Size Reference",
+                "shirtSize": "Shirt Size",
+                "shirtsizeTips": "(Based on height in cm)",
+                "shoeSize": "Shoe Size",
+                "shoeSizeTips": "(CN or EU size accepted)",
+                "medicationRestrictions": "Medication Restrictions",
+                "dietaryRestrictions": "Dietary Restrictions",
+                "allergyInformation": "Allergy Information",
+                "medicalHistory": "Medical History",
+                "additionalNotes": "Additional Notes",
+                "sportsBackground": "Sports Background ",
+                "sportsBackgroundTips": "(Not required, for reference only)",
+                "sportsBackgroundPalceholder": "Has the student had any experience or interest in sports?Feel free to briefly describe (e.g., enjoys running, has tried football, basketball, dance, cycling, swimming, etc.Please briefly describe.",
+                "photoUrl": "Front-Facing Photo",
+                "psychologicalNotes": "Psychological & Emotional Notes",
+                "psychologicalNotesTips": "(Optional, filled by parent/guardian)",
+                "psychologicalNotesPalaceholder": "e.g., separation anxiety, social sensitivity, emotional fluctuations, etc. — to support staff in better understanding the student.Please briefly describe here.",
+                "hasJoinedBefore": "Has the student participated in Qingge Race before?",
+                "yes": "Yes",
+                "no": "No",
+                "year": "Year",
+                "beforeMatchName": "Prior Event",
+                "beforeMatchNameTips": "(e.g. 7th Youth Ultra Gobi)",
+                "parentPhoneNumber": "Parent’s Mobile Number",
+                "parentEmail": "Parent’s Email",
+                "guardianName": "Guardian’s Full Name",
+                "guardianRelationship": "Relationship to the Guardian",
+                "guardianWechat": "Guardian’s WeChat ID",
+                "guardianPhoneNumber": "Guardian’s Contact Number",
+                "emergencyPhoneNumber": "Emergency Contact Number"
+            }
+        },
+        "raceList": {
+            "race": "Registration",
+            "notice": "Notice"
+        },
+        "raceInfo": "Information",
+        "raceInfoList": {
+            "raceNews": "News",
+            "gobiStory": "Gobi stories"
+        },
+        "raceResult": "Result query",
+        "raceResultList": {
+            "personalResult": "Individual results",
+            "teamResult": "Team results"
+        },
+        "raceImage": "Photos",
+        "raceImageList": {
+            "selectedAlbum": "Individual Photos",
+            "selectedVideo": "Event Videos"
+        },
+        "partner": "Schools",
+        "partnerList": {
+            "partner": "Partners",
+            "joinSchool": "Schools"
+        },
+        "qa": "FAQS",
+        "qaList": {
+            "raceQa": "FAQS",
+            "healthQa": "Health Q&A"
+        },
+        "about": "About Us",
+        "aboutList": {
+            "brandStory": "Brand story",
+            "creator": "About the Creators",
+            "internationalGobieCenter": "International Gobi Center",
+            "contactUs": "Contact us"
+        },
+        "login": "Login",
+        "logout": "Logout",
+        "personalCenter": "Personal center"
+    },
+    "home": {
+        "title": "Youth Ultra Gobi",
+        "subtitle": "ULTRA GOBI",
+        "news": "News",
+        "qa": "User Q&A",
+        "qaQuestion": "Gobi Friends Q&A",
+        "qaAnswer": "Gobi Friends Answers",
+        "partner": "Partners",
+        "followUs": "Follow Us",
+        "copyright": "Copyright © 2025 Youth Ultra Gobi. All Rights Reserved."
+    },
+    "login": {
+        "emailLogin": "Email login",
+        "wechatLogin": "Wechat login",
+        "emailPlaceholder": "Please enter email",
+        "emailFormatError": "Email format error",
+        "codePlaceholder": "Please enter code",
+        "codeError": "Code error",
+        "getCode": "Get code",
+        "agreement": "I have read and agree to the",
+        "userAgreement": "user registration agreement",
+        "agreementError": "Please agree to the user registration agreement",
+        "useWechatLogin": "Use wechat scan login",
+        "useWechatLoginAgreement": "Wechat login means agree to the user registration agreement",
+        "login": "Login",
+        "loginSuccess": "Login success"
+    },
+    "user": {
+        "title": "Personal center",
+        "myEnroll": "My enrollment",
+        "all": "All",
+        "waitPay": "Wait pay",
+        "paySuccess": "Pay success",
+        "refund": "Refund",
+        "payFail": "Pay fail",
+        "name": "Name",
+        "group": "Group",
+        "raceName": "Race name",
+        "status": "Status"
+    },
+    "partner": {
+        "title": "Partners",
+        "partner": "Sponsors",
+        "joinSchool": "Schools",
+        "shop": "Shop",
+        "community": "Community",
+        "readNews": "View all News",
+        "news": "News"
+    },
+    "raceResult": {
+        "title": "Result query",
+        "personalResult": "Individual results",
+        "teamResult": "Team results",
+        "inputName": "Please input name/brand number",
+        "inputTeamName": "Please input team name",
+        "search": "Search",
+        "group": "Group",
+        "rank": "Rank",
+        "index": "Index",
+        "name": "Name",
+        "teamName": "Team name",
+        "number": "Match number",
+        "raceTime": "Gunshot time",
+        "time": "Time",
+        "length": "Length",
+        "realTime": "Real time",
+        "state": "State",
+        "gender": "Gender",
+        "project": "Project",
+        "lowestSpeed": "Lowest speed",
+        "highestSpeed": "Highest speed",
+        "averageSpeed": "Average speed",
+        "checkInPoint": "Check-in point",
+        "checkInTime": "Check-in time",
+        "predictTime": "Predict time",
+        "speed": "Speed",
+        "segmentDetail": "Segment detail",
+        "totalLength": "Total length",
+        "totalTime": "Total time",
+        "teamMember": "Team member",
+        "detail": "Detail>>",
+        "rankList": {
+            "PersonalTotalRank": "Personal total rank",
+            "MenTotalRank": "Men's total rank",
+            "WomenTotalRank": "Women's total rank",
+            "TeamTotalRank": "Team total rank",
+            "MenFirstDayRank": "Men's first day rank",
+            "WomenFirstDayRank": "Women's first day rank",
+            "MenSecondDayRank": "Men's second day rank",
+            "WomenSecondDayRank": "Women's second day rank",
+            "MenThirdDayRank": "Men's third day rank",
+            "WomenThirdDayRank": "Women's third day rank",
+            "TeamFirstDayRank": "Team first day rank",
+            "TeamSecondDayRank": "Team second day rank",
+            "TeamThirdDayRank": "Team third day rank"
+        },
+        "genderList": {
+            "all": "All",
+            "male": "Male",
+            "female": "Female"
+        },
+        "completionState": {
+            "all": "All",
+            "completed": "Completed",
+            "notCompleted": "Not completed"
+        }
+    },
+    "errorCode": {
+        "success": "Success",
+        "parameter_error": "Parameter error",
+        "request_timeout": "Request timeout",
+        "request_data_not_exist": "Request data not exist",
+        "call_external_api_failure": "Call external API failure",
+        "api_key_error": "API key error",
+        "user_id_empty": "User ID empty",
+        "signup_info_exist": "Signup info exist",
+        "race_not_exist": "Race not exist",
+        "race_group_not_exist": "Race group not exist",
+        "account_exist": "Account exist",
+        "account_not_exist": "Account not exist",
+        "verification_code_error": "Verification code error",
+        "jwt_token_error": "JWT token error",
+        "account_banned": "Account banned",
+        "server_internal_error": "Server internal error",
+        "database_error": "Database error",
+        "cache_error": "Cache error",
+        "call_external_api_error": "Call external API error"
+    },
+    "about": {
+        "title": "Action,Teamwork,Service",
+        "brandStory": "Brand story",
+        "internationalGobieCenter": "International Gobie Center",
+        "contactUs": "Contact us",
+        "email": "Email",
+        "wxQrcode": "WeChat Official Account",
+        "adminWxQrcode": "Administrator WeChat Account",
+        "adminWAQrcode": "Administrator WhatsApp Account",
+        "storyDes": "Getting to Know a Person\nIn 2024, \"Black Myth: Wukong\" emerged as a sensation, making \"Wukong\" not only a household name in China and Asia, but also a \"superstar\" in Europe and America. In order to uncover the truth of the legend, \"Wukong\" embarked on a journey to the West filled with danger and wonder. The story of \"Wukong\" actually occurred over 1300 years ago during the Tang Dynasty. However, the one who embarked on the journey to seek the \"truth\" and obtain the \"true scriptures\" was \"Wukong's\" master Xuanzang, a dedicated monk who single-mindedly pursued the truth of Buddhist scriptures to bring the \"true scriptures\" back to China.\n\n\tCreating an Event\nYouth aged 8-18 from around the world participate in the \"Xuanzang Road International Youth Ultra Gobi\" on the Gobi desert where Xuanzang traveled westward. In China, this is an internationally leading youth outdoor achievement program, exclusively for Chinese international characteristic schools and students. The youth will engage in a Gobi hiking competition on the desolate Moheyanqi Gobi desert in northwest China. The event theme is \"Brave Heart.\" Guided by the \"Xuanzang Spirit\" of never giving up and accomplishing the mission, the youth will cultivate growth values of \"Action,\" \"Teamwork,\" and \"Service,\" achieving \"measuring the world with their feet and reshaping themselves with courage.\" The program aims to create a healthy atmosphere of active sports and build an exclusive platform for international characteristic school exchanges. The event uniquely designs the EEC three-tier progressive event model: Campus Experience (Experience), City Exchange (Exchange), and Gobi Challenge (Challenge). The SDP exclusive campus execution partner system includes campus assistants, mentors (such as renowned entrepreneurs), Qinggeyou teaching assistants providing feedback services, school leaders, and professional guidance systems including school education and sports expert teams.\n\n\tTracing the Event's Origins and Impact\nIn 2006, \"Xingzhi Exploration Company\" collaborated with China Central Television to launch the \"China-India Friendship Year Key Cultural Investigation Activity - Xuanzang Road.\" The activity attracted elites from China's business, academic, and media circles to form a joint investigation team. They went to the plateau, descended into the Gobi, crossed the Tianshan Mountains, passed through snow-capped ridges, traversed the uninhabited Lop Nur, and went through war-torn Afghanistan, personally experiencing the extreme conditions that Xuanzang endured.\nOn November 22 of the same year, then-Chinese President Hu Jintao met with the Xuanzang Journey delegation in New Delhi, India. In September 2014, President Xi Jinping presented the documentary \"Xuanzang Journey\" to Indian Prime Minister Narendra Modi as a state gift.\nIn September 2014, President Xi Jinping presented the documentary \"Xuanzang's Journey\" to Indian Prime Minister Modi as a state gift;\nIn September 2023, the project was awarded the 2023 \"Global World Heritage Education Innovation Case Award\" (AWHEIC) at the 45th World Heritage Conference of the UNESCO Asia-Pacific Heritage Center in Saudi Arabia;\nIn September 2023, Ms. Irina Bokova, former Director-General of UNESCO, Mr. Shen Wei, Vice-President of the European Union Asia Center, and others visited Xingzhi Group to discuss cultural heritage, sustainable development, and cultural exchange.\nOn October 20, 2023, on the occasion of the third Belt and Road Forum for International Cooperation, Mr. Erik Solheim, Co-Chairman of the EU Centre for Asia, Chairman and Vice Chairman of the Belt and Road International Alliance for Green Development, former UN Deputy Secretary-General and Executive Director of the United Nations Environment Programme, Mr. Mustafa Saeed, Executive Director of the Pakistan-China Society, and Ms. Yan Rui, Executive Director (Director) of the EU Centre for Asia and Chief Representative for China Affairs, came to Xingzhi Group for a discussion.",
+        "creator": "Founder of the \"Youth Ultra Gobi\" Website",
+        "creatorName": "Tsinghua International School (THIS)\nAfter the conclusion of the 3rd Youth Ultra Gobi in 2024, students from the Tsinghua Team of Tsinghua International School, including Alan Liu、Bai Fu、Keming Pei、Bobby Li、Alex Hou and others, initiated the platform to address the needs of overseas youth hiking enthusiasts to learn about the \"Gobi Challenge\", register for competitions, and interact. After more than 3 months of technical integration and content development by the above-mentioned founders, the \"Youth Ultra Gobi\" website was officially launched following trial operation, debugging, and improvements."
+    },
+    "qa": {
+        "raceQa": [
+            {
+                "theme": "Program Positioning & Value",
+                "content": [
+                    {
+                        "title": "What is the Youth Ultra Gobi in essence, and how is it different from a regular competition?",
+                        "answer": "The Youth Ultra Gobi is not a conventional “competition,” but rather a youth development journey centered on Action, Teamwork, and Service. It consists of three stages—Campus Experience → City Exchange → Gobi Challenge, guiding students progressively through the dimensions of Heart, Mind, and Body along the path of To Know→ To Become→ To Make Known. Throughout the process, the emphasis is on educational value and authentic experiences, while also providing a platform for exchange and joint development among international schools."
+                    },
+                    {
+                        "title": "Are there awards or honors for participants?",
+                        "answer": "Yes, three levels of honors are designed in the system for individual, team, and school:\n For Individual: Certificate of Courageous, Completion Certificate, Commemorative Medal, Gold/Silver/Bronze Medal\n For Team: Gold Gobi Team, Gold Title Team \n For School: Shackleton Award, Team Spirit Award"
+                    }
+                ]
+            },
+            {
+                "theme": "Eligibility & Grouping",
+                "content": [
+                    {
+                        "title": "What is the age limit? How to decide groups?",
+                        "answer": "Participants must be between 8 and 18 years old (born before March 1, 2018). The groups include G3-G6 (Elementary School, 68 km) and G7–G12 (Secondary School, 72 km). Each school may form multiple teams."
+                    },
+                    {
+                        "title": "How many participants are there in a team?",
+                        "answer": "A team usually consists of 6–12 members. Teams with fewer than 6 members are considered ineligible for team awards, though individual results will still count."
+                    },
+                    {
+                        "title": "Are there any health restrictions for participants?",
+                        "answer": "For safety reasons, students with medical conditions or health issues that make outdoor challenge activities unsafe are not eligible to participate. This includes, but is not limited to: Congenital heart or brain conditions, rheumatic heart disease, high blood pressure or cerebrovascular disease, myocarditis or other heart diseases, coronary artery disease, severe arrhythmias. students with serious psychological disorders or mental health conditions that could affect personal safety or team participation are not recommended to participate in the competition either."
+                    }
+                ]
+            },
+            {
+                "theme": "Course of Competition",
+                "content": [
+                    {
+                        "title": "What does the course of competition involve?",
+                        "answer": "Depending on each school’s registration schedule, there are: \n Campus Experience (Sept–Dec): Each student shall complete a 5 km run. \n City Exchange (Jan–Mar): A 2-day, 1-night event covering roughly 25 km.\n Gobi Challenge (May 1–5): A 5-day, 4-night adventure, with a 3-day accumulative distance of 72 km / 68 km."
+                    },
+                    {
+                        "title": "How can students improve their fitness?",
+                        "answer": "Building fitness is a gradual process, integrated into the students’s daily routines:\n Independent training: The Organizing Committee provides an outline of fitness guide, allowing students to persist in running, hiking, and other basic exercises in their daily life on their own.\n School-based training: Some schools incorporate specialized preparations into their PE classes or extracurricular programs. If no unified arrangement is made by the school, students may also follow a personal training plan."
+                    },
+                    {
+                        "title": "Can students join the Gobi Challenge directly?",
+                        "answer": "No. The Youth Ultra Gobi is a complete growth path requiring the students to participate in the Campus Experience → City Exchange → Gobi Challenge in order."
+                    },
+                    {
+                        "title": "How many kilometers do the participants cover each day during the Gobi Challenge? Do they run or walk?",
+                        "answer": "The challenge is primarily hiking, in particular, Day 1: 25 km; Day 2: 23 km / 27 km; and Day 3: 20 km"
+                    }
+                ]
+            },
+            {
+                "theme": "Camp & Logistics",
+                "content": [
+                    {
+                        "title": "What are the accommodation and meals like? Could the students be able to take baths?",
+                        "answer": "Accommodation Arrangement:\n From May 1–3, the students will be arranged to large Gobi tents, with 12 students per tent, separated by gender. Teachers will accompany the students throughout the course to ensure their safety and living order.\n On May 4, the students will switch to a quasi-four-star hotel in Dunhuang, providing a comfortable environment for rest.\n Meals:\n Meals are nutritionally balanced and include local specialty dishes, catering to diverse taste preferences of different students.\nIf a student has special dietary needs (allergies, religious restrictions, vegetarian/vegan, etc.), his/her parent(s) must provide truthful and detailed information at registration to the Organizing Committee. The Organizing Committee will record these information in a unified manner and clearly mark relevant dishes with eye appealing indications at the dinning place of the camp, reminding the students to make personal choices based on their own conditions.\n Showering:\n At the Gobi campsite, due to large temperature differences between day and night, showers are not provided to prevent the students from catching a cold. Clean wash areas will be available for basic hygiene.\n After check in the Dunhuang hotel, the students may take showers normally."
+                    },
+                    {
+                        "title": "Is it cold at night? Is it hot during the day?",
+                        "answer": "Based on the data of past years, the daytime temperatures range from 20–28°C, and nighttime temperatures range from 5–10°C. Sleeping bags for the corresponding temperature needs are provided together with the tent; with these, so it should not be cold at night. During the daytime, the students are suggested to adjust their clothing as needed."
+                    }
+                ]
+            },
+            {
+                "theme": "Safety & Medical Support",
+                "content": [
+                    {
+                        "title": "Could a child get lost after he/she falls behind?",
+                        "answer": "Not at all. There are clear guideposts along the entire competition route, and each child is equipped with a GPS tracker and walkie-talkie, allowing the control center to monitor their location in real time and ensure they will not get lost. Even if a child walks comparably slowly, medical staff, support personnel, and a tail-end vehicle are on the course to provide assistance, ensuring complete coverage and safety."
+                    },
+                    {
+                        "title": "What happens if a child feels unwell or cannot continue walking?",
+                        "answer": "Our medical team will assess the situation on site. If it’s minor discomfort, the child may rest and then continue. If the child unable to continue, he/she will be transported back to the camp by the support vehicle for further rest and observation by a doctor. In all cases, the child’s safety and health are our top priority."
+                    },
+                    {
+                        "title": "How is the safety ensured?",
+                        "answer": "Every child is provided with a GPS tracker and walkie-talkie, allowing the command center to track their location in real time. Not only clear guideposts are set along the entire competition routine, we also arranged staff on duty along the route. In addition, professional medical teams and emergency vehicles will accompany the students at all times to escort the safety of them.\n Mandatory rest points are also set up at the aid stations to ensure the students can recover and gain strength.\n In the event of any extreme weather or emergency, the Organizing Committee will immediately activate the emergency plan, which may include rerouting, shortening the course, or temporarily suspending the competition. The safety of every child is after all always the highest priority."
+                    }
+                ]
+            },
+            {
+                "theme": "Rules & Awards",
+                "content": [
+                    {
+                        "title": "What are the requirements to complete the competition?",
+                        "answer": "A child is considered to have officially completed the competition if he/she finishes the full course, checks in at all required points, and carries all mandatory gear before closing time of each day. Violations such as taking a vehicle, missing check-ins, or failing to carry required gear will disqualify the results."
+                    },
+                    {
+                        "title": "How are the gold, silver, and bronze medals awarded?",
+                        "answer": "Medals are awarded daily based on the completion time of the child: if he/she reaches the standard time requirement, he/she may earn the gold or silver medal. If he/she completes before closing time, he/she may earn the bronze medal. In other words, every child can earn a medal of that day depending on their own effort. Their progress and perseverance throughout the day will be recognized."
+                    },
+                    {
+                        "title": "How are the team honors determined?",
+                        "answer": "Team honors are based on the collective performance of all team members. If all members of a team earn gold medals every day, with no withdrawal or violation of any rule, the team can receive the “Gold Gobi Award” or “Gold Title Award.” These awards represent teamwork and collective effort, rather than individual achievement.\n Gold Gobi Award: For 12-member team; all members earn gold medals for all 3 days with no withdrawal or violation. If there is one member withdrawing once, the team may still receive the Gold Title Award.\n Gold Title Award: For 6–11-member team; all members earn gold medals for all 3 days with no violation, and there could be one member withdrawing."
+                    },
+                    {
+                        "title": "What school honors will be awarded?",
+                        "answer": "School awards are awarded for team spirit and legacy, such as:\n Shackleton Award: Recognizes schools whose teams demonstrate resilience and persevere to the end.\n Team Spirit Awards: Discipline: No rule violation record throughout the whole course without breach of the Race Regulations and Rules; full compliance with regulations.Environmental Pioneer: No littering throughout the whole course; hygiene standards are met within the tent at the camp. oProcess Efficiency: All assemblies, check and record, and departures occur on time, with 100% punctuality without delay, and adherence to rules."
+                    }
+                ]
+            },
+            {
+                "theme": "Others ",
+                "content": [
+                    {
+                        "title": "Is mobile phones allowed to be brought to the site?",
+                        "answer": "Yes. The Organizing Committee does not forbid the students to bring phones or smartwatches, but casual use at the campsite is not encouraged. Each school will have its own management rules, and the Organizing Committee can provide custody service in a unified manner. If a device is lost because it wasn’t submitted to the Organizing Committee for keeping, the student shall be solely responsible therefor. The students may also wear GPS-enabled smartwatches to keep their parents rest assured at any time."
+                    },
+                    {
+                        "title": "Can parents accompany their students during the competition?",
+                        "answer": "The Gobi campsite is subject to close-off management, so the parents may not keep company with their students. However, parents may meet their students at the Dunhuang hotel. The entire course of the Gobi Challenge will be livestreamed."
+                    },
+                    {
+                        "title": "What if a child loses personal belongings?",
+                        "answer": "The campsite has a lost-and-found point. Items found during the day are collected at a designated tent, will be publicly announced, and available for claim. After the competition, an online claim channel will be provided for parents to submit requests, and the Committee will help check and send back by mail.\n However, Due to the remote Gobi environment, we cannot guarantee all lost items can be recovered. students are encouraged to take responsibility for keeping their belongings during the competition."
+                    },
+                    {
+                        "title": "What equipment must be prepared?",
+                        "answer": "Essential items include: hydration pack, single-layer jacket, sleeping bag, headlamp, etc., subject to the detailed checklist released subsequently by the Organizing Committee. The students purchase against the checklist."
+                    },
+                    {
+                        "title": "Can a Fapiao (official VAT invoice) be provided?",
+                        "answer": "Yes. We will collect fapiao application details one week after the completion of the Gobi Challenge. "
+                    },
+                    {
+                        "title": "What if a student cannot attend for the moment after registering? Can he/she get refund?",
+                        "answer": "The Organizing Committee has a clear refund policy. Please refer to the notes for registration for information. In case of any change, it is recommended the parents to contact the school leader or Organizing Committee immediately.\n Refund Rules: The deduction standards for refund upon refund request are as follows\n 1.If the withdrawal request is made after the Campus Experience but during the registration stage, the participant will get full refund\n 2.For City Exchange:\n Request to refund within 3 days(inclusive) of payment: full refund\n Withdrawal within 30 days (inclusive) before the City Exchange: 98% of the refund\n Withdrawal 15–29 days before City Exchange: 95% of the refund\n Withdrawal 4–14 days before City Exchange: 90% of the refund\n Withdrawal 1–3 days before City Exchange: 83% of the refund\n 3.Gobi Challenge:\n Withdrawal 30 days(inclusive) before Gobi Challenge: 83% of the refund\n Withdrawal 15–29 days before Gobi Challenge: 80% of the refund\n Withdrawal 4–14 days before Gobi Challenge: 70% of the refund\n Withdrawal 1–3 days before Gobi Challenge: no refund"
+                    }
+                ]
+            }
+        ],
+        "userQuestions": "User Questions",
+        "raceQuestions": "Race Q&A",
+        "healthQuestions": "Health Questions"
+    }
+}

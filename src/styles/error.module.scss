@@ -1,0 +1,34 @@
+.error {
+    display: flex;
+    padding: 42px 100px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f8f8f8;
+    margin-top: 98px;
+    min-height: calc(100vh - 527px);
+
+    .image {
+        width: 715px;
+        height: 446px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    // 媒体查询
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        height: auto;
+        padding: 60px * 3.84 20px * 3.84;
+        margin-top: 72px * 3.84;
+        min-height: calc(100vh - 325px * 3.85);
+
+        .image {
+            width: 335px * 3.84;
+            height: 209px * 3.84;
+            aspect-ratio: 109/68;
+        }
+    }
+}
