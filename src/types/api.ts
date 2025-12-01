@@ -328,7 +328,8 @@ declare namespace API {
         matchRulesZh?: string
         nameEn?: string
         nameZh?: string
-        place?: string
+        placeZh?: string
+        placeEn?: string
         quitPolicyEn?: string
         quitPolicyZh?: string
         signUpNoticeEn?: string

@@ -93,7 +93,7 @@ const MatchDetailCard = (props: Props) => {
                         <div className={styles.text_title}>
                             {t('registration.place')}:
                         </div>
-                        {matchDetail?.[i18n.language === 'zh' ? 'place' : 'place']}
+                        {matchDetail?.[i18n.language === 'zh' ? 'placeZh' : 'placeEn']}
 
                     </div>
                     <div className={styles.text}>
