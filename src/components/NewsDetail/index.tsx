@@ -228,7 +228,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
                         onClick={() => openImageModal(index)}
                     >
                         <LoadingImg
-                            style={{ width: '100%', height: '100%' }}
+                            style={{ width: '100%', height: 'auto' }}
                             src={item.url}
                             alt={item.url}
                             width={400}
@@ -300,7 +300,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
                     </button>
                     <div className={styles.modalImageContainer}>
                         <LoadingImg
-                            style={{ width: '100%', height: '100%' }}
+                            style={{ width: '100%', height: '100%', maxHeight: '90vh', objectFit: 'contain' }}
                             src={newsDetail.imageList[currentImageIndex].url}
                             alt={newsDetail.imageList[currentImageIndex].url}
                             width={800}

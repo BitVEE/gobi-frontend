@@ -114,21 +114,33 @@
 
             .newsDetailImageList {
                 width: 100%;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-gap: 12px;
+                column-count: 4;
+                column-gap: 12px;
+                column-fill: balance;
+
+                @media (max-width: 1920px) {
+                    column-count: 3;
+                    column-gap: 16px;
+                }
+
+                @media (max-width: 1440px) {
+                    column-count: 2;
+                    column-gap: 24px;
+                }
 
                 .newsDetailImage {
                     width: 100%;
-                    height: auto;
-                    object-fit: cover;
-                    border-radius: 10px;
+                    display: inline-block;
+                    margin-bottom: 8px;
+                    border-radius: 4px;
                     overflow: hidden;
                     cursor: pointer;
                     transition: transform 0.3s ease;
+                    break-inside: avoid;
 
                     &:hover {
-                        transform: scale(1.02);
+                        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+                        transform: translate(1px, 1px) scale(1.01);
                     }
                 }
 
@@ -151,21 +163,23 @@
 
             .newsDetailSingleImageList {
                 width: 100%;
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                grid-gap: 12px;
+                column-count: 2;
+                column-gap: 12px;
+                column-fill: balance;
 
                 .newsDetailImage {
                     width: 100%;
-                    height: auto;
-                    object-fit: cover;
-                    border-radius: 10px;
+                    display: inline-block;
+                    margin-bottom: 8px;
+                    border-radius: 4px;
                     overflow: hidden;
                     cursor: pointer;
                     transition: transform 0.3s ease;
+                    break-inside: avoid;
 
                     &:hover {
-                        transform: scale(1.02);
+                        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+                        transform: translate(1px, 1px) scale(1.01);
                     }
                 }
             }
@@ -174,7 +188,7 @@
                 width: 100%;
                 display: grid;
                 grid-template-columns: repeat(1, 1fr);
-                grid-gap: 12px;
+                grid-gap: 8px;
 
                 .newsDetailVideo {
                     width: 100%;
@@ -184,7 +198,7 @@
                     iframe {
                         width: 100%;
                         height: 100%;
-                        border-radius: 10px;
+                        border-radius: 4px;
                     }
                 }
             }
@@ -274,15 +288,14 @@
                 .newsDetailImageList,
                 .newsDetailSingleImageList {
                     width: 100%;
-                    display: grid;
-                    grid-template-columns: repeat(1, 1fr);
-                    grid-gap: 12px * 3.84;
+                    column-count: 1;
+                    column-gap: 8px * 3.84;
 
                     .newsDetailImage {
                         width: 100%;
-                        height: auto;
-                        object-fit: cover;
-                        border-radius: 10px * 3.84;
+                        display: inline-block;
+                        margin-bottom: 8px * 3.84;
+                        border-radius: 4px * 3.84;
                         overflow: hidden;
                     }
                 }
@@ -291,7 +304,7 @@
                     width: 100%;
                     display: grid;
                     grid-template-columns: repeat(1, 1fr);
-                    grid-gap: 12px * 3.84;
+                    grid-gap: 8px * 3.84;
 
                     .newsDetailVideo {
                         width: 100%;
@@ -301,7 +314,7 @@
                         video {
                             width: 100%;
                             height: 100%;
-                            border-radius: 10px * 3.84;
+                            border-radius: 4px * 3.84;
                         }
                     }
                 }
