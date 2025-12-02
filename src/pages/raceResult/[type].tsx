@@ -11,6 +11,7 @@ import { MatchAPI, ResultAPI } from '@/api'
 import Image from "next/image";
 import { formatTime } from "@/utils/tool";
 import { getCompletionStateByChinese, getRankTypeByChinese } from "@/utils/map";
+import SelectDropdown from "@/components/SelectDropdown";
 const RaceResult = () => {
     const router = useRouter();
     const { locale } = router;
@@ -289,50 +290,38 @@ const RaceResult = () => {
                             </button>
                         </div>}
 
-                        <form className={styles.raceResultFilterItem}>
+                        <div className={styles.raceResultFilterItem}>
                             {matchList?.length > 0 && (
-                                <label htmlFor="matchSelect" className={styles.selectContainer}>
-                                    <Image className={styles.selectIconLeft} width={20} height={20} src="/images/icons/calendar.svg" alt="select" />
-                                    <select
-                                        id="matchSelect"
-                                        value={matchId}
-                                        disabled={loading}
-                                        onChange={(e) => {
-                                            setMatchId(Number(e.target.value))
-                                        }}
-                                        className={styles.select}
-                                    >
-                                        {matchList.map(item => (
-                                            <option key={item.id} value={item.id}>
-                                                {locale === "en" ? item.nameEn || "" : item.nameZh || ""}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    <Image className={styles.selectIconRight} width={20} height={20} src="/images/icons/arrow-down-black.svg" alt="select" />
-                                </label>
+                                <SelectDropdown
+                                    id="matchSelect"
+                                    value={matchId}
+                                    disabled={loading}
+                                    leftIconSrc="/images/icons/calendar.svg"
+                                    options={matchList.map((item) => ({
+                                        value: item.id as number,
+                                        label: locale === "en" ? item.nameEn || "" : item.nameZh || "",
+                                    }))}
+                                    onChange={(value) => {
+                                        setMatchId(Number(value));
+                                    }}
+                                />
                             )}
                             {groupList?.length > 0 && (
-                                <label htmlFor="groupSelect" className={styles.selectContainer}>
-                                    <Image className={styles.selectIconLeft} width={20} height={20} src="/images/icons/people.svg" alt="select" />
-                                    <select
-                                        id="groupSelect"
-                                        value={selectedGroup}
-                                        disabled={loading}
-                                        onChange={(e) => {
-                                            setSelectedGroup(Number(e.target.value))
-                                        }}
-                                        className={styles.select}
-                                    >
-                                        {groupList.map(item => (
-                                            <option key={item.id} value={item.id}>
-                                                {locale === "en" ? item.nameEn : item.nameZh}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    <Image className={styles.selectIconRight} width={20} height={20} src="/images/icons/arrow-down-black.svg" alt="select" />
-                                </label>
+                                <SelectDropdown
+                                    id="groupSelect"
+                                    value={selectedGroup}
+                                    disabled={loading}
+                                    leftIconSrc="/images/icons/people.svg"
+                                    options={groupList.map((item) => ({
+                                        value: item.id as number,
+                                        label: locale === "en" ? item.nameEn : item.nameZh,
+                                    }))}
+                                    onChange={(value) => {
+                                        setSelectedGroup(Number(value));
+                                    }}
+                                />
                             )}
-                        </form>
+                        </div>
                     </div>
                     {rankList?.length > 0 && <TagSelector
                         loading={loading}

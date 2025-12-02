@@ -27,10 +27,23 @@ const Modal = ({
     const { t } = useTranslation("common");
     const [isClosing, setIsClosing] = useState(false);
 
+    const startClosing = () => {
+        setIsClosing(true);
+        setTimeout(() => {
+            setIsClosing(false);
+            onClose();
+        }, 200); // 匹配动画时长
+    };
+
+    const handleClose = () => {
+        if (!isClickOutsideToClose) return;
+        startClosing();
+    };
+
     useEffect(() => {
-        const handleEsc = (e: any) => {
+        const handleEsc = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
-                handleClose();
+                startClosing();
             }
         };
 
@@ -44,15 +57,6 @@ const Modal = ({
             document.body.style.overflow = 'unset';
         };
     }, [isOpen]);
-
-    const handleClose = () => {
-        if (!isClickOutsideToClose) return;
-        setIsClosing(true);
-        setTimeout(() => {
-            setIsClosing(false);
-            onClose();
-        }, 200); // 匹配动画时长
-    };
 
     if (!isOpen && !isClosing) return null;
 
@@ -80,7 +84,7 @@ const Modal = ({
                 )}
 
                 {showCloseButton && (
-                    <div className={styles.modalCloseButton} onClick={() => { setIsClosing(false); onClose() }}>
+                    <div className={styles.modalCloseButton} onClick={startClosing}>
                         <Image src="/images/icons/closeModal.svg" width={24} height={24} alt="Close" />
                     </div>
                 )}
