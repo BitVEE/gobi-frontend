@@ -47,6 +47,11 @@
         min-width: 0;
     }
 
+    // 当没有选择值时，显示占位符样式
+    &:not(.hasValue) .select {
+        color: rgba(0, 0, 0, 0.3);
+    }
+
     .select:disabled {
         cursor: not-allowed;
         opacity: 0.6;

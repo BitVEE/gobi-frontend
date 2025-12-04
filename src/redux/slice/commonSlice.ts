@@ -1,25 +1,35 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface commonState {
+interface CommonState {
     token: string
+    userInfo: API.UserInfo | null
 }
-const initialState: commonState = {
-    token: ''
+
+const initialState: CommonState = {
+    token: '',
+    userInfo: null,
 }
 
 export const commonSlice = createSlice({
     name: 'commonSlice',
     initialState,
     reducers: {
-        setToken: (state: commonState, action: PayloadAction<string>) => {
+        setToken: (state: CommonState, action: PayloadAction<string>) => {
             state.token = action.payload
         },
-        clearToken: (state: commonState) => {
+        clearToken: (state: CommonState) => {
             state.token = ''
-        }
+            state.userInfo = null
+        },
+        setUserInfo: (state: CommonState, action: PayloadAction<API.UserInfo | null>) => {
+            state.userInfo = action.payload
+        },
+        clearUserInfo: (state: CommonState) => {
+            state.userInfo = null
+        },
     },
 })
 
-export const { setToken, clearToken } = commonSlice.actions
+export const { setToken, clearToken, setUserInfo, clearUserInfo } = commonSlice.actions
 
 export default commonSlice.reducer

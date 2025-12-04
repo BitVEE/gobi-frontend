@@ -412,4 +412,133 @@ declare namespace API {
         articleCount: number
     }
 
+    /**
+     * 用户信息
+     */
+    interface UserInfo {
+        /** 用户ID */
+        id: number
+        /** 登录方式，1 微信 / 2 邮箱 */
+        type: number
+        /** 微信ID / 邮箱 */
+        key: string
+        /** 用户ID，展示用 */
+        displayId: string
+        /** 状态 */
+        state: number
+        /** 是否已绑定过用户档案 */
+        hasMatchDocument: boolean
+        /** 创建时间，时间戳 */
+        createdAt: string
+    }
+
+    /**
+     * 查看用户信息结果
+     */
+    type UserInfoResult = APIResult<UserInfo>
+
+    /**
+     * User info by mark number query item - input parameter
+     */
+    interface UserInfoByMarkNumberItem {
+        matchId: number
+        matchGroupId: number
+        markNumber: string
+    }
+
+    /**
+     * Get user registration info by mark number - input parameters
+     */
+    interface UserInfoByMarkNumberParams {
+        data: UserInfoByMarkNumberItem[]
+    }
+
+    /**
+     * User info by mark number result item - output result
+     */
+    interface UserInfoByMarkNumberResultItem {
+        matchId: number
+        matchGroupId: number
+        markNumber: string
+        name: string
+        gender: number // Gender: 1 Male / 2 Female / 3 Other
+    }
+
+    /**
+     * Get user registration info by mark number - output result
+     */
+    type UserInfoByMarkNumberResult = APIResult<{
+        data: UserInfoByMarkNumberResultItem[]
+    }>
+
+    /**
+     * Match information in match document
+     */
+    interface MatchDocumentMatch {
+        id: number
+        nameEn: string
+        nameZh: string
+    }
+
+    /**
+     * Match group information in match document
+     */
+    interface MatchDocumentMatchGroup {
+        id: number
+        nameEn: string
+        nameZh: string
+    }
+
+    /**
+     * School information in match document
+     */
+    interface MatchDocumentSchool {
+        id: number
+        nameEn: string
+        nameZh: string
+    }
+
+    /**
+     * User match document item
+     */
+    interface UserMatchDocumentItem {
+        id: number
+        name: string
+        match: MatchDocumentMatch
+        matchGroup: MatchDocumentMatchGroup
+        school: MatchDocumentSchool
+        markNumber: string
+        gender: number // Gender: 1 Male / 2 Female / 3 Other
+    }
+
+    /**
+     * Get all user match documents - output result
+     */
+    type UserMatchDocumentListResult = {
+        documentList: UserMatchDocumentItem[]
+    }
+
+    /**
+     * Create match document item - input parameter
+     */
+    interface AddMatchDocumentItem {
+        matchId: number
+        matchGroupId: number
+        markNumber: string
+        name: string
+        gender: number // Gender: 1 Male / 2 Female / 3 Other
+    }
+
+    /**
+     * Create match document - input parameters
+     */
+    interface AddMatchDocumentParams {
+        documentList: AddMatchDocumentItem[]
+        schoolId: number
+    }
+
+    /**
+     * Create match document - output result
+     */
+    type AddMatchDocumentResult = APIResult<{}>
 }

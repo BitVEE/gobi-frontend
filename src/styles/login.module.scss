@@ -27,6 +27,9 @@
         box-shadow: 15px 15px 15px 0 rgba(177, 170, 170, 0.25);
         margin-bottom: 20px;
     }
+    .bindContainer {
+        max-width: 800px;
+    }
 
     &Header {
         margin: 0 auto;
@@ -203,8 +206,9 @@
         padding: 0 12px * 3.84;
         padding-top: 72px * 3.84;
 
+        .bindContainer,
         &Container {
-            padding: 12px * 3.84;
+            padding: 42px * 3.84;
             max-width: 100%;
             gap: 42px * 3.84;
             border-radius: 8px * 3.84;

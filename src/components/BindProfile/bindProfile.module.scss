@@ -1,0 +1,734 @@
+.bindContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 42px;
+    width: 100%;
+    background: #fff;
+    max-width: 100%;
+
+    .header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .titleSection {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .title {
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 700;
+        font-size: 21px;
+        line-height: 1.2;
+        color: #121212;
+        margin: 0;
+        white-space: nowrap;
+
+        p {
+            line-height: normal;
+        }
+    }
+
+    .titleUnderline {
+        height: 2px;
+        width: 250px;
+        background: linear-gradient(90deg, transparent, #ff6a14, #ff6a14, #ff6a14, transparent);
+        margin-top: 4px;
+    }
+
+    .description {
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #121212;
+        width: 100%;
+
+        p {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+    }
+
+    .privacyLink {
+        color: #ff6a14;
+        text-decoration: underline;
+        text-decoration-skip-ink: none;
+        text-underline-position: from-font;
+    }
+
+    .formSection {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .labelRow {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .label {
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: normal;
+        color: #2e2e2e;
+        white-space: nowrap;
+    }
+
+    .required {
+        color: #c93620;
+    }
+
+    .hint {
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: normal;
+        color: #2e2e2e;
+        white-space: pre-wrap;
+    }
+
+    .inputRow {
+        position: relative;
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        padding: 0;
+
+        .inputFields {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+    }
+
+    .textInput {
+        flex: 0 1 auto;
+        height: 40px;
+        padding: 0 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background: #f8f8f8;
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        color: #2e2e2e;
+        outline: none;
+        width: 100%;
+
+        &::placeholder {
+            color: #2e2e2e88;
+        }
+
+        &:focus {
+            color: #121212;
+        }
+    }
+
+    .addMoreButton {
+        border: 1px solid #ff6a14;
+        border-radius: 8px;
+        padding: 8px 24px;
+        background: transparent;
+        cursor: pointer;
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: normal;
+        color: #ff6a14;
+        white-space: nowrap;
+        transition: all 0.3s;
+
+        &:hover {
+            background: rgba(255, 106, 20, 0.1);
+        }
+    }
+
+    .addMoreHint {
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: normal;
+        color: rgba(0, 0, 0, 0.5);
+        width: 590px;
+        max-width: 100%;
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    .actionButtons {
+        display: flex;
+        gap: 150px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @media (max-width: 768px) {
+            gap: 24px * 3.84;
+            flex-direction: column;
+            width: 100%;
+        }
+    }
+
+    .skipButton {
+        border: 1px solid #ff6a14;
+        border-radius: 8px;
+        padding: 8px 24px;
+        background: transparent;
+        cursor: pointer;
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: normal;
+        color: #ff6a14;
+        white-space: nowrap;
+        transition: all 0.3s;
+
+        &:hover {
+            background: rgba(255, 106, 20, 0.1);
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+
+    .nextButton {
+        border: none;
+        border-radius: 8px;
+        padding: 8px 24px;
+        background: #ff6a14;
+        cursor: pointer;
+        font-family: "Raleway", "Noto Sans JP", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: normal;
+        color: #fff;
+        white-space: nowrap;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        &:hover {
+            background: #ff6a14e6;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+
+    .errorMessage {
+        color: #ff6a14;
+        font-size: 12px;
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        margin-top: 4px;
+    }
+
+    .removeButton {
+        position: absolute;
+        right: -24px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: #fff;
+        color: #12121288;
+        font-size: 18px;
+        line-height: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        flex-shrink: 0;
+
+        &:hover:not(:disabled) {
+            border-color: #ff6a14;
+            color: #ff6a14;
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            display: none;
+        }
+        &::before {
+            content: "×";
+            font-weight: 400;
+            color: inherit;
+            line-height: 0;
+        }
+    }
+
+    // 移动端适配
+    @media (max-width: 768px) {
+        gap: 42px * 3.84;
+
+        .header {
+            width: 100%;
+        }
+
+        .titleSection {
+            gap: 12px * 3.84;
+        }
+
+        .title {
+            font-size: 21px * 3.84;
+        }
+
+        .titleUnderline {
+            width: 250px * 3.84;
+            height: 2px * 3.84;
+            margin-top: 4px * 3.84;
+        }
+
+        .description {
+            font-size: 12px * 3.84;
+            line-height: 1.5;
+            width: 100%;
+        }
+
+        .formSection {
+            gap: 8px * 3.84;
+        }
+
+        .labelRow {
+            gap: 8px * 3.84;
+        }
+
+        .label {
+            font-size: 12px * 3.84;
+        }
+
+        .hint {
+            font-size: 12px * 3.84;
+        }
+
+        .inputRow {
+            flex-wrap: wrap;
+            gap: 10px * 3.84;
+
+            .inputFields {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+
+        .textInput {
+            height: 40px * 3.84;
+            padding: 0 20px * 3.84;
+            border-radius: 8px * 3.84;
+            font-size: 12px * 3.84;
+            border-width: 1px * 3.84;
+            min-width: 250px * 3.84;
+        }
+
+        .removeButton {
+            left: auto;
+            right: -24px * 3.84;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px * 3.84;
+            height: 20px * 3.84;
+            font-size: 20px * 3.84;
+            margin-top: 0;
+        }
+
+        .addMoreButton {
+            width: 100%;
+            padding: 8px * 3.84 24px * 3.84;
+            border-radius: 8px * 3.84;
+            font-size: 16px * 3.84;
+            border-width: 1px * 3.84;
+        }
+
+        .addMoreHint {
+            font-size: 12px * 3.84;
+            width: 100%;
+        }
+
+        .actionButtons {
+            flex-direction: column;
+            gap: 24px * 3.84;
+            width: 100%;
+        }
+
+        .nextButton {
+            width: 100%;
+            padding: 8px * 3.84 24px * 3.84;
+            border-radius: 8px * 3.84;
+            font-size: 16px * 3.84;
+        }
+
+        .skipButton {
+            width: 100%;
+            padding: 8px * 3.84 24px * 3.84;
+            border-radius: 8px * 3.84;
+            font-size: 16px * 3.84;
+            border-width: 1px * 3.84;
+        }
+
+        .errorMessage {
+            font-size: 12px * 3.84;
+        }
+    }
+
+    // 查询中状态
+    .loadingContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        padding: 60px 0;
+        width: 100%;
+
+        .loadingText {
+            font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #121212;
+            margin: 0;
+        }
+    }
+
+    // 查询结果
+    .resultHeader {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 32px;
+    }
+
+    .resultTitle {
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1.5;
+        color: #121212;
+        text-align: center;
+        margin: 0;
+        width: 680px;
+        max-width: 100%;
+    }
+
+    .resultList {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 42px;
+    }
+
+    .resultItem {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        width: 100%;
+        padding: 8px 40px;
+        position: relative;
+        background: rgba(0, 0, 0, 0.03);
+        border-radius: 8px;
+    }
+
+    .resultField {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+        height: 142px;
+    }
+
+    .resultValue {
+        font-family: "Raleway", "Noto Sans JP", sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: normal;
+        color: #121212;
+        margin-bottom: 8px;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    .resultLabel {
+        font-family: "Raleway", "Noto Sans JP", sans-serif;
+        font-weight: 400;
+        font-size: 21px;
+        line-height: normal;
+        color: #2e2e2e;
+        white-space: pre-wrap;
+    }
+
+    .resultDivider {
+        width: 0;
+        height: 142px;
+        border-left: 1px solid #ffd1b7;
+        margin: 0 8px;
+        flex-shrink: 0;
+    }
+
+    .bindButton {
+        border: none;
+        border-radius: 8px;
+        padding: 8px 24px;
+        background: #ff6a14;
+        cursor: pointer;
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: normal;
+        color: #fff;
+        white-space: nowrap;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        &:hover {
+            background: #ff6a14e6;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+
+    .notFoundText {
+        width: 100%;
+        margin-bottom: 42px;
+
+        p {
+            font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #121212;
+            text-align: center;
+            margin: 0;
+            white-space: pre-wrap;
+        }
+    }
+
+    .resetButton {
+        border: none;
+        border-radius: 8px;
+        padding: 8px 24px;
+        background: #ff6a14;
+        cursor: pointer;
+        font-family: "Raleway", "Noto Sans JP", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: normal;
+        color: #fff;
+        white-space: nowrap;
+        transition: all 0.3s;
+
+        &:hover {
+            background: #ff6a14e6;
+        }
+    }
+
+    // 成功/失败状态
+    .successImage,
+    .errorImage,
+    .notFoundImage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 32px;
+
+        img {
+            max-width: 335px;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .successContent,
+    .errorContent {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        align-items: center;
+        margin-bottom: 42px;
+    }
+
+    .successTitle,
+    .errorTitle {
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.5;
+        color: #121212;
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    .successText,
+    .errorText {
+        font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1.5;
+        color: #121212;
+        margin: 0;
+        white-space: pre-wrap;
+
+        :global(strong) {
+            font-weight: 700;
+            font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+        }
+    }
+
+    .confirmButton {
+        border: none;
+        border-radius: 8px;
+        padding: 8px 24px;
+        background: #ff6a14;
+        cursor: pointer;
+        font-family: "Raleway", "Noto Sans JP", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: normal;
+        color: #fff;
+        white-space: nowrap;
+        transition: all 0.3s;
+
+        &:hover {
+            background: #ff6a14e6;
+        }
+    }
+
+    // 移动端适配
+    @media (max-width: 768px) {
+        .loadingContainer {
+            gap: 24px * 3.84;
+            padding: 60px * 3.84 0;
+
+            .loadingText {
+                font-size: 18px * 3.84;
+            }
+        }
+
+        .resultTitle {
+            font-size: 18px * 3.84;
+            width: 100%;
+        }
+
+        .resultList {
+            padding: 8px * 3.84;
+            border-radius: 8px * 3.84;
+            margin-bottom: 42px * 3.84;
+        }
+
+        .resultItem {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 16px * 3.84 0;
+            gap: 16px * 3.84;
+
+            &:not(:last-child) {
+                margin-bottom: 0;
+                padding-bottom: 16px * 3.84;
+            }
+        }
+
+        .resultField {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            text-align: left;
+            gap: 16px * 3.84;
+        }
+
+        .resultValue {
+            font-size: 16px * 3.84;
+            margin-bottom: 0;
+            flex: 1;
+            text-align: right;
+        }
+
+        .resultLabel {
+            font-size: 16px * 3.84;
+            min-width: 100px * 3.84;
+            text-align: right;
+        }
+
+        .resultDivider {
+            width: 100%;
+            height: 1px;
+            border-left: none;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin: 0;
+            transform: rotate(0deg);
+        }
+
+        .bindButton,
+        .resetButton,
+        .confirmButton {
+            width: 100%;
+            padding: 8px * 3.84 24px * 3.84;
+            border-radius: 8px * 3.84;
+            font-size: 16px * 3.84;
+        }
+
+        .notFoundImage,
+        .successImage,
+        .errorImage {
+            margin-bottom: 32px * 3.84;
+            img {
+                max-width: 100%;
+            }
+        }
+
+        .notFoundText {
+            margin-bottom: 42px * 3.84;
+
+            p {
+                font-size: 18px * 3.84;
+            }
+        }
+
+        .successContent,
+        .errorContent {
+            gap: 32px * 3.84;
+            margin-bottom: 42px * 3.84;
+        }
+
+        .successTitle,
+        .errorTitle {
+            font-size: 18px * 3.84;
+        }
+
+        .successText,
+        .errorText {
+            font-size: 18px * 3.84;
+        }
+    }
+}

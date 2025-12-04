@@ -16,6 +16,8 @@ interface SelectDropdownProps {
     leftIconSrc?: string;
     leftText?: string;
     rightIconSrc?: string;
+    placeholder?: string;
+    style?: React.CSSProperties;
 }
 
 const SelectDropdown: React.FC<SelectDropdownProps> = ({
@@ -27,6 +29,8 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
     leftIconSrc,
     rightIconSrc = "/images/icons/arrow-down-black.svg",
     leftText,
+    placeholder,
+    style,
 }) => {
     const [open, setOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -54,11 +58,18 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
         };
     }, []);
 
+    const selectedOption = options.find((option) => option.value === value);
+    // 当 value 为空字符串或未定义时，视为未选择
+    const hasValue = value !== "" && value !== undefined && value !== null && selectedOption !== undefined;
+    // 如果有选择值，显示选项标签；否则显示占位符
+    const displayText = hasValue ? (selectedOption?.label || "") : (placeholder || "");
+
     return (
         <div
             ref={containerRef}
-            className={`${styles.selectContainer} ${open ? styles.open : ""} ${disabled ? styles.disabled : ""}`}
+            className={`${styles.selectContainer} ${open ? styles.open : ""} ${disabled ? styles.disabled : ""} ${hasValue ? styles.hasValue : ""}`}
             onClick={handleToggle}
+            style={style}
         >
             {(leftIconSrc || leftText) && (
                 <div className={styles.leftArea}>
@@ -80,7 +91,7 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
             )}
 
             <div className={styles.select} id={id}>
-                {options.find((option) => option.value === value)?.label}
+                {displayText}
             </div>
 
             {rightIconSrc && (

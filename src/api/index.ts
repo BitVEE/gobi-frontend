@@ -27,6 +27,12 @@ export const AuthAPI = {
      * @returns 报名历史
      */
     getSignupHistory: (params: API.SignupHistoryParams) => http.get<API.SignupHistoryResult>(`${baseURL}/match/signup/list`, { params }),
+
+    /**
+     * 查看用户信息
+     * @returns 用户信息
+     */
+    getUserInfo: () => http.get<API.UserInfoResult>(`${baseURL}/user/info`),
 }
 
 
@@ -87,6 +93,31 @@ export const PaymentAPI = {
 
 export const SchoolAPI = {
     getSchoolList: () => http.get<API.APIResult<API.SchoolListResult>>(`${baseURL}/school/list`),
+}
+
+/**
+ * User match document related APIs
+ */
+export const UserMatchDocumentAPI = {
+    /**
+     * Get user registration info by mark number
+     * @param params Query parameters
+     * @returns User registration information
+     */
+    getUserInfoByMarkNumber: (params: API.UserInfoByMarkNumberParams) => http.post<API.UserInfoByMarkNumberResult>(`${baseURL}/match/user_info`, params),
+
+    /**
+     * Get all user match documents
+     * @returns List of all user match documents
+     */
+    getUserMatchDocumentList: () => http.get<API.UserMatchDocumentListResult>(`${baseURL}/user_match_document/list`),
+
+    /**
+     * Create new match document
+     * @param params Create match document parameters
+     * @returns Creation result
+     */
+    addMatchDocument: (params: API.AddMatchDocumentParams) => http.post<API.AddMatchDocumentResult>(`${baseURL}/user_match_document/add`, params),
 }
 
 /**

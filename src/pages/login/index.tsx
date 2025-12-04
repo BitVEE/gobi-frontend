@@ -8,6 +8,9 @@ import { useRouter } from "next/router";
 import { ErrorCode, ErrorCodeMap } from "@/utils/map";
 import { useDispatch } from "react-redux";
 import { addToast } from "@/redux/slice/toastSlice";
+import { setUserInfo } from "@/redux/slice/commonSlice";
+import BindProfile from "@/components/BindProfile";
+
 const Login = () => {
     const router = useRouter()
     const dispatch = useDispatch();
@@ -21,12 +24,15 @@ const Login = () => {
     const [codeError, setCodeError] = useState<boolean>(false)
     const [agreementError, setAgreementError] = useState<boolean>(false)
     const [isLogin, setIsLogin] = useState(false)
+    // 是否显示绑定档案表单（默认不显示，登录成功后根据用户信息判断）
+    const [showBindForm, setShowBindForm] = useState(true)
 
     useEffect(() => {
         if (countdown > 0) {
             setTimeout(() => { setCountdown(countdown - 1) }, 1000)
         }
     }, [countdown])
+
 
     const sendCode = async () => {
         if (isGetCodeing) {
@@ -86,12 +92,34 @@ const Login = () => {
             await AuthAPI.login({
                 email,
                 verificationCode: code,
-            }).then((res) => {
+            }).then(async (res) => {
                 if (res.data.code === 0) {
+                    // 登录成功后，token 会在全局响应拦截器中自动写入 Redux
+
+                    let hasMatchDocument = false
+                    // 登录成功后获取用户信息
+                    try {
+                        const userRes = await AuthAPI.getUserInfo()
+                        if (userRes.data.code === 0 && userRes.data.data) {
+                            dispatch(setUserInfo(userRes.data.data))
+                            hasMatchDocument = userRes.data.data.hasMatchDocument
+                        }
+                    } catch (err) {
+                        // 获取用户信息失败时，不影响后续流程
+                    }
+
                     dispatch(addToast({
                         message: t("login.loginSuccess")
                     }))
-                    router.push('/' + router.locale)
+
+                    // 根据是否已绑定档案决定下一步
+                    if (hasMatchDocument) {
+                        // 已绑定档案，直接跳转首页
+                        router.push('/' + router.locale)
+                    } else {
+                        // 未绑定档案，展示绑定档案表单
+                        setShowBindForm(true)
+                    }
                 } else {
                     dispatch(addToast({
                         message: t(`errorCode.${ErrorCodeMap[res.data.code as ErrorCode]}` as any),
@@ -105,6 +133,19 @@ const Login = () => {
         }
     }
 
+    // 如果显示绑定表单，渲染绑定UI
+    if (showBindForm) {
+        return (
+            <div className={styles.login}>
+                <div className={`${styles.loginContainer} ${styles.bindContainer}`}>
+                    <BindProfile
+                        showSkipButton={true}
+                        redirectPath={'/' + router.locale}
+                    />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.login}>
