@@ -24,17 +24,18 @@
     border-radius: 8px;
     padding: 42px;
     box-shadow: 15px 15px 15px 0px #b1aaaa40;
+    max-height: 100vh;
+    overflow: scroll;
 }
 
 .commonModalContent {
     width: 764px;
-    height: 537px;
+    min-height: 537px;
 }
 
 .fullscreenModalContent {
     width: 1000px;
-    height: 800px;
-    max-height: 100vh;
+    min-height: 800px;
     border-radius: 0;
 }
 
@@ -114,7 +115,7 @@
         gap: 42px;
         opacity: 1;
         border-radius: 16px;
-        padding: 42px;
+        padding: 42px * 3.84;
         box-shadow: 15px 15px 15px 0px #b1aaaa40;
     }
 

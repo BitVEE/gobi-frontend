@@ -263,6 +263,7 @@
     "user": {
         "title": "个人中心",
         "myEnroll": "我的报名",
+        "myResult": "我的成绩",
         "all": "全部",
         "waitPay": "待支付",
         "paySuccess": "支付成功",
@@ -271,7 +272,9 @@
         "name": "姓名",
         "group": "组别",
         "raceName": "赛事名称",
-        "status": "状态"
+        "status": "状态",
+        "noBindDocument": "你暂未绑定任何赛事档案，快来认领吧",
+        "bindDocument": "绑定个人赛事档案"
     },
     "partner": {
         "title": "合作伙伴",

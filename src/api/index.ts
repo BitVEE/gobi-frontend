@@ -110,7 +110,7 @@ export const UserMatchDocumentAPI = {
      * Get all user match documents
      * @returns List of all user match documents
      */
-    getUserMatchDocumentList: () => http.get<API.UserMatchDocumentListResult>(`${baseURL}/user_match_document/list`),
+    getUserMatchDocumentList: () => http.get<API.APIResult<API.UserMatchDocumentListResult>>(`${baseURL}/user_match_document/list`),
 
     /**
      * Create new match document

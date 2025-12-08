@@ -64,6 +64,10 @@ const RaceResult = () => {
                             matchId: matchId,
                             id: record.id,
                             rankId: selectedRank,
+                            matchNameEn: matchList.find(item => item.id === matchId)?.nameEn,
+                            matchNameZh: matchList.find(item => item.id === matchId)?.nameZh,
+                            groupNameEn: groupList.find(item => item.id === selectedGroup)?.nameEn,
+                            groupNameZh: groupList.find(item => item.id === selectedGroup)?.nameZh,
                         }
                     })
                 }}>{t("detail")}</button>
@@ -118,6 +122,10 @@ const RaceResult = () => {
                                 matchId: matchId,
                                 id: record.id,
                                 rankId: selectedRank,
+                                matchNameEn: matchList.find(item => item.id === matchId)?.nameEn,
+                                matchNameZh: matchList.find(item => item.id === matchId)?.nameZh,
+                                groupNameEn: groupList.find(item => item.id === selectedGroup)?.nameEn,
+                                groupNameZh: groupList.find(item => item.id === selectedGroup)?.nameZh,
                             }
                         })
                     }}>{t("detail")}</button>
@@ -175,7 +183,8 @@ const RaceResult = () => {
         const res = await ResultAPI.getResultRankList({
             matchId: matchId,
             matchGroupId: selectedGroup,
-            type: type == "team" ? 1 : type == "personal" ? 2 : 0
+            type: type == "team" ? 1 : type == "personal" ? 2 : 0,
+            gender: 0,
         })
         if (res.data.code === 0) {
             setRankList(res.data.data.rankList)
@@ -303,6 +312,8 @@ const RaceResult = () => {
                                     }))}
                                     onChange={(value) => {
                                         setMatchId(Number(value));
+                                        setGroupList(matchList.find(item => item.id === value)?.groups || []);
+                                        setSelectedGroup(0);
                                     }}
                                 />
                             )}

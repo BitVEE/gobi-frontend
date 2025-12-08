@@ -2,6 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 type ToastType = 'success' | 'error' | 'warning';
 
+export interface ToastState {
+    queue: ToastItem[];
+}
+
 export interface ToastItem {
     id: string;
     message: string;

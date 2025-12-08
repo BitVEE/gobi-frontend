@@ -263,6 +263,7 @@
     "user": {
         "title": "Personal center",
         "myEnroll": "My enrollment",
+        "myResult": "My result",
         "all": "All",
         "waitPay": "Wait pay",
         "paySuccess": "Pay success",
@@ -271,7 +272,9 @@
         "name": "Name",
         "group": "Group",
         "raceName": "Race name",
-        "status": "Status"
+        "status": "Status",
+        "noBindDocument": "You have not bound any race profile, please bind it",
+        "bindDocument": "Bind race profile"
     },
     "partner": {
         "title": "Partners",

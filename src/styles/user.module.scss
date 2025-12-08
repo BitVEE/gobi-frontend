@@ -18,7 +18,87 @@
                 background-color: #ff6a14;
             }
         }
+        .my_result {
+            margin-top: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+            .resultFilters {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+
+                .resultFilterItem {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+                .resultFilterLabel {
+                    font-size: 14px;
+                    color: #1a1a1a;
+                }
+            }
+
+            .my_result_table {
+                width: 100%;
+
+                .state_button {
+                    padding: 6px 10px;
+                    border: 1px solid #ff6a14;
+                    border-radius: 6px;
+                    color: #ff6a14;
+                    background: #fff;
+                    cursor: pointer;
+                }
+            }
+        }
     }
+
+    .bindEmpty {
+        margin-top: 46px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        text-align: center;
+
+        .bindImage {
+            width: 365px;
+            height: auto;
+        }
+
+        .bindText {
+            margin: 0;
+            font-size: 16px;
+            color: #000;
+            font-family: "Raleway", "Noto Sans SC", "Noto Sans JP", sans-serif;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        .bindButton {
+            border: 1px solid #ff6a14;
+            color: #ff6a14;
+            background: #fff;
+            border-radius: 8px;
+            padding: 8px 24px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .bindButton:hover {
+            background: rgba(255, 106, 20, 0.08);
+        }
+
+        .bindButton:active {
+            background: rgba(255, 106, 20, 0.12);
+        }
+    }
+
     @media screen and (max-width: 768px) {
         .userContainer {
             margin: 0 20px * 3.84;
@@ -28,6 +108,42 @@
                 .divider {
                     height: 2px * 3.84;
                 }
+            }
+            .my_result {
+                margin-top: 0;
+                gap: 32px * 3.84;
+                .resultFilters {
+                    gap: 12px * 3.84;
+                    .resultFilterItem {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 6px * 3.84;
+                        select {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .bindEmpty {
+            margin-top: 46px * 3.84;
+            gap: 24px * 3.84;
+
+            .bindImage {
+                width: 250px * 3.84;
+            }
+
+            .bindText {
+                font-size: 16px * 3.84;
+                white-space: normal;
+            }
+
+            .bindButton {
+                font-size: 16px * 3.84;
+                border-radius: 8px * 3.84;
+                padding: 8px * 3.84 24px * 3.84;
+                border-width: 1px * 3.84;
             }
         }
     }

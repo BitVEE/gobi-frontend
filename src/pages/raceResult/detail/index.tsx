@@ -2,17 +2,19 @@
 import getLocaleProps from "@/utils/getLocaleProps";
 import { useTranslation } from "next-i18next";
 import styles from '@/styles/raceResult.module.scss'
+import stylesContent from '@/components/RaceResultDetailContent/index.module.scss'
 import { useEffect, useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import TableComponent, { TableColumn } from "@/components/Table";
 import { useRouter } from "next/router";
 import { ResultAPI } from '@/api'
-import Image from "next/image";
-import { formatTime, formatTime2 } from "@/utils/tool";
-import { getCompletionStateByChinese, getRankTypeByChinese } from "@/utils/map";
+import { formatTime } from "@/utils/tool";
+import { getCompletionStateByChinese } from "@/utils/map";
+import RaceResultDetailContent from "@/components/RaceResultDetailContent";
 const RaceResultDetail = () => {
     const router = useRouter();
-    const { id, matchId, rankId, type } = router.query;
+    const { locale } = router;
+    const { id, matchId, rankId, type, matchNameEn, matchNameZh, groupNameEn, groupNameZh } = router.query;
     const { t } = useTranslation("common", { keyPrefix: "raceResult" });
     const [loading, setLoading] = useState<boolean>(false);
     const [personalResultList, setPersonalResultList] = useState<API.ResultCp[]>([]);
@@ -88,9 +90,9 @@ const RaceResultDetail = () => {
             dataIndex: "state",
             key: "state",
             render: (text: string, record: API.ResultMember) => {
-                return <div className={styles.state}>
+                return <div className={stylesContent.state}>
                     {(getCompletionStateByChinese(text) ? t(`completionState.${getCompletionStateByChinese(text)}` as any) : text) as string}
-                    <button className={styles.state_button} onClick={() => {
+                    <button className={stylesContent.state_button} onClick={() => {
                         router.push({
                             pathname: "/raceResult/detail",
                             query: {
@@ -98,6 +100,10 @@ const RaceResultDetail = () => {
                                 matchId: matchId,
                                 id: record.userId,
                                 rankId,
+                                matchNameEn,
+                                matchNameZh,
+                                groupNameEn,
+                                groupNameZh,
                             }
                         })
                     }}>{t("detail")}</button>
@@ -149,162 +155,28 @@ const RaceResultDetail = () => {
 
     return (
         <div className={styles.raceResult}>
-            <PageHeader title={detail?.cmptName || ""} backgroundImage="/images/title_bg/race_result_page_bg.png" />
-            {!loading && <div className={styles.raceResultDetailContainer}>
-                <div className={styles.raceResultDetailTop}>
-                    <div className={styles.raceResultDetailTopBg}></div>
-                    <div className={styles.raceResultDetailTopLeft}>
-                        <div className={styles.raceResultDetailTopLeftTitle}>
-                            {type == "personal" ? formatTime(Number(detail?.totalScore.realTimespan || 0)) : formatTime(Number(detail?.totalScore.timespan || 0))}
-                        </div>
-                        <div className={styles.raceResultDetailTopLeftSubTitle}>
-                            {detail?.cmptName || ""}
-                        </div>
-                    </div>
-                    <div className={styles.raceResultDetailTopRight}>
-                        <div className={styles.raceResultDetailTopRightItem}>
-                            <div className={styles.raceResultDetailTopRightItemTitle}>No.{detail?.totalScore.rank}</div>
-                            <div className={styles.raceResultDetailTopRightItemSubTitle}>
-                                {getRankTypeByChinese(detail?.rankName || "") ? t(`rankList.${getRankTypeByChinese(detail?.rankName || "")}` as any) as string : detail?.rankName}
-                            </div>
-                            <Image className={styles.raceResultDetailTopRightItemIcon} width={20} height={20} src="/images/icons/ranking.svg" alt="clock" />
-                        </div>
-                        <div className={styles.raceResultDetailTopRightItem}>
-                            <div className={styles.raceResultDetailTopRightItemTitle}>{formatTime(Number(detail?.totalScore.timespan || 0))}</div>
-                            <div className={styles.raceResultDetailTopRightItemSubTitle}>
-                                {type == "personal" ? t("raceTime") : t("totalTime")}
-                            </div>
-                            <Image className={styles.raceResultDetailTopRightItemIcon} width={20} height={20} src="/images/icons/timer1.svg" alt="clock" />
-                        </div>
-                        <div className={styles.raceResultDetailTopRightItem}>
-                            <div className={styles.raceResultDetailTopRightItemTitle}>
-                                {type == "personal" ? formatTime(Number(detail?.totalScore.realTimespan || 0)) : (Number(detail?.totalScore.length) / 1000).toFixed(1) + "km"}
-                            </div>
-                            <div className={styles.raceResultDetailTopRightItemSubTitle}>
-                                {type == "personal" ? t("realTime") : t("totalLength")}
-                            </div>
-                            <Image className={styles.raceResultDetailTopRightItemIcon} width={20} height={20} src="/images/icons/timer2.svg" alt="clock" />
-                        </div>
-                    </div>
-                </div>
-                <div className={styles.raceResultDetailBottom}>
-                    <div className={styles.raceResultDetailBottomItem}>
-                        <div className={styles.raceResultDetailBottomItemTitle}>
-                            {detail?.totalScore.name || ""}
-                        </div>
-                        <div className={styles.raceResultDetailBottomItemSubTitle}>
-                            {type == "personal" ? t("name") : t("teamName")}
-                        </div>
-                    </div>
-                    <div className={styles.raceResultDetailBottomDivider}></div>
-                    {type == "personal" && (
-                        <>
-                            <div className={styles.raceResultDetailBottomItem}>
-                                <div className={styles.raceResultDetailBottomItemTitle}>
-                                    {detail?.totalScore.gender === 0 ? t("genderList.male") : t("genderList.female")}
-                                </div>
-                                <div className={styles.raceResultDetailBottomItemSubTitle}>
-                                    {t("gender")}
-                                </div>
-                            </div>
-                            <div className={styles.raceResultDetailBottomDivider}></div>
-                        </>
-                    )}
-                    <div className={styles.raceResultDetailBottomItem}>
-                        <div className={styles.raceResultDetailBottomItemTitle}>
-                            {detail?.totalScore.markNo || ""}
-                        </div>
-                        <div className={styles.raceResultDetailBottomItemSubTitle}>
-                            {t("number")}
-                        </div>
-                    </div>
-                    <div className={styles.raceResultDetailBottomDivider}></div>
-                    <div className={styles.raceResultDetailBottomItem}>
-                        <div className={styles.raceResultDetailBottomItemTitle}>
-                            {detail?.roadName || ""}
-                        </div>
-                        <div className={styles.raceResultDetailBottomItemSubTitle}>
-                            {t("project")}
-                        </div>
-                    </div>
-                    {
-                        type == "personal" && (
-                            <>
-                                <div className={styles.raceResultDetailBottomDivider}></div>
-                                <div className={styles.raceResultDetailBottomRight}>
-                                    <div className={styles.raceResultDetailBottomRightItem}>
-                                        <div
-                                            data-after-width="20%"
-                                            className={styles.raceResultDetailBottomRightItemTitle}
-                                            ref={(el) => {
-                                                if (el) {
-                                                    const width = el.getAttribute('data-after-width');
-                                                    el.style.setProperty('--after-width', width || '0%');
-                                                }
-                                            }}
-                                        >
-                                            {formatTime2(slowestSpeed)}
-                                        </div>
-                                        <div className={styles.raceResultDetailBottomRightItemSubTitle}>
-                                            {t("lowestSpeed")}
-                                        </div>
-                                    </div>
-                                    <div className={styles.raceResultDetailBottomRightItem}>
-                                        <div
-                                            data-after-width="80%"
-                                            className={styles.raceResultDetailBottomRightItemTitle}
-                                            ref={(el) => {
-                                                if (el) {
-                                                    const width = el.getAttribute('data-after-width');
-                                                    el.style.setProperty('--after-width', width || '0%');
-                                                }
-                                            }}
-                                        >
-                                            {formatTime2(fastestSpeed)}
-                                        </div>
-                                        <div className={styles.raceResultDetailBottomRightItemSubTitle}>
-                                            {t("highestSpeed")}
-                                        </div>
-                                    </div>
-                                    <div className={styles.raceResultDetailBottomRightItem}>
-                                        <div
-                                            data-after-width="50%"
-                                            className={styles.raceResultDetailBottomRightItemTitle}
-                                            ref={(el) => {
-                                                if (el) {
-                                                    const width = el.getAttribute('data-after-width');
-                                                    el.style.setProperty('--after-width', width || '0%');
-                                                }
-                                            }}
-                                        >
-                                            {formatTime2(averageSpeed)}
-                                        </div>
-                                        <div className={styles.raceResultDetailBottomRightItemSubTitle}>
-                                            {t("averageSpeed")}
-                                        </div>
-                                    </div>
-                                </div>
-                            </>
-                        )
-                    }
-                </div>
-            </div>}
-            <div className={styles.raceResultContainer}>
-                <div className={styles.raceResultTable}>
-                    {type == "personal" && (
-                        <TableComponent rowKey='cpId'
-                            title={t('segmentDetail')} loading={loading} columns={personalResultColumns} dataSource={personalResultList} />
-                    )}
-                    {type == "team" && (
-                        <TableComponent rowKey='userId' title={t('teamMember')} loading={loading} columns={teamResultColumns} dataSource={teamResultList} />
-                    )}
-                </div>
-                {type == "personal" && certificateImageUrl && (
-                    <div className={styles.certificateContainer}>
-                        <img src={certificateImageUrl} alt="Certificate" />
-                    </div>
-                )}
+            <PageHeader title={locale === "zh" ? matchNameZh as string : matchNameEn as string || ""} backgroundImage="/images/title_bg/race_result_page_bg.png" />
+            <div className={styles.raceResultDetailWrapper}>
+                <RaceResultDetailContent
+                    loading={loading}
+                    detail={detail}
+                    type={type || ""}
+                    locale={locale}
+                    matchNameZh={matchNameZh}
+                    matchNameEn={matchNameEn}
+                    groupNameZh={groupNameZh}
+                    groupNameEn={groupNameEn}
+                    averageSpeed={averageSpeed}
+                    slowestSpeed={slowestSpeed}
+                    fastestSpeed={fastestSpeed}
+                    personalResultList={personalResultList}
+                    teamResultList={teamResultList}
+                    certificateImageUrl={certificateImageUrl}
+                    personalResultColumns={personalResultColumns}
+                    teamResultColumns={teamResultColumns}
+                />
             </div>
+
         </div>
     )
 }

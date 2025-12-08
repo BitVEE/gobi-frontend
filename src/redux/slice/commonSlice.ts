@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface CommonState {
+export interface CommonState {
     token: string
     userInfo: API.UserInfo | null
 }

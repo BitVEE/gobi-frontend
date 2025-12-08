@@ -45,7 +45,8 @@ declare namespace API {
     interface ResultRankListParams {
         matchId: number
         matchGroupId: number,
-        type: number
+        type: number,
+        gender: number
     }
     // 成绩榜单列表结果
     type ResultRankListResult = APIResult<{
@@ -130,7 +131,7 @@ declare namespace API {
     interface ResultRankDetailParams {
         page: number
         size: number
-        rankId: number
+        rankId?: number
         matchId: number
         matchGroupId: number
         keyword?: string

@@ -5,11 +5,11 @@ import { persistStore, persistReducer } from 'redux-persist';
 // 3. 导入本地存储插件，可选storage，cookie，session等
 import storage from 'redux-persist/lib/storage';
 // 4. 导入子模块reducers
-import commonSlice from './slice/commonSlice'
+import commonSlice, { CommonState } from './slice/commonSlice'
 // 4. 导入子模块end
 
 // 创建reducer(合并拆分的reducer) 
-import toastSlice from './slice/toastSlice';
+import toastSlice, { ToastState } from './slice/toastSlice';
 // 5. 导入子模块reducers end
 
 const rootReducer = combineReducers({
@@ -17,6 +17,11 @@ const rootReducer = combineReducers({
     toastSlice,
 });
 
+// 类型定义
+export interface RootState {
+    commonSlice: CommonState;
+    toastSlice: ToastState;
+}
 // 持久化配置
 const persistConfig = {
     key: 'gobi',

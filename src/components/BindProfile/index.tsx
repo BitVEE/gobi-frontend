@@ -3,10 +3,11 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { addToast } from "@/redux/slice/toastSlice";
-import { MatchAPI, SchoolAPI, UserMatchDocumentAPI } from "@/api";
+import { AuthAPI, MatchAPI, SchoolAPI, UserMatchDocumentAPI } from "@/api";
 import SelectDropdown from "@/components/SelectDropdown";
 import Image from "next/image";
 import styles from "./bindProfile.module.scss";
+import { setUserInfo } from "@/redux/slice/commonSlice";
 
 export interface ParticipantForm {
     raceId: string | number;
@@ -199,7 +200,29 @@ const BindProfile: React.FC<BindProfileProps> = ({
             const response = await UserMatchDocumentAPI.addMatchDocument(bindParams);
 
             if (response.data.code === 0) {
-                setStep('success');
+                // 绑定成功，显示成功提示
+                dispatch(addToast({
+                    message: t("bindProfile.bindSuccess") as any
+                }));
+                // 更新用户信息
+                try {
+                    const userRes = await AuthAPI.getUserInfo();
+                    if (userRes.data.code === 0 && userRes.data.data) {
+                        setIsSubmitting(false);
+                        dispatch(setUserInfo(userRes.data.data));
+                        setStep('success');
+                    }
+                } catch (error) {
+                    console.error("Failed to update user info:", error);
+                    setIsSubmitting(false);
+                    if (queryResults.length > 0) {
+                        setBindErrorInfo({
+                            name: queryResults[0].name,
+                            markNumber: queryResults[0].markNumber
+                        });
+                    }
+                    setStep('error');
+                }
             } else {
                 // 绑定失败，保存错误信息用于显示
                 if (queryResults.length > 0) {
@@ -208,6 +231,7 @@ const BindProfile: React.FC<BindProfileProps> = ({
                         markNumber: queryResults[0].markNumber
                     });
                 }
+                setIsSubmitting(false);
                 setStep('error');
             }
         } catch (error: any) {
@@ -219,9 +243,8 @@ const BindProfile: React.FC<BindProfileProps> = ({
                     markNumber: queryResults[0].markNumber
                 });
             }
-            setStep('error');
-        } finally {
             setIsSubmitting(false);
+            setStep('error');
         }
     };
 
