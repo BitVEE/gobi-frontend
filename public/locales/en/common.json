@@ -319,6 +319,9 @@
         "detail": "Detail>>",
         "rankList": {
             "PersonalTotalRank": "Personal total rank",
+            "FirstDayTotalRank": "First day men and women total rank",
+            "SecondDayTotalRank": "Second day men and women total rank",
+            "ThirdDayTotalRank": "Third day men and women total rank",
             "MenTotalRank": "Men's total rank",
             "WomenTotalRank": "Women's total rank",
             "TeamTotalRank": "Team total rank",

@@ -19,6 +19,9 @@ export const SignupStateMap: SignupStateMapType = {
 // 成绩榜单类型
 export enum ResultRankTypeValue {
     PersonalTotalRank = "个人总榜",
+    FirstDayTotalRank = "第一天男女总榜",
+    SecondDayTotalRank = "第二天男女总榜",
+    ThirdDayTotalRank = "第三天男女总榜",
     MenTotalRank = "男子总榜",
     MenFirstDayRank = "第一天男榜",
     MenSecondDayRank = "第二天男榜",
@@ -42,6 +45,11 @@ for (const key in ResultRankTypeValue) {
         chineseToRankType[value] = key as keyof typeof ResultRankTypeValue;
     }
 }
+
+// 添加额外的映射，支持多个中文名称映射到同一个枚举键
+chineseToRankType["第一天总榜"] = "FirstDayTotalRank";
+chineseToRankType["第二天总榜"] = "SecondDayTotalRank";
+chineseToRankType["第三天总榜"] = "ThirdDayTotalRank";
 
 /**
  * 根据中文名称获取对应的枚举键

@@ -25,18 +25,18 @@ const SchoolList: React.FC<SchoolListProps> = () => {
     const [newsId, setNewsId] = useState<string | number>('');
     const [isHoveredIndex, setIsHoveredIndex] = useState<number>(-1);
 
-    const fetchSchoolList=async()=>{
-        if (loadingSchoolList){
+    const fetchSchoolList = async () => {
+        if (loadingSchoolList) {
             return;
         }
         setLoadingSchoolList(true);
-        const result=await SchoolAPI.getSchoolList();
+        const result = await SchoolAPI.getSchoolList();
         setLoadingSchoolList(false);
-        if(result.data.code===0){
+        if (result.data.code === 0) {
             setSchoolList(result.data.data.data);
         }
-        else{
-            console.error("Failed to fetch school list: ",result.data.msg);
+        else {
+            console.error("Failed to fetch school list: ", result.data.msg);
         }
     }
 
@@ -104,7 +104,7 @@ const SchoolList: React.FC<SchoolListProps> = () => {
 
     return (
         <>
-            {loadingSchoolList?
+            {loadingSchoolList ?
                 <div className={styles.loading}>
                     <Image
                         src='/images/icons/loading.svg'
@@ -115,45 +115,45 @@ const SchoolList: React.FC<SchoolListProps> = () => {
                     />
                     <div className={styles.text}>{t('common.loadingText')}</div>
                 </div>
-            :
+                :
                 <div
-                    className={styles.partner_list}style={{gridTemplateColumns:'repeat(auto-fill, minmax(285px, 1fr))'}}
-                    onMouseLeave={()=>setIsHoveredIndex(-1)}
-                >                    
-                    {schoolList.length>0?
-                        schoolList.map((item)=>(
+                    className={styles.partner_list} style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(285px, 1fr))' }}
+                    onMouseLeave={() => setIsHoveredIndex(-1)}
+                >
+                    {schoolList.length > 0 ?
+                        schoolList.map((item) => (
                             <div
                                 key={item.id}
-                                className={isHoveredIndex==item.id? styles.partner_item_hover: styles.partner_item}
-                                style={{borderRadius:8}}
-                                onTouchStart={()=>setIsHoveredIndex(item.id)}
-                                onMouseEnter={()=>setIsHoveredIndex(item.id)}
+                                className={isHoveredIndex == item.id ? styles.partner_item_hover : styles.partner_item}
+                                style={{ borderRadius: 8 }}
+                                onTouchStart={() => setIsHoveredIndex(item.id)}
+                                onMouseEnter={() => setIsHoveredIndex(item.id)}
                             >
                                 <LoadingImg
                                     noPlaceholder
                                     src={item.logoUrl}
                                     style={{
-                                        aspectRatio:3/2,
+                                        aspectRatio: 3 / 2,
                                         objectFit: "contain",
                                     }}
                                     width={500}
                                     height={300}
                                     alt={item.nameEn}
                                 />
-                                {item.articleCount>0&&
+                                {item.articleCount > 0 &&
                                     <div>
-                                        <div 
-                                            style={{fontSize:"12px",height:"20px",lineHeight:"20px",width:"20px",textAlign:"center"}}
+                                        <div
+                                            style={{ fontSize: "12px", height: "20px", lineHeight: "20px", width: "20px", textAlign: "center" }}
                                             className={styles.order}
                                         >
                                             {item.articleCount}
                                         </div>
 
-                                        <div 
+                                        <div
                                             className={styles.overlay}
-                                            onClick={()=>handleNews(item)}
+                                            onClick={() => handleNews(item)}
                                         >
-                                            <div className={styles.read_btn} style={{fontSize:"14px",padding:"10px"}}>
+                                            <div className={styles.read_btn} style={{ fontSize: "14px", padding: "10px" }}>
                                                 {t("partner.readNews")}
                                                 <Image
                                                     className={styles.arrow}
@@ -168,7 +168,7 @@ const SchoolList: React.FC<SchoolListProps> = () => {
                                 }
                             </div>
                         ))
-                    :
+                        :
                         <div className={styles.nodata}>
                             <Image
                                 className={styles.nodataIcon}
@@ -216,14 +216,12 @@ const SchoolList: React.FC<SchoolListProps> = () => {
                 title={""}
                 onBack={handleBack}
             >
-                <div className={styles.modal_content}>
-                    <NewsDetail
-                        id={newsId as string}
-                        showPageHeader={false}
-                        enableImageModal={true}
-                        showSchoolList={false}
-                    />
-                </div>
+                <NewsDetail
+                    id={newsId as string}
+                    showPageHeader={false}
+                    enableImageModal={false}
+                    showSchoolList={false}
+                />
             </Modal>
         </>
     );

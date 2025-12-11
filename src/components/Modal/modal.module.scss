@@ -24,8 +24,14 @@
     border-radius: 8px;
     padding: 42px;
     box-shadow: 15px 15px 15px 0px #b1aaaa40;
-    max-height: 100vh;
+    max-height: 90vh;
+    border: 1px solid #000;
     overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .commonModalContent {
@@ -35,7 +41,8 @@
 
 .fullscreenModalContent {
     width: 1000px;
-    min-height: 800px;
+    min-height: 700px;
+    height: auto;
     border-radius: 0;
 }
 
@@ -109,9 +116,8 @@
         transform: translateY(20px);
         opacity: 0;
         animation: slideIn 0.3s ease-out 0.1s forwards;
-        // width: 90%;
         height: auto;
-        // min-height: 1900px;
+        max-height: 100vh;
         gap: 42px;
         opacity: 1;
         border-radius: 16px;

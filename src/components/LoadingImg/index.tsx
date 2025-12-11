@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 
-const LoadingImg = (props: { src: string, style: React.CSSProperties, width: number, height: number, alt?: string, noPlaceholder?: boolean, Fstyle?: React.CSSProperties }) => {
+const LoadingImg = memo((props: { src: string, style: React.CSSProperties, width: number, height: number, alt?: string, noPlaceholder?: boolean, Fstyle?: React.CSSProperties }) => {
     const [loading, setLoading] = useState(true)
     const [placeholderSrc, setPlaceholderSrc] = useState("/images/home/poster.png")
     const [isInView, setIsInView] = useState(false)
@@ -117,6 +117,8 @@ const LoadingImg = (props: { src: string, style: React.CSSProperties, width: num
             )}
         </div>
     )
-}
+});
+
+LoadingImg.displayName = 'LoadingImg';
 
 export default LoadingImg;

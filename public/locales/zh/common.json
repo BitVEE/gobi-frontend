@@ -319,6 +319,9 @@
         "detail": "详情>>",
         "rankList": {
             "PersonalTotalRank": "个人总榜",
+            "FirstDayTotalRank": "第一天男女总榜",
+            "SecondDayTotalRank": "第二天男女总榜",
+            "ThirdDayTotalRank": "第三天男女总榜",
             "MenTotalRank": "男子总榜",
             "WomenTotalRank": "女子总榜",
             "TeamTotalRank": "团队总榜",
