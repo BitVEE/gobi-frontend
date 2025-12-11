@@ -147,7 +147,8 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
         setIsModalOpen(false);
     }, []);
 
-    const goToPreviousImage = useCallback(() => {
+    const goToPreviousImage = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation();
         if (newsDetail?.imageList && newsDetail.imageList.length > 0) {
             setCurrentImageIndex((prevIndex) =>
                 prevIndex === 0 ? newsDetail.imageList.length - 1 : prevIndex - 1
@@ -155,7 +156,8 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
         }
     }, [newsDetail?.imageList]);
 
-    const goToNextImage = useCallback(() => {
+    const goToNextImage = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation();
         if (newsDetail?.imageList && newsDetail.imageList.length > 0) {
             setCurrentImageIndex((prevIndex) =>
                 prevIndex === newsDetail.imageList.length - 1 ? 0 : prevIndex + 1
@@ -313,11 +315,11 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
 
         return (
             <div className={styles.imageModal} onClick={closeImageModal}>
-                <div className={styles.imageModalContent} onClick={(e) => e.stopPropagation()}>
+                <div className={styles.imageModalContent}>
                     <div className={styles.modalPrevButton} onClick={goToPreviousImage}>
                         <Image src="/images/icons/arrow-down.svg" width={24} height={24} alt="Prev" />
                     </div>
-                    <div className={styles.modalImageContainer}>
+                    <div onClick={(e) => e.stopPropagation()} className={styles.modalImageContainer}>
                         <LoadingImg
                             style={{ width: '100%', height: '100%', maxHeight: '90vh', objectFit: 'contain' }}
                             src={currentImage.url}
@@ -325,6 +327,10 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
                             width={800}
                             height={416}
                         />
+                        <div className={styles.modalGeneratePosterButton}>
+                            <Image src="/images/icons/poster.svg" width={24} height={24} alt="Poster" />
+                            <div className={styles.modalGeneratePosterButtonText}>{t('common.generatePoster')}</div>
+                        </div>
                     </div>
                     <div className={styles.modalNextButton} onClick={goToNextImage}>
                         <Image src="/images/icons/arrow-down.svg" width={24} height={24} alt="Next" />

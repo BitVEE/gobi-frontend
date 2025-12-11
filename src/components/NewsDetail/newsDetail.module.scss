@@ -341,34 +341,6 @@
         }
     }
 
-    // .newsDetailContainerMobile {
-    //     margin: 0;
-
-    //     .newsDetailContentWrapper {
-    //         .newsDetailContent,
-    //         .newsDetailVideoList {
-    //             max-height: 550px;
-    //             overflow-y: scroll;
-    //             -ms-overflow-style: none;
-    //             scrollbar-width: none;
-    //             ::-webkit-scrollbar {
-    //                 display: none;
-    //             }
-    //         }
-    //     }
-
-    //     @media (max-width: 768px) {
-    //         margin: 0;
-    //         .newsDetailContentWrapper {
-    //             .newsDetailContent,
-    //             .newsDetailVideoList {
-    //                 max-height: calc(100vh - 215px * 3.84);
-    //                 overflow-y: scroll;
-    //             }
-    //         }
-    //     }
-    // }
-
     // 图片放大展示模态框样式
     .imageModal {
         position: fixed;
@@ -425,6 +397,33 @@
                 width: calc(100% - 200px);
                 height: auto;
             }
+
+            .modalGeneratePosterButton {
+                position: absolute;
+                width: 272px;
+                height: 48px;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -64px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 12px;
+                border-radius: 8px;
+                background: #ff6a14;
+                cursor: not-allowed;
+
+                .modalGeneratePosterButtonText {
+                    width: 100%;
+                    text-align: center;
+                    color: #fff;
+                    font-family: Raleway;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                }
+            }
         }
     }
 
@@ -445,6 +444,17 @@
                 }
                 .modalImageContainer {
                     width: calc(100% - 50px * 3.84);
+                }
+                .modalGeneratePosterButton {
+                    width: 272px * 3.84;
+                    height: 48px * 3.84;
+                    padding: 12px * 3.84;
+                    bottom: -64px * 3.84;
+                    border-radius: 8px * 3.84;
+
+                    .modalGeneratePosterButtonText {
+                        font-size: 18px * 3.84;
+                    }
                 }
             }
         }
