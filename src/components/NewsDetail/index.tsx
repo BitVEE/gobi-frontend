@@ -147,8 +147,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
         setIsModalOpen(false);
     }, []);
 
-    const goToPreviousImage = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation();
+    const goToPreviousImage = useCallback(() => {
         if (newsDetail?.imageList && newsDetail.imageList.length > 0) {
             setCurrentImageIndex((prevIndex) =>
                 prevIndex === 0 ? newsDetail.imageList.length - 1 : prevIndex - 1
@@ -156,8 +155,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
         }
     }, [newsDetail?.imageList]);
 
-    const goToNextImage = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation();
+    const goToNextImage = useCallback(() => {
         if (newsDetail?.imageList && newsDetail.imageList.length > 0) {
             setCurrentImageIndex((prevIndex) =>
                 prevIndex === newsDetail.imageList.length - 1 ? 0 : prevIndex + 1
@@ -314,14 +312,14 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
         const currentImage = newsDetail.imageList[currentImageIndex];
 
         return (
-            <div className={styles.imageModal} onClick={closeImageModal}>
+            <div className={styles.imageModal}>
                 <div className={styles.imageModalContent}>
-                    <div className={styles.modalPrevButton} onClick={goToPreviousImage}>
-                        <Image src="/images/icons/arrow-down.svg" width={24} height={24} alt="Prev" />
-                    </div>
-                    <div onClick={(e) => e.stopPropagation()} className={styles.modalImageContainer}>
+                    <div className={styles.modalImageContainer}>
+                        <div className={styles.modalPrevButton} onClick={goToPreviousImage}>
+                            <Image src="/images/icons/arrow-down.svg" width={24} height={24} alt="Prev" />
+                        </div>
                         <LoadingImg
-                            style={{ width: '100%', height: '100%', maxHeight: '90vh', objectFit: 'contain' }}
+                            style={{ width: '100%', height: '100%', maxHeight: '80vh', objectFit: 'contain' }}
                             src={currentImage.url}
                             alt={currentImage.url}
                             width={800}
@@ -331,9 +329,13 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
                             <Image src="/images/icons/poster.svg" width={24} height={24} alt="Poster" />
                             <div className={styles.modalGeneratePosterButtonText}>{t('common.generatePoster')}</div>
                         </div>
-                    </div>
-                    <div className={styles.modalNextButton} onClick={goToNextImage}>
-                        <Image src="/images/icons/arrow-down.svg" width={24} height={24} alt="Next" />
+                        <div className={styles.modalCancelButton} onClick={closeImageModal}>
+                            <Image src="/images/icons/close.svg" width={24} height={24} alt="Close" />
+                        </div>
+
+                        <div className={styles.modalNextButton} onClick={goToNextImage}>
+                            <Image src="/images/icons/arrow-down.svg" width={24} height={24} alt="Next" />
+                        </div>
                     </div>
                 </div>
             </div>
