@@ -25,7 +25,7 @@ const Login = () => {
     const [agreementError, setAgreementError] = useState<boolean>(false)
     const [isLogin, setIsLogin] = useState(false)
     // 是否显示绑定档案表单（默认不显示，登录成功后根据用户信息判断）
-    const [showBindForm, setShowBindForm] = useState(true)
+    const [showBindForm, setShowBindForm] = useState(false)
 
     useEffect(() => {
         if (countdown > 0) {
