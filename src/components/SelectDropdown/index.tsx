@@ -43,7 +43,6 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
     const handleSelect = (val: string | number) => {
         if (disabled) return;
         onChange(val);
-        setOpen(false);
     };
 
     useEffect(() => {
