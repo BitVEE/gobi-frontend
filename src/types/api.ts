@@ -497,6 +497,7 @@ declare namespace API {
         id: number
         nameEn: string
         nameZh: string
+        logoUrl: string
     }
 
     /**

@@ -33,6 +33,18 @@ export const AuthAPI = {
      * @returns 用户信息
      */
     getUserInfo: () => http.get<API.UserInfoResult>(`${baseURL}/user/info`),
+    /**
+     * 上传用户海报
+     * @param file 用户海报文件
+     * @returns 上传结果
+     */
+    uploadUserPoster: (file: File) => http.post<API.APIResult<null>>(`${baseURL}/user_poster/add`, {
+        file: file,
+    }, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })
 }
 
 

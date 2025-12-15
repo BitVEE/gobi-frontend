@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import PageHeader from '../PageHeader';
 import LoadingImg from '../LoadingImg';
+import ResultPosterGenerator from '../ResultPosterGenerator';
 import { NewsAPI } from '@/api';
 import { formatDate } from '@/utils/tool';
 import styles from './newsDetail.module.scss';
@@ -115,6 +116,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
     const [newsDetail, setNewsDetail] = useState<API.NewsListItem>();
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [showPosterGenerator, setShowPosterGenerator] = useState<boolean>(false);
 
     // 请求资讯详情数据
     const getNewsDetail = useCallback(() => {
@@ -145,6 +147,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
 
     const closeImageModal = useCallback(() => {
         setIsModalOpen(false);
+        setShowPosterGenerator(false);
     }, []);
 
     const goToPreviousImage = useCallback(() => {
@@ -154,6 +157,10 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
             );
         }
     }, [newsDetail?.imageList]);
+
+    const openPosterGenerator = useCallback(() => {
+        setShowPosterGenerator(true);
+    }, []);
 
     const goToNextImage = useCallback(() => {
         if (newsDetail?.imageList && newsDetail.imageList.length > 0) {
@@ -325,14 +332,13 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
                             width={800}
                             height={416}
                         />
-                        <div className={styles.modalGeneratePosterButton}>
+                        <div className={styles.modalGeneratePosterButton} onClick={openPosterGenerator}>
                             <Image src="/images/icons/poster.svg" width={24} height={24} alt="Poster" />
                             <div className={styles.modalGeneratePosterButtonText}>{t('common.generatePoster')}</div>
                         </div>
                         <div className={styles.modalCancelButton} onClick={closeImageModal}>
                             <Image src="/images/icons/close.svg" width={24} height={24} alt="Close" />
                         </div>
-
                         <div className={styles.modalNextButton} onClick={goToNextImage}>
                             <Image src="/images/icons/arrow-down.svg" width={24} height={24} alt="Next" />
                         </div>
@@ -340,8 +346,28 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
                 </div>
             </div>
         );
-    }, [isModalOpen, newsDetail?.imageList, currentImageIndex, closeImageModal, goToPreviousImage, goToNextImage]);
+    }, [isModalOpen, newsDetail?.imageList, currentImageIndex, closeImageModal, goToPreviousImage, goToNextImage, openPosterGenerator]);
 
+    const renderPosterGenerator = useMemo(() => {
+        if (!showPosterGenerator || !newsDetail?.imageList?.[currentImageIndex] || !newsDetail.imageList[currentImageIndex].url) {
+            return null;
+        }
+        return (
+            <div className={styles.posterGeneratorDrawer}>
+                <div className={styles.posterGeneratorMask} />
+                <div className={styles.posterGeneratorPanel}>
+                    <div className={styles.posterGeneratorHeader}>
+                        <div className={styles.posterGeneratorClose} onClick={() => setShowPosterGenerator(false)}>
+                            <Image src="/images/icons/close.svg" width={20} height={20} alt="close" />
+                        </div>
+                    </div>
+                    <ResultPosterGenerator
+                        posterImage={newsDetail.imageList[currentImageIndex].url}
+                    />
+                </div>
+            </div>
+        );
+    }, [showPosterGenerator, newsDetail?.imageList, currentImageIndex, newsDetail?.imageList[currentImageIndex].url]);
     return (
         <div className={`${styles.newsDetail} ${className}`}>
             {/* 页面头部 */}
@@ -376,6 +402,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
 
             {/* 图片模态框 */}
             {renderImageModal}
+            {renderPosterGenerator}
         </div>
     );
 };

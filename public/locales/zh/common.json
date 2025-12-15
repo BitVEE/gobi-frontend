@@ -9,7 +9,8 @@
         "loginProcessing": "登录处理中...",
         "siteTitle": "青戈赛",
         "back": "返回",
-        "generatePoster": "生成海报"
+        "generatePoster": "生成海报",
+        "downloadPoster": "下载海报"
     },
     "header": {
         "home": "首页",
@@ -518,5 +519,21 @@
         "userQuestions": "用户问题",
         "raceQuestions": "赛事问答",
         "healthQuestions": "健康问题"
+    },
+    "posterGenerator": {
+        "title": "生成海报",
+        "noDocument": "你暂未绑定任何赛事档案，绑定后可以生成跑者专属海报",
+        "intro": "生成跑者专属海报",
+        "introDesc": "自动叠加你的官方成绩、排名、代表院校、等完赛标识，生成专属纪念海报。",
+        "selectStyle": "选择样式",
+        "selectMatch": "选择赛事",
+        "selectInfo": "选择想要展示的个人信息",
+        "personalResult": "个人成绩",
+        "personalInfo": "个人信息",
+        "schoolInfo": "参赛学校",
+        "rank": "排名",
+        "noRank": "暂无榜单",
+        "noMatch": "暂无赛事",
+        "scanToViewOfficialWebsite": "扫一扫查看\n\"青戈赛\"官方网站"
     }
 }

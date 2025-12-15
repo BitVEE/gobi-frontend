@@ -9,7 +9,8 @@
         "loginProcessing": "Login processing, please wait a moment",
         "siteTitle": "ULTRA GOBI",
         "back": "go back",
-        "generatePoster": "Generate Poster"
+        "generatePoster": "Generate Poster",
+        "downloadPoster": "Download Poster"
     },
     "header": {
         "home": "Home",
@@ -518,5 +519,21 @@
         "userQuestions": "User Questions",
         "raceQuestions": "Race Q&A",
         "healthQuestions": "Health Questions"
+    },
+    "posterGenerator": {
+        "title": "Generate Poster",
+        "noDocument": "You have not bound any race documents yet, you can generate a runner-specific poster after binding",
+        "intro": "Generate Runner-specific Poster",
+        "introDesc": "Automatically overlay your official results, rankings, representative schools, and other completion indicators to generate a personalized commemorative poster.",
+        "selectStyle": "Select Style",
+        "selectMatch": "Select Match",
+        "selectInfo": "Select the information you want to display",
+        "personalResult": "Personal Result",
+        "personalInfo": "Personal Info",
+        "schoolInfo": "School Name",
+        "rank": "Rank",
+        "noRank": "No Rank",
+        "noMatch": "No Match",
+        "scanToViewOfficialWebsite": "Scan to view\n\"Youth Ultra Gobi\" official website"
     }
 }
