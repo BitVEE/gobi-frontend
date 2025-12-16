@@ -46,7 +46,7 @@ const User = () => {
     const [certificateImageUrl, setCertificateImageUrl] = useState('');
     const [markNumber, setMarkNumber] = useState<string>();
     const [showBindModal, setShowBindModal] = useState<boolean>(false);
-
+    const [isMobile, setIsMobile] = useState(false);
 
     const goToPay = (e: any) => {
         router.push({
@@ -235,6 +235,16 @@ const User = () => {
         router.reload();
     };
 
+    useEffect(() => {
+        const mq = window.matchMedia("(max-width: 768px)");
+        const update = () => {
+            setIsMobile(mq.matches);
+        };
+        update();
+        mq.addEventListener("change", update);
+        return () => mq.removeEventListener("change", update);
+    }, []);
+
 
     return (
         <div className={styles.user}>
@@ -367,6 +377,7 @@ const User = () => {
                 onClose={() => setShowBindModal(false)}
                 showCloseButton
                 title=""
+                isFullscreenModal={isMobile}
             >
                 <BindProfile
                     showSkipButton={false}
