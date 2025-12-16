@@ -203,7 +203,8 @@
         "qaAnswer": "戈友回答",
         "partner": "合作伙伴",
         "followUs": "关注我们",
-        "copyright": "版权所有 © 2025 Youth Ultra Gobi. 保留所有权利。"
+        "copyright": "版权所有 © 2025 Youth Ultra Gobi. 保留所有权利。",
+        "noBindDocument": "你暂未绑定任何赛事档案，快来认领吧"
     },
     "login": {
         "emailLogin": "邮箱登录",
@@ -266,6 +267,7 @@
         "title": "个人中心",
         "myEnroll": "我的报名",
         "myResult": "我的成绩",
+        "myPoster": "我的海报",
         "all": "全部",
         "waitPay": "待支付",
         "paySuccess": "支付成功",

@@ -10,6 +10,31 @@
         background-repeat: no-repeat;
         position: relative;
 
+        .warning_tips_box {
+            width: 360px;
+            height: 44px;
+            position: absolute;
+            top: 113px;
+            right: 50px;
+            background-color: #FF6A14;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 0 10px;
+
+            .warning_tips_text {
+                font-weight: 400;
+                color: #FFFFFF;
+                font-size: 16px;
+            }
+
+            .warning_tips_icon {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
         .poster_title {
             position: absolute;
             top: 40%;
@@ -162,6 +187,30 @@
             height: 60vh;
             background-size: cover;
             background-position: center;
+
+            .warning_tips_box {
+                width: 90%;
+                height: 143px;
+                position: absolute;
+                top: 300px;
+                background-color: #FF6A14;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                cursor: pointer;
+                padding: 0 40px;
+
+                .warning_tips_text {
+                    font-weight: 400;
+                    color: #FFFFFF;
+                    font-size: 54px;
+                }
+
+                .warning_tips_icon {
+                    width: 66px;
+                    height: 66px;
+                }
+            }
 
             .poster_title {
                 width: 80%;

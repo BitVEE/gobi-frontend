@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import Modal from "@/components/Modal";
 import BindProfile from "@/components/BindProfile";
+import PosterList from "@/components/PosterList";
 const User = () => {
     const { t } = useTranslation("common", { keyPrefix: "user" });
     const { t: tRaceResult } = useTranslation("common", { keyPrefix: "raceResult" });
@@ -47,6 +48,13 @@ const User = () => {
     const [markNumber, setMarkNumber] = useState<string>();
     const [showBindModal, setShowBindModal] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState(false);
+
+    //海报信息
+    const [posterList, setPosterList] = useState<API.UserPosterItem[]>([]);
+    const [posterLoading, setPosterLoading] = useState<boolean>(false);
+    const [posterPage, setPosterPage] = useState<number>(1);
+    const [posterPageSize, setPosterPageSize] = useState<number>(8);
+    const [posterTotal, setPosterTotal] = useState<number>(0);
 
     const goToPay = (e: any) => {
         router.push({
@@ -230,6 +238,25 @@ const User = () => {
         }
     }, [markNumber, currentDocument]);
 
+    // 获取海报列表
+    useEffect(() => {
+        if (selectedSubTitle !== "myPoster") {
+            return
+        }
+        setPosterLoading(true)
+        AuthAPI.getUserPoster({
+            page: posterPage,
+            size: posterPageSize,
+        }).then((res) => {
+            if (res.data.code === 0) {
+                setPosterList(res.data.data.data);
+                setPosterTotal(res.data.data.total);
+            }
+        }).finally(() => {
+            setPosterLoading(false);
+        })
+    }, [selectedSubTitle, posterPage]);
+
     const handleBindSuccess = async () => {
         setShowBindModal(false);
         router.reload();
@@ -237,6 +264,7 @@ const User = () => {
 
     useEffect(() => {
         const mq = window.matchMedia("(max-width: 768px)");
+        setPosterPageSize(mq.matches ? 4 : 8);
         const update = () => {
             setIsMobile(mq.matches);
         };
@@ -254,6 +282,7 @@ const User = () => {
                     tags={[
                         { title: t('myEnroll'), value: 'myEnroll' },
                         { title: t('myResult'), value: 'myResult' },
+                        { title: t('myPoster'), value: 'myPoster' },
                     ]}
                     styleType='text'
                     selectedValue={selectedSubTitle}
@@ -371,6 +400,21 @@ const User = () => {
                         </button>
                     </div>
                 }
+
+                {selectedSubTitle === 'myPoster' && (
+                    <div className={styles.my_poster}>
+                        <PosterList
+                            posterList={posterList}
+                            loading={posterLoading}
+                            page={posterPage}
+                            total={posterTotal}
+                            pageSize={posterPageSize}
+                            onPageChange={(page) => {
+                                setPosterPage(page);
+                            }}
+                        />
+                    </div>
+                )}
             </div>
             <Modal
                 isOpen={showBindModal}

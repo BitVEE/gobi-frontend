@@ -1,10 +1,13 @@
 import getLocaleProps from "@/utils/getLocaleProps";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Image from "next/image";
 
-import LoadingImg from "@/components/LoadingImg";
 import { MatchAPI, NewsAPI } from "@/api";
+import { RootState } from "@/redux/store";
+import Modal from "@/components/Modal";
+import BindProfile from "@/components/BindProfile";
 
 // This is the main page of the application
 // It serves as the entry point for the user interface
@@ -25,6 +28,9 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const router = useRouter()
   const [currentMatchInfo, setCurrentMatchInfo] = useState<API.MatchesListType>()
+  const [showBindModal, setShowBindModal] = useState<boolean>(false);
+  const hasMatchDocument = useSelector((state: RootState) => (state.commonSlice.userInfo?.hasMatchDocument || false));
+  const token = useSelector((state: any) => state.commonSlice.token);
 
 
   const getMatchInfo = async () => {
@@ -71,6 +77,10 @@ export default function Home() {
     // console.log(newsData.data);
   }
 
+  const handleBindSuccess = async () => {
+    setShowBindModal(false);
+    router.reload();
+  };
 
   useEffect(() => {
 
@@ -82,6 +92,14 @@ export default function Home() {
   return (
     <div className={styles.home}>
       <div className={styles.poster} style={{ backgroundImage: `url('/images/home/poster.png')` }}>
+        {
+          token && !hasMatchDocument && (<div className={styles.warning_tips_box} onClick={() => setShowBindModal(true)}>
+            <Image width={24} height={24} src="/images/icons/alarm-bell.svg" alt="alarm" className={styles.warning_tips_icon} />
+            <div className={styles.warning_tips_text}>{t("home.noBindDocument" as any)}</div>
+            <Image width={24} height={24} src="/images/icons/arrow-right1.svg" alt="arrowRight" className={styles.warning_tips_icon} />
+          </div>)
+        }
+
         <div className={styles.poster_title}>
           {t("home.title" as any)}
         </div>
@@ -153,6 +171,17 @@ export default function Home() {
         </div> */}
       </div>
 
+      <Modal
+        isOpen={showBindModal}
+        onClose={() => setShowBindModal(false)}
+        showCloseButton
+        title=""
+      >
+        <BindProfile
+          showSkipButton={false}
+          onSubmit={handleBindSuccess}
+        />
+      </Modal>
     </div>
   )
 }

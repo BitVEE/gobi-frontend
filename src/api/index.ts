@@ -27,6 +27,12 @@ export const AuthAPI = {
      * @returns 报名历史
      */
     getSignupHistory: (params: API.SignupHistoryParams) => http.get<API.SignupHistoryResult>(`${baseURL}/match/signup/list`, { params }),
+    /**
+     * 获取用户海报
+     * @param params 分页参数
+     * @returns 用户海报
+     */
+    getUserPoster: (params: API.SignupHistoryParams) => http.get<API.UserPosterResult>(`${baseURL}/user_poster/list`, { params }),
 
     /**
      * 查看用户信息

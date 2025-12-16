@@ -203,7 +203,8 @@
         "qaAnswer": "Gobi Friends Answers",
         "partner": "Partners",
         "followUs": "Follow Us",
-        "copyright": "Copyright © 2025 Youth Ultra Gobi. All Rights Reserved."
+        "copyright": "Copyright © 2025 Youth Ultra Gobi. All Rights Reserved.",
+        "noBindDocument": "You have not bound any race profile, please bind it"
     },
     "login": {
         "emailLogin": "Email login",
@@ -266,6 +267,7 @@
         "title": "Personal center",
         "myEnroll": "My enrollment",
         "myResult": "My result",
+        "myPoster": "My poster",
         "all": "All",
         "waitPay": "Wait pay",
         "paySuccess": "Pay success",

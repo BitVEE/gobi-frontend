@@ -41,6 +41,17 @@ declare namespace API {
         name: string
         enName: string
     }
+    // 用户海报结果
+    type UserPosterResult = APIResult<{
+        total: number
+        data: UserPosterItem[]
+    }>
+    // 用户海报项
+    interface UserPosterItem {
+        id: number
+        url: string
+        createdAt: string
+    }
     // 成绩榜单列表参数
     interface ResultRankListParams {
         matchId: number
