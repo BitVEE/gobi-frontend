@@ -31,7 +31,7 @@ const Registration = (props: Props) => {
 
 
     const getMatchInfo = async () => {
-        const res = await MatchAPI.getMatchList({ page: 1, size: 10 })
+        const res = await MatchAPI.getMatchList({ page: 1, size: 10, isActivate: 1 })
         if (res.data.code === 0) {
             const data = res.data.data as API.MatchInfoType | null;
             if (data) {
@@ -115,7 +115,7 @@ const Registration = (props: Props) => {
                                                 {`¥${group.cost}/${t('registration.person')}`}
                                             </div>
                                         }
-                                        <div className={styles.cell_btn} onClick={() => {
+                                        <button disabled={currentMatchInfo?.state !== 1} className={styles.cell_btn} onClick={() => {
                                             if (token) { setIsModalOpen(true); setCurrentGroup(group) } else {
                                                 dispatch(addToast({
                                                     message: t("registration.loginTips"),
@@ -124,7 +124,7 @@ const Registration = (props: Props) => {
                                             }
                                         }}>
                                             {t('registration.now')}
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
                             )

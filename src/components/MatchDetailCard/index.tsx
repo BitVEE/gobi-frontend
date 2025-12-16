@@ -133,9 +133,9 @@ const MatchDetailCard = (props: Props) => {
                     </div>
 
                     {pageName === 'home' && <div className={styles.now}>
-                        <button disabled={matchDetail?.state !== 1} className={styles.now_text} onClick={() => router.push(`/race/registration`)}>
+                        <div className={styles.now_text} onClick={() => router.push(`/race/registration`)}>
                             {t('registration.now')}
-                        </button>
+                        </div>
                     </div>}
 
                     {
