@@ -295,6 +295,7 @@ declare namespace API {
     interface MatchListParams {
         page: number
         size: number
+        isActivate?: number
     }
 
     interface MatchesGroupInfoType {

@@ -29,7 +29,7 @@ export default function Home() {
 
   const getMatchInfo = async () => {
     try {
-      const res = await MatchAPI.getMatchList({ page: 1, size: 10 })
+      const res = await MatchAPI.getMatchList({ page: 1, size: 10, isActivate: 1 })
       if (res.data.code === 0) {
         const data = res.data.data as API.MatchInfoType | null;
         if (data) {
