@@ -40,6 +40,25 @@
             height: fit-content;
         }
 
+        .loading {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            img {
+                width: 150px;
+                height: 100px;
+                object-fit: contain;
+            }
+            .loadingText {
+                font-size: 16px;
+                color: #fff;
+                margin-top: 12px;
+            }
+        }
+
         .previewActions {
             display: none;
             gap: 10px;
@@ -325,17 +344,17 @@
 
             .titleUnderline {
                 height: 1px;
-                background: #d9d9d9;
+                background: #fb8c4e;
                 width: 100%;
             }
         }
+
         .noDocument {
             display: flex;
             padding: 5px 8px;
             justify-content: center;
             align-items: center;
             gap: 10px;
-            align-self: stretch;
             border-radius: 8px;
             background: #ff6a14;
             cursor: pointer;
@@ -353,6 +372,9 @@
             .noDocumentArrow {
                 width: 20px;
                 height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 img {
                     width: 100%;
                     height: 100%;
@@ -530,7 +552,8 @@
         .actions {
             display: flex;
             justify-content: flex-start;
-            margin-top: 12px;
+            margin-bottom: 24px;
+            margin-top: auto;
 
             .generateButton {
                 border: none;
@@ -561,6 +584,7 @@
 
 @media screen and (max-width: 768px) {
     .posterGenerator {
+        margin-top: 0;
         grid-template-columns: 1fr;
         .controls {
             padding: 24px * 3.84;
@@ -591,6 +615,7 @@
             .optionCard {
                 padding: 12px * 3.84 16px * 3.84;
                 gap: 8px * 3.84;
+                border-radius: 8px * 3.84;
                 .optionContent {
                     gap: 6px * 3.84;
                 }
@@ -656,7 +681,7 @@
                 }
             }
             .actions {
-                margin-top: 12px * 3.84;
+                margin-bottom: 24px * 3.84;
                 .generateButton {
                     padding: 12px * 3.84 24px * 3.84;
                     font-size: 16px * 3.84;

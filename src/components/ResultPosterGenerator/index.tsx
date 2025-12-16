@@ -43,7 +43,7 @@ interface PosterDataState {
     setSelectedRankId: (id?: number) => void;
 }
 
-const usePosterData = (hasMatchDocument: boolean, language: string): PosterDataState => {
+const usePosterData = (hasMatchDocument: boolean): PosterDataState => {
     const [documentList, setDocumentList] = useState<DocumentListItem[]>([]);
     const [selectedDocumentId, setSelectedDocumentId] = useState<number>();
     const [rankList, setRankList] = useState<RankListItem[]>([]);
@@ -156,7 +156,6 @@ const usePosterData = (hasMatchDocument: boolean, language: string): PosterDataS
             setPosterData(undefined);
             return;
         }
-        setLoading(true);
         (async () => {
             setLoading(true);
             try {
@@ -192,7 +191,7 @@ const usePosterData = (hasMatchDocument: boolean, language: string): PosterDataS
                 setLoading(false);
             }
         })();
-    }, [currentDocument, selectedRankId, language]);
+    }, [currentDocument, selectedRankId]);
 
     return {
         documentList,
@@ -225,7 +224,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
         selectedRankId,
         setSelectedDocumentId,
         setSelectedRankId,
-    } = usePosterData(hasMatchDocument, i18n.language);
+    } = usePosterData(hasMatchDocument);
 
     const [visibleFields, setVisibleFields] = useState<Record<PosterFieldKey, boolean>>({
         rank: true,
@@ -233,10 +232,9 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
         personalInfo: true,
         schoolInfo: true,
     });
-    const [enablePoster, setEnablePoster] = useState(true);
+    const [introPoster, setIntroPoster] = useState(true);
     const [posterStyle, setPosterStyle] = useState<"scaleCrop" | "fixedRatio" | "original">("scaleCrop");
     const [exporting, setExporting] = useState(false);
-    const [previewUrl, setPreviewUrl] = useState<string>();
     const [isMobile, setIsMobile] = useState(false);
     const [activePanel, setActivePanel] = useState<"controls" | "preview">("controls");
     const posterRef = useRef<HTMLDivElement>(null);
@@ -265,6 +263,12 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
         mq.addEventListener("change", update);
         return () => mq.removeEventListener("change", update);
     }, []);
+
+    useEffect(() => {
+        if (Object.values(visibleFields).every((value) => !value)) {
+            setIntroPoster(false);
+        }
+    }, [visibleFields]);
 
     const toggleField = (key: PosterFieldKey) => {
         setVisibleFields((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -295,26 +299,25 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                 cacheBust: true,
                 backgroundColor: "#0e0e0e",
             });
-            setPreviewUrl(dataUrl);
             await uploadPosterIfNeeded(dataUrl);
             const link = document.createElement("a");
             link.href = dataUrl;
-            link.download = `${posterData.totalScore.name || "poster"}.png`;
+            link.download = `${hasMatchDocument ? posterData.totalScore.name : "poster"}.png`;
             link.click();
         } catch (error) {
             console.error("generate poster failed", error);
         } finally {
             setExporting(false);
         }
-    }, [posterData, uploadPosterIfNeeded]);
+    }, [hasMatchDocument, posterData, uploadPosterIfNeeded]);
 
-    const handleGenerateAndShowPreview = useCallback(async () => {
-        if (isMobile) {
-            setActivePanel("preview");
-            return;
-        }
-        await handleGenerate();
-    }, [handleGenerate, isMobile]);
+        const handleGenerateAndShowPreview = useCallback(async (type: "download" | "preview") => {
+            if (isMobile && type === "preview") {
+                setActivePanel("preview");
+                return;
+            }
+            await handleGenerate();
+        }, [handleGenerate, isMobile]);
 
 
     const posterStyleOptions = [
@@ -365,9 +368,9 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
 
     const disableGenerate = useMemo(() => {
         if (loading || exporting || !posterData) return true;
-        if (!hasMatchDocument && enablePoster) return true;
+        if (!hasMatchDocument && introPoster) return true;
         return false;
-    }, [posterData, exporting, loading, hasMatchDocument, enablePoster]);
+    }, [posterData, exporting, loading, hasMatchDocument, introPoster]);
 
     const displayName = useMemo(() => {
         const name = posterData?.totalScore.name || "";
@@ -386,26 +389,6 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
         return `${bibText[0]}${"*".repeat(bibText.length - 2)}${bibText[bibText.length - 1]}`;
     }, [hasMatchDocument, bibText]);
 
-    const handlePerformanceToggle = (checked: boolean) => {
-        setVisibleFields((prev) => ({
-            ...prev,
-            personalResult: checked,
-        }));
-    };
-
-    const handleInfoToggle = (checked: boolean) => {
-        setVisibleFields((prev) => ({
-            ...prev,
-            personalInfo: checked,
-        }));
-    };
-
-    const handleSchoolToggle = (checked: boolean) => {
-        setVisibleFields((prev) => ({
-            ...prev,
-            schoolInfo: checked,
-        }));
-    };
 
     const goToMatchDocument = () => {
         if (!hasLogin) {
@@ -422,12 +405,12 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
         <div className={styles.posterGenerator}>
             {showPreview && (
                 <div className={styles.previewWrapper}>
-                    <div className={styles.posterPreview}>
+                    <div className={styles.posterPreview} style={{ display: loading ? "none" : "flex" }}>
                         <div className={`${styles.posterCard} ${styles[`posterCard-${posterStyle}`]}`} ref={posterRef}>
                             <div className={styles.hero} style={{ backgroundImage: posterStyle === "scaleCrop" ? `url(${posterImage})` : "" }}>
                                 {posterStyle !== "scaleCrop" && <img src={posterImage} className={styles.heroImage} alt="poster" />}
                                 <div className={styles.heroOverlay} />
-                                {(!visibleFields.schoolInfo || !enablePoster) && <div className={styles.qrPlaceholder}>
+                                {(!visibleFields.schoolInfo || !introPoster) && <div className={styles.qrPlaceholder}>
                                     <div className={styles.qrBox} >
                                         <Image src="/images/icons/website-qr.svg" alt="website" width={60} height={60} />
                                     </div>
@@ -436,7 +419,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                                 <div className={styles.heroTitle}>{i18n.language === "zh" ? currentDocument?.match.nameZh || currentDocument?.match.nameEn || "--" : currentDocument?.match.nameEn || currentDocument?.match.nameZh || "--"}</div>
                             </div>
 
-                            {enablePoster && <div className={styles.statRow}>
+                            {introPoster && <div className={styles.statRow}>
                                 {rankText && (
                                     <div className={`${styles.statItem} ${styles.statRank}`}>
                                         <div className={styles.statValue}>{rankText}</div>
@@ -463,7 +446,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                                 )}
                             </div>}
 
-                            <div style={{ display: visibleFields.personalInfo && enablePoster ? "grid" : "none" }} className={styles.infoRow}>
+                            <div style={{ display: visibleFields.personalInfo && introPoster ? "grid" : "none" }} className={styles.infoRow}>
                                 <div className={styles.infoItem}>
                                     <div className={styles.infoValue}>{displayName}</div>
                                     <div className={styles.infoLabel}>{t("raceResult.name")}</div>
@@ -483,7 +466,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                                 </div>
                             </div>
 
-                            <div style={{ display: visibleFields.schoolInfo && enablePoster ? "flex" : "none" }} className={styles.footerRow}>
+                            <div style={{ display: visibleFields.schoolInfo && introPoster ? "flex" : "none" }} className={styles.footerRow}>
                                 <div className={styles.footerSchoolLogo}>
                                     <LoadingImg
                                         noPlaceholder
@@ -509,10 +492,10 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                             <button
                                 type="button"
                                 className={styles.downloadButton}
-                                onClick={handleGenerate}
-                                disabled={!posterData || exporting || loading}
+                                disabled={disableGenerate}
+                                onClick={() => handleGenerateAndShowPreview("download")}
                             >
-                                {t("common.downloadPoster")}
+                                {exporting || loading ? t("common.loadingText") : t("common.downloadPoster")}
                             </button>
                             {isMobile && (
                                 <button
@@ -525,6 +508,10 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                             )}
                         </div>
                     </div>
+                    {loading && <div className={styles.loading}>
+                        <Image src="/images/icons/loading.svg" alt="loading" width={200} height={200} />
+                        <div className={styles.loadingText}>{t("common.loadingText")}</div>
+                    </div>}
                 </div>
             )}
 
@@ -534,7 +521,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                         <div className={styles.title}>{t("posterGenerator.title")}</div>
                         <div className={styles.titleUnderline} />
                     </div>
-                    {enablePoster && !hasMatchDocument && <div className={styles.noDocument} onClick={goToMatchDocument}>
+                    {introPoster && !hasMatchDocument && <div className={styles.noDocument} onClick={goToMatchDocument}>
                         <div className={styles.noDocumentText}>{t("posterGenerator.noDocument")}</div>
                         <div className={styles.noDocumentArrow}>
                             <Image src="/images/icons/arrow-right1.svg" alt="no document" width={24} height={24} />
@@ -543,7 +530,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                     <div className={styles.optionCard}>
                         <div className={styles.optionContent}>
                             <div className={styles.optionTitle}>
-                                {t("posterGenerator.title")}
+                                {t("posterGenerator.intro")}
                             </div>
                             <div className={styles.optionDesc}>
                                 {t("posterGenerator.introDesc")}
@@ -551,9 +538,9 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                         </div>
                         <button
                             type="button"
-                            className={`${styles.toggle} ${enablePoster ? styles.toggleActive : ""}`}
-                            onClick={() => setEnablePoster((prev) => !prev)}
-                            aria-pressed={enablePoster}
+                            className={`${styles.toggle} ${introPoster ? styles.toggleActive : ""}`}
+                            onClick={() => setIntroPoster((prev) => !prev)}
+                            aria-pressed={introPoster}
                         >
                             <span className={styles.toggleThumb} />
                         </button>
@@ -597,7 +584,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                         </div>
                     </div>
 
-                    {enablePoster && <div className={styles.section}>
+                    {introPoster && <div className={styles.section}>
                         <div className={styles.sectionLabel}>
                             {t("posterGenerator.selectInfo")}
                         </div>
@@ -633,7 +620,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                                     <input
                                         type="checkbox"
                                         checked={visibleFields.personalResult}
-                                        onChange={(e) => handlePerformanceToggle(e.target.checked)}
+                                        onChange={() => toggleField("personalResult")}
                                     />
                                     <span>{t("posterGenerator.personalResult")}</span>
                                 </div>
@@ -644,7 +631,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                                     <input
                                         type="checkbox"
                                         checked={visibleFields.personalInfo}
-                                        onChange={(e) => handleInfoToggle(e.target.checked)}
+                                        onChange={() => toggleField("personalInfo")}
                                     />
                                     <span>{t("posterGenerator.personalInfo")}</span>
                                 </div>
@@ -655,7 +642,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                                     <input
                                         type="checkbox"
                                         checked={visibleFields.schoolInfo}
-                                        onChange={(e) => handleSchoolToggle(e.target.checked)}
+                                        onChange={() => toggleField("schoolInfo")}
                                     />
                                     <span>{t("posterGenerator.schoolInfo")}</span>
                                 </div>
@@ -667,9 +654,9 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                         <button
                             className={styles.generateButton}
                             disabled={disableGenerate}
-                            onClick={handleGenerateAndShowPreview}
+                            onClick={() => handleGenerateAndShowPreview("preview")}
                         >
-                            {exporting || loading ? t("common.loadingText") : t("common.generatePoster")}
+                            {exporting || loading ? t("common.loadingText") : isMobile ? t("common.generatePoster") : t("common.downloadPoster")}
                         </button>
                     </div>
                 </div>
