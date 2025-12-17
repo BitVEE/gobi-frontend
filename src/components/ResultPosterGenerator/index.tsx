@@ -10,6 +10,7 @@ import SelectDropdown from "../SelectDropdown";
 import { getRankTypeByChinese } from "@/utils/map";
 import LoadingImg from "../LoadingImg";
 import { useRouter } from "next/router";
+import { toPng } from 'html-to-image';
 
 type PosterFieldKey = "rank" | "personalResult" | "personalInfo" | "schoolInfo";
 type DocumentListItem = API.UserMatchDocumentItem;
@@ -238,20 +239,8 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
     const [isMobile, setIsMobile] = useState(false);
     const [activePanel, setActivePanel] = useState<"controls" | "preview">("controls");
     const posterRef = useRef<HTMLDivElement>(null);
-    const htmlToImageRef = useRef<typeof import("html-to-image")>(null);
     const router = useRouter();
-
-    useEffect(() => {
-        let cancelled = false;
-        import("html-to-image").then((mod) => {
-            if (!cancelled) {
-                htmlToImageRef.current = mod;
-            }
-        });
-        return () => {
-            cancelled = true;
-        };
-    }, [posterImage]);
+    const [posterImageUrl, setPosterImageUrl] = useState<string>('');
 
     useEffect(() => {
         const mq = window.matchMedia("(max-width: 768px)");
@@ -290,34 +279,102 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
         [hasLogin, posterData],
     );
 
-    const handleGenerate = useCallback(async () => {
-        if (!posterRef.current || !htmlToImageRef.current || !posterData) return;
+    // 生成海报并设置海报图片URL
+    const handleGenerateAndSetPosterImageUrl = useCallback(async () => {
+        if (!posterRef.current || !posterData) return;
         setExporting(true);
         try {
-            const dataUrl = await htmlToImageRef.current.toPng(posterRef.current, {
-                pixelRatio: 2,
-                cacheBust: true,
-                backgroundColor: "#0e0e0e",
-            });
-            await uploadPosterIfNeeded(dataUrl);
-            const link = document.createElement("a");
-            link.href = dataUrl;
-            link.download = `${hasMatchDocument ? posterData.totalScore.name : "poster"}.png`;
-            link.click();
+            const dataUrl = await buildPngWithRetry(posterRef.current);
+            setPosterImageUrl(dataUrl);
         } catch (error) {
             console.error("generate poster failed", error);
         } finally {
             setExporting(false);
         }
-    }, [hasMatchDocument, posterData, uploadPosterIfNeeded]);
+    }, [posterData, setPosterImageUrl]);
 
-        const handleGenerateAndShowPreview = useCallback(async (type: "download" | "preview") => {
-            if (isMobile && type === "preview") {
+    useEffect(() => {
+        if (activePanel === "preview") {
+            handleGenerateAndSetPosterImageUrl();
+        }
+    }, [activePanel, handleGenerateAndSetPosterImageUrl]);
+
+    // 下载并上传海报
+    const handleDownloadAndUploadPoster = useCallback(async () => {
+        if (!posterImageUrl) return;
+        await uploadPosterIfNeeded(posterImageUrl);
+        const link = document.createElement("a");
+        link.href = posterImageUrl;
+        link.download = `${hasMatchDocument ? posterData?.totalScore?.name || "poster" : "poster"}.png`;
+        link.click();
+    }, [posterImageUrl, hasMatchDocument, posterData, uploadPosterIfNeeded]);
+
+    // 生成海报并显示预览
+    const handleGenerateAndShowPreview = useCallback(async (type: "download" | "preview") => {
+        setExporting(true);
+        if (isMobile) {
+            if (type === "preview") {
                 setActivePanel("preview");
                 return;
+            } else if (type === "download") {
+                await handleDownloadAndUploadPoster();
+                setExporting(false);
+                return;
             }
-            await handleGenerate();
-        }, [handleGenerate, isMobile]);
+        } else {
+            await posterAll()
+            setExporting(false);
+        }
+
+    }, [handleGenerateAndSetPosterImageUrl, handleDownloadAndUploadPoster, isMobile]);
+
+    // 通用函数：根据 DOM 节点生成 PNG，若小于 500KB 则重试，最终返回 dataUrl
+    const buildPngWithRetry = useCallback(
+        async (element: HTMLElement): Promise<string> => {
+            const MIN_SIZE_BYTES = 500 * 1024;
+            const MAX_ATTEMPTS = 10;
+
+            const getPngSizeBytes = (dataUrl: string) => {
+                const base64 = dataUrl.split(",")[1] || "";
+                return Math.ceil((base64.length * 3) / 4);
+            };
+
+            let dataUrl = "";
+            let attempts = 0;
+
+            while (attempts < MAX_ATTEMPTS) {
+                dataUrl = await toPng(element, {
+                    pixelRatio: 2,
+                    cacheBust: true,
+                    backgroundColor: "transparent",
+                });
+
+                const sizeBytes = getPngSizeBytes(dataUrl);
+                if (sizeBytes >= MIN_SIZE_BYTES) {
+                    break;
+                }
+
+                attempts += 1;
+            }
+
+            return dataUrl;
+        },
+        [],
+    );
+
+    const posterAll = useCallback(async () => {
+        if (!posterRef.current || !posterData) return;
+        try {
+            const dataUrl = await buildPngWithRetry(posterRef.current);
+            await uploadPosterIfNeeded(dataUrl);
+            const link = document.createElement("a");
+            link.href = dataUrl;
+            link.download = `${hasMatchDocument ? posterData?.totalScore?.name || "poster" : "poster"}.png`;
+            link.click();
+        } catch (error) {
+            console.error("generate poster failed", error);
+        }
+    }, [buildPngWithRetry, posterData, uploadPosterIfNeeded, hasMatchDocument]);
 
 
     const posterStyleOptions = [
@@ -468,8 +525,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
 
                             <div style={{ display: visibleFields.schoolInfo && introPoster ? "flex" : "none" }} className={styles.footerRow}>
                                 <div className={styles.footerSchoolLogo}>
-                                    <LoadingImg
-                                        noPlaceholder
+                                    <Image
                                         src={documentList.find((item) => item.id === selectedDocumentId)?.school?.logoUrl || ""}
                                         style={{
                                             aspectRatio: 3 / 2,
@@ -488,6 +544,9 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                                 </div>
                             </div>
                         </div>
+                        {posterImageUrl && <div className={styles.posterImageUrl}>
+                            <img src={posterImageUrl} alt="poster" />
+                        </div>}
                         <div className={styles.previewActions}>
                             <button
                                 type="button"
@@ -501,7 +560,10 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                                 <button
                                     type="button"
                                     className={styles.backButton}
-                                    onClick={() => setActivePanel("controls")}
+                                    onClick={() => {
+                                        setActivePanel("controls");
+                                        setPosterImageUrl("");
+                                    }}
                                 >
                                     {t("common.back")}
                                 </button>
