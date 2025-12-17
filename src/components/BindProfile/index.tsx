@@ -49,7 +49,6 @@ const BindProfile: React.FC<BindProfileProps> = ({
     // 流程步骤状态: 'form' | 'querying' | 'result' | 'binding' | 'success' | 'error' | 'notFound'
     const [step, setStep] = useState<'form' | 'querying' | 'result' | 'binding' | 'success' | 'error' | 'notFound'>('form');
     const [queryResults, setQueryResults] = useState<API.UserInfoByMarkNumberResultItem[]>([]);
-    const [bindErrorInfo, setBindErrorInfo] = useState<{ name?: string; markNumber?: string }>({});
 
     // 获取赛事列表和学校列表
     useEffect(() => {
@@ -84,10 +83,16 @@ const BindProfile: React.FC<BindProfileProps> = ({
 
     // 绑定档案相关函数
     const handleAddMore = () => {
-        setParticipantForms([
-            ...participantForms,
-            { raceId: "", groupId: "", participantNumber: "" }
-        ]);
+        if (matchList.length > participantForms.length) {
+            setParticipantForms([
+                ...participantForms,
+                { raceId: "", groupId: "", participantNumber: "" }
+            ]);
+        } else {
+            dispatch(addToast({
+                message: t("bindProfile.maxOneParticipant")
+            }));
+        }
     };
 
     const handleRemove = (index: number) => {
@@ -100,6 +105,18 @@ const BindProfile: React.FC<BindProfileProps> = ({
     };
 
     const updateParticipantForm = (index: number, field: keyof ParticipantForm, value: string | number) => {
+        if (field === 'raceId') {
+            const duplicateRace = participantForms.some(
+                (form, idx) => idx !== index && String(form.raceId) === String(value)
+            );
+
+            if (duplicateRace) {
+                dispatch(addToast({
+                    message: t("bindProfile.duplicateRace")
+                }));
+                return;
+            }
+        }
         const newForms = [...participantForms];
         newForms[index] = { ...newForms[index], [field]: value };
         // 如果选择了赛事，重置组别
@@ -215,34 +232,14 @@ const BindProfile: React.FC<BindProfileProps> = ({
                 } catch (error) {
                     console.error("Failed to update user info:", error);
                     setIsSubmitting(false);
-                    if (queryResults.length > 0) {
-                        setBindErrorInfo({
-                            name: queryResults[0].name,
-                            markNumber: queryResults[0].markNumber
-                        });
-                    }
                     setStep('error');
                 }
             } else {
-                // 绑定失败，保存错误信息用于显示
-                if (queryResults.length > 0) {
-                    setBindErrorInfo({
-                        name: queryResults[0].name,
-                        markNumber: queryResults[0].markNumber
-                    });
-                }
                 setIsSubmitting(false);
                 setStep('error');
             }
         } catch (error: any) {
             console.error("Failed to bind document:", error);
-            // 绑定失败，保存错误信息用于显示
-            if (queryResults.length > 0) {
-                setBindErrorInfo({
-                    name: queryResults[0].name,
-                    markNumber: queryResults[0].markNumber
-                });
-            }
             setIsSubmitting(false);
             setStep('error');
         }
@@ -252,7 +249,6 @@ const BindProfile: React.FC<BindProfileProps> = ({
     const handleReset = () => {
         setStep('form');
         setQueryResults([]);
-        setBindErrorInfo({});
     };
 
     // 知道了（成功/失败后）
@@ -456,7 +452,7 @@ const BindProfile: React.FC<BindProfileProps> = ({
                             className={styles.spinner}
                         />
                     )}
-                    {t("header.registration.next")}
+                    {t("bindProfile.nextButton")}
                 </button>
             </div>
         </>
@@ -516,6 +512,16 @@ const BindProfile: React.FC<BindProfileProps> = ({
                 </div>
 
                 <div className={styles.actionButtons}>
+                    {/* 上一步按钮 */}
+                    <button
+                        type="button"
+                        className={styles.bindButton}
+                        onClick={() => setStep('form')}
+                        disabled={isSubmitting}
+                    >
+                        {t("bindProfile.previousButton")}
+                    </button>
+                    {/* 绑定按钮 */}
                     <button
                         type="button"
                         className={styles.bindButton}
@@ -566,9 +572,10 @@ const BindProfile: React.FC<BindProfileProps> = ({
 
     // 渲染绑定成功
     const renderSuccessStep = () => {
-        const firstName = queryResults.length > 0 ? queryResults[0].name : '';
+        // 拼接所有参赛者姓名
+        const allNames = queryResults.map(result => result.name).join(', ');
         let successText = t("bindProfile.bindSuccessText" as any);
-        successText = successText.replace('{{name}}', `<strong>${firstName}</strong>`);
+        successText = successText.replace('{{name}}', `<strong>${allNames}</strong>`);
         return (
             <>
                 <div className={styles.successImage}>
@@ -598,11 +605,12 @@ const BindProfile: React.FC<BindProfileProps> = ({
 
     // 渲染绑定失败
     const renderErrorStep = () => {
-        const errorName = bindErrorInfo.name || (queryResults.length > 0 ? queryResults[0].name : '');
-        const errorMarkNumber = bindErrorInfo.markNumber || (queryResults.length > 0 ? queryResults[0].markNumber : '');
+        // 拼接所有参赛者姓名
+        const allNames = queryResults.map(result => result.name).join(', ');
+        const allMarkNumbers = queryResults.map(result => result.markNumber).join(', ');
         let errorText = t("bindProfile.bindErrorText" as any);
-        errorText = errorText.replace('{{name}}', `<strong>${errorName}</strong>`);
-        errorText = errorText.replace('{{markNumber}}', `<strong>${errorMarkNumber}</strong>`);
+        errorText = errorText.replace('{{name}}', `<strong>${allNames}</strong>`);
+        errorText = errorText.replace('{{markNumber}}', `<strong>${allMarkNumbers}</strong>`);
         return (
             <>
                 <div className={styles.errorImage}>

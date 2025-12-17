@@ -25,7 +25,7 @@ const Login = () => {
     const [agreementError, setAgreementError] = useState<boolean>(false)
     const [isLogin, setIsLogin] = useState(false)
     // 是否显示绑定档案表单（默认不显示，登录成功后根据用户信息判断）
-    const [showBindForm, setShowBindForm] = useState(false)
+    const [showBindForm, setShowBindForm] = useState<boolean>(false)
 
     useEffect(() => {
         if (countdown > 0) {
@@ -221,9 +221,6 @@ const Login = () => {
                         )}
                         {t("login.login")}
                     </button>
-                    <div onClick={() => window.location.href = '/api/v1/user/account/wechat/login'} className={styles.wechatLoginLink}>
-                        {t("login.wechatLogin")}
-                    </div>
                 </form>
             </div >
         </div >

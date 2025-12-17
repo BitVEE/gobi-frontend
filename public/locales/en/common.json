@@ -240,6 +240,8 @@
         "selectSchoolPlaceholder": "Select your school",
         "schoolError": "Please select a school",
         "skipButton": "I am not a participant, skip",
+        "nextButton": "Next",
+        "previousButton": "Previous",
         "bindSuccess": "Linked successfully",
         "bindFail": "Link failed, please try again",
         "querying": "Querying...",
@@ -261,7 +263,9 @@
             "male": "Male",
             "female": "Female",
             "other": "Other"
-        }
+        },
+        "duplicateRace": "The race has already been selected, please select another race",
+        "maxOneParticipant": "Each race can only bind one participant at most"
     },
     "user": {
         "title": "Personal center",

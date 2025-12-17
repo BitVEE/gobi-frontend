@@ -240,6 +240,8 @@
         "selectSchoolPlaceholder": "选择你的学校",
         "schoolError": "请选择参赛学校",
         "skipButton": "我不是参赛者，跳过",
+        "nextButton": "下一步",
+        "previousButton": "上一步",
         "bindSuccess": "绑定成功",
         "bindFail": "绑定失败，请重试",
         "querying": "查询中...",
@@ -261,7 +263,9 @@
             "male": "男",
             "female": "女",
             "other": "其他"
-        }
+        },
+        "duplicateRace": "该赛事已选择，请选择其他赛事",
+        "maxOneParticipant": "每届赛事最多只能绑定一个参赛者"
     },
     "user": {
         "title": "个人中心",

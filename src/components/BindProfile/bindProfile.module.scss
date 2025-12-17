@@ -651,6 +651,7 @@
             align-items: flex-start;
             padding: 16px * 3.84 0;
             gap: 16px * 3.84;
+            border-radius: 4px * 3.84;
 
             &:not(:last-child) {
                 margin-bottom: 0;
@@ -677,14 +678,14 @@
         .resultLabel {
             font-size: 16px * 3.84;
             min-width: 100px * 3.84;
-            text-align: right;
+            text-align: left;
         }
 
         .resultDivider {
             width: 100%;
             height: 1px;
             border-left: none;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #ffd1b7;
             margin: 0;
             transform: rotate(0deg);
         }
