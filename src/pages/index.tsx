@@ -31,6 +31,7 @@ export default function Home() {
   const [showBindModal, setShowBindModal] = useState<boolean>(false);
   const hasMatchDocument = useSelector((state: RootState) => (state.commonSlice.userInfo?.hasMatchDocument || false));
   const token = useSelector((state: any) => state.commonSlice.token);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
 
   const getMatchInfo = async () => {
@@ -83,10 +84,15 @@ export default function Home() {
   };
 
   useEffect(() => {
-
     getNewsData()
     getMatchInfo()
-
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => {
+      setIsMobile(mq.matches);
+    };
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
 
   return (
@@ -176,6 +182,7 @@ export default function Home() {
         onClose={() => setShowBindModal(false)}
         showCloseButton
         title=""
+        isFullscreenModal={isMobile}
       >
         <BindProfile
           showSkipButton={false}
