@@ -367,7 +367,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
                 </div>
             </div>
         );
-    }, [showPosterGenerator, newsDetail?.imageList, currentImageIndex, newsDetail?.imageList[currentImageIndex].url]);
+    }, [showPosterGenerator, newsDetail?.imageList, currentImageIndex, newsDetail?.imageList[currentImageIndex]?.url]);
     return (
         <div className={`${styles.newsDetail} ${className}`}>
             {/* 页面头部 */}

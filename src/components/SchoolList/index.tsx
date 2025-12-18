@@ -130,7 +130,6 @@ const SchoolList: React.FC<SchoolListProps> = () => {
                                 onMouseEnter={() => setIsHoveredIndex(item.id)}
                             >
                                 <LoadingImg
-                                    noPlaceholder
                                     src={item.logoUrl}
                                     style={{
                                         aspectRatio: 3 / 2,
@@ -192,7 +191,7 @@ const SchoolList: React.FC<SchoolListProps> = () => {
             >
                 <div className={styles.modal_content}>
                     <div className={styles.news_school}>
-                        <LoadingImg noPlaceholder src={school.logoUrl} style={{ width: '100%', height: '100%' }} width={500} height={300} alt={school.nameEn} />
+                        <LoadingImg src={school.logoUrl} style={{ width: '100%', height: '100%' }} width={500} height={300} alt={school.nameEn} />
                     </div>
                     <NewsList
                         newsList={newsList}

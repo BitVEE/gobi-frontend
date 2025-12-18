@@ -1,48 +1,59 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef, memo } from 'react';
 
-const LoadingImg = memo((props: { src: string, style: React.CSSProperties, width: number, height: number, alt?: string, noPlaceholder?: boolean, Fstyle?: React.CSSProperties }) => {
+const LoadingImg = memo((props: {
+    src: string,
+    style: React.CSSProperties,
+    width: number,
+    height: number,
+    alt?: string,
+    Fstyle?: React.CSSProperties,
+    placeholderSrc?: string,
+    lazyLoad?: boolean
+}) => {
     const [loading, setLoading] = useState(true)
-    const [placeholderSrc, setPlaceholderSrc] = useState("/images/home/poster.png")
+    const [placeholderSrc, setPlaceholderSrc] = useState(props.placeholderSrc || "/images/icons/loading-img.svg")
+    const [errorSrc, setErrorSrc] = useState(props.placeholderSrc || "/images/icons/loading-img-error.svg")
     const [isInView, setIsInView] = useState(false)
     const imgRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        if (!props.noPlaceholder) {
-            if (props.src) {
-                setPlaceholderSrc("/images/home/poster.png")
-            }
-        } else {
-            setPlaceholderSrc("")
+        if (props.src) {
+            setPlaceholderSrc(props?.placeholderSrc || "/images/icons/loading-img.svg")
+            setErrorSrc(props?.placeholderSrc || "/images/icons/loading-img-error.svg")
         }
-    }, [props.src, props.noPlaceholder])
+    }, [props.src, props.placeholderSrc])
 
     useEffect(() => {
         if (props.src) {
-            const observer = new IntersectionObserver(
-                ([entry]) => {
-                    if (entry.isIntersecting) {
-                        setIsInView(true)
-                        observer.unobserve(entry.target)
+            if (props.lazyLoad) {
+                const observer = new IntersectionObserver(
+                    ([entry]) => {
+                        if (entry.isIntersecting) {
+                            setIsInView(true)
+                            observer.unobserve(entry.target)
+                        }
+                    },
+                    {
+                        rootMargin: '100px', // 对应原LazyLoad的offset={100}
+                        threshold: 0.1
                     }
-                },
-                {
-                    rootMargin: '100px', // 对应原LazyLoad的offset={100}
-                    threshold: 0.1
-                }
-            )
+                )
 
-            if (imgRef.current) {
-                observer.observe(imgRef.current)
-            }
-
-            return () => {
                 if (imgRef.current) {
-                    observer.unobserve(imgRef.current)
+                    observer.observe(imgRef.current)
                 }
+
+                return () => {
+                    if (imgRef.current) {
+                        observer.unobserve(imgRef.current)
+                    }
+                }
+            } else {
+                setIsInView(true)
             }
         }
-    }, [props.src])
+    }, [props.src, props.lazyLoad])
 
     return (
         <div ref={imgRef} style={{ fontSize: "0px" }}>
@@ -83,7 +94,7 @@ const LoadingImg = memo((props: { src: string, style: React.CSSProperties, width
                         }}
                         onError={(e) => {
                             const img = e.currentTarget as HTMLImageElement;
-                            img.src = placeholderSrc;
+                            img.src = errorSrc;
                         }}
                         alt={props.alt || ''}
                     />
@@ -106,9 +117,7 @@ const LoadingImg = memo((props: { src: string, style: React.CSSProperties, width
                             priority
                             onError={(e) => {
                                 const img = e.currentTarget as HTMLImageElement;
-                                if (!props.noPlaceholder) {
-                                    img.src = "/images/home/poster.png";
-                                }
+                                img.src = errorSrc;
                             }}
                             alt={props.alt || ''}
                         />

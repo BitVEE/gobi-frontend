@@ -34,6 +34,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ backgroundImage, title }) => {
       <div className={styles.backgroundImageContainer}>
         <LoadingImg
           src={backgroundImage}
+          placeholderSrc="/images/home/poster.png"
           width={1920}
           height={440}
           alt="Header background"
@@ -47,6 +48,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ backgroundImage, title }) => {
           Fstyle={{
             width: '100vw',
           }}
+          lazyLoad={false}
         />
         <div className={styles.overlay} />
       </div>

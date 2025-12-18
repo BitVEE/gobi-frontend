@@ -127,6 +127,7 @@ const usePosterData = (hasMatchDocument: boolean): PosterDataState => {
         if (!currentDocument) {
             setRankList([]);
             setSelectedRankId(undefined);
+            setPosterData(undefined);
             return;
         }
         setLoading(true);
@@ -419,9 +420,9 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
             ? formatTime(Number(posterData.totalScore.realTimespan || 0))
             : undefined;
 
-    const bibText = visibleFields.personalResult ? posterData?.totalScore.markNo : undefined;
+    const bibText = posterData?.totalScore.markNo || undefined;
     // 分组名称
-    const groupText = visibleFields.personalResult ? i18n.language === "zh" ? currentDocument?.matchGroup.nameZh || currentDocument?.matchGroup.nameEn || "--" : currentDocument?.matchGroup.nameEn || currentDocument?.matchGroup.nameZh || "--" : undefined;
+    const groupText = i18n.language === "zh" ? currentDocument?.matchGroup.nameZh || currentDocument?.matchGroup.nameEn || "--" : currentDocument?.matchGroup.nameEn || currentDocument?.matchGroup.nameZh || "--";
 
     const disableGenerate = useMemo(() => {
         if (loading || exporting || !posterData) return true;
@@ -462,7 +463,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
         <div className={styles.posterGenerator}>
             {showPreview && (
                 <div className={styles.previewWrapper}>
-                    <div className={styles.posterPreview} style={{ display: loading ? "none" : "flex" }}>
+                    <div className={styles.posterPreview} style={{ display: loading || !posterData ? "none" : "flex" }}>
                         <div className={`${styles.posterCard} ${styles[`posterCard-${posterStyle}`]}`} ref={posterRef}>
                             <div className={styles.hero} style={{ backgroundImage: posterStyle === "scaleCrop" ? `url(${posterImage})` : "" }}>
                                 {posterStyle !== "scaleCrop" && <img src={posterImage} className={styles.heroImage} alt="poster" />}
@@ -525,7 +526,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
 
                             <div style={{ display: visibleFields.schoolInfo && introPoster ? "flex" : "none" }} className={styles.footerRow}>
                                 <div className={styles.footerSchoolLogo}>
-                                    <Image
+                                    <LoadingImg
                                         src={documentList.find((item) => item.id === selectedDocumentId)?.school?.logoUrl || ""}
                                         style={{
                                             aspectRatio: 3 / 2,
@@ -533,7 +534,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                                         }}
                                         width={135}
                                         height={90}
-                                        alt={documentList.find((item) => item.id === selectedDocumentId)?.school?.nameEn || ""}
+                                        alt={documentList.find((item) => item.id === selectedDocumentId)?.school?.nameEn || "--"}
                                     />
                                 </div>
                                 <div className={styles.qrPlaceholder}>
@@ -570,7 +571,7 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                             )}
                         </div>
                     </div>
-                    {loading && <div className={styles.loading}>
+                    {(loading || !posterData) && <div className={styles.loading}>
                         <Image src="/images/icons/loading.svg" alt="loading" width={200} height={200} />
                         <div className={styles.loadingText}>{t("common.loadingText")}</div>
                     </div>}

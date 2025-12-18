@@ -13,7 +13,7 @@ type Props = {
     clickItem?: () => void;
 };
 
-const Card = ({ title = "", text = "", imgSrc = "/images/home/poster.png", link, showSchoolList = true, schoolList, clickItem = () => { } }: Props) => {
+const Card = ({ title = "", text = "", imgSrc = "/images/icons/loading-img.svg", link, showSchoolList = true, schoolList, clickItem = () => { } }: Props) => {
     const router = useRouter()
     const [isHovered, setIsHovered] = useState(false);
 
