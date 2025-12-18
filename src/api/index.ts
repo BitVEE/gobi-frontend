@@ -34,6 +34,7 @@ export const AuthAPI = {
      */
     getUserPoster: (params: API.SignupHistoryParams) => http.get<API.UserPosterResult>(`${baseURL}/user_poster/list`, { params }),
 
+    deleteUserPoster: (id: number) => http.post<API.APIResult<null>>(`${baseURL}/user_poster/delete`, { id }),
     /**
      * 查看用户信息
      * @returns 用户信息

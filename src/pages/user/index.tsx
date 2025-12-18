@@ -55,6 +55,7 @@ const User = () => {
     const [posterPage, setPosterPage] = useState<number>(1);
     const [posterPageSize, setPosterPageSize] = useState<number>(8);
     const [posterTotal, setPosterTotal] = useState<number>(0);
+    const [triggleRefresh, setTriggleRefresh] = useState<boolean>(false);
 
     const goToPay = (e: any) => {
         router.push({
@@ -254,8 +255,9 @@ const User = () => {
             }
         }).finally(() => {
             setPosterLoading(false);
+            setTriggleRefresh(false)
         })
-    }, [selectedSubTitle, posterPage]);
+    }, [selectedSubTitle, posterPage, triggleRefresh]);
 
     const handleBindSuccess = async () => {
         setShowBindModal(false);
@@ -409,6 +411,7 @@ const User = () => {
                             page={posterPage}
                             total={posterTotal}
                             pageSize={posterPageSize}
+                            onPageRefresh={(val:boolean) => setTriggleRefresh(val)}
                             onPageChange={(page) => {
                                 setPosterPage(page);
                             }}

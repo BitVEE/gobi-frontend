@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styles from './modal.module.scss';
 import { useTranslation } from 'next-i18next';
+import { AuthAPI } from '@/api';
 
 interface ModalProps {
     isOpen: boolean;
@@ -9,9 +10,16 @@ interface ModalProps {
     onBack?: () => void;
     children: React.ReactNode;
     title?: string;
+    bgc?: string;
+    posterUrl?: string;
+    posterFilename?: string;
+    posterId?: number;
+    page?: number;
     showCloseButton?: boolean;
     isFullscreenModal?: boolean;
     isClickOutsideToClose?: boolean;
+    isShowPoster?: boolean;
+    onPageRefresh?: (val: boolean) => void;
 }
 
 const Modal = ({
@@ -19,9 +27,16 @@ const Modal = ({
     onClose,
     children,
     title = 'title',
+    bgc = '#ffffffcc',
+    posterUrl = '',
+    posterFilename = 'poster.jpg',
+    posterId = 0,
+    page= 1,
     showCloseButton = false,
     isFullscreenModal = false,
     isClickOutsideToClose = false,
+    isShowPoster = false,
+    onPageRefresh,
     onBack,
 }: ModalProps) => {
     const { t } = useTranslation("common");
@@ -39,6 +54,36 @@ const Modal = ({
         if (!isClickOutsideToClose) return;
         startClosing();
     };
+
+    const handleDownload = async () => {
+        try {
+            const response = await fetch(posterUrl);
+            const blob = await response.blob();
+            const downloadUrl = window.URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = posterFilename || 'download.jpg';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            window.URL.revokeObjectURL(downloadUrl);
+        } catch (error) {
+            console.error('Download failed:', error);
+        }
+    };
+
+    const handleDelete = () => {
+
+        AuthAPI.deleteUserPoster(posterId).then(() => {
+            startClosing();
+            // window.location.reload();
+            onPageRefresh?.(true);
+        }).catch((error) => {
+            console.error('Delete failed:', error);
+        });
+    }
 
     useEffect(() => {
         const handleEsc = (e: KeyboardEvent) => {
@@ -63,10 +108,11 @@ const Modal = ({
     return (
         <div
             className={`${styles.modalOverlay} ${isClosing ? styles.closing : ''}`}
+            style={{ backgroundColor: bgc }}
             onClick={handleClose}
         >
             <div
-                className={`${styles.modalContent} ${isFullscreenModal ? styles.fullscreenModalContent : styles.commonModalContent} ${isClosing ? styles.closing : ''}`}
+                className={`${styles.modalContent} ${isShowPoster ? styles.showPoster : ''} ${isFullscreenModal ? styles.fullscreenModalContent : styles.commonModalContent} ${isClosing ? styles.closing : ''}`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {title ? <div className={styles.modalHeader}>
@@ -85,7 +131,19 @@ const Modal = ({
 
                 {showCloseButton && (
                     <div className={styles.modalCloseButton} onClick={startClosing}>
-                        <Image src="/images/icons/closeModal.svg" width={24} height={24} alt="Close" />
+                        <Image src={isShowPoster ? '/images/icons/circleclose.svg' : '/images/icons/closeModal.svg'} width={24} height={24} alt="Close" />
+                    </div>
+                )}
+
+                {isShowPoster && (
+                    <div className={styles.modalDownloadButton} onClick={handleDownload}>
+                        <Image src="/images/icons/download.svg" width={20} height={20} alt="download" />
+                    </div>
+                )}
+
+                {isShowPoster && (
+                    <div className={styles.modalDeleteButton} onClick={handleDelete}>
+                        <Image src="/images/icons/delete.svg" width={20} height={24} alt="delete" />
                     </div>
                 )}
                 <div className={styles.modalBody}>

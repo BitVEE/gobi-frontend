@@ -17,6 +17,7 @@ interface NewsListProps {
     total?: number;
     pageSize?: number;
     onPageChange?: (page: number) => void;
+    onPageRefresh?: (val: boolean) => void;
     clickItem?: (id: number) => void;
 }
 
@@ -27,13 +28,14 @@ const NewsList: React.FC<NewsListProps> = ({
     total,
     pageSize = 9,
     onPageChange,
+    onPageRefresh,
     clickItem = (id: number) => { },
 }) => {
     const { t } = useTranslation("common");
     const { locale } = useRouter();
 
     const [isShowModal, setIsShowModal] = useState(false);
-    const [currentPosterUrl, setCurrentPosterUrl] = useState<string | null>(null);
+    const [currentPosterItem, setCurrentPosterItem] = useState<API.UserPosterItem | null>(null);
 
     return (
         <div className={styles.news_list}>
@@ -72,7 +74,7 @@ const NewsList: React.FC<NewsListProps> = ({
                                 width={180}
                                 height={240}
                                 className={styles.poster_image}
-                                // onClick={() => { setIsShowModal(true); setCurrentPosterUrl(item.url) }}
+                                onClick={() => { setIsShowModal(true); setCurrentPosterItem(item) }}
                             />
                         ))
                     }
@@ -92,15 +94,21 @@ const NewsList: React.FC<NewsListProps> = ({
                 isOpen={isShowModal}
                 onClose={() => setIsShowModal(false)}
                 showCloseButton
-                title=""
-            // isFullscreenModal={isMobile}
+                bgc='rgba(0, 0, 0, 0.5)'
+                title=''
+                onPageRefresh={onPageRefresh}
+                page={page}
+                posterFilename={currentPosterItem ? currentPosterItem.createdAt + currentPosterItem.id : 'poster.jpg'}
+                posterUrl={currentPosterItem?.url || ''}
+                posterId={currentPosterItem ? currentPosterItem.id : 0}
+                isShowPoster
             >
                 <Image
-                    src={currentPosterUrl || ''}
+                    src={currentPosterItem?.url || ''}
                     alt={'poster'}
-                    width={180}
-                    height={240}
-                    // className={styles.poster_image}
+                    width={580}
+                    height={600}
+                    className={styles.modal_poster_image}
                 />
             </Modal>
         </div>
