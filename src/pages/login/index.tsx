@@ -150,13 +150,9 @@ const Login = () => {
     return (
         <div className={styles.login}>
             <div className={styles.loginContainer}>
-                <Image
-                    src="/images/login/login_header_bg.png"
-                    alt="GOBI"
-                    width={200}
-                    height={93}
-                    className={styles.loginHeader}
-                />
+                <div className={styles.loginHeader}>
+                    <Image width={900} height={227} className={styles.logo} src="/images/logo.png" alt="GOBI" />
+                </div>
                 <form className={styles.loginForm} onSubmit={handleSubmit}>
                     <div className={styles.formGroup}>
                         <label htmlFor="email">{t("login.emailLogin")}</label>
