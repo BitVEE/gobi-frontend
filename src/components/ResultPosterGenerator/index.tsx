@@ -383,19 +383,19 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
             key: "scaleCrop" as const,
             labelZh: "缩放裁切",
             labelEn: "Scale & crop",
-            icon: "/images/icons/缩放裁切.svg",
+            icon: "/images/icons/scale-crop.svg",
         },
         {
             key: "fixedRatio" as const,
             labelZh: "固定比例",
             labelEn: "Fixed ratio",
-            icon: "/images/icons/固定比例.svg",
+            icon: "/images/icons/fixed-ratio.svg",
         },
         {
             key: "original" as const,
             labelZh: "原始尺寸",
             labelEn: "Original size",
-            icon: "/images/icons/全展示.svg",
+            icon: "/images/icons/original.svg",
         },
     ];
 
