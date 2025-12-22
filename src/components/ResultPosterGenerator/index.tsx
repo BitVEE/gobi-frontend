@@ -465,8 +465,8 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
                 <div className={styles.previewWrapper}>
                     <div className={styles.posterPreview} style={{ display: loading || !posterData ? "none" : "flex" }}>
                         <div className={`${styles.posterCard} ${styles[`posterCard-${posterStyle}`]}`} ref={posterRef}>
-                            <div className={styles.hero} style={{ backgroundImage: posterStyle === "scaleCrop" ? `url(${posterImage})` : "" }}>
-                                {posterStyle !== "scaleCrop" && <img src={posterImage} className={styles.heroImage} alt="poster" />}
+                            <div className={styles.hero} style={{ backgroundImage: posterStyle === "scaleCrop" ? `url("${encodeURI(posterImage)}")` : "" }}>
+                                {posterStyle !== "scaleCrop" && <img src={encodeURI(posterImage)} className={styles.heroImage} alt="poster" />}
                                 <div className={styles.heroOverlay} />
                                 {(!visibleFields.schoolInfo || !introPoster) && <div className={styles.qrPlaceholder}>
                                     <div className={styles.qrBox} >
