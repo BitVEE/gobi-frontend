@@ -9,9 +9,10 @@ import { NewsAPI, SchoolAPI } from '@/api';
 import Image from 'next/image';
 
 interface SchoolListProps {
+    fromPage?: string;
 }
 
-const SchoolList: React.FC<SchoolListProps> = () => {
+const SchoolList: React.FC<SchoolListProps> = ({ fromPage = "首页" }) => {
     const { t } = useTranslation("common");
     const [schoolList, setSchoolList] = useState<API.SchoolListResult['data']>([]);
     const [loadingSchoolList, setLoadingSchoolList] = useState<boolean>(false);
@@ -43,6 +44,7 @@ const SchoolList: React.FC<SchoolListProps> = () => {
     const handleNews = (school: API.SchoolListItem) => {
         setIsModalOpen(true);
         setSchool(school);
+        triggerYouMeng(fromPage, '点击', '参与学校卡片');
     };
 
     useEffect(() => {
@@ -101,6 +103,10 @@ const SchoolList: React.FC<SchoolListProps> = () => {
         setIsNewsDetailModalOpen(false);
         setSchool({} as API.SchoolListItem);
     };
+
+    const triggerYouMeng = (category: string, action: string, label: string) => {
+        (window as any)._czc && (window as any)._czc.push(["_trackEvent", category, action, label]);
+    }
 
     return (
         <>
@@ -194,6 +200,8 @@ const SchoolList: React.FC<SchoolListProps> = () => {
                         <LoadingImg src={school.logoUrl} style={{ width: '100%', height: '100%' }} width={500} height={300} alt={school.nameEn} />
                     </div>
                     <NewsList
+                        fromPage='参与学校页面'
+                        fromPageLabel='新闻动态卡片'
                         newsList={newsList}
                         loading={loading}
                         page={page}

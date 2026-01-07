@@ -310,8 +310,13 @@ const ResultPosterGenerator: React.FC<ResultPosterGeneratorProps> = ({
         link.click();
     }, [posterImageUrl, hasMatchDocument, posterData, uploadPosterIfNeeded]);
 
+    const triggerYouMeng = (category: string, action: string, label: string) => {
+        (window as any)._czc && (window as any)._czc.push(["_trackEvent", category, action, label]);
+    }
+
     // 生成海报并显示预览
     const handleGenerateAndShowPreview = useCallback(async (type: "download" | "preview") => {
+        triggerYouMeng("青戈映像页面", '点击', isMobile && type === "preview" ? `预览海报按钮` : `下载海报按钮`);
         setExporting(true);
         if (isMobile) {
             if (type === "preview") {

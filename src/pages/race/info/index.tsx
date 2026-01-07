@@ -92,6 +92,10 @@ const Info = (props: Props) => {
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
     const [orderId, setOrderId] = useState<string>("");
 
+    const triggerYouMeng = (category: string, action: string, label: string) => {
+        (window as any)._czc && (window as any)._czc.push(["_trackEvent", category, action, label]);
+    }
+
     const handleNext = async () => {
         if (!token) return dispatch(addToast({ message: t("loginTips"), timeout: 3000 }));
         if (!agreeList.every((item: any) => item.isAgreed === true)) return dispatch(addToast({ message: t("noAgreement"), timeout: 3000 }));
@@ -150,6 +154,7 @@ const Info = (props: Props) => {
 
                 const res = await RegistrationAPI.submitRegistration(data);
                 // console.log("submitForm res", res.data);
+                triggerYouMeng("赛事报名页面", '点击', '提交报名信息');
                 if (res.data.code === 0) {
                     setIsSubmitted(true);
                     setOrderId(res.data.data.id);
@@ -218,6 +223,7 @@ const Info = (props: Props) => {
     }
 
     const goToPay = () => {
+        triggerYouMeng("赛事报名页面", '点击', '去付款按钮');
         router.push({
             pathname: '/race/pay',
             query: {

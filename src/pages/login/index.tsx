@@ -64,6 +64,10 @@ const Login = () => {
         await sendCode()
     }
 
+    const triggerYouMeng = (category: string, action: string, label: string) => {
+        (window as any)._czc && (window as any)._czc.push(["_trackEvent", category, action, label]);
+    }
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (isLogin) {
@@ -88,6 +92,7 @@ const Login = () => {
         }
         setAgreementError(false)
         setIsLogin(true)
+        triggerYouMeng("登录页面", '点击', '登录按钮');
         try {
             await AuthAPI.login({
                 email,

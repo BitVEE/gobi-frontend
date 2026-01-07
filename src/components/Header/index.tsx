@@ -65,6 +65,10 @@ const Header = () => {
         }
     };
 
+    const triggerYouMeng = () => {
+        (window as any)._czc && (window as any)._czc.push(["_trackEvent", "顶部导航", '点击', '登录按钮']);
+    }
+
     return (
         <header className={styles.header} id='site-header'>
             <div className={styles.container}>
@@ -119,7 +123,7 @@ const Header = () => {
                                     <div className={`${styles.dropdownItem} ${router.pathname == '/user' ? styles.dropdownItemActive : ''} `} onClick={() => router.push("/user")}>{t('header.personalCenter')}</div>
                                 </div>
                             </div>
-                            : <Link href={"/login"} className={styles.loginButton}>{t('header.login')}</Link>
+                            : <Link href={"/login"} onClick={() => triggerYouMeng()} className={styles.loginButton}>{t('header.login')}</Link>
                         }
                     </div>
                 </div>

@@ -86,6 +86,8 @@ const RaceImage = () => {
                 />
                 <div className={styles.raceImageContent}>
                     <NewsList
+                        fromPage="青戈映像页面"
+                        fromPageLabel={`${type === 'selectedAlbum' ? '精选相册' : '精选视频'}卡片`}
                         newsList={newsList}
                         loading={loading}
                         page={page}

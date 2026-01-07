@@ -41,6 +41,10 @@ const Registration = (props: Props) => {
         }
     }
 
+    const triggerYouMeng = (category: string, action: string, label: string) => {
+        (window as any)._czc && (window as any)._czc.push(["_trackEvent", category, action, label]);
+    }
+
 
     const submitRegistration = () => {
         setIsModalOpen(false)
@@ -116,7 +120,7 @@ const Registration = (props: Props) => {
                                             </div>
                                         }
                                         <button disabled={currentMatchInfo?.state !== 1} className={styles.cell_btn} onClick={() => {
-                                            if (token) { setIsModalOpen(true); setCurrentGroup(group) } else {
+                                            if (token) { setIsModalOpen(true); setCurrentGroup(group);triggerYouMeng("赛事报名页面", '点击', '立即报名按钮'); } else {
                                                 dispatch(addToast({
                                                     message: t("registration.loginTips"),
                                                     timeout: 3000

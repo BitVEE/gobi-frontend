@@ -158,8 +158,13 @@ const NewsDetail: React.FC<NewsDetailProps> = ({
         }
     }, [newsDetail?.imageList]);
 
+    const triggerYouMeng = (category: string, action: string, label: string) => {
+        (window as any)._czc && (window as any)._czc.push(["_trackEvent", category, action, label]);
+    }
+
     const openPosterGenerator = useCallback(() => {
         setShowPosterGenerator(true);
+        triggerYouMeng("青戈映像页面", '点击', `生成海报按钮`);
     }, []);
 
     const goToNextImage = useCallback(() => {

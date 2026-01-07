@@ -55,6 +55,10 @@ const BindProfile: React.FC<BindProfileProps> = ({
         fetchBindData();
     }, []);
 
+    const triggerYouMeng = (category: string, action: string, label: string) => {
+        (window as any)._czc && (window as any)._czc.push(["_trackEvent", category, action, label]);
+    }
+
     const fetchBindData = async () => {
         if (loadingData) return;
         setLoadingData(true);
@@ -127,6 +131,7 @@ const BindProfile: React.FC<BindProfileProps> = ({
     };
 
     const handleSkip = () => {
+        triggerYouMeng("绑定档案页面", '点击', '跳过按钮');
         if (onSkip) {
             // 如果传入了自定义回调，使用自定义回调
             onSkip();
@@ -200,7 +205,7 @@ const BindProfile: React.FC<BindProfileProps> = ({
     const handleBindDocument = async () => {
         setStep('binding');
         setIsSubmitting(true);
-
+        triggerYouMeng("绑定档案页面", '点击', '绑定档案按钮');
         try {
             // 构建绑定参数
             const bindParams: API.AddMatchDocumentParams = {

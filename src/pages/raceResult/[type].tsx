@@ -242,6 +242,9 @@ const RaceResult = () => {
         setLoading(false)
     }
 
+    const triggerYouMeng = (category: string, action: string, label: string) => {
+        (window as any)._czc && (window as any)._czc.push(["_trackEvent", category, action, label]);
+    }
 
     return (
         <div className={styles.raceResult}>
@@ -280,6 +283,7 @@ const RaceResult = () => {
                                         }
                                         const input = document.getElementById('searchInput') as HTMLInputElement
                                         setKeyword(input.value)
+                                        triggerYouMeng('成绩查询页面', '点击', `${type === "personal" ? "个人成绩" : "团队成绩"}-搜索按钮`)
                                     }
                                 }}
                                 onChange={(e) => {
@@ -294,6 +298,7 @@ const RaceResult = () => {
                                 }
                                 const input = document.getElementById('searchInput') as HTMLInputElement
                                 setKeyword(input.value)
+                                triggerYouMeng('成绩查询页面', '点击', `${type === "personal" ? "个人成绩" : "团队成绩"}-搜索按钮`)
                             }}>
                                 <Image width={20} height={20} src="/images/icons/search.svg" alt="search" />
                             </button>

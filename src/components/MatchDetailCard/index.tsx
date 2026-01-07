@@ -70,6 +70,11 @@ const MatchDetailCard = (props: Props) => {
         }
     }, [matchDetail, i18n.language])
 
+    const triggerYouMeng = () => {
+        router.push(`/race/registration`);
+        (window as any)._czc && (window as any)._czc.push(["_trackEvent", "首页", '点击', '立即报名按钮']);
+    }
+
     return (
         <div className={styles.matchDetailCard}>
 
@@ -133,7 +138,7 @@ const MatchDetailCard = (props: Props) => {
                     </div>
 
                     {pageName === 'home' && <div className={styles.now}>
-                        <div className={styles.now_text} onClick={() => router.push(`/race/registration`)}>
+                        <div className={styles.now_text} onClick={() => triggerYouMeng()}>
                             {t('registration.now')}
                         </div>
                     </div>}

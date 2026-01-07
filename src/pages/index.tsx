@@ -95,6 +95,11 @@ export default function Home() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  const triggerYouMeng = (category: string, action: string, label: string) => {
+    router.push('/qa');
+    (window as any)._czc && (window as any)._czc.push(["_trackEvent", category, action, label]);
+  }
+
   return (
     <div className={styles.home}>
       <div className={styles.poster} style={{ backgroundImage: `url('/images/home/poster.png')` }}>
@@ -129,6 +134,8 @@ export default function Home() {
         </div>
         <div className={styles.news_list}>
           <NewsList
+            fromPage='首页'
+            fromPageLabel='新闻动态卡片'
             newsList={newsData?.articles || []}
             loading={loading}
           />
@@ -142,7 +149,7 @@ export default function Home() {
         <div className={styles.qa_list}>
           {
             (t("qa.raceQa", { returnObjects: true }) as unknown as Array<{ theme: string, content: any }>).map((item: { theme: string; content: any }, idx: any) => (
-              <div className={styles.qa_item} key={item.theme} onClick={() => { router.push('/qa') }}>
+              <div className={styles.qa_item} key={item.theme} onClick={() => triggerYouMeng("首页", '点击', `用户问答`)}>
                 <Image width={24} height={24} src="/images/icons/rebot.svg" alt="rebot Icon" className={styles.qa_item_title} style={{ marginTop: '24px' }} />
                 <div className={styles.qa_item_content}>
                   <div className={styles.qa_item_q}>
@@ -164,7 +171,7 @@ export default function Home() {
           {t("partner.joinSchool" as any)}
         </div>
         <div className={styles.partner_list}>
-          <SchoolList />
+          <SchoolList fromPage='首页' />
         </div>
       </div>
 

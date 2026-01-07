@@ -70,7 +70,7 @@ const Contributors = (props: Props) => {
                     <div className={styles.text}>{t("joinSchool")}</div>
                     <hr className={styles.orangeLine} />
                 </div>
-                <SchoolList />
+                <SchoolList fromPage='参与学校页面'/>
             </div>
         </div>
     )

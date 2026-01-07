@@ -88,6 +88,8 @@ const RaceImage = () => {
                 />
                 <div className={styles.raceImageContent}>
                     <NewsList
+                        fromPage="赛事信息页面"
+                        fromPageLabel={`${tag === 'raceNews' ? '赛事资讯' : '戈友故事'}-新闻动态卡片`}
                         newsList={newsList}
                         loading={loading}
                         page={page}
