@@ -92,9 +92,13 @@ const Header = () => {
                                         </Link>
                                         <div className={`${styles.dropdownContent} ${dropdownOpenName === item.name ? styles.dropdownContentOpen : ''}`}>
                                             {item.children?.map((child) => (
-                                                <Link className={router.asPath === child.path ? styles.dropdownItemActive : styles.dropdownItem} key={child.path} href={child.path}>
-                                                    {t(`header.${child.name}` as any)}
-                                                </Link>
+                                                child?.link ?
+                                                    <Link className={router.asPath === child.path ? styles.dropdownItemActive : styles.dropdownItem} key={child.path} target="_blank" href={child.link}>
+                                                        {t(`header.${child.name}` as any)}
+                                                    </Link> :
+                                                    <Link className={router.asPath === child.path ? styles.dropdownItemActive : styles.dropdownItem} key={child.path} href={child.path}>
+                                                        {t(`header.${child.name}` as any)}
+                                                    </Link>
                                             ))}
                                         </div>
                                     </div>

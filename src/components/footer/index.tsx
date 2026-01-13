@@ -9,6 +9,7 @@ import routerList from '@/utils/routerList';
 type RouterChild = {
     name: string;
     path: string;
+    link?: string;
 };
 
 type RouterItem = {
@@ -82,9 +83,14 @@ const Footer = (props: Props) => {
                                             (window.innerWidth > 768 || item.isDisplay) && (
                                                 <div className={styles.dropdownContent}>
                                                     {item.children?.map((child) => (
-                                                        <a className={styles.dropdownItem} key={child.path} href={"/" + router.locale + child.path}>
-                                                            {t(`header.${child.name}` as any)}
-                                                        </a>
+                                                        child?.link ?
+                                                            <a className={styles.dropdownItem} target="_blank" key={child.path} href={child.link}>
+                                                                {t(`header.${child.name}` as any)}
+                                                            </a>
+                                                            :
+                                                            <a className={styles.dropdownItem} key={child.path} href={"/" + router.locale + child.path}>
+                                                                {t(`header.${child.name}` as any)}
+                                                            </a>
                                                     ))}
                                                 </div>
                                             )
