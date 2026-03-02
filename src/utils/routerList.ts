@@ -50,7 +50,7 @@ const routerList = [
             { name: "aboutList.creator", path: '/about/creator' },
             // { name: "aboutList.internationalGobieCenter", path: '/about/internationalGobieCenter' },
             { name: "aboutList.contactUs", path: '/about/contactUs' },
-            { name: "aboutList.officialWebsite", path: "", link: 'https://www.ultragobi.com/' },
+            { name: "aboutList.officialWebsite", path: "", link: 'https://www.ultragobiseries.com/' },
         ]
     },
 ]
