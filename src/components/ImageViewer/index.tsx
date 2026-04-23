@@ -63,10 +63,18 @@ const ImageViewer = ({ open, images, initialIndex = 0, alt = '', onClose }: Prop
   }, []);
 
   const goPrev = useCallback(() => {
-    setIndex((i) => Math.max(0, i - 1));
-  }, []);
+    setIndex((i) => {
+      const len = images.length;
+      if (len <= 1) return i;
+      return (i - 1 + len) % len;
+    });
+  }, [images.length]);
   const goNext = useCallback(() => {
-    setIndex((i) => Math.min(images.length - 1, i + 1));
+    setIndex((i) => {
+      const len = images.length;
+      if (len <= 1) return i;
+      return (i + 1) % len;
+    });
   }, [images.length]);
 
   useEffect(() => {
@@ -370,7 +378,6 @@ const ImageViewer = ({ open, images, initialIndex = 0, alt = '', onClose }: Prop
               e.stopPropagation();
               goPrev();
             }}
-            disabled={index === 0}
             aria-label="Previous image"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -390,7 +397,6 @@ const ImageViewer = ({ open, images, initialIndex = 0, alt = '', onClose }: Prop
               e.stopPropagation();
               goNext();
             }}
-            disabled={index === images.length - 1}
             aria-label="Next image"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">

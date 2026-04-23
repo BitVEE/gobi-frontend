@@ -145,7 +145,7 @@ const MuseumPage = () => {
             <div className={styles.tagLine} />
           </div>
         </section>
-        <section>
+        <section className={styles.gallerySection}>
           <div className={styles.galleryGrid}>
             {loading && (
               <div className={styles.loading}>
@@ -179,6 +179,8 @@ const MuseumPage = () => {
                     href={`/museum/${item.id}`}
                     locale={locale}
                     className={styles.card}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <img className={styles.cardCover} src={item.coverUrlList?.[0] || ''} alt="" />
                     <div className={styles.cardBody}>

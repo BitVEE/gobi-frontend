@@ -187,7 +187,8 @@ $museum-bg: #f8f8f8;
         .progressFill {
           height: 100%;
           background: $museum-orange;
-          transition: width 0.25s ease;
+          transition: transform 0.3s ease;
+          will-change: transform;
         }
       }
     }
@@ -528,6 +529,7 @@ $museum-bg: #f8f8f8;
 
     .stateBox {
       margin-top: -280px * 3.84;
+      max-width: calc(100% - 40px * 3.84);
       padding: 48px * 3.84 20px * 3.84;
 
       .loading,
@@ -539,11 +541,13 @@ $museum-bg: #f8f8f8;
         }
 
         .loadingIcon {
+          max-width: 100%;
           width: 120px * 3.84;
           height: 200px * 3.84;
         }
 
         .nodataIcon {
+          max-width: 100%;
           width: 365px * 3.84;
           height: 300px * 3.84;
         }

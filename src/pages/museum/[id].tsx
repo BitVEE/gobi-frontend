@@ -132,11 +132,19 @@ const MuseumDetailPage = () => {
       : t('museum.gallery.contributorStudent');
 
   const goPrev = useCallback(() => {
-    setActiveIndex((idx) => Math.max(0, idx - 1));
-  }, []);
+    setActiveIndex((idx) => {
+      const len = covers.length;
+      if (len <= 1) return idx;
+      return (idx - 1 + len) % len;
+    });
+  }, [covers.length]);
 
   const goNext = useCallback(() => {
-    setActiveIndex((idx) => Math.min(covers.length - 1, idx + 1));
+    setActiveIndex((idx) => {
+      const len = covers.length;
+      if (len <= 1) return idx;
+      return (idx + 1) % len;
+    });
   }, [covers.length]);
 
   const handlePointerDown = useCallback(
@@ -295,7 +303,6 @@ const MuseumDetailPage = () => {
                         type="button"
                         className={styles.arrowBtn}
                         onClick={goPrev}
-                        disabled={activeIndex === 0}
                         aria-label="Previous image"
                       >
                         <svg
@@ -320,7 +327,6 @@ const MuseumDetailPage = () => {
                         type="button"
                         className={styles.arrowBtn}
                         onClick={goNext}
-                        disabled={activeIndex === covers.length - 1}
                         aria-label="Next image"
                       >
                         <svg
@@ -346,7 +352,10 @@ const MuseumDetailPage = () => {
                   <div className={styles.progressBar}>
                     <div
                       className={styles.progressFill}
-                      style={{ width: `${((activeIndex + 1) / covers.length) * 100}%` }}
+                      style={{
+                        width: `${100 / covers.length}%`,
+                        transform: `translateX(${activeIndex * 100}%)`,
+                      }}
                     />
                   </div>
                 </>
