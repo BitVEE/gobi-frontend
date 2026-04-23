@@ -47,6 +47,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ backgroundImage, title }) => {
           }}
           Fstyle={{
             width: '100vw',
+            height: '100%',
           }}
           lazyLoad={false}
         />

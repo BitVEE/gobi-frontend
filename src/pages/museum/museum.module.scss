@@ -1,0 +1,603 @@
+$museum-orange: #ff6a14;
+$museum-black: #000;
+$museum-gray: #121212;
+$museum-bg: #f8f8f8;
+$museum-muted: #e0e0e0;
+
+.museum {
+  width: 100%;
+  background: #fff;
+  color: $museum-gray;
+
+  .sections {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 74px;
+    padding-bottom: 74px;
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 0 100px;
+
+      .tagWrap {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 24px 0;
+
+        .tagContent {
+          font-size: 16px;
+          font-weight: 700;
+          line-height: normal;
+        }
+
+        .galleryTagContent {
+          font-size: 24px;
+          font-weight: 700;
+          line-height: normal;
+        }
+
+        .tagLine {
+          width: 85px;
+          height: 0;
+          border: 0;
+          border-top: 3px solid $museum-orange;
+          flex-shrink: 0;
+        }
+      }
+
+      .twoCol {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+
+        .imageWrap {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          border-radius: 0;
+          overflow: hidden;
+          background: $museum-bg;
+
+          .sectionImg {
+            width: 100%;
+            height: 100%;
+            min-height: 360px;
+            object-fit: cover;
+            display: block;
+          }
+        }
+        .textCol {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+
+          .blockTitle {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.25;
+            color: $museum-black;
+          }
+
+          .bodyText {
+            font-size: 14px;
+            line-height: 1.6;
+            color: $museum-black;
+          }
+
+          .subheading {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.3;
+            color: $museum-black;
+          }
+
+          .jointOrgRow {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 32px;
+            padding-bottom: 32px;
+          }
+        }
+      }
+
+      .galleryGrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+
+        .loading,
+        .nodata {
+          grid-column: 1 / -1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          gap: 42px;
+
+          .text {
+            color: #000;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+          }
+
+          .loadingIcon {
+            width: 120px;
+            height: 200px;
+          }
+
+          .nodataIcon {
+            width: 365px;
+            height: 300px;
+          }
+        }
+
+        .card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background: $museum-bg;
+          border-radius: 8px;
+          overflow: hidden;
+          text-decoration: none;
+          color: $museum-gray;
+
+          .cardCover {
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            object-fit: cover;
+          }
+
+          .cardBody {
+            padding: 24px 24px 48px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 24px;
+            flex: 1;
+
+            .cardMetaLabel {
+              font-size: 16px;
+              font-weight: 700;
+            }
+
+            .cardTitle {
+              font-size: 32px;
+              height: 80px;
+              font-weight: 700;
+              line-height: 1.35;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              line-clamp: 2;
+              -webkit-box-orient: vertical;
+            }
+
+            .cardExcerpt {
+              font-size: 14px;
+              height: 84px;
+              line-height: 1.5;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 4;
+              line-clamp: 4;
+              -webkit-box-orient: vertical;
+            }
+
+            .readMore {
+              margin-top: auto;
+              font-size: 14px;
+              font-weight: 700;
+              line-height: 1.5;
+              color: $museum-orange;
+            }
+          }
+        }
+        .card:hover {
+          background: $museum-orange;
+          color: #fff;
+
+          .readMore {
+            color: $museum-black;
+          }
+        }
+      }
+    }
+  }
+
+  .lnt {
+    position: relative;
+    width: 100%;
+    color: #fff;
+    overflow: hidden;
+    margin-bottom: 74px;
+
+    .lntBg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+
+      .lntBgImg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .lntBgGradient {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(0deg, rgba(255, 106, 20, 0.4) 0%, rgba(255, 106, 20, 0.4) 100%),
+          linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
+      }
+    }
+
+    .lntInner {
+      position: relative;
+      z-index: 1;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 48px 100px 96px;
+
+      .lntKickerRow {
+        display: flex;
+        align-items: flex-start;
+        padding: 24px 0 0;
+
+        .lntKickerBlock {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+          max-width: 100%;
+
+          .lntKicker {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: normal;
+            color: #fff;
+          }
+
+          .lntKickerLine {
+            width: 85px;
+            height: 0;
+            border: 0;
+            border-top: 3px solid #fff;
+            flex-shrink: 0;
+          }
+        }
+      }
+
+      .lntMainRow {
+        display: flex;
+        gap: 64px;
+        align-items: flex-start;
+        width: 100%;
+
+        .lntTextCol {
+          flex: 1 1 0;
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+
+          .lntHeadline {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: normal;
+            color: #fff;
+
+            .lntHeadlineLine {
+              display: block;
+            }
+          }
+
+          .lntBody {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #fff;
+          }
+
+          .lntPrinciples {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+
+            .lntPrinciplesTitle {
+              margin: 0;
+              font-size: 20px;
+              font-weight: 700;
+              line-height: normal;
+              color: #fff;
+            }
+
+            .lntList {
+              margin: 0;
+              list-style: disc;
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 1.6;
+              color: #fff;
+
+              .lntListItem {
+                margin: 0;
+                padding-left: 0.15em;
+              }
+
+              .lntListItem + .lntListItem {
+                margin-top: 0;
+              }
+            }
+          }
+
+          .lntLearnRow {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.6;
+            color: #fff;
+
+            .lntLearnText {
+              color: #fff;
+            }
+
+            .lntLink {
+              color: $museum-orange;
+              text-decoration: underline;
+              text-decoration-skip-ink: auto;
+              font-weight: 500;
+
+              &:hover {
+                text-decoration: underline;
+                opacity: 0.9;
+              }
+            }
+          }
+        }
+
+        .lntLogoCol {
+          flex: 1 1 0;
+          min-width: 0;
+          min-height: 360px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: flex-start;
+          align-self: stretch;
+
+          .lntLogo {
+            width: 232px;
+            max-width: 100%;
+            height: 64px;
+            object-fit: contain;
+            object-position: right top;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .sections {
+      gap: 52px * 3.84;
+      padding: 52px * 3.84 0;
+
+      section {
+        gap: 32px * 3.84;
+        padding: 0;
+
+        .tagWrap {
+          gap: 12px * 3.84;
+          padding: 0 20px * 3.84;
+
+          .tagContent {
+            font-size: 16px * 3.84;
+          }
+
+          .galleryTagContent {
+            font-size: 24px * 3.84;
+          }
+
+          .tagLine {
+            width: 85px * 3.84;
+            border-top: 3px * 3.84 solid $museum-orange;
+          }
+        }
+
+        .twoCol {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 52px * 3.84;
+          align-items: start;
+
+          .imageWrap {
+            .sectionImg {
+              min-height: 360px * 3.84;
+            }
+          }
+          .textCol {
+            gap: 32px * 3.84;
+            padding: 0 20px * 3.84;
+
+            .blockTitle {
+              font-size: 32px * 3.84;
+            }
+
+            .bodyText {
+              font-size: 14px * 3.84;
+            }
+
+            .subheading {
+              font-size: 24px * 3.84;
+            }
+
+            .jointOrgRow {
+              gap: 16px * 3.84;
+              padding-bottom: 32px * 3.84;
+
+              .jointOrgImg {
+                width: 200px * 3.84;
+                max-height: 67px * 3.84;
+              }
+            }
+          }
+        }
+
+        .galleryGrid {
+          grid-template-columns: repeat(1, 1fr);
+          gap: 16px * 3.84;
+          padding: 0 20px * 3.84;
+
+          .loading,
+          .nodata {
+            gap: 42px * 3.84;
+
+            .text {
+              font-size: 16px * 3.84;
+            }
+
+            .loadingIcon {
+              width: 120px * 3.84;
+              height: 200px * 3.84;
+            }
+
+            .nodataIcon {
+              width: 365px * 3.84;
+              height: 300px * 3.84;
+            }
+          }
+
+          .card {
+            border-radius: 8px * 3.84;
+
+            .cardBody {
+              padding: 24px * 3.84 24px * 3.84 48px * 3.84 24px * 3.84;
+              .cardMetaLabel {
+                font-size: 16px * 3.84;
+              }
+
+              .cardTitle {
+                font-size: 32px * 3.84;
+                height: 80px * 3.84;
+              }
+
+              .cardExcerpt {
+                font-size: 14px * 3.84;
+                height: 84px * 3.84;
+              }
+
+              .readMore {
+                font-size: 14px * 3.84;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .lnt {
+      margin-bottom: 74px * 3.84;
+
+      .lntBg {
+        .lntBgImg {
+          width: auto;
+          left: 30%;
+          transform: translateX(-30%);
+        }
+      }
+
+      .lntInner {
+        margin: 0 auto;
+        gap: 32px * 3.84;
+        padding: 48px * 3.84 20px * 3.84;
+
+        .lntKickerRow {
+          padding: 24px * 3.84 0 0;
+
+          .lntKickerBlock {
+            gap: 12px * 3.84;
+            .lntKicker {
+              font-size: 16px * 3.84;
+            }
+
+            .lntKickerLine {
+              width: 85px * 3.84;
+              border-top: 3px * 3.84 solid $museum-bg;
+            }
+          }
+        }
+
+        .lntMainRow {
+          flex-direction: column;
+          gap: 64px * 3.84;
+
+          .lntTextCol {
+            gap: 32px * 3.84;
+
+            .lntHeadline {
+              font-size: 32px * 3.84;
+            }
+
+            .lntBody {
+              font-size: 14px * 3.84;
+            }
+
+            .lntPrinciples {
+              gap: 32px * 3.84;
+
+              .lntPrinciplesTitle {
+                font-size: 20px * 3.84;
+              }
+
+              .lntList {
+                font-size: 14px * 3.84;
+              }
+            }
+
+            .lntLearnRow {
+              gap: 8px * 3.84;
+              font-size: 14px * 3.84;
+            }
+          }
+
+          .lntLogoCol {
+            align-items: flex-start;
+            min-height: 32px * 3.84;
+
+            .lntLogo {
+              width: 116px * 3.84;
+              height: 32px * 3.84;
+            }
+          }
+        }
+      }
+    }
+  }
+}

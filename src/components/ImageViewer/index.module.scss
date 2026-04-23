@@ -1,0 +1,233 @@
+$viewer-orange: #ff6a14;
+
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    cursor: zoom-out;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    color: #fff;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+    pointer-events: none;
+
+    > * {
+      pointer-events: auto;
+    }
+
+    .counter {
+      font-size: 16px;
+      line-height: 1;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+
+      .counterCurrent {
+        font-weight: 700;
+      }
+
+      .counterTotal {
+        font-weight: 400;
+        opacity: 0.8;
+        margin-left: 4px;
+      }
+    }
+
+    .tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .scaleLabel {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1;
+        opacity: 0.85;
+        min-width: 44px;
+        text-align: center;
+      }
+
+      .toolBtn {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 999px;
+        color: #fff;
+        cursor: pointer;
+        appearance: none;
+        transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+        &:hover:not(:disabled) {
+          background: $viewer-orange;
+          border-color: $viewer-orange;
+          color: #fff;
+        }
+
+        &:disabled {
+          opacity: 0.35;
+          cursor: not-allowed;
+        }
+
+        svg {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .stage {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    touch-action: none;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    .image {
+      max-width: 90vw;
+      max-height: 86vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      transform-origin: center center;
+      will-change: transform;
+      -webkit-user-drag: none;
+      user-select: none;
+      pointer-events: none;
+    }
+  }
+
+  .navBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    color: #fff;
+    cursor: pointer;
+    appearance: none;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+    &:hover:not(:disabled) {
+      background: $viewer-orange;
+      border-color: $viewer-orange;
+      color: #fff;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    svg {
+      display: block;
+    }
+  }
+
+  .navPrev {
+    left: 24px;
+  }
+
+  .navNext {
+    right: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .viewer {
+    .toolbar {
+      padding: 16px * 3.84 20px * 3.84;
+
+      .counter {
+        font-size: 16px * 3.84;
+
+        .counterTotal {
+          margin-left: 4px * 3.84;
+        }
+      }
+
+      .tools {
+        gap: 8px * 3.84;
+
+        .scaleLabel {
+          font-size: 13px * 3.84;
+          min-width: 44px * 3.84;
+        }
+
+        .toolBtn {
+          width: 36px * 3.84;
+          height: 36px * 3.84;
+
+          svg {
+            width: 20px * 3.84;
+            height: 20px * 3.84;
+          }
+        }
+      }
+    }
+
+    .navBtn {
+      width: 48px * 3.84;
+      height: 48px * 3.84;
+
+      svg {
+        width: 24px * 3.84;
+        height: 24px * 3.84;
+      }
+    }
+
+    .navPrev {
+      left: 16px * 3.84;
+    }
+
+    .navNext {
+      right: 16px * 3.84;
+    }
+
+    .stage {
+      .image {
+        max-width: 96vw;
+        max-height: 76vh;
+      }
+    }
+  }
+}

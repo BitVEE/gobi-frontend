@@ -555,4 +555,53 @@ declare namespace API {
      * Create match document - output result
      */
     type AddMatchDocumentResult = APIResult<{}>
+
+    /** 贡献人类型：1 学生 / 2 老师 */
+    type MuseumContributorType = 1 | 2
+
+    /**
+     * 博物馆藏品（列表/详情共用）
+     */
+    interface MuseumItem {
+        id: number
+        coverUrlList: string[]
+        titleEn: string
+        titleZh: string
+        contentEn: string
+        contentZh: string
+        accessionNumber: string
+        contributorEn: string
+        contributorZh: string
+        contributorType: MuseumContributorType
+        affiliatedSchoolEn: string
+        affiliatedSchoolZh: string
+        /** 贡献时间，时间戳 */
+        sealingDate: string
+        originEn: string
+        originZh: string
+        creatorEn: string
+        creatorZh: string
+    }
+
+    /** 查看博物馆藏品列表 - 请求参数 */
+    interface MuseumItemListParams {
+        page: number
+        size: number
+    }
+
+    /** 查看博物馆藏品列表 - 响应 */
+    type MuseumItemListResult = APIResult<{
+        total: number
+        museumItems: MuseumItem[]
+    }>
+
+    /** 查看博物馆藏品详情 - 请求参数 */
+    interface MuseumItemDetailParams {
+        id: number
+    }
+
+    /** 查看博物馆藏品详情 - 响应 */
+    type MuseumItemDetailResult = APIResult<{
+        museumItem: MuseumItem
+    }>
 }

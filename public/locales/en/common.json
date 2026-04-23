@@ -173,16 +173,9 @@
             "selectedAlbum": "Individual Photos",
             "selectedVideo": "Event Video"
         },
+        "museum": "Time Capsule Museum",
         "partner": "Schools",
-        "partnerList": {
-            "partner": "Partners",
-            "joinSchool": "Schools"
-        },
         "qa": "FAQS",
-        "qaList": {
-            "raceQa": "FAQS",
-            "healthQa": "Health Q&A"
-        },
         "about": "About Us",
         "aboutList": {
             "brandStory": "Brand story",
@@ -194,6 +187,58 @@
         "login": "Login",
         "logout": "Logout",
         "personalCenter": "Personal center"
+    },
+    "museum": {
+        "title": "Time Capsule Museum",
+        "overview": {
+            "title": "Overview",
+            "heading": "A Dialogue Between Youth and Nature",
+            "body": "Permanently seal the sand and dust of the Youth Gobi within the Gobi Desert, allowing past journeys and dreams to become a time capsule (Note: The Gobi experience is not only a test of harsh environmental conditions and sandstorms, but also a tempering of the soul and a spiritual trial for every participant).",
+            "jointOrg": "Joint Organization"
+        },
+        "feature": {
+            "title": "Philosophy",
+            "heading": "The Gobi is silent, yet it witnesses every step forward and every breakthrough.",
+            "body": "The Youth Ultra Gobi Time Capsule Museum uses sealing as a ritual and the earth as a container to permanently freeze the courage tempered in the Gobi, the growth harvested during the trek, and the passion held deep within. Youth measure the wilderness with their steps and reshape themselves with courage, understanding resilience amidst the sand and vastness. By using objects from their own experience as tokens and resin sealing as a mark, every unique memory becomes a seed of growth rooted in the heart. Carrying this strength toward a broader world, these youths will eventually grow into towering trees. Through displays in the Golden Tent, campus exhibitions, and cloud-based showcases, courage will not be diluted by time, nor will youth fade with the years. Every heart that once beat passionately in the Gobi will find its place and be preserved forever. When these youths grow into adults and look back, a time capsule engraved with unique marks of growth will be vividly remembered; a soul capsule representing the dialogue between man and nature and the discovery of self through every small step will shine brightly. With the wind as a companion and dreams as a horse: having crossed the Gobi, one carries an inherent brilliance; by sealing this moment, one lives up to their prime."
+        },
+        "objectives": {
+            "title": "Objectives",
+            "heading": "To use time capsules as a medium so that when youths look back in the future, they will remember the resilient strength bestowed by the Gobi.",
+            "body": "To use Gobi trekking as an ordeal, allowing participants to face themselves and break through limitations amidst the wilderness and sand, tempering courage, strengthening faith, and completing internal spiritual reshaping; to use personal/team commemorative items instead of natural collection (nature has already given us the best gift—not just a place to hike, but the unique hardships of the Gobi that give us the courage to challenge ourselves). Therefore, the dialogue between youth and nature leaves behind the story of the time capsule and the Gobi. Under the premise of following LNT (Leave No Trace) principles, the growth, insights, and original aspirations of the Gobi journey are transformed into spiritual carriers that can be permanently sealed. By building a three-in-one display system consisting of the Golden Tent, campus, and online platforms, individual growth converges into the collective spiritual wealth of the Youth Ultra Gobi, achieving the transmission of courage and strength. By burying the seeds of vigorous growth through time capsules, youth will always remember the resilience and passion bestowed by the Gobi when looking back, chasing their dreams bravely."
+        },
+        "gallery": {
+            "title": "Time Capsule Museum",
+            "exhibition": "Exhibition",
+            "readMore": "READ MORE",
+            "contributorStudent": "STUDENT",
+            "contributorTeacher": "TEACHER"
+        },
+        "detail": {
+            "exhibition": "Exhibition",
+            "objectStory": "Object Story",
+            "accession": "Accession Number",
+            "contributor": "Contributor",
+            "affiliatedSchool": "Affiliated School",
+            "sealingDate": "Sealing Date",
+            "origin": "Origin",
+            "creator": "Creator",
+            "lntCommitment": "LNT Commitment",
+            "lntDescription": "A declaration confirming the object was not collected from nature, strictly adhering to Leave No Trace principles."
+        },
+        "lnt": {
+            "title": "What is Leave No Trace（LNT）?",
+            "heading": "Leave nothing but footprints, take nothing but memories.",
+            "body": "The Time Capsule Museum strictly adheres to the Leave No Trace (LNT) principles, a global outdoor ethics standard designed to minimize human impact on the environment. We believe the greatest gift nature bestows upon youth is the tempering of courage, not the extraction of resources.",
+            "principles": {
+                "title": "Our Core Principles in this Event",
+                "list": [
+                    "We strictly prohibit the collection of rocks, plants, or natural remains from the Gobi. Dreams should be carried by personal artifacts—sealing the marks of growth in resin while leaving the integrity of the wilderness to the earth.",
+                    "In our sealing workshops, we strictly manage chemical materials and packaging waste, ensuring that no non-natural substances are left behind in the fragile desert ecosystem.",
+                    "Engaging in a dialogue with nature with restraint and reverence, ensuring that every heart that beat passionately in the Gobi finds its place without compromising the environment."
+                ]
+            },
+            "learnMore": "Learn more at"
+        }
     },
     "home": {
         "title": "Youth Ultra Gobi",

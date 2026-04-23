@@ -1,0 +1,553 @@
+$museum-orange: #ff6a14;
+$museum-black: #121212;
+$museum-black2: #2e2e2e;
+$museum-bg: #f8f8f8;
+
+.detail {
+  width: 100%;
+  background: #fff;
+  color: $museum-black;
+
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 443px;
+    overflow: hidden;
+
+    .heroImg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .heroOverlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 18, 18, 0.85);
+    }
+
+    .backLink {
+      position: absolute;
+      top: 24px;
+      left: 100px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+
+      &:hover {
+        color: $museum-orange;
+      }
+    }
+  }
+
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 100px 74px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 960px;
+    margin-top: -300px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+
+    .gallery {
+      position: relative;
+      width: 100%;
+      height: 560px;
+      overflow: hidden;
+      background: $museum-bg;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+      touch-action: pan-y;
+      user-select: none;
+      cursor: zoom-in;
+
+      &:active {
+        cursor: grabbing;
+      }
+
+      .track {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        will-change: transform;
+
+        .slide {
+          flex: 0 0 100%;
+          width: 100%;
+          height: 100%;
+          position: relative;
+          overflow: hidden;
+
+          .galleryImg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+            pointer-events: none;
+          }
+        }
+      }
+
+      .pagerBar {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-end;
+        width: 100%;
+
+        .counter {
+          display: flex;
+          align-items: center;
+          padding: 0 8px;
+          background: $museum-black2;
+          color: #fff;
+          font-size: 16px;
+          line-height: normal;
+          white-space: nowrap;
+
+          .counterCurrent {
+            font-weight: 700;
+          }
+
+          .counterTotal {
+            font-weight: 400;
+          }
+        }
+
+        .arrowGroup {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          padding: 4px 8px;
+          background: $museum-black2;
+
+          .arrowBtn {
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 0;
+            color: #fff;
+            cursor: pointer;
+            appearance: none;
+
+            svg {
+              display: block;
+              width: 24px;
+              height: 24px;
+            }
+
+            &:hover:not(:disabled) svg path {
+              stroke: $museum-orange;
+            }
+
+            &:disabled {
+              cursor: not-allowed;
+              opacity: 0.4;
+            }
+          }
+        }
+      }
+
+      .progressBar {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 5px;
+        background: $museum-black2;
+
+        .progressFill {
+          height: 100%;
+          background: $museum-orange;
+          transition: width 0.25s ease;
+        }
+      }
+    }
+
+    .titleBlock {
+      background: $museum-bg;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 48px;
+      color: $museum-black;
+
+      .exhibitionLabel {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: normal;
+      }
+
+      .title {
+        margin: 0;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: normal;
+        word-break: break-word;
+      }
+    }
+
+    .info {
+      background: $museum-bg;
+      display: flex;
+      gap: 72px;
+      align-items: flex-start;
+      padding: 0 48px 72px;
+
+      .story {
+        flex: 1 1 0;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .storyTitle {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: normal;
+          color: $museum-black;
+        }
+
+        .storyBody {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 1.5;
+          color: $museum-black;
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+      }
+
+      .meta {
+        flex-shrink: 0;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .metaItem {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+
+          .metaLabel {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: $museum-black;
+          }
+
+          .metaValue {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: $museum-black;
+            word-break: break-word;
+          }
+        }
+      }
+    }
+
+    .lnt {
+      position: relative;
+      overflow: hidden;
+      padding: 72px 48px 132px;
+
+      .lntBg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+
+        .lntBgImg {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .lntBgGradient {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to bottom, $museum-bg 0%, rgba(248, 248, 248, 0) 100%);
+        }
+      }
+
+      .lntInner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        gap: 72px;
+        align-items: flex-start;
+
+        .lntText {
+          flex: 1 1 0;
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+
+          .lntTitle {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: normal;
+            color: $museum-black;
+          }
+
+          .lntBody {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: $museum-black;
+          }
+        }
+
+        .lntLogoWrap {
+          flex-shrink: 0;
+          width: 200px;
+          display: flex;
+          justify-content: flex-end;
+
+          .lntLogo {
+            width: 116px;
+            height: 32px;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+
+  .stateBox {
+    width: 100%;
+    max-width: 960px;
+    margin-top: -300px;
+    position: relative;
+    z-index: 1;
+    background: $museum-bg;
+    padding: 80px 48px;
+
+    .loading,
+    .nodata {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 42px;
+
+      .text {
+        color: #000;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      .loadingIcon {
+        width: 120px;
+        height: 200px;
+      }
+
+      .nodataIcon {
+        width: 365px;
+        height: 300px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .hero {
+      height: 443px * 3.84;
+
+      .backLink {
+        top: 20px * 3.84;
+        left: 20px * 3.84;
+        font-size: 14px * 3.84;
+        gap: 8px * 3.84;
+      }
+    }
+
+    .container {
+      padding: 0;
+    }
+
+    .card {
+      margin-top: -280px * 3.84;
+      max-width: 100%;
+      padding: 0 20px * 3.84;
+
+      .gallery {
+        height: 425px * 3.84;
+
+        .pagerBar {
+          .counter {
+            padding: 0 8px * 3.84;
+            font-size: 16px * 3.84;
+          }
+
+          .arrowGroup {
+            gap: 20px * 3.84;
+            padding: 4px * 3.84 8px * 3.84;
+
+            .arrowBtn {
+              width: 24px * 3.84;
+              height: 24px * 3.84;
+
+              svg {
+                width: 24px * 3.84;
+                height: 24px * 3.84;
+              }
+            }
+          }
+        }
+
+        .progressBar {
+          height: 5px * 3.84;
+        }
+      }
+
+      .titleBlock {
+        padding: 52px * 3.84 20px * 3.84 0;
+        gap: 32px * 3.84;
+
+        .exhibitionLabel {
+          font-size: 16px * 3.84;
+        }
+
+        .title {
+          font-size: 32px * 3.84;
+        }
+      }
+
+      .info {
+        flex-direction: column;
+        gap: 32px * 3.84;
+        padding: 32px * 3.84 20px * 3.84 0;
+
+        .story {
+          gap: 24px * 3.84;
+
+          .storyTitle {
+            font-size: 16px * 3.84;
+          }
+
+          .storyBody {
+            font-size: 16px * 3.84;
+          }
+        }
+
+        .meta {
+          width: 100%;
+          text-align: right;
+          gap: 10px * 3.84;
+
+          .metaItem {
+            .metaLabel {
+              font-size: 12px * 3.84;
+            }
+
+            .metaValue {
+              font-size: 14px * 3.84;
+            }
+          }
+        }
+      }
+
+      .lnt {
+        padding: 124px * 3.84 20px * 3.84 132px * 3.84;
+
+        .lntBg {
+          .lntBgImg {
+            width: auto;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+
+        .lntInner {
+          flex-direction: column;
+          gap: 72px * 3.84;
+
+          .lntText {
+            gap: 24px * 3.84;
+
+            .lntTitle {
+              font-size: 16px * 3.84;
+            }
+
+            .lntBody {
+              font-size: 16px * 3.84;
+            }
+          }
+
+          .lntLogoWrap {
+            width: 200px * 3.84;
+            justify-content: flex-start;
+
+            .lntLogo {
+              width: 116.032px * 3.84;
+              height: 32px * 3.84;
+            }
+          }
+        }
+      }
+    }
+
+    .stateBox {
+      margin-top: -280px * 3.84;
+      padding: 48px * 3.84 20px * 3.84;
+
+      .loading,
+      .nodata {
+        gap: 42px * 3.84;
+
+        .text {
+          font-size: 16px * 3.84;
+        }
+
+        .loadingIcon {
+          width: 120px * 3.84;
+          height: 200px * 3.84;
+        }
+
+        .nodataIcon {
+          width: 365px * 3.84;
+          height: 300px * 3.84;
+        }
+      }
+    }
+  }
+}

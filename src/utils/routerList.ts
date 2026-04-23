@@ -29,20 +29,9 @@ const routerList = [
             { name: "raceImageList.selectedVideo", path: '/raceImage/selectedVideo' },
         ]
     },
-    {
-        name: "partner",
-        children: [
-            { name: "partnerList.joinSchool", path: '/partner/joinSchool' },
-            // { name: "partnerList.partner", path: '/partner/partner' },
-        ]
-    },
-    {
-        name: "qa",
-        children: [
-            { name: "qaList.raceQa", path: '/qa' },
-            // { name: "qaList.healthQa", path: '/qa/healthQa' },
-        ]
-    },
+    { name: "museum", path: '/museum' },
+    { name: "partner", path: '/partner/joinSchool' },
+    { name: "qa", path: '/qa' },
     {
         name: "about",
         children: [

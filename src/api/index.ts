@@ -170,3 +170,22 @@ export const ResultAPI = {
      */
     getCertificate: (params: API.CertificateParams) => http.get<Blob>(`${baseURL}/match/certificate`, { params }),
 }
+
+/**
+ * 博物馆藏品相关 API
+ */
+export const MuseumAPI = {
+    /**
+     * 查看博物馆藏品列表
+     * @param params 分页参数
+     */
+    getMuseumItemList: (params: API.MuseumItemListParams) =>
+        http.get<API.MuseumItemListResult>(`${baseURL}/museum_item/list`, { params }),
+
+    /**
+     * 查看博物馆藏品详情
+     * @param params 藏品 id
+     */
+    getMuseumItemDetail: (params: API.MuseumItemDetailParams) =>
+        http.get<API.MuseumItemDetailResult>(`${baseURL}/museum_item/detail`, { params }),
+}
