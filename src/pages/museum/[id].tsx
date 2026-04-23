@@ -5,19 +5,49 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { GetStaticPaths } from 'next';
 import { MuseumAPI } from '@/api';
-import { formatDate } from '@/utils/tool';
 import styles from './museumDetail.module.scss';
 import PageHeader from '@/components/PageHeader';
 import ImageViewer from '@/components/ImageViewer';
 
-function formatSealingDate(value: string | undefined) {
-  if (value == null || value === '') return '';
+const EN_MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+function toDate(value: string | undefined): Date | null {
+  if (value == null || value === '') return null;
   const n = Number(value);
+  let date: Date;
   if (!Number.isNaN(n) && n !== 0) {
     const ms = n < 1e12 ? n * 1000 : n;
-    return formatDate(ms);
+    date = new Date(ms);
+  } else {
+    date = new Date(value);
   }
-  return formatDate(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return date;
+}
+
+function formatSealingDate(value: string | undefined, locale?: string) {
+  const date = toDate(value);
+  if (!date) return '';
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  if (locale === 'zh') {
+    return `${year} 年 ${month} 月 ${day} 日`;
+  }
+  return `${EN_MONTHS[date.getMonth()]} ${day}, ${year}`;
 }
 
 function museumTitle(item: API.MuseumItem, locale?: string) {
@@ -356,7 +386,7 @@ const MuseumDetailPage = () => {
                 </div>
                 <div className={styles.metaItem}>
                   <span className={styles.metaLabel}>{t('museum.detail.sealingDate')}</span>
-                  <span className={styles.metaValue}>{formatSealingDate(item.sealingDate)}</span>
+                  <span className={styles.metaValue}>{formatSealingDate(item.sealingDate, locale)}</span>
                 </div>
                 <div className={styles.metaItem}>
                   <span className={styles.metaLabel}>{t('museum.detail.origin')}</span>
