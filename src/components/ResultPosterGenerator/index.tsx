@@ -101,7 +101,7 @@ const usePosterData = (hasMatchDocument: boolean): PosterDataState => {
                                 id: 0,
                                 nameEn: "",
                                 nameZh: "",
-                                logoUrl: "/images/school/1.png",
+                                logoUrl: "",
                             },
                             markNumber: "",
                             gender: 1,

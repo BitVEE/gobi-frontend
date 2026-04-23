@@ -13,9 +13,10 @@ interface TagSelectorProps {
     selectedValue: string | number;
     title?: string
     loading?: boolean;
+    size?: 'small' | 'medium' | 'large';
 }
 
-const TagSelector: React.FC<TagSelectorProps> = ({ tags, styleType, onChange, selectedValue, title, loading = false }) => {
+const TagSelector: React.FC<TagSelectorProps> = ({ tags, styleType, onChange, selectedValue, title, loading = false, size = 'medium' }) => {
 
     const handleTagSelect = (value: string | number) => {
         if (loading) {
@@ -49,6 +50,7 @@ const TagSelector: React.FC<TagSelectorProps> = ({ tags, styleType, onChange, se
                             <button
                                 key={tag.value}
                                 onClick={() => handleTagSelect(tag.value)}
+                                style={{ '--font-size': size === 'small' ? '.0875rem' : size === 'medium' ? '0.1rem' : '0.1125rem' } as React.CSSProperties}
                                 className={`${styles.tag} ${selectedValue === tag.value ? styles.selected_tag : ''}`}
                                 disabled={loading}
                             >

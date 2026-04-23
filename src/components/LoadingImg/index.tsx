@@ -56,7 +56,7 @@ const LoadingImg = memo((props: {
     }, [props.src, props.lazyLoad])
 
     return (
-        <div ref={imgRef} style={{ fontSize: "0px" }}>
+        <div ref={imgRef} style={{ fontSize: "0px", height: "100%" }}>
             {!isInView ? placeholderSrc && (
                 <Image
                     src={placeholderSrc}
