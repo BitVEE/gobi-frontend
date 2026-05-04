@@ -180,17 +180,38 @@ const RaceResult = () => {
             return
         }
         setLoading(true)
-        const res = await ResultAPI.getResultRankList({
-            matchId: matchId,
-            matchGroupId: selectedGroup,
-            type: type == "team" ? 1 : type == "personal" ? 2 : 0,
-            gender: 0,
-        })
-        if (res.data.code === 0) {
-            setRankList(res.data.data.rankList)
-            setSelectedRank(res.data.data.rankList[0].id)
+        try {
+            const res = await ResultAPI.getResultRankList({
+                matchId: matchId,
+                matchGroupId: selectedGroup,
+                type: type == "team" ? 1 : type == "personal" ? 2 : 0,
+                gender: 0,
+            })
+            if (res.data.code === 0) {
+                const list = res.data.data?.rankList ?? []
+                setRankList(list)
+                if (list.length > 0) {
+                    setSelectedRank(list[0].id)
+                } else {
+                    setSelectedRank(0)
+                    setResultList([])
+                    setTotal(0)
+                }
+            } else {
+                setRankList([])
+                setSelectedRank(0)
+                setResultList([])
+                setTotal(0)
+            }
+        } catch (error) {
+            console.log(error)
+            setRankList([])
+            setSelectedRank(0)
+            setResultList([])
+            setTotal(0)
+        } finally {
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     // page 改变时获取成绩列表
