@@ -339,7 +339,7 @@ const RaceResult = () => {
                                     onChange={(value) => {
                                         setMatchId(Number(value));
                                         setGroupList(matchList.find(item => item.id === value)?.groups || []);
-                                        setSelectedGroup(0);
+                                        setSelectedGroup(matchList.find(item => item.id === value)?.groups[0].id || 0);
                                     }}
                                 />
                             )}

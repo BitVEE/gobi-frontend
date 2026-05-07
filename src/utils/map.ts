@@ -48,8 +48,19 @@ for (const key in ResultRankTypeValue) {
 
 // 添加额外的映射，支持多个中文名称映射到同一个枚举键
 chineseToRankType["第一天总榜"] = "FirstDayTotalRank";
+chineseToRankType["第一日个人榜"] = "FirstDayTotalRank";
 chineseToRankType["第二天总榜"] = "SecondDayTotalRank";
+chineseToRankType["第二日个人榜"] = "SecondDayTotalRank";
 chineseToRankType["第三天总榜"] = "ThirdDayTotalRank";
+chineseToRankType["第三日个人榜"] = "ThirdDayTotalRank";
+chineseToRankType["男榜"] = "MenTotalRank";
+chineseToRankType["女榜"] = "WomenTotalRank";
+chineseToRankType["第一日男榜"] = "MenFirstDayRank";
+chineseToRankType["第二日男榜"] = "MenSecondDayRank";
+chineseToRankType["第三日男榜"] = "MenThirdDayRank";
+chineseToRankType["第一日女榜"] = "WomenFirstDayRank";
+chineseToRankType["第二日女榜"] = "WomenSecondDayRank";
+chineseToRankType["第三日女榜"] = "WomenThirdDayRank";
 
 /**
  * 根据中文名称获取对应的枚举键

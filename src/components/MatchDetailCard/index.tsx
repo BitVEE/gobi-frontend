@@ -157,13 +157,13 @@ const MatchDetailCard = (props: Props) => {
                     }
 
                     {
-                        groupInfo && <div className={styles.group}>
+                        groupInfo && groupInfo?.cost > 0 && <div className={styles.group}>
                             <div className={styles.group_title}>
                                 {t('registration.cost')}:
                             </div>
 
                             <div className={styles.group_name}>
-                                <div className={styles.group_name}>{`¥${groupInfo?.cost}/${t('registration.person')}`}</div>
+                                {`¥${groupInfo?.cost}/${t('registration.person')}`}
                             </div>
                         </div>
                     }
