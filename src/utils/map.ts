@@ -154,3 +154,17 @@ export const ErrorCodeMap = {
     10004: 'cache_error',
     10005: 'call_external_api_error',
 };
+
+export const HomeCurrentStateMap = {
+    0: 'notStarted',
+    1: 'open',
+    2: 'closed',
+    3: 'inProgress',
+    4: 'finished'
+}
+
+export const LiveStateMap = {
+    1: 'notStarted',
+    2: 'live',
+    3: 'finished'
+} as const

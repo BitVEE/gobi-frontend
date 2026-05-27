@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 
-import { MatchAPI, NewsAPI } from "@/api";
+import { NewsAPI } from "@/api";
 import { RootState } from "@/redux/store";
 import Modal from "@/components/Modal";
 import BindProfile from "@/components/BindProfile";
@@ -27,28 +27,11 @@ export default function Home() {
   const [newsData, setNewsData] = useState<API.NewsLisData>();
   const [loading, setLoading] = useState(false);
   const router = useRouter()
-  const [currentMatchInfo, setCurrentMatchInfo] = useState<API.MatchesListType>()
   const [showBindModal, setShowBindModal] = useState<boolean>(false);
   const hasMatchDocument = useSelector((state: RootState) => (state.commonSlice.userInfo?.hasMatchDocument || false));
   const token = useSelector((state: any) => state.commonSlice.token);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
-
-  const getMatchInfo = async () => {
-    try {
-      const res = await MatchAPI.getMatchList({ page: 1, size: 10, isActivate: 1 })
-      if (res.data.code === 0) {
-        const data = res.data.data as API.MatchInfoType | null;
-        if (data) {
-          setCurrentMatchInfo(data.matches[0])
-        }
-
-      }
-    } catch (err) {
-      console.log(err)
-    }
-
-  }
 
   const getNewsData = async () => {
     // This function would typically fetch news data from an API or database.
@@ -85,7 +68,6 @@ export default function Home() {
 
   useEffect(() => {
     getNewsData()
-    getMatchInfo()
     const mq = window.matchMedia("(max-width: 768px)");
     const update = () => {
       setIsMobile(mq.matches);
@@ -114,19 +96,9 @@ export default function Home() {
         <div className={styles.poster_title}>
           {t("home.title" as any)}
         </div>
-        {/* <div className={styles.poster_subtitle}>
-          {t("home.subtitle" as any)}
-        </div> */}
       </div>
 
-      <div className={styles.news_container}>
-        <div className={styles.news_title}>
-          {t("header.race")}
-        </div>
-        <div className={styles.news_list}>
-          {currentMatchInfo && <MatchDetailCard pageName='home' matchDetail={currentMatchInfo} />}
-        </div>
-      </div>
+      <MatchDetailCard pageName='home' />
 
       <div className={styles.news_container}>
         <div className={styles.news_title}>

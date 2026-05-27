@@ -27,6 +27,7 @@ const routerList = [
         children: [
             { name: "raceImageList.selectedAlbum", path: '/raceImage/selectedAlbum' },
             { name: "raceImageList.selectedVideo", path: '/raceImage/selectedVideo' },
+            { name: "raceImageList.selectedLive", path: '/raceImage/selectedLive' },
         ]
     },
     { name: "museum", path: '/museum' },

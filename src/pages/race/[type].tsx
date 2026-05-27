@@ -10,7 +10,6 @@ import PageHeader from '@/components/PageHeader';
 import TagSelector from '@/components/TagSelector';
 import MatchDetailCard from '@/components/MatchDetailCard';
 import Modal from '@/components/Modal';
-import { MatchAPI } from '@/api';
 import { addToast } from "@/redux/slice/toastSlice";
 
 type Props = {};
@@ -18,7 +17,7 @@ type Props = {};
 const Registration = (props: Props) => {
     const router = useRouter()
     const { type } = router.query;
-    const { t, i18n } = useTranslation("common", { keyPrefix: "header" });
+    const { t, i18n } = useTranslation("common");
     const token = useSelector((state: any) => state.commonSlice.token);
     const dispatch = useDispatch();
 
@@ -29,37 +28,23 @@ const Registration = (props: Props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentGroup, setCurrentGroup] = useState();
 
-
-    const getMatchInfo = async () => {
-        const res = await MatchAPI.getMatchList({ page: 1, size: 10, isActivate: 1 })
-        if (res.data.code === 0) {
-            const data = res.data.data as API.MatchInfoType | null;
-            if (data) {
-                setCurrentMatchInfo(data.matches[0])
-            }
-
-        }
-    }
-
     const triggerYouMeng = (category: string, action: string, label: string) => {
         (window as any)._czc && (window as any)._czc.push(["_trackEvent", category, action, label]);
     }
 
+    const handleDetailToFormat = (detail: API.HomeCurrentData) => {
+        setCurrentMatchInfo(detail.currentMatch || undefined)
+    }
 
     const submitRegistration = () => {
         setIsModalOpen(false)
         router.push({
             pathname: '/race/info',
             query: {
-                matchDetail: JSON.stringify(currentMatchInfo),
                 groupInfo: JSON.stringify(currentGroup),
             }
         });
     }
-
-    useEffect(() => {
-        getMatchInfo()
-    }, [])
 
     useEffect(() => {
         if (type) {
@@ -88,46 +73,45 @@ const Registration = (props: Props) => {
 
     return (
         <div className={styles.registration} id='registration'>
-            <PageHeader backgroundImage='/images/title_bg/registration.png' title={t('race')} />
+            <PageHeader backgroundImage='/images/title_bg/registration.png' title={t('header.race')} />
             <div className={styles.tag_box} id='registration'>
                 <TagSelector
                     tags={[
-                        { title: t("race"), value: "registration" },
-                        { title: t('raceList.notice'), value: "notice" }
+                        { title: t("header.race"), value: "registration" },
+                        { title: t('header.raceList.notice'), value: "notice" }
                     ]}
                     styleType='text'
                     selectedValue={selectedSubTitle}
                     onChange={(value) => { router.push(`/${router.locale}/race/${value}`); }}
                 />
             </div>
-
+            <MatchDetailCard pageName='detail' detailToFormat={handleDetailToFormat} />
             <div className={styles.match_box}>
                 <div className={styles.info_box}>
-                    {currentMatchInfo && <MatchDetailCard matchDetail={currentMatchInfo} />}
                     {
-                        currentMatchInfo?.groups && currentMatchInfo.groups.length > 0 &&
+                        currentMatchInfo?.groups && currentMatchInfo.state === 1 && currentMatchInfo.groups.length > 0 &&
                         currentMatchInfo.groups.map((group: any) => {
                             return (
                                 <div className={styles.group_box} key={group.id}>
                                     <div className={styles.cell}>
                                         <div className={styles.cell_title}>
-                                            {group?.[i18n.language === 'zh' ? 'nameZh' : 'nameEn'] || t('registration.nodataText')}
+                                            {group?.[i18n.language === 'zh' ? 'nameZh' : 'nameEn'] || t('common.nodataText')}
                                         </div>
                                         {
                                             group?.cost > 0 &&
                                             <div className={styles.cell_price}>
-                                                {`¥${group.cost}/${t('registration.person')}`}
+                                                {`¥${group.cost}/${t('header.registration.person')}`}
                                             </div>
                                         }
                                         <button disabled={currentMatchInfo?.state !== 1} className={styles.cell_btn} onClick={() => {
-                                            if (token) { setIsModalOpen(true); setCurrentGroup(group);triggerYouMeng("赛事报名页面", '点击', '立即报名按钮'); } else {
+                                            if (token) { setIsModalOpen(true); setCurrentGroup(group); triggerYouMeng("赛事报名页面", '点击', '立即报名按钮'); } else {
                                                 dispatch(addToast({
-                                                    message: t("registration.loginTips"),
+                                                    message: t("header.registration.loginTips"),
                                                     timeout: 3000
                                                 }))
                                             }
                                         }}>
-                                            {t('registration.now')}
+                                            {t('registration.raceStatus.open')}
                                         </button>
                                     </div>
                                 </div>
@@ -137,53 +121,55 @@ const Registration = (props: Props) => {
                     }
 
                 </div>
-
                 <div className={styles.match_description}>
                     <div className={styles.match_description_box} id='notice'>
                         <div className={styles.match_description_title}>
-                            {t('raceList.notice')}
+                            {t('header.raceList.notice')}
                             <div className={styles.match_description_title_divider}>
                             </div>
                         </div>
                         <div className={styles.match_description_text}>
-                            <a href={currentMatchInfo?.[i18n.language === 'zh' ? 'pdfUrlZh' : 'pdfUrlEn']} target='_blank'>
+                            {currentMatchInfo?.[i18n.language === 'zh' ? 'pdfUrlZh' : 'pdfUrlEn'] && <a href={currentMatchInfo?.[i18n.language === 'zh' ? 'pdfUrlZh' : 'pdfUrlEn']} target='_blank'>
                                 <img src='/images/icons/pdf.svg' alt='pdf' />
                                 {t('registration.pdf')}
                                 {currentMatchInfo?.[i18n.language === 'zh' ? 'pdfUrlZh' : 'pdfUrlEn'].split('.').pop()}
-                            </a>
+                            </a>}
+                            {!currentMatchInfo?.[i18n.language === 'zh' ? 'pdfUrlZh' : 'pdfUrlEn'] && <div className={styles.match_description_text_empty}>
+                                {t('common.nodataText')}
+                            </div>}
                         </div>
                     </div>
                 </div>
 
                 <div className={styles.contact_box}>
                     <div className={styles.contact_title}>
-                        {t('aboutList.contactUs')}
+                        {t('header.aboutList.contactUs')}
                     </div>
                     <div className={styles.contact_qrcode_group}>
                         <div className={styles.contact_qrcode}>
                             <div className={styles.contact_title_box}>
-                                {t('wxQrcode')}
+                                {t('header.wxQrcode')}
                             </div>
                             <Image src="/images/contactQRCode.jpg" width={150} height={150} alt='contact' />
                         </div>
 
                         <div className={styles.contact_qrcode}>
                             <div className={styles.contact_title_box} style={{ marginBottom: '5px' }}>
-                                {t('adminWxQrcode')}
+                                {t('header.adminWxQrcode')}
                             </div>
                             <Image src="/images/adminQRCode.png" width={140} height={140} alt='contact' />
                         </div>
 
                         <div className={styles.contact_qrcode}>
                             <div className={styles.contact_title_box} style={{ marginBottom: '5px' }}>
-                                {t('adminWAQrcode')}
+                                {t('header.adminWAQrcode')}
                             </div>
                             <Image src="/images/adminWAQRCode.png" width={140} height={140} alt='contact' />
                         </div>
 
                         <div className={styles.contact_qrcode}>
                             <div className={styles.contact_title_box}>
-                                {t('email')}
+                                {t('header.email')}
                             </div>
                             <div className={styles.contact_email}>
                                 yaolan@exploring.cn
@@ -197,18 +183,18 @@ const Registration = (props: Props) => {
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 isClickOutsideToClose={true}
-                title={t('registration.disclaimerTitle')}
+                title={t('header.registration.disclaimerTitle')}
             >
                 <div className={styles.modal_content}>
                     <div className={styles.modal_text}>
-                        {t('registration.disclaimerText')}
+                        {t('header.registration.disclaimerText')}
                     </div>
                     <div className={styles.modal_btn_group}>
                         <div className={styles.modal_cancel_btn} onClick={() => setIsModalOpen(false)}>
-                            {t('registration.disagree')}
+                            {t('header.registration.disagree')}
                         </div>
                         <div className={styles.modal_btn} onClick={() => submitRegistration()}>
-                            {t('registration.agree')}
+                            {t('header.registration.agree')}
                         </div>
                     </div>
                 </div>

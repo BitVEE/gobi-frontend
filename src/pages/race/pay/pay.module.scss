@@ -3,12 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    .detail_box {
-        width: 85%;
-        margin-top: 120px;
-    }
-
+    margin-top: 120px;
 
     .payment_methods_box {
         width: 100%;
@@ -22,7 +17,6 @@
         .payable_title {
             font-size: 23px;
             // text-align: center;
-
         }
 
         .payable_box {
@@ -59,7 +53,7 @@
             .pay_btn {
                 opacity: 1;
                 border-radius: 8px;
-                background-color: #FF6A14;
+                background-color: #ff6a14;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -69,11 +63,10 @@
                 line-height: 100%;
                 letter-spacing: 0%;
                 vertical-align: middle;
-                color: #FFFFFF;
+                color: #ffffff;
                 padding: 10px 20px;
                 cursor: pointer;
             }
-
         }
     }
 
@@ -122,8 +115,8 @@
                 .go_to_pay {
                     padding: 10px 20px;
                     border-radius: 8px;
-                    background-color: #FF6A14;
-                    color: #FFFFFF;
+                    background-color: #ff6a14;
+                    color: #ffffff;
                     font-weight: 700;
                     font-style: Bold;
                     font-size: 16px;
@@ -136,16 +129,11 @@
                     margin-right: 10px;
                 }
             }
-
         }
     }
 
     @media screen and (max-width: 768px) {
-
-        .detail_box {
-            width: 85%;
-            margin-top: 350px;
-        }
+        margin-top: 350px;
 
         .payable_container {
             width: 85%;
@@ -171,7 +159,6 @@
             align-items: center;
             margin-top: 148px;
 
-
             .cost_box {
                 width: 85%;
                 display: flex;
@@ -193,7 +180,7 @@
                 .pay_btn {
                     opacity: 1;
                     border-radius: 16px;
-                    background-color: #FF6A14;
+                    background-color: #ff6a14;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -203,11 +190,10 @@
                     line-height: 100%;
                     letter-spacing: 0%;
                     vertical-align: middle;
-                    color: #FFFFFF;
+                    color: #ffffff;
                     padding: 20px 40px;
                     cursor: pointer;
                 }
-
             }
         }
 
@@ -251,8 +237,8 @@
                     width: 200px;
                     padding: 20px;
                     border-radius: 16px;
-                    background-color: #FF6A14;
-                    color: #FFFFFF;
+                    background-color: #ff6a14;
+                    color: #ffffff;
                     font-weight: 700;
                     font-style: Bold;
                     font-size: 32px;
@@ -265,7 +251,6 @@
                     margin-top: 150px;
                     cursor: pointer;
                 }
-
             }
         }
     }

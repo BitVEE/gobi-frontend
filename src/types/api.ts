@@ -266,8 +266,8 @@ declare namespace API {
         tag: string
         type: number
         coverUrl: string
-        createdAt: string
-        updatedAt: string
+        createdAt: string | number
+        updatedAt: string | number
         contentEn?: string
         contentZh?: string
         extra?: object // 可选的额外字段
@@ -287,6 +287,46 @@ declare namespace API {
         total: number
         articles: NewsListItem[]
     }
+
+    interface HomeLiveItem {
+        id: number
+        matchId: number
+        matchNameEn: string
+        matchNameZh: string
+        titleEn: string
+        titleZh: string
+        qrCodeUrlEn: string
+        qrCodeUrlZh: string
+        liveStartTime: string
+        liveEndTime: string
+        sortOrder: number
+        state: number
+        createdAt: number
+        updatedAt: number
+    }
+
+    interface HomeRankEntry {
+        enabled: boolean
+        matchId: number
+        groups: MatchesGroupInfoType[]
+    }
+
+    interface HomeCurrentData {
+        announcementMatchId: number
+        announcements: NewsListItem[]
+        currentMatch: MatchesListType | null
+        galleries: NewsListItem[]
+        liveList: HomeLiveItem[]
+        mediaMatchId: number
+        previousMatch: MatchesListType | null
+        rankEntry: HomeRankEntry
+        state: 0 | 1 | 2 | 3 | 4
+        stateName: string
+        videos: NewsListItem[]
+    }
+
+    type HomeCurrentResult = APIResult<HomeCurrentData>
+
     interface NewsListResult {
         data: NewsLisData
         message: any
@@ -308,6 +348,14 @@ declare namespace API {
         size: number
         isActivate?: number
     }
+
+    interface MatchLiveListParams {
+        matchId: number
+    }
+
+    type MatchLiveListResult = APIResult<{
+        liveList: HomeLiveItem[]
+    }>
 
     interface MatchesGroupInfoType {
         cost: number

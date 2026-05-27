@@ -16,13 +16,11 @@ type Props = {};
 
 const Info = (props: Props) => {
     const router = useRouter()
-    const { groupInfo, matchDetail, registrationId } = router.query;
+    const { registrationId } = router.query;
     const { t, i18n } = useTranslation("common", { keyPrefix: "header.registration" });
     const token = useSelector((state: any) => state.commonSlice.token);
     const dispatch = useDispatch();
 
-    const [group, setGroup] = useState<any>();
-    const [currentMatchInfo, setCurrentMatchInfo] = useState<API.MatchesListType>();
     const [orderId, setOrderId] = useState<string>("");
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -83,12 +81,10 @@ const Info = (props: Props) => {
                 timeout: 3000
             }))
         }
-        if (groupInfo && matchDetail && registrationId) {
-            setGroup(JSON.parse(groupInfo as string));
-            setCurrentMatchInfo(JSON.parse(matchDetail as string));
+        if (registrationId) {
             setOrderId(registrationId as string || "");
         }
-    }, [groupInfo, matchDetail, registrationId, token]);
+    }, [registrationId, token]);
 
     // useEffect(() => {
     //     initPayment()
@@ -141,9 +137,7 @@ const Info = (props: Props) => {
 
     return (
         <div className={styles.pay}>
-            <div className={styles.detail_box}>
-                {currentMatchInfo && <MatchDetailCard matchDetail={currentMatchInfo} groupInfo={group} />}
-            </div>
+            <MatchDetailCard pageName='detail' />
 
             {/* <div className={styles.payment_methods_box} id="dropIn" style={{
                 width: '85%',
@@ -165,7 +159,7 @@ const Info = (props: Props) => {
                 </div>
 
                 <div className={styles.payable_box}>
-                    {`${t('phone')}(+86) 17788096872`} 
+                    {`${t('phone')}(+86) 17788096872`}
                 </div>
             </div>
 

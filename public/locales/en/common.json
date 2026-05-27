@@ -26,12 +26,6 @@
             "nameTitle": "Commpany Name: ",
             "commpanyName": "Xingzhi Future(Beijing) Culture and Sports Development Co., Ltd.",
             "commpanyAddr": "Room107,Building 9 ,Kaisheng Jiayuan, Haidian District, Beijing,China",
-            "place": "Venue",
-            "contact": "Contact Organizer",
-            "startDate": "Registration Start",
-            "endDate": "Registration End",
-            "matchDate": "Event Date",
-            "now": "Register Now",
             "nodataText": "Sorry, at the moment there is no information.",
             "group": "Category",
             "cost": "Base Fee",
@@ -80,12 +74,6 @@
             "payFailText3": "Please re-register or contact the organizer",
             "imgSizeError": "Maximum image size: 5MB",
             "imgTypeError": "Please use JPG, PNG, or webp formats",
-            "status": {
-                "in": "Open",
-                "registrationEnd": "Registration Ended",
-                "matchEnd": "Event Ended",
-                "matchClosed": "Event Closed"
-            },
             "infoList": {
                 "name": "Name on ID",
                 "nameTips": "(Please fill in the full name exactly as it appears on the official ID (must match the name on the ID card, passport, or other official document).",
@@ -171,7 +159,8 @@
         "raceImage": "Photos",
         "raceImageList": {
             "selectedAlbum": "Individual Photos",
-            "selectedVideo": "Event Video"
+            "selectedVideo": "Event Video",
+            "selectedLive": "Live Broadcast"
         },
         "museum": "Time Capsule Museum",
         "partner": "Schools",
@@ -187,6 +176,68 @@
         "login": "Login",
         "logout": "Logout",
         "personalCenter": "Personal center"
+    },
+    "registration": {
+        "place": "Venue",
+        "contact": "Contact Organizer",
+        "pdf": "Event Description PDF.",
+        "status": {
+            "notStarted": "Not Started",
+            "open": "Open",
+            "closed": "Closed",
+            "inProgress": "In Progress",
+            "finished": "Finished"
+        },
+        "raceStatus": {
+            "notStarted": "Race Countdown",
+            "open": "Register Now",
+            "closed": "Registration Closed",
+            "inProgress": "Race in Progress",
+            "finished": "Race Finished"
+        },
+        "previousStatus": {
+            "notStarted": "Previous Competitions",
+            "open": "Previous Competitions",
+            "closed": "Pre-race Preparation",
+            "inProgress": "Real-time ranking",
+            "finished": "Current Edition Highlights"
+        },
+        "video": "Event Video",
+        "album": "Photo Album",
+        "live": "Live",
+        "liveBroadcast": "Live Broadcast",
+        "eventRecapVideo": "Event Recap Video",
+        "liveButtonText": {
+            "notStarted": "Reserve Live",
+            "live": "Watch Live",
+            "finished": "Watch Replay"
+        },
+        "liveStatus": {
+            "notStarted": "Live Preview",
+            "live": "Live",
+            "finished": "Live Replay"
+        },
+        "participantAndTeamRoster": "Participant and Team Roster",
+        "preDepartureNoticesAndUpdates": "Pre-departure Notices and Updates",
+        "view": "View",
+        "startDate": "Registration Start",
+        "endDate": "Registration End",
+        "matchDate": "Event Date",
+        "day": "Day",
+        "hours": "Hours",
+        "mins": "Mins",
+        "sec": "Sec",
+        "play": "Play",
+        "group": "Group",
+        "cost": "Cost",
+        "person": "person",
+        "nodataText": "No data",
+        "result": "Result Query",
+        "ranking": {
+            "personalResult": "Individual Result",
+            "teamResult": "Team Result",
+            "viewAllRanking": "View All Ranking"
+        }
     },
     "museum": {
         "title": "Time Capsule Museum",

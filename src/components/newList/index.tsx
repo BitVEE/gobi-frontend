@@ -72,7 +72,7 @@ const NewsList: React.FC<NewsListProps> = ({
                 <div className={showSchoolList ? styles.news_list_wrapper : styles.news_list_wrapper_no_school}>
                     {
                         newsList.map((item) => (
-                            <div onClick={() => triggerYouMeng(fromPage, '点击', fromPageLabel)} key={item.id + item.createdAt}>
+                            <div onClick={() => triggerYouMeng(fromPage, '点击', fromPageLabel)} key={`${item.id}-${item.createdAt}`}>
                                 <Card
                                     key={item.id}
                                     showSchoolList={showSchoolList}

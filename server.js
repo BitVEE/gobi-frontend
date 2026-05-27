@@ -2,9 +2,9 @@ const express = require('express')
 const next = require('next')
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
-// const baseUrl = 'http://192.168.31.62:6780/api'
+const baseUrl = 'http://192.168.110.216:6780/api'
 // const baseUrl = 'https://gobi-i4ra7.ondigitalocean.app/api'
-const baseUrl = 'https://youthultragobi.exploring.cn/api'
+// const baseUrl = 'https://youthultragobi.exploring.cn/api'
 const devProxy = {
     '/api': {
         target: baseUrl,

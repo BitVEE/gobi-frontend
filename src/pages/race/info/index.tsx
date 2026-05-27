@@ -38,7 +38,7 @@ const agreementList = [
 ]
 const Info = (props: Props) => {
     const router = useRouter()
-    const { groupInfo, matchDetail } = router.query;
+    const { groupInfo } = router.query;
     const { t, i18n } = useTranslation("common", { keyPrefix: "header.registration" });
     const token = useSelector((state: any) => state.commonSlice.token);
     const dispatch = useDispatch()
@@ -227,21 +227,18 @@ const Info = (props: Props) => {
         router.push({
             pathname: '/race/pay',
             query: {
-                matchDetail: JSON.stringify(currentMatchInfo),
-                groupInfo: JSON.stringify(group),
                 registrationId: orderId
             }
         })
     }
 
     useEffect(() => {
-        if (groupInfo && matchDetail && token) {
+        if (groupInfo && token) {
             setGroup(JSON.parse(groupInfo as string));
-            setCurrentMatchInfo(JSON.parse(matchDetail as string));
         } else {
             // router.push('/race/registration');
         }
-    }, [groupInfo, matchDetail]);
+    }, [groupInfo]);
 
 
     const goToProtocol1 = () => {
@@ -253,40 +250,11 @@ const Info = (props: Props) => {
 
     return (
         <div className={styles.info}>
-            <div className={styles.detail_box}>
-                {currentMatchInfo && <MatchDetailCard matchDetail={currentMatchInfo} />}
-            </div>
-
-            <div className={styles.group_box}>
-                <div className={styles.cell_title}>
-                    {t('group')}
-                </div>
-                <div className={styles.cell_content}>
-                    <div className={styles.cell_name}>
-                        {t('group')}
-                    </div>
-                    <div className={styles.group_name}>
-                        {group?.[i18n.language === 'zh' ? 'nameZh' : 'nameEn'] || t('nodataText')}
-                    </div>
-                </div>
-
-                {
-                    group?.cost > 0 &&
-                    <div className={styles.cell_content}>
-                        <div className={styles.cell_name}>
-                            {t('cost')}
-                        </div>
-                        <div className={styles.group_name}>{`¥${group?.cost}/${t('person')}`}</div>
-                    </div>
-                }
-            </div>
-
+            <MatchDetailCard pageName='detail' groupInfo={group} />
             <div className={styles.group_box}>
                 <div className={styles.cell_title}>
                     {t('info')}
                 </div>
-
-
                 <div className={styles.cell_info_box}>
                     <div className={styles.info_title}>
                         {t('infoList.photoUrl')}

@@ -74,6 +74,17 @@ export const NewsAPI = {
 
 }
 
+/**
+ * 首页相关API
+ */
+export const HomeAPI = {
+    /**
+     * 获取首页当前聚合信息
+     * @returns 当前赛事、公告、媒体和榜单入口等首页数据
+     */
+    getCurrent: () => http.get<API.HomeCurrentResult>(`${baseURL}/home/current`),
+}
+
 export const RegistrationAPI = {
     /**
      * 提交报名信息
@@ -98,9 +109,11 @@ export const RegistrationAPI = {
 
 export const MatchAPI = {
 
-    getMatchList: (params: API.MatchListParams) => http.get<API.APIResult<null>>(`${baseURL}/match/list`, { params }),
+    getMatchList: (params: API.MatchListParams) => http.get<API.APIResult<API.MatchInfoType>>(`${baseURL}/match/list`, { params }),
 
     getMatchDetail: (params: API.RegistrationResult) => http.get<API.APIResult<null>>(`${baseURL}/match/detail`, { params }),
+
+    getMatchLiveList: (params: API.MatchLiveListParams) => http.get<API.MatchLiveListResult>(`${baseURL}/match/live/list`, { params }),
 }
 
 export const PaymentAPI = {

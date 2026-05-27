@@ -150,12 +150,13 @@ const RaceResult = () => {
             size: 10,
         }).then(res => {
             if (res.data.code === 0) {
+                const data = res.data.data as any
+                const matches = data.matches.filter((item: API.MatchesListType) => (item.geexekMatchId ?? 0) > 0)
                 try {
-                    const data = res.data.data as any
-                    setMatchId(data.matches[0].id)
-                    setGroupList(data.matches[0].groups)
-                    setSelectedGroup(data.matches[0].groups[0].id)
-                    setMatchList(data.matches)
+                    setMatchId(matches[0].id)
+                    setGroupList(matches[0].groups)
+                    setSelectedGroup(matches[0].groups[0].id)
+                    setMatchList(matches)
                 } catch (error) {
                     console.log(error)
                 }

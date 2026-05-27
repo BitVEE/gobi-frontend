@@ -26,12 +26,6 @@
             "nameTitle": "公司名称: ",
             "commpanyName": "行知未来（北京）文化体育发展有限公司",
             "commpanyAddr": "北京市海淀区凯盛嘉园 9 号楼 107 室",
-            "place": "赛事地点",
-            "contact": "联系组委会",
-            "startDate": "报名开始",
-            "endDate": "报名结束",
-            "matchDate": "比赛开始",
-            "now": "立即报名",
             "nodataText": "暂无数据",
             "group": "报名组别",
             "cost": "基本费用",
@@ -80,12 +74,6 @@
             "payFailText3": "请重新报名或联系组委会",
             "imgSizeError": "图片大小不能超过5M",
             "imgTypeError": "请使用JPG、PNG或者webp格式",
-            "status": {
-                "in": "报名中",
-                "registrationEnd": "报名结束",
-                "matchEnd": "比赛结束",
-                "matchClosed": "赛事关闭"
-            },
             "infoList": {
                 "name": "学生姓名",
                 "nameTips": "(请填写与证件一致的全名（必须与身份证、护照等所持证件上的姓名完全一致）",
@@ -171,7 +159,8 @@
         "raceImage": "青戈映像",
         "raceImageList": {
             "selectedAlbum": "精选相册",
-            "selectedVideo": "精选视频"
+            "selectedVideo": "精选视频",
+            "selectedLive": "赛事直播"
         },
         "museum": "时间胶囊博物馆",
         "partner": "合作伙伴",
@@ -187,6 +176,68 @@
         "login": "登录",
         "logout": "退出登录",
         "personalCenter": "个人中心"
+    },
+    "registration": {
+        "place": "赛事地点",
+        "contact": "联系组委会",
+        "pdf": "赛事说明文档.",
+        "status": {
+            "notStarted": "未开始",
+            "open": "开始报名",
+            "closed": "报名结束",
+            "inProgress": "比赛进行中",
+            "finished": "比赛结束"
+        },
+        "raceStatus": {
+            "notStarted": "比赛倒计时",
+            "open": "立即报名",
+            "closed": "报名结束",
+            "inProgress": "比赛进行中",
+            "finished": "比赛结束"
+        },
+        "previousStatus": {
+            "notStarted": "往届比赛",
+            "open": "往届比赛",
+            "closed": "赛前准备",
+            "inProgress": "实时排名",
+            "finished": "当前届比赛亮点"
+        },
+        "video": "视频列表",
+        "album": "相册列表",
+        "live": "直播",
+        "liveBroadcast": "赛事直播",
+        "eventRecapVideo": "赛事回顾视频",
+        "liveButtonText": {
+            "notStarted": "预约直播",
+            "live": "观看直播",
+            "finished": "观看回放"
+        },
+        "liveStatus": {
+            "notStarted": "直播预告",
+            "live": "直播中",
+            "finished": "直播回放"
+        },
+        "participantAndTeamRoster": "参赛人员和团队名单",
+        "preDepartureNoticesAndUpdates": "离赛前通知和更新",
+        "view": "查看",
+        "startDate": "报名开始",
+        "endDate": "报名结束",
+        "matchDate": "比赛日期",
+        "day": "天",
+        "hours": "小时",
+        "mins": "分钟",
+        "sec": "秒",
+        "play": "播放",
+        "group": "组别",
+        "cost": "费用",
+        "person": "人",
+        "nodataText": "暂无数据",
+        "result": "成绩结果",
+        "ranking": {
+            "personalResult": "个人成绩",
+            "teamResult": "团队成绩",
+            "viewAllRanking": "查看全部排名"
+        }
     },
     "museum": {
         "title": "时间舱博物馆",
