@@ -1,6 +1,7 @@
 .footer {
     width: 100%;
-    height: 300px;
+    min-height: 300px;
+    padding: 40px 0;
     background-color: #ffffff;
     display: flex;
     justify-content: center;
@@ -20,8 +21,9 @@
             justify-content: space-between;
 
             .logo {
-                width: 128px;
+                width: 111.27px;
                 height: 32px;
+                aspect-ratio: 153/44;
                 cursor: pointer;
             }
 
@@ -123,6 +125,13 @@
                         text-align: center;
                         vertical-align: middle;
                     }
+
+                    .separatedItem {
+                        border-top: 1px solid #d3d3cf;
+                        padding-top: 16px;
+                        margin-top: 16px;
+                        font-weight: 700;
+                    }
                 }
             }
         }
@@ -152,8 +161,9 @@
                 margin-top: 60px;
 
                 .logo {
-                    width: 220px;
+                    width: 191.25px;
                     height: 55px;
+                    aspect-ratio: 153/44;
                 }
 
                 .followUs {
@@ -222,6 +232,11 @@
                             letter-spacing: 0%;
                             text-align: center;
                             vertical-align: middle;
+                        }
+
+                        .separatedItem {
+                            padding-top: 16px * 3.84;
+                            margin-top: 16px * 3.84;
                         }
                     }
                 }

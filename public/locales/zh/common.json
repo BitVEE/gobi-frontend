@@ -1,4 +1,106 @@
 {
+    "resources": {
+        "pageDescription": "申请获取 Ultra Gobi 官方赛事资料、品牌素材与使用规范。",
+        "title": "官方物料下载",
+        "guidanceTitle": "获取 Ultra Gobi 官方物料",
+        "guidanceIntro": "面向参赛学校、媒体与其他单位开放申请。填写信息并说明用途，即可申请获取赛事品牌资产、官方图片与使用规范。",
+        "process": "申请流程",
+        "steps": {
+            "identity": {
+                "title": "选择申请身份",
+                "body": "选择参赛学校、媒体或其他申请身份。"
+            },
+            "details": {
+                "title": "填写申请信息",
+                "body": "根据身份填写单位、工作邮箱与用途等信息。"
+            },
+            "access": {
+                "title": "接收下载链接",
+                "body": "审核通过后，下载链接将发送至工作邮箱。"
+            }
+        },
+        "formTitle": "官方物料下载申请表",
+        "formIntro": "填写申请身份与联系信息，审核通过后即可获取所选赛事物料的下载链接。",
+        "applicantType": "申请身份",
+        "types": {
+            "school": "参赛学校",
+            "media": "媒体",
+            "other": "其他"
+        },
+        "fields": {
+            "school": "参赛学校",
+            "organization": "单位名称",
+            "email": "工作邮箱",
+            "name": "姓名",
+            "position": "职务",
+            "phone": "联系电话",
+            "use": "用途"
+        },
+        "placeholders": {
+            "school": "请选择参赛学校",
+            "schoolLoading": "正在加载学校…",
+            "schoolEmpty": "暂无可选学校",
+            "organization": "请输入单位或组织名称",
+            "mediaOrganization": "请输入媒体单位名称",
+            "emailPrefix": "请输入邮箱前缀",
+            "workEmail": "请输入单位工作邮箱",
+            "name": "请输入姓名",
+            "mediaUse": "请说明物料的发布渠道或使用方式",
+            "use": "请说明计划如何使用相关物料"
+        },
+        "positionExamples": {
+            "school": "例如：学校领队、体育教师",
+            "media": "例如：记者、编辑、摄影师",
+            "other": "例如：品牌、机构负责人"
+        },
+        "schoolEmailHelp": "必须使用学校官方邮箱，邮箱后缀随所选参赛学校固定，仅需填写邮箱前缀。",
+        "workEmailHelp": "必须使用工作邮箱，常见个人邮箱服务提供的邮箱后缀不可用。",
+        "resourceSelection": "选择需要下载的资源",
+        "resourceHelp": "可多选。每个资料包均包含经授权的品牌素材与使用规范。",
+        "resourceLoading": "正在加载可申请资源…",
+        "resourceEmpty": "暂无可申请资源。",
+        "consentPrefix": "我已阅读并同意",
+        "consentSuffix": "。",
+        "terms": "《官方物料使用条款》",
+        "submit": "提交申请",
+        "submitting": "正在提交…",
+        "submitSuccess": "申请已提交，审核结果与下载链接将发送至工作邮箱。",
+        "submitFailed": "申请提交失败，请稍后重试。",
+        "checkForm": "请检查并完善标出的表单信息。",
+        "deliveryNote": "通常在 1–2 个工作日内完成审核，审核结果与下载链接将发送至工作邮箱。",
+        "errors": {
+            "required": "请填写此项信息。",
+            "school": "请选择参赛学校。",
+            "schoolLoad": "学校列表加载失败，请刷新重试。",
+            "schoolEmailUnavailable": "该学校暂未配置官方邮箱后缀，请联系管理员。",
+            "email": "请输入有效的邮箱地址。",
+            "emailPrefix": "请输入有效的邮箱前缀，不含 @ 和域名。",
+            "schoolDomain": "邮箱后缀必须与所选学校一致，请仅输入邮箱前缀。",
+            "workEmail": "请使用单位工作邮箱，不支持常见个人邮箱。",
+            "phone": "请输入有效的联系电话，可包含国际区号。",
+            "resources": "请至少选择一项可用资源。",
+            "resourceLoad": "资源列表加载失败，请刷新重试。",
+            "agreement": "请先同意《官方物料使用条款》。"
+        },
+        "download": {
+            "loading": "正在加载资源状态…",
+            "loadFailed": "资源状态加载失败，请稍后重试。",
+            "reviewStatus": "审核状态",
+            "approved": "已批准",
+            "validity": "链接有效期",
+            "linkStatus": "链接状态",
+            "expired": "已失效",
+            "description": "包含品牌使用规范、赛事标志文件、官方赛事图片和媒体资料包。",
+            "fileMeta": "{{fileName}} · {{size}}",
+            "noResources": "当前申请没有可下载的资源。",
+            "button": "下载",
+            "expiredButton": "链接已失效",
+            "usageHeading": "使用前请确认授权范围。",
+            "usageBody": "请仅将物料用于申请中说明的用途，不得转售、转授权或修改赛事标识。下载即表示您同意",
+            "expiredHeading": "该下载链接已失效。",
+            "expiredBody": "为保障资源安全，下载链接仅在有效期内可用。请重新申请下载链接后再下载该资源包。"
+        }
+    },
     "common": {
         "language": "zh",
         "english": "English",
@@ -171,7 +273,8 @@
             "creator": "“青戈赛”网站发起人",
             "internationalGobieCenter": "国际戈友中心",
             "contactUs": "联系我们",
-            "officialWebsite": "玄奘之路戈壁挑战赛官网"
+            "officialWebsite": "玄奘之路戈壁挑战赛官网",
+            "resources": "官方物料下载"
         },
         "login": "登录",
         "logout": "退出登录",
@@ -292,7 +395,7 @@
         }
     },
     "home": {
-        "title": "玄奘之路国际青少年戈壁挑战赛（青戈赛）",
+        "title": "玄奘之路青少年戈壁挑战赛（青戈赛）",
         "subtitle": "Youth Ultra Gobi",
         "news": "新闻动态",
         "qa": "用户问答",
@@ -300,7 +403,7 @@
         "qaAnswer": "戈友回答",
         "partner": "合作伙伴",
         "followUs": "关注我们",
-        "copyright": "版权所有 © 2025 Youth Ultra Gobi. 保留所有权利。",
+        "copyright": "版权所有 © 2026 Youth Ultra Gobi. 保留所有权利。",
         "noBindDocument": "你暂未绑定任何赛事档案，快来认领吧"
     },
     "login": {

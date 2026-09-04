@@ -106,10 +106,10 @@
     }
 
     .logo {
-        width: 150px;
-        height: 38px;
+        width: 153px;
+        height: 44px;
         flex-shrink: 0;
-        aspect-ratio: 900/227;
+        aspect-ratio: 153/44;
         cursor: pointer;
     }
 
@@ -212,9 +212,9 @@
 
         .logo {
             width: 100px * 3.84;
-            height: 25px * 3.84;
+            height: 28.75px * 3.84;
             flex-shrink: 0;
-            aspect-ratio: 900/227;
+            aspect-ratio: 153/44;
         }
 
         .mobileNavContainerOpen {

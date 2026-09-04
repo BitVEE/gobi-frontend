@@ -1,4 +1,106 @@
 {
+    "resources": {
+        "pageDescription": "Apply for official Ultra Gobi event resources, brand assets and usage guidelines.",
+        "title": "Official Resource Download",
+        "guidanceTitle": "Get Official Ultra Gobi Resources",
+        "guidanceIntro": "Applications are open to participating schools, media organizations, and other institutions. Submit your details and intended use to access official brand assets, event photography, and usage guidelines.",
+        "process": "APPLICATION PROCESS",
+        "steps": {
+            "identity": {
+                "title": "Select Applicant Type",
+                "body": "Choose Participating School, Media, or Other."
+            },
+            "details": {
+                "title": "Complete Application Details",
+                "body": "Provide your organization, work email, and intended use."
+            },
+            "access": {
+                "title": "Receive the Download Link",
+                "body": "Once approved, the download link will be sent to your work email."
+            }
+        },
+        "formTitle": "Official Resource Download Application",
+        "formIntro": "Select your applicant type and provide your contact details. Once approved, you can download the selected event resources.",
+        "applicantType": "Applicant Type",
+        "types": {
+            "school": "Participating School",
+            "media": "Media",
+            "other": "Other"
+        },
+        "fields": {
+            "school": "Participating School",
+            "organization": "Organization Name",
+            "email": "Work Email",
+            "name": "Full Name",
+            "position": "Role / Position",
+            "phone": "Phone Number",
+            "use": "Intended Use"
+        },
+        "placeholders": {
+            "school": "Select your participating school",
+            "schoolLoading": "Loading schools…",
+            "schoolEmpty": "No schools available",
+            "organization": "Enter your organization name",
+            "mediaOrganization": "Enter the media organization name",
+            "emailPrefix": "Enter the work email",
+            "workEmail": "Enter your organization work email",
+            "name": "Enter your full name",
+            "mediaUse": "Describe the publishing channels and intended use",
+            "use": "Describe how you plan to use these resources"
+        },
+        "positionExamples": {
+            "school": "e.g. School coordinator, PE teacher",
+            "media": "e.g. Reporter, editor, photographer",
+            "other": "e.g. Brand or organization lead"
+        },
+        "schoolEmailHelp": "Use your school's official email address. The domain is fixed to the selected participating school.",
+        "workEmailHelp": "Use an organization work email. Common personal email domains are not accepted.",
+        "resourceSelection": "Resources to Download",
+        "resourceHelp": "Select one or more packages. Each includes approved brand assets and usage guidelines.",
+        "resourceLoading": "Loading available resources…",
+        "resourceEmpty": "No resources are currently available.",
+        "consentPrefix": "I have read and agree to the ",
+        "consentSuffix": ".",
+        "terms": "Official Resource Usage Terms",
+        "submit": "Submit Application",
+        "submitting": "Submitting…",
+        "submitSuccess": "Your application has been submitted. The result and download link will be sent to your work email.",
+        "submitFailed": "Unable to submit the application. Please try again later.",
+        "checkForm": "Please check the highlighted fields.",
+        "deliveryNote": "Reviews are usually completed within 1–2 working days. The result and download link will be sent to your work email.",
+        "errors": {
+            "required": "This field is required.",
+            "school": "Please select a participating school.",
+            "schoolLoad": "Unable to load schools. Please refresh and try again.",
+            "schoolEmailUnavailable": "This school does not have an official email domain configured. Please contact the administrator.",
+            "email": "Enter a valid email address.",
+            "emailPrefix": "Enter a valid email prefix, without the @domain.",
+            "schoolDomain": "Use the selected school's domain. Enter only the email prefix.",
+            "workEmail": "Please use your organization work email, not a personal email address.",
+            "phone": "Enter a valid phone number, including the country code if needed.",
+            "resources": "Select at least one available resource package.",
+            "resourceLoad": "Unable to load resources. Please refresh and try again.",
+            "agreement": "Please agree to the Official Resource Usage Terms."
+        },
+        "download": {
+            "loading": "Loading resource status…",
+            "loadFailed": "Unable to load the resource status. Please try again later.",
+            "reviewStatus": "REVIEW STATUS",
+            "approved": "APPROVED",
+            "validity": "Link Validity",
+            "linkStatus": "Link Status",
+            "expired": "EXPIRED",
+            "description": "Includes brand guidelines, logo files, official photography and media kit.",
+            "fileMeta": "{{fileName}} · {{size}}",
+            "noResources": "There are no resources available for this application.",
+            "button": "Download",
+            "expiredButton": "Link Expired",
+            "usageHeading": "Please confirm the permitted use before using the resources.",
+            "usageBody": "Use the materials only for the purpose stated in your application. Do not resell, sublicense or alter event marks. By downloading, you agree to the ",
+            "expiredHeading": "This download link has expired.",
+            "expiredBody": "For security, download links are time-limited. Request a new link before downloading this package."
+        }
+    },
     "common": {
         "language": "en",
         "english": "English",
@@ -171,7 +273,8 @@
             "creator": "About the Creators",
             "internationalGobieCenter": "International Gobi Center",
             "contactUs": "Contact us",
-            "officialWebsite": "Ultra Gobi Official Website"
+            "officialWebsite": "Ultra Gobi Official Website",
+            "resources": "Official Resource Download"
         },
         "login": "Login",
         "logout": "Logout",
@@ -300,7 +403,7 @@
         "qaAnswer": "Gobi Friends Answers",
         "partner": "Partners",
         "followUs": "Follow Us",
-        "copyright": "Copyright © 2025 Youth Ultra Gobi. All Rights Reserved.",
+        "copyright": "Copyright © 2026 Youth Ultra Gobi. All Rights Reserved.",
         "noBindDocument": "You have not bound any race profile, please bind it"
     },
     "login": {

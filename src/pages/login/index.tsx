@@ -156,7 +156,7 @@ const Login = () => {
         <div className={styles.login}>
             <div className={styles.loginContainer}>
                 <div className={styles.loginHeader}>
-                    <Image width={900} height={227} className={styles.logo} src="/images/logo.png" alt="GOBI" />
+                    <Image width={153} height={44} className={styles.logo} src="/images/logo-202609.svg" alt="GOBI" />
                 </div>
                 <form className={styles.loginForm} onSubmit={handleSubmit}>
                     <div className={styles.formGroup}>

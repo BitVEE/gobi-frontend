@@ -5,11 +5,12 @@ import styles from './index.module.scss';
 interface PageHeaderProps {
   backgroundImage: string;
   title: string;
+  className?: string;
 }
 
 
 
-const PageHeader: React.FC<PageHeaderProps> = ({ backgroundImage, title }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ backgroundImage, title, className = '' }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // 监听页面宽度变化
@@ -30,7 +31,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ backgroundImage, title }) => {
     }
   }, []);
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${className}`}>
       <div className={styles.backgroundImageContainer}>
         <LoadingImg
           src={backgroundImage}

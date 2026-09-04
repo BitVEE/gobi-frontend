@@ -73,7 +73,7 @@ const Header = () => {
         <header className={styles.header} id='site-header'>
             <div className={styles.container}>
                 <Link href="/" onClick={() => { router.push('/') }}  >
-                    <Image width={900} height={227} className={styles.logo} src="/images/logo.png" alt="GOBI" />
+                    <Image width={153} height={44} className={styles.logo} src="/images/logo-202609.svg" alt="GOBI" />
                 </Link>
                 <div className={styles.mobileMenuButton} onClick={toggleMobileMenu}>
                     <Image width={30} height={30} className={styles.mobileMenuIcon} src={isMobileMenuOpen ? "/images/icons/close.svg" : "/images/icons/menu.svg"} alt="menu" />
@@ -85,7 +85,7 @@ const Header = () => {
                                 {!item.children ? (
                                     <Link href={item.path} className={router.pathname === item.path ? styles.active : ''}>{t(`header.${item.name}` as any)}</Link>
                                 ) : (
-                                    <div className={`${styles.dropdown} ${item.name === router.pathname.split('/')[1] ? styles.active : ''}`}>
+                                    <div className={`${styles.dropdown} ${item.name === router.pathname.split('/')[1] || (item.name === 'about' && router.pathname.startsWith('/resources')) ? styles.active : ''}`}>
                                         <Link href={item.children[0].path} className={styles.dropdownTrigger} onClick={(e) => handleDropdownClick(e, item)}>
                                             {t(`header.${item.name}` as any)}
                                             <div className={styles.dropdownTriggerArrow} />
@@ -96,7 +96,7 @@ const Header = () => {
                                                     <Link className={router.asPath === child.path ? styles.dropdownItemActive : styles.dropdownItem} key={child.path} target="_blank" href={child.link}>
                                                         {t(`header.${child.name}` as any)}
                                                     </Link> :
-                                                    <Link className={router.asPath === child.path ? styles.dropdownItemActive : styles.dropdownItem} key={child.path} href={child.path}>
+                                                    <Link className={router.asPath.split('?')[0] === child.path || (child.path === '/resources' && router.pathname.startsWith('/resources')) ? styles.dropdownItemActive : styles.dropdownItem} key={child.path} href={child.path}>
                                                         {t(`header.${child.name}` as any)}
                                                     </Link>
                                             ))}

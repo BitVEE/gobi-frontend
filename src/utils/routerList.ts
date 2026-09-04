@@ -41,6 +41,7 @@ const routerList = [
             // { name: "aboutList.internationalGobieCenter", path: '/about/internationalGobieCenter' },
             { name: "aboutList.contactUs", path: '/about/contactUs' },
             { name: "aboutList.officialWebsite", path: "", link: 'https://www.ultragobiseries.com/' },
+            { name: "aboutList.resources", path: '/resources' },
         ]
     },
 ]

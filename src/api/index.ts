@@ -127,6 +127,19 @@ export const SchoolAPI = {
     getSchoolList: () => http.get<API.APIResult<API.SchoolListResult>>(`${baseURL}/school/list`),
 }
 
+export const MaterialAPI = {
+    getMaterialList: () => http.get<API.MaterialListResult>(`${baseURL}/material/list`),
+
+    apply: (params: API.ApplyMaterialParams) => http.post<API.ApplyMaterialResult>(`${baseURL}/material/application/apply`, params),
+
+    getAccess: (token: string) => http.get<API.MaterialAccessResult>(`${baseURL}/material/access`, {
+        params: { token },
+    }),
+
+    getDownloadUrl: (token: string, materialId: number) =>
+        `${baseURL}/material/download?token=${encodeURIComponent(token)}&materialId=${materialId}`,
+}
+
 /**
  * User match document related APIs
  */

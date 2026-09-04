@@ -470,8 +470,53 @@ declare namespace API {
         nameEn: string
         nameZh: string
         logoUrl: string
+        emailDomain: string
         articleCount: number
     }
+
+    interface MaterialResource {
+        id: number
+        nameEn: string
+        nameZh: string
+        descriptionEn: string
+        descriptionZh: string
+        fileName: string
+        contentType: string
+        fileSize: number
+        sortOrder: number
+    }
+
+    type MaterialListResult = APIResult<{
+        materials: MaterialResource[]
+    }>
+
+    interface ApplyMaterialParams {
+        applicantType: 1 | 2 | 3
+        fullName: string
+        materialIds: number[]
+        organizationName?: string
+        phoneNumber: string
+        purposeDescription: string
+        rolePosition: string
+        schoolId?: number
+        termsAgreed: boolean
+        workEmail: string
+    }
+
+    type ApplyMaterialResult = APIResult<{
+        applicationId: number
+        applicationNo: string
+        mailState: number
+        reviewState: number
+    }>
+
+    type MaterialAccessResult = APIResult<{
+        applicationId: number
+        applicationNo: string
+        email: string
+        expiresAt: number
+        materials: MaterialResource[]
+    }>
 
     /**
      * 用户信息

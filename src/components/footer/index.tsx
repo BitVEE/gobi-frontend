@@ -10,6 +10,7 @@ type RouterChild = {
     name: string;
     path: string;
     link?: string;
+    dividerBefore?: boolean;
 };
 
 type RouterItem = {
@@ -42,7 +43,7 @@ const Footer = (props: Props) => {
         <div className={styles.footer}>
             <div className={styles.footerContent}>
                 <div className={styles.footerLogo}>
-                    <Image className={styles.logo} width={450} height={113} src="/images/logo.png" alt="GOBI" />
+                    <Image className={styles.logo} width={153} height={44} src="/images/logo-202609.svg" alt="GOBI" />
                     <div className={styles.followUs}>
                         {t("home.followUs")}
                         <div className={styles.iconsContainer}>
@@ -88,7 +89,7 @@ const Footer = (props: Props) => {
                                                                 {t(`header.${child.name}` as any)}
                                                             </a>
                                                             :
-                                                            <a className={styles.dropdownItem} key={child.path} href={"/" + router.locale + child.path}>
+                                                            <a className={`${styles.dropdownItem} ${child.dividerBefore ? styles.separatedItem : ''}`} key={child.path} href={"/" + router.locale + child.path}>
                                                                 {t(`header.${child.name}` as any)}
                                                             </a>
                                                     ))}
