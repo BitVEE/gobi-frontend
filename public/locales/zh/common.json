@@ -82,6 +82,19 @@
             "resourceLoad": "资源列表加载失败，请刷新重试。",
             "agreement": "请先同意《官方物料使用条款》。"
         },
+        "success": {
+            "title": "申请已提交",
+            "intro": "我们已收到您的官方物料下载申请，当前正在等待审核。",
+            "detailsTitle": "申请详情",
+            "applicationNo": "申请编号",
+            "reviewStatus": "审核状态",
+            "pendingReview": "待审核",
+            "estimatedReviewTime": "预计审核时间",
+            "estimatedReviewValue": "1–2 个工作日",
+            "nextTitle": "后续流程",
+            "nextBody": "审核结果与下载链接将在 1–2 个工作日内发送至您的工作邮箱，请同时留意垃圾邮件文件夹。",
+            "backHome": "返回首页"
+        },
         "download": {
             "loading": "正在加载资源状态…",
             "loadFailed": "资源状态加载失败，请稍后重试。",

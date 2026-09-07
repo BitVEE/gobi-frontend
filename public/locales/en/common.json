@@ -82,6 +82,19 @@
             "resourceLoad": "Unable to load resources. Please refresh and try again.",
             "agreement": "Please agree to the Official Resource Usage Terms."
         },
+        "success": {
+            "title": "APPLICATION SUBMITTED",
+            "intro": "We've received your official resource download application. It is now awaiting review.",
+            "detailsTitle": "APPLICATION DETAILS",
+            "applicationNo": "Application ID",
+            "reviewStatus": "Review Status",
+            "pendingReview": "Pending Review",
+            "estimatedReviewTime": "Estimated Review Time",
+            "estimatedReviewValue": "1–2 working days",
+            "nextTitle": "WHAT HAPPENS NEXT",
+            "nextBody": "We'll email the review result and download link to your work email within 1–2 working days. Please also check your spam folder.",
+            "backHome": "Back to Homepage"
+        },
         "download": {
             "loading": "Loading resource status…",
             "loadFailed": "Unable to load the resource status. Please try again later.",

@@ -27,7 +27,8 @@ function Field({ id, label, error, children, helper }: {
 
 export default function ApplicationForm() {
   const { t } = useTranslation('common', { keyPrefix: 'resources' });
-  const { locale } = useRouter();
+  const router = useRouter();
+  const { locale } = router;
   const dispatch = useDispatch();
   const [draft, setDraft] = useState(createApplicationDraft);
   const [errors, setErrors] = useState<ApplicationErrors>({});
@@ -163,10 +164,10 @@ export default function ApplicationForm() {
         }));
         return;
       }
-      dispatch(addToast({ message: t('submitSuccess'), type: 'success' }));
-      setDraft({ ...createApplicationDraft(), resourceIds: resources[0] ? [resources[0].id] : [] });
-      setErrors({});
-      setHasValidated(false);
+      await router.push({
+        pathname: '/resources/success',
+        query: { applicationNo: response.data.data.applicationNo },
+      });
     } catch {
       dispatch(addToast({ message: t('submitFailed'), type: 'error' }));
     } finally {
