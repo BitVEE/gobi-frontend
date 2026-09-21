@@ -114,6 +114,116 @@
             "expiredBody": "为保障资源安全，下载链接仅在有效期内可用。请重新申请下载链接后再下载该资源包。"
         }
     },
+    "share": {
+        "home": {
+            "title": "青戈赛",
+            "description": "玄奘之路国际青少年戈壁挑战赛官方网站，了解赛事、报名、成绩、影像与青少年戈壁成长故事。"
+        },
+        "raceRegistration": {
+            "title": "赛事报名",
+            "description": "查看青戈赛赛事组别、报名安排与参赛信息，选择赛事并开始报名。"
+        },
+        "raceNotice": {
+            "title": "报名须知",
+            "description": "了解青戈赛报名条件、赛事安排、退改规则和参赛注意事项。"
+        },
+        "raceInfo": {
+            "title": "参赛信息",
+            "description": "填写青戈赛参赛信息，并确认赛事报名协议与安全声明。"
+        },
+        "racePay": {
+            "title": "报名支付",
+            "description": "完成青戈赛报名费用支付，并查看当前报名的支付结果。"
+        },
+        "raceNews": {
+            "title": "赛事资讯",
+            "description": "查看青戈赛最新赛事资讯、活动动态与官方发布。"
+        },
+        "gobiStory": {
+            "title": "戈友故事",
+            "description": "阅读参赛学生、学校与戈友在青戈赛中的成长经历与戈壁故事。"
+        },
+        "raceInfoDetail": {
+            "title": "资讯详情",
+            "description": "阅读青戈赛赛事资讯、活动动态与戈壁成长故事的详细内容。"
+        },
+        "personalResult": {
+            "title": "个人成绩",
+            "description": "按赛事、组别、姓名或参赛号查询青戈赛个人成绩与排名。"
+        },
+        "teamResult": {
+            "title": "团队成绩",
+            "description": "查询青戈赛团队成绩、团队排名与参赛成员表现。"
+        },
+        "resultDetail": {
+            "title": "成绩详情",
+            "description": "查看青戈赛个人或团队成绩详情、分段数据与打卡记录。"
+        },
+        "selectedAlbum": {
+            "title": "精选相册",
+            "description": "浏览青戈赛精选赛事相册，回顾戈壁挑战中的精彩瞬间。"
+        },
+        "selectedVideo": {
+            "title": "精选视频",
+            "description": "观看青戈赛精选赛事视频，记录青少年戈壁挑战与成长时刻。"
+        },
+        "selectedLive": {
+            "title": "赛事直播",
+            "description": "观看青戈赛赛事直播及相关直播内容。"
+        },
+        "raceImageDetail": {
+            "title": "影像详情",
+            "description": "查看青戈赛赛事相册或视频的详细内容。"
+        },
+        "museum": {
+            "title": "时间胶囊博物馆",
+            "description": "浏览青戈赛时间胶囊博物馆，收藏来自学生与教师的戈壁记忆。"
+        },
+        "museumDetail": {
+            "title": "时间胶囊作品",
+            "description": "查看青戈赛时间胶囊作品、影像与投稿者记录。"
+        },
+        "joinSchool": {
+            "title": "参与学校",
+            "description": "了解参与青戈赛的学校与合作伙伴，查看相关学校及赛事动态。"
+        },
+        "qa": {
+            "title": "赛事问答",
+            "description": "查看青戈赛报名资格、赛事流程、安全保障、赛事规则与奖项等常见问题。"
+        },
+        "brandStory": {
+            "title": "品牌故事",
+            "description": "了解青戈赛品牌故事、赛事理念与青少年成长价值。"
+        },
+        "creator": {
+            "title": "网站发起人",
+            "description": "了解青戈赛网站发起人及网站创建背景。"
+        },
+        "contactUs": {
+            "title": "联系我们",
+            "description": "获取青戈赛微信公众号、管理员联系方式与官方邮箱。"
+        },
+        "resources": {
+            "title": "官方物料下载",
+            "description": "申请获取青戈赛官方赛事资料、品牌素材与使用规范。"
+        },
+        "resourceSuccess": {
+            "title": "申请提交成功",
+            "description": "青戈赛官方物料申请已提交，查看申请状态与后续审核说明。"
+        },
+        "resourceDownload": {
+            "title": "官方物料下载",
+            "description": "获取审核通过的青戈赛官方物料，并查看下载有效期与使用条款。"
+        },
+        "login": {
+            "title": "登录",
+            "description": "登录青戈赛网站，管理赛事报名、成绩与个人赛事资料。"
+        },
+        "user": {
+            "title": "个人中心",
+            "description": "查看并管理青戈赛报名记录、个人成绩、赛事档案与个人赛事海报。"
+        }
+    },
     "common": {
         "language": "zh",
         "english": "English",

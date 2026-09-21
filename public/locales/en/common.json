@@ -114,6 +114,116 @@
             "expiredBody": "For security, download links are time-limited. Request a new link before downloading this package."
         }
     },
+    "share": {
+        "home": {
+            "title": "ULTRA GOBI",
+            "description": "Official Youth Ultra Gobi website for event information, registration, results, media and Gobi stories."
+        },
+        "raceRegistration": {
+            "title": "Registration",
+            "description": "View available Youth Ultra Gobi events, categories and registration information."
+        },
+        "raceNotice": {
+            "title": "Registration Notice",
+            "description": "Review registration requirements, event arrangements, refund policies and participation notices."
+        },
+        "raceInfo": {
+            "title": "Registration Details",
+            "description": "Complete the participant information and confirm the registration agreement and safety declaration."
+        },
+        "racePay": {
+            "title": "Registration Payment",
+            "description": "Complete the Youth Ultra Gobi registration payment and view the payment result."
+        },
+        "raceNews": {
+            "title": "Event News",
+            "description": "Read the latest Youth Ultra Gobi event news, updates and official announcements."
+        },
+        "gobiStory": {
+            "title": "Gobi Stories",
+            "description": "Read stories of growth and adventure from students, schools and the Youth Ultra Gobi community."
+        },
+        "raceInfoDetail": {
+            "title": "News Detail",
+            "description": "Read detailed Youth Ultra Gobi event news, updates and Gobi stories."
+        },
+        "personalResult": {
+            "title": "Individual Results",
+            "description": "Search individual Youth Ultra Gobi results and rankings by event, category, name or race number."
+        },
+        "teamResult": {
+            "title": "Team Results",
+            "description": "View Youth Ultra Gobi team results, rankings and participant performance."
+        },
+        "resultDetail": {
+            "title": "Result Details",
+            "description": "View individual or team result details, split data and checkpoint records."
+        },
+        "selectedAlbum": {
+            "title": "Individual Photos",
+            "description": "Browse selected Youth Ultra Gobi albums and revisit memorable moments from the challenge."
+        },
+        "selectedVideo": {
+            "title": "Event Video",
+            "description": "Watch selected Youth Ultra Gobi videos capturing the challenge and student growth."
+        },
+        "selectedLive": {
+            "title": "Live Broadcast",
+            "description": "Watch Youth Ultra Gobi event live streams and related broadcasts."
+        },
+        "raceImageDetail": {
+            "title": "Media Detail",
+            "description": "View detailed Youth Ultra Gobi album or video content."
+        },
+        "museum": {
+            "title": "Time Capsule Museum",
+            "description": "Explore Gobi memories and stories contributed by Youth Ultra Gobi students and teachers."
+        },
+        "museumDetail": {
+            "title": "Time Capsule Story",
+            "description": "View a Youth Ultra Gobi time capsule story, images and contributor information."
+        },
+        "joinSchool": {
+            "title": "Participating Schools",
+            "description": "Discover schools and partners participating in Youth Ultra Gobi."
+        },
+        "qa": {
+            "title": "Event FAQs",
+            "description": "Find answers about eligibility, event stages, safety, rules, awards and participation."
+        },
+        "brandStory": {
+            "title": "Brand Story",
+            "description": "Learn about the Youth Ultra Gobi brand, event philosophy and educational values."
+        },
+        "creator": {
+            "title": "About the Creators",
+            "description": "Learn about the founders of the Youth Ultra Gobi website and its background."
+        },
+        "contactUs": {
+            "title": "Contact Us",
+            "description": "Find the Youth Ultra Gobi official account, administrator contacts and official email."
+        },
+        "resources": {
+            "title": "Official Resource Download",
+            "description": "Apply for official Youth Ultra Gobi event resources, brand assets and usage guidelines."
+        },
+        "resourceSuccess": {
+            "title": "Application Submitted",
+            "description": "Your official resource application has been submitted. Review the status and next steps."
+        },
+        "resourceDownload": {
+            "title": "Official Resource Download",
+            "description": "Access approved Youth Ultra Gobi resources and review the download validity and usage terms."
+        },
+        "login": {
+            "title": "Login",
+            "description": "Sign in to manage Youth Ultra Gobi registrations, results and participant records."
+        },
+        "user": {
+            "title": "Personal Center",
+            "description": "Manage registrations, personal results, event records and personal race posters."
+        }
+    },
     "common": {
         "language": "en",
         "english": "English",
