@@ -93,9 +93,9 @@ export default function Home() {
           </div>)
         }
 
-        <div className={styles.poster_title}>
+        <h1 className={styles.poster_title}>
           {t("home.title" as any)}
-        </div>
+        </h1>
       </div>
 
       <MatchDetailCard pageName='home' />

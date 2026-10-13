@@ -1,5 +1,26 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## SEO validation and deployment
+
+Run `npm run build`, start the production server with `npm start`, then run
+`npm run verify:seo` in another terminal. Set `SEO_BASE_URL` to check a deployed
+server instead. The check reads raw HTML without executing JavaScript.
+
+The public homepage, navigation and static page content render on the server.
+Login state restores after browser hydration; account, registration details and
+payment pages still wait for that restoration. Account pages, login and resource
+confirmation/download pages use `noindex,follow`.
+
+`/sitemap.xml` lists the public navigation routes in Chinese and English, with
+language alternatives. Add detail URLs only when their real IDs are available;
+this sitemap does not enumerate API-driven articles, albums or museum entries.
+`/robots.txt` advertises the sitemap and leaves page assets crawlable.
+
+After deploying, verify ownership in Google Search Console using the existing
+`/google0697c507daceed82.html` file, submit `/sitemap.xml`, and inspect/request
+indexing for `/` and `/en`. Monitor the Page Indexing report; deployment and
+indexing requests do not guarantee immediate inclusion or higher rankings.
+
 ## Getting Started
 
 First, run the development server:

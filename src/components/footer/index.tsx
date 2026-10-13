@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import routerList from '@/utils/routerList';
+import Link from 'next/link';
 
 type RouterChild = {
     name: string;
@@ -22,20 +23,14 @@ type RouterItem = {
 
 type Props = {};
 
-(routerList as RouterItem[]).forEach((item) => {
-    item.isDisplay = false;
-});
-
 const Footer = (props: Props) => {
     const router = useRouter()
     const { t } = useTranslation("common");
-    const [linksList, setLinksList] = useState(routerList)
+    const [linksList, setLinksList] = useState<RouterItem[]>(() => routerList.map(item => ({ ...item, isDisplay: false })))
 
     const displaySubmenu = (name: string) => {
         if (window.innerWidth <= 768) {
-            let data = linksList
-            data.map((val: RouterItem) => val.isDisplay = val.name === name)
-            setLinksList(JSON.parse(JSON.stringify(data)))
+            setLinksList(items => items.map(item => ({ ...item, isDisplay: item.name === name })))
         }
     }
 
@@ -74,27 +69,25 @@ const Footer = (props: Props) => {
                         linksList.map((item: RouterItem) => (
                             <div key={item.name} className={styles.footerLinkItem}>
                                 {!item.children ? (
-                                    <a href={"/" + router.locale + item.path} className={styles.link_title}>{t(`header.${item.name}` as any)}</a>
+                                    <Link href={item.path || '/'} className={styles.link_title}>{t(`header.${item.name}` as any)}</Link>
                                 ) : (
                                     <div className={styles.dropdown}>
                                         <div className={styles.link_title} onClick={() => displaySubmenu(item.name)}>
                                             {t(`header.${item.name}` as any)}
                                         </div>
                                         {
-                                            (window.innerWidth > 768 || item.isDisplay) && (
-                                                <div className={styles.dropdownContent}>
+                                                <div className={`${styles.dropdownContent} ${item.isDisplay ? styles.dropdownContentOpen : ''}`}>
                                                     {item.children?.map((child) => (
                                                         child?.link ?
                                                             <a className={styles.dropdownItem} target="_blank" key={child.path} href={child.link}>
                                                                 {t(`header.${child.name}` as any)}
                                                             </a>
                                                             :
-                                                            <a className={`${styles.dropdownItem} ${child.dividerBefore ? styles.separatedItem : ''}`} key={child.path} href={"/" + router.locale + child.path}>
+                                                            <Link className={`${styles.dropdownItem} ${child.dividerBefore ? styles.separatedItem : ''}`} key={child.path} href={child.path}>
                                                                 {t(`header.${child.name}` as any)}
-                                                            </a>
+                                                            </Link>
                                                     ))}
                                                 </div>
-                                            )
                                         }
                                     </div>
                                 )}

@@ -175,7 +175,12 @@ const SHARE_IMAGE_MAP: Record<ShareMetaKey, ShareImageAsset> = {
   },
 };
 
-const NO_INDEX_PATHNAMES = new Set(['/403', '/404', '/wechat_login/callback']);
+export const AUTH_REQUIRED_PATHS = new Set(['/user', '/race/pay', '/race/info']);
+
+const NO_INDEX_PATHNAMES = new Set([
+  '/403', '/404', '/wechat_login/callback', '/login',
+  '/resources/success', '/resources/download', ...Array.from(AUTH_REQUIRED_PATHS),
+]);
 
 function normalizePath(value: string) {
   const withoutQueryOrHash = value.split('#')[0].split('?')[0] || '/';
@@ -205,7 +210,7 @@ function getSafeSharePath(path: string, noIndex: boolean) {
   return path;
 }
 
-function buildShareUrl(path: string, locale?: string) {
+export function buildShareUrl(path: string, locale?: string) {
   if (locale === 'en') {
     return path === '/'
       ? `${SITE_ORIGIN}/en`
@@ -225,6 +230,7 @@ export interface ShareMetaResolution {
   imageWidth: number;
   imageHeight: number;
   noIndex: boolean;
+  alternateUrls: { zh: string; en: string };
 }
 
 export function resolveShareMeta(
@@ -247,5 +253,9 @@ export function resolveShareMeta(
     imageWidth: image.width,
     imageHeight: image.height,
     noIndex,
+    alternateUrls: {
+      zh: buildShareUrl(safePath, 'zh'),
+      en: buildShareUrl(safePath, 'en'),
+    },
   };
 }

@@ -8,7 +8,8 @@ import { persistor, store } from '@/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { resolveShareMeta } from '@/utils/shareMeta';
+import { AUTH_REQUIRED_PATHS, resolveShareMeta, SITE_ORIGIN } from '@/utils/shareMeta';
+import { useEffect } from 'react';
 
 function App({ Component, pageProps }: AppProps) {
   const { t } = useTranslation()
@@ -20,6 +21,7 @@ function App({ Component, pageProps }: AppProps) {
   const pageTitle = shareMeta.key === 'home' ? siteTitle : `${siteTitle}-${shareTitle}`
   const ogLocale = router.locale === 'en' ? 'en_US' : 'zh_CN'
   const alternateOgLocale = router.locale === 'en' ? 'zh_CN' : 'en_US'
+  useEffect(() => { persistor.persist() }, [])
 
   return (
     <Provider store={store}>
@@ -44,15 +46,27 @@ function App({ Component, pageProps }: AppProps) {
         <meta key="twitter:description" name="twitter:description" content={shareDescription} />
         <meta key="twitter:image" name="twitter:image" content={shareMeta.imageUrl} />
         <link key="canonical" rel="canonical" href={shareMeta.shareUrl} />
-        {shareMeta.noIndex && <meta key="robots" name="robots" content="noindex,nofollow" />}
+        <meta key="robots" name="robots" content={shareMeta.noIndex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
+        {!shareMeta.noIndex && ['zh', 'en', 'x-default'].map(language => (
+          <link key={`alternate-${language}`} rel="alternate" hrefLang={language}
+            href={shareMeta.alternateUrls[language === 'en' ? 'en' : 'zh']} />
+        ))}
+        {router.pathname === '/' && <script key="website-schema" type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org', '@type': 'WebSite',
+            '@id': `${SITE_ORIGIN}/#website`, url: `${SITE_ORIGIN}/`,
+            name: 'Youth Ultra Gobi', alternateName: ['青戈赛', '玄奘之路青少年戈壁挑战赛'],
+            inLanguage: ['zh-CN', 'en'],
+          }).replace(/</g, '\\u003c') }} />}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"></meta>
-        <meta name="keywords" content="Gobź"></meta>
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <PersistGate loading={null} persistor={persistor}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+      <PersistGate persistor={persistor}>
+        {(bootstrapped) => AUTH_REQUIRED_PATHS.has(router.pathname) && !bootstrapped ? null : (
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        )}
       </PersistGate>
     </Provider>
   )

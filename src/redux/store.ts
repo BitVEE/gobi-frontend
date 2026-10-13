@@ -2,6 +2,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 // 2. 导入持久化所需要的插件
 import { persistStore, persistReducer } from 'redux-persist';
+import type { PersistorOptions } from 'redux-persist';
 // 3. 导入本地存储插件，可选storage，cookie，session等
 import storage from 'redux-persist/lib/storage';
 // 4. 导入子模块reducers
@@ -42,7 +43,9 @@ const store = configureStore({
     })
 });
 // 7. 创建持久化后的store
-const persistor = persistStore(store);
+// Restore browser state after hydration so public pages can render on the server.
+const persistOptions: PersistorOptions & { manualPersist: boolean } = { manualPersist: true };
+const persistor = persistStore(store, persistOptions);
 // 8. 导出store和持久化后的store
 export {
     store,

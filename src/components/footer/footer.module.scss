@@ -220,9 +220,13 @@
 
                     .dropdownContent {
                         margin-top: 16px;
-                        display: flex;
+                        display: none;
                         flex-direction: column;
                         align-items: center;
+
+                        &.dropdownContentOpen {
+                            display: flex;
+                        }
 
                         .dropdownItem {
                             margin-top: 48px;

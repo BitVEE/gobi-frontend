@@ -1,9 +1,10 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 import Script from 'next/script';
+import type { DocumentProps } from 'next/document';
 
-export default function Document() {
+export default function Document({ __NEXT_DATA__ }: DocumentProps) {
   return (
-    <Html lang="en">
+    <Html lang={__NEXT_DATA__.locale === 'en' ? 'en' : 'zh-CN'}>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
