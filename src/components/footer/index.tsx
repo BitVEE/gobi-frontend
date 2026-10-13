@@ -38,7 +38,7 @@ const Footer = (props: Props) => {
         <div className={styles.footer}>
             <div className={styles.footerContent}>
                 <div className={styles.footerLogo}>
-                    <Image className={styles.logo} width={153} height={44} src="/images/logo-202609.svg" alt="GOBI" />
+                    <Image className={styles.logo} width={153} height={44} src="/images/logo-202609.svg" alt={t('common.siteTitle')} />
                     <div className={styles.followUs}>
                         {t("home.followUs")}
                         <div className={styles.iconsContainer}>

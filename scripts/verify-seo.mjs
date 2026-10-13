@@ -14,8 +14,8 @@ function tags(html, name) {
 }
 
 for (const [path, language, title] of [
-  ['/', 'zh-CN', '玄奘之路青少年戈壁挑战赛（青戈赛）'],
-  ['/en', 'en', 'Youth Ultra Gobi'],
+  ['/', 'zh-CN', 'Youth Ultra Gobi 青戈赛官网 | 玄奘之路青少年戈壁挑战赛'],
+  ['/en', 'en', 'Youth Ultra Gobi | Official Website'],
 ]) {
   const html = await read(path);
   assert.equal(tags(html, 'html')[0].lang, language);
@@ -23,7 +23,8 @@ for (const [path, language, title] of [
   const body = html.split('<div id="__next">')[1]?.split('<script')[0] || '';
   assert.match(body, /<main\b/, 'Public content must exist without JavaScript');
   assert.match(body, /<h1\b/);
-  assert.ok(body.includes(title), 'Brand must be visible in server-rendered content');
+  assert.ok(body.includes('Youth Ultra Gobi'), 'Brand must be present in server-rendered content');
+  assert.equal(tags(html, 'meta').find(meta => meta.property === 'og:site_name')?.content, 'Youth Ultra Gobi');
   const links = tags(html, 'link');
   assert.equal(links.find(link => link.rel === 'canonical').href, `${origin}${path}`);
   for (const language of ['zh', 'en', 'x-default']) {

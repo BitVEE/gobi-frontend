@@ -73,7 +73,7 @@ const Header = () => {
         <header className={styles.header} id='site-header'>
             <div className={styles.container}>
                 <Link href="/" onClick={() => { router.push('/') }}  >
-                    <Image width={153} height={44} className={styles.logo} src="/images/logo-202609.svg" alt="GOBI" />
+                    <Image width={153} height={44} className={styles.logo} src="/images/logo-202609.svg" alt={t('common.siteTitle')} />
                 </Link>
                 <div className={styles.mobileMenuButton} onClick={toggleMobileMenu}>
                     <Image width={30} height={30} className={styles.mobileMenuIcon} src={isMobileMenuOpen ? "/images/icons/close.svg" : "/images/icons/menu.svg"} alt="menu" />
