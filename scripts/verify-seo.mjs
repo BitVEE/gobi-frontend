@@ -24,6 +24,10 @@ for (const [path, language, title] of [
   assert.match(body, /<main\b/, 'Public content must exist without JavaScript');
   assert.match(body, /<h1\b/);
   assert.ok(body.includes(title), 'Brand must be visible in server-rendered content');
+  for (const brand of ['Youth Ultra Gobi', '青戈赛', '玄奘之路青少年戈壁挑战赛']) {
+    assert.ok(body.includes(brand), `${path} must explain the brand names in its content`);
+    assert.ok(tags(html, 'meta').find(meta => meta.name === 'description')?.content.includes(brand));
+  }
   const links = tags(html, 'link');
   assert.equal(links.find(link => link.rel === 'canonical').href, `${origin}${path}`);
   for (const language of ['zh', 'en', 'x-default']) {
@@ -33,6 +37,8 @@ for (const [path, language, title] of [
   const schema = JSON.parse(html.match(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/s)[1]);
   assert.equal(schema.name, 'Youth Ultra Gobi');
   assert.equal(schema.url, `${origin}/`);
+  assert.ok(schema.alternateName.includes('青戈赛'));
+  assert.ok(schema.alternateName.includes('玄奘之路青少年戈壁挑战赛'));
 }
 
 for (const path of ['/login', '/user', '/race/info', '/race/pay', '/resources/success', '/resources/download']) {

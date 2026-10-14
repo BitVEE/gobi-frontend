@@ -56,6 +56,7 @@ function App({ Component, pageProps }: AppProps) {
             '@context': 'https://schema.org', '@type': 'WebSite',
             '@id': `${SITE_ORIGIN}/#website`, url: `${SITE_ORIGIN}/`,
             name: 'Youth Ultra Gobi', alternateName: ['青戈赛', '玄奘之路青少年戈壁挑战赛'],
+            description: t('share.home.description'),
             inLanguage: ['zh-CN', 'en'],
           }).replace(/</g, '\\u003c') }} />}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"></meta>
