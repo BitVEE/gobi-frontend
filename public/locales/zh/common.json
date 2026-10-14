@@ -116,7 +116,7 @@
     },
     "share": {
         "home": {
-            "title": "Youth Ultra Gobi 青戈赛官网 | 玄奘之路青少年戈壁挑战赛",
+            "title": "玄奘之路青少年戈壁挑战赛（青戈赛）",
             "description": "“玄奘之路青少年戈壁挑战赛-青戈赛”（Youth Ultra Gobi）是一项面向全球青少年的挑战活动，其灵感源自“玄奘之路戈壁挑战赛”，旨在通过团队协作、耐力考验与领导力培养，为18岁以下的青少年赋能。"
         },
         "raceRegistration": {
@@ -232,7 +232,7 @@
         "loadingText": "加载中...",
         "nodataText": "暂无数据",
         "loginProcessing": "登录处理中...",
-        "siteTitle": "Youth Ultra Gobi 青戈赛",
+        "siteTitle": "玄奘之路青少年戈壁挑战赛（青戈赛）",
         "back": "返回",
         "generatePoster": "生成海报",
         "downloadPoster": "下载海报"

@@ -18,7 +18,7 @@ function App({ Component, pageProps }: AppProps) {
   const shareTitle = t(`share.${shareMeta.key}.title`)
   const shareDescription = t(`share.${shareMeta.key}.description`)
   const siteTitle = t('common.siteTitle')
-  const pageTitle = shareMeta.key === 'home' ? shareTitle : `${shareTitle} | ${siteTitle}`
+  const pageTitle = shareMeta.key === 'home' ? siteTitle : `${siteTitle}-${shareTitle}`
   const ogLocale = router.locale === 'en' ? 'en_US' : 'zh_CN'
   const alternateOgLocale = router.locale === 'en' ? 'zh_CN' : 'en_US'
   useEffect(() => { persistor.persist() }, [])
@@ -29,7 +29,7 @@ function App({ Component, pageProps }: AppProps) {
         <title>{pageTitle}</title>
         <meta key="description" name="description" content={shareDescription} />
         <meta key="og:type" property="og:type" content="website" />
-        <meta key="og:site_name" property="og:site_name" content="Youth Ultra Gobi" />
+        <meta key="og:site_name" property="og:site_name" content={siteTitle} />
         <meta key="og:title" property="og:title" content={pageTitle} />
         <meta key="og:description" property="og:description" content={shareDescription} />
         <meta key="og:image" property="og:image" content={shareMeta.imageUrl} />
